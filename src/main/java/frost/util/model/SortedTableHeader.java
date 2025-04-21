@@ -38,8 +38,9 @@ import frost.util.gui.MiscToolkit;
  * SortedModelTable of the event, so that it can change its sorting.
  * It also paints arrows on the header depending of that sorting.
  */
-@SuppressWarnings("serial")
-class SortedTableHeader extends ModelTableHeader {
+public class SortedTableHeader extends ModelTableHeader {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * This inner class paints an arrow on the header of the column the model

@@ -43,9 +43,11 @@ import javax.swing.text.Position;
 
 //@author Santhosh Kumar T - santhosh@in.fiorano.com
 // source: http://jroller.com/page/santhosh?entry=incremental_search_the_framework
-@SuppressWarnings("serial")
-public abstract class FindAction extends AbstractAction implements DocumentListener, KeyListener{
-    JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+public abstract class FindAction extends AbstractAction implements DocumentListener, KeyListener {
+
+	private static final long serialVersionUID = 1L;
+
+	JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
     protected JTextField searchField = new JTextField();
     JPopupMenu popup = new JPopupMenu();
 

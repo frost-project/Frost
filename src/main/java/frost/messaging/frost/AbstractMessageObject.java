@@ -24,10 +24,11 @@ package frost.messaging.frost;
  * It is used by the MessageObjectFile (XML file representation)
  * and the FrostMessageObject (database representation).
  */
-@SuppressWarnings("serial")
 public abstract class AbstractMessageObject extends AbstractMessageStatusProvider {
 
-    protected AttachmentList<Attachment> attachments = null;
+	private static final long serialVersionUID = 1L;
+
+	protected AttachmentList<Attachment> attachments = null;
     protected AttachmentList<FileAttachment> fileAttachments = null;
     protected AttachmentList<BoardAttachment> boardAttachments = null;
     

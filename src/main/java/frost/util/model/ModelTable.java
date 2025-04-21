@@ -46,8 +46,9 @@ import org.slf4j.LoggerFactory;
  * Besides, the user can choose which columns will be shown via a menu
  * that pops up when he right clicks on the header.
  */
-@SuppressWarnings("serial")
 abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableModel {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(ModelTable.class);
 

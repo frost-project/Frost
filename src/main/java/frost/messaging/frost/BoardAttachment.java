@@ -26,8 +26,9 @@ import org.xml.sax.SAXException;
 import frost.messaging.frost.boards.Board;
 import frost.util.XMLTools;
 
-@SuppressWarnings("serial")
 public class BoardAttachment extends Attachment {
+
+	private static final long serialVersionUID = 1L;
 
 	private Board boardObj;
 

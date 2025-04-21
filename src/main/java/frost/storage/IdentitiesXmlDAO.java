@@ -166,10 +166,11 @@ public class IdentitiesXmlDAO {
         }
     }
 
-    @SuppressWarnings("serial")
 	private static class BuddyList implements XMLizable {
 
-        private HashMap<String,Identity> hashMap = null;
+		private static final long serialVersionUID = 1L;
+
+		private HashMap<String,Identity> hashMap = null;
 
         /**constructor*/
         public BuddyList() {

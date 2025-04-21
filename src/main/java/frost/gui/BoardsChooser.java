@@ -46,10 +46,11 @@ import javax.swing.table.TableColumn;
 import frost.messaging.frost.boards.Board;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class BoardsChooser extends JDialog {
 
-    private final Language language = Language.getInstance();
+	private static final long serialVersionUID = 1L;
+
+	private final Language language = Language.getInstance();
 
     protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
@@ -176,9 +177,11 @@ public class BoardsChooser extends JDialog {
         public Board board;
     }
 
-    class BoardsTableModel extends AbstractTableModel {
+	private class BoardsTableModel extends AbstractTableModel {
 
-        List<BoardTableEntry> boardsList = new ArrayList<BoardTableEntry>();
+		private static final long serialVersionUID = 1L;
+
+		private List<BoardTableEntry> boardsList = new ArrayList<BoardTableEntry>();
 
         public BoardsTableModel(final List<BoardTableEntry> l) {
             super();

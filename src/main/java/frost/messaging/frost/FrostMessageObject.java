@@ -47,8 +47,9 @@ import frost.util.DateFun;
  * This class holds all informations that are shown in the GUI and stored to the database.
  * It adds more fields than a MessageObjectFile uses.
  */
-@SuppressWarnings("serial")
 public class FrostMessageObject extends AbstractMessageObject implements TableMember<FrostMessageObject> {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(FrostMessageObject.class);
 

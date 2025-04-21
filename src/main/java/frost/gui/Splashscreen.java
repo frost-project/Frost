@@ -52,8 +52,9 @@ import frost.util.gui.MiscToolkit;
  * Update: it seems the problem lies on the com.sun.java.swing.plaf.windows.WindowsLookAndFeel. If the user chooses
  * another one (like Metal) from the command line options, the issue is solved.
  */
-@SuppressWarnings("serial")
 public class Splashscreen extends JDialog {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(Splashscreen.class);
 

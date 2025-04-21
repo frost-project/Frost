@@ -32,10 +32,11 @@ import javax.swing.table.TableColumnModel;
 
 import frost.gui.model.TableMember;
 
-@SuppressWarnings("serial")
-public class SortHeaderRenderer extends DefaultTableCellRenderer
-{
-    static class SortArrowIcon implements Icon
+public class SortHeaderRenderer extends DefaultTableCellRenderer {
+
+	private static final long serialVersionUID = 1L;
+
+	static class SortArrowIcon implements Icon
     {
         public static final int NONE = 0;
         public static final int DECENDING = 1;

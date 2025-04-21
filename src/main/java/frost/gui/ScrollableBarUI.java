@@ -42,7 +42,6 @@ public class ScrollableBarUI extends ComponentUI
     return new ScrollableBarUI();
   }
 
-@SuppressWarnings("serial")
 @Override
 public void installUI(final JComponent c) {
 
@@ -71,12 +70,18 @@ public void installUI(final JComponent c) {
     final int axis = sb.isHorizontal()?BoxLayout.X_AXIS:BoxLayout.Y_AXIS;
     sb.setLayout(new BoxLayout(sb, axis));
 
-    scroll = new JViewport() {
-        // Create a customized layout manager
+	scroll = new JViewport() {
+
+		private static final long serialVersionUID = 1L;
+
+		// Create a customized layout manager
         @Override
         protected LayoutManager createLayoutManager() {
-          return new ViewportLayout() {
-              @Override
+			return new ViewportLayout() {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
             public Dimension minimumLayoutSize(final Container parent) {
                 final Component view = ((JViewport)parent).getView();
                 if (view == null) {

@@ -40,9 +40,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author Yexin Chen
  */
-
-@SuppressWarnings("serial")
 public class GlassPane extends JComponent implements AWTEventListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(GlassPane.class);
 

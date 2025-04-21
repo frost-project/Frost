@@ -39,10 +39,11 @@ import javax.swing.event.DocumentListener;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class NewBoardDialog extends JDialog {
-    
-    private class Listener implements DocumentListener, ActionListener {
+
+	private static final long serialVersionUID = 1L;
+
+	private class Listener implements DocumentListener, ActionListener {
 
         public void changedUpdate(DocumentEvent e) {
             if (e.getDocument() == nameTextField.getDocument()) {

@@ -20,9 +20,10 @@ package frost.util.model;
 
 import frost.util.gui.FrostSwingWorker;
 
-@SuppressWarnings("serial")
 public class SortedModelTable<T extends ModelItem<T>> extends ModelTable<T> {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Index in the ModelTable of the column the model is 
 	 * sorted by (or -1 if it is not currently sorted). 

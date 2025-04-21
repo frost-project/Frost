@@ -26,9 +26,11 @@ import javax.swing.JToggleButton.ToggleButtonModel;
  * Derived from  The Java Specialists' Newsletter Issue 145 (2007-05-25)
  * by Dr. Heinz M. Kabutz
  */
-@SuppressWarnings("serial")
 public class TristateButtonModel extends ToggleButtonModel {
-    private TristateState state = TristateState.DESELECTED;
+
+	private static final long serialVersionUID = 1L;
+
+	private TristateState state = TristateState.DESELECTED;
 
     public TristateButtonModel(final TristateState state) {
       setState(state);

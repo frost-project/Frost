@@ -29,10 +29,11 @@ import org.xml.sax.SAXException;
 import frost.util.XMLTools;
 import frost.util.XMLizable;
 
-@SuppressWarnings("serial")
 public class SharedFileXmlFile implements XMLizable {
 
-    public static final int MAX_COMMENT_LENGTH = 100;
+	private static final long serialVersionUID = 1L;
+
+	public static final int MAX_COMMENT_LENGTH = 100;
     public static final int MAX_KEYWORDS_LENGTH = 100;
 
 	private static final Logger logger = LoggerFactory.getLogger(SharedFileXmlFile.class);

@@ -22,8 +22,9 @@ package frost.messaging.frost;
  * @author $Author: artur8ur $
  * @version $Revision: 3244 $
  */
-@SuppressWarnings("serial")
 public class MessageCreationException extends Exception {
+
+	private static final long serialVersionUID = 1L;
 
 	private boolean empty = false;
 

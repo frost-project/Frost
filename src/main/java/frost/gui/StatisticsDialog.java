@@ -31,10 +31,11 @@ import javax.swing.JPanel;
 
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class StatisticsDialog extends JDialog {
 
-    private JPanel jContentPane = null;
+	private static final long serialVersionUID = 1L;
+
+	private JPanel jContentPane = null;
     private JLabel LmsgCountLabel = null;
     private JLabel LmsgCount = null;
     private JLabel LarcMsgCountLabel = null;

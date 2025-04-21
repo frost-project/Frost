@@ -29,10 +29,11 @@ import org.xml.sax.SAXException;
 import frost.util.CopyToClipboardItem;
 import frost.util.XMLTools;
 
-@SuppressWarnings("serial")
 public class FileAttachment extends Attachment implements CopyToClipboardItem {
 
-    private File file = null;
+	private static final long serialVersionUID = 1L;
+
+	private File file = null;
 
     private String key = null; // Name of this key
     private long size = 0; // Filesize

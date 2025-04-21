@@ -35,10 +35,11 @@ import javax.swing.JTextField;
 
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class FirstStartupDialog extends JDialog {
 
-    private static Language language = Language.getInstance();
+	private static final long serialVersionUID = 1L;
+
+	private static Language language = Language.getInstance();
 
     private JPanel jContentPane = null;
     private JLabel jLabel = null;

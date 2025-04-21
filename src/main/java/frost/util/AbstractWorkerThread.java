@@ -7,9 +7,11 @@ import javax.swing.event.EventListenerList;
 
 public abstract class AbstractWorkerThread  extends Thread {
 
-    @SuppressWarnings("serial")
 	public class WorkerFinishedEvent extends EventObject {
-        public WorkerFinishedEvent(Object source) {
+
+		private static final long serialVersionUID = 1L;
+
+		public WorkerFinishedEvent(Object source) {
             super(source);
         }
     }

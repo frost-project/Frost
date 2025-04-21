@@ -20,10 +20,11 @@ package frost.gui;
 
 import frost.messaging.frost.boards.Board;
 
-@SuppressWarnings("serial")
 public class KnownBoard extends Board {
-    
-    private boolean isHidden = false;
+
+	private static final long serialVersionUID = 1L;
+
+	private boolean isHidden = false;
 
     public KnownBoard(String name, String pubKey, String privKey, String description) {
         super(name, pubKey, privKey, description);

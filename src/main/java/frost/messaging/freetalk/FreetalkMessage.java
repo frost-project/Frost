@@ -40,8 +40,9 @@ import frost.util.DateFun;
 /**
  * A Freetalk message.
  */
-@SuppressWarnings("serial")
 public class FreetalkMessage extends DefaultMutableTreeNode {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(FreetalkMessage.class);
 

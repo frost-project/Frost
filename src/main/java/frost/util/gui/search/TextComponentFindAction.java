@@ -37,10 +37,11 @@ import javax.swing.text.Position;
 
 //@author Santhosh Kumar T - santhosh@in.fiorano.com
 // source: http://jroller.com/page/santhosh?entry=incremental_search_jtextcomponent
-@SuppressWarnings("serial")
-public class TextComponentFindAction extends FindAction implements FocusListener{
+public class TextComponentFindAction extends FindAction implements FocusListener {
 
-    // 1. inits searchField with selected text
+	private static final long serialVersionUID = 1L;
+
+	// 1. inits searchField with selected text
     // 2. adds focus listener so that textselection gets painted
     //    even if the textcomponent has no focus
     @Override

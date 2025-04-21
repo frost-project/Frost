@@ -28,10 +28,11 @@ import frost.util.DateFun;
 /**
  * Same as FrostMessageObject, but adds some stuff needed only for unsend messages.
  */
-@SuppressWarnings("serial")
 public class FrostUnsentMessageObject extends FrostMessageObject {
 
-    private PerstFrostUnsentMessageObject perstFrostUnsentMessageObject = null;
+	private static final long serialVersionUID = 1L;
+
+	private PerstFrostUnsentMessageObject perstFrostUnsentMessageObject = null;
 
     private long timeAdded = 0;
     private String timeAddedString = null;

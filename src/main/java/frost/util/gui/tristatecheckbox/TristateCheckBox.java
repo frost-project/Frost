@@ -40,10 +40,11 @@ import javax.swing.plaf.ActionMapUIResource;
  * Derived from  The Java Specialists' Newsletter Issue 145 (2007-05-25)
  * by Dr. Heinz M. Kabutz
  */
-@SuppressWarnings("serial")
 public final class TristateCheckBox extends JCheckBox {
 
-    // Listener on model changes to maintain correct focusability
+	private static final long serialVersionUID = 1L;
+
+	// Listener on model changes to maintain correct focusability
     private final ChangeListener enableListener = new ChangeListener() {
         public void stateChanged(ChangeEvent e) {
             TristateCheckBox.this.setFocusable(getModel().isEnabled());
@@ -72,8 +73,11 @@ public final class TristateCheckBox extends JCheckBox {
             }
         });
         final ActionMap actions = new ActionMapUIResource();
-        actions.put("pressed", new AbstractAction() {
-            public void actionPerformed(final ActionEvent e) {
+		actions.put("pressed", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
+			public void actionPerformed(final ActionEvent e) {
                 TristateCheckBox.this.iterateState();
             }
         });

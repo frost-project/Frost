@@ -55,10 +55,11 @@ import javax.swing.WindowConstants;
 /**
  * Tracks Memory allocated & used, displayed in graph form.
  */
-@SuppressWarnings("serial")
 public class MemoryMonitor extends JPanel {
 
-    public Surface surf;
+	private static final long serialVersionUID = 1L;
+
+	public Surface surf;
 //    JPanel controls;
 //    boolean doControls;
 //    JTextField tf;
@@ -166,10 +167,11 @@ public class MemoryMonitor extends JPanel {
 //        });
     }
 
+	public class Surface extends JPanel implements Runnable {
 
-    public class Surface extends JPanel implements Runnable {
+		private static final long serialVersionUID = 1L;
 
-        public Thread thread;
+		public Thread thread;
         public long sleepAmount = 1000;
         private int w, h;
         private BufferedImage bimg;

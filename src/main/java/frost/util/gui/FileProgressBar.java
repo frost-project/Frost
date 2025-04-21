@@ -25,9 +25,10 @@ import javax.swing.table.TableCellRenderer;
 /**
  * @author <a href="mailto:droden@gmail.com">David Roden</a>, ET
  */
-@SuppressWarnings("serial")
 public class FileProgressBar extends JPanel implements TableCellRenderer {
-    
+
+	private static final long serialVersionUID = 1L;
+
 //    public interface IFileProgress {
 //        // states for a block inside a file
 //        public static final int STATE_DONE       = 0;

@@ -44,10 +44,11 @@ import frost.util.gui.translation.Language;
 /**
  * This class let the user choose a folder from the folders in tofTree.
  */
-@SuppressWarnings("serial")
 public class TargetFolderChooser extends JDialog {
 
-    private JPanel jContentPane = null;
+	private static final long serialVersionUID = 1L;
+
+	private JPanel jContentPane = null;
     private JPanel buttonsPanel = null;
     private JTree folderTree = null;
     private JButton okButton = null;
@@ -238,9 +239,11 @@ public class TargetFolderChooser extends JDialog {
     /**
      * Simple renderer to set a nice icon for each folder.
      */
-    private class CellRenderer extends DefaultTreeCellRenderer {
+	private class CellRenderer extends DefaultTreeCellRenderer {
 
-        ImageIcon boardIcon;
+		private static final long serialVersionUID = 1L;
+
+		private ImageIcon boardIcon;
 
         public CellRenderer() {
             boardIcon = MiscToolkit.loadImageIcon("/data/folder-open.png");
@@ -264,8 +267,12 @@ public class TargetFolderChooser extends JDialog {
     /**
      * A simple treenode implementation that holds a Board and returns its name as toString()
      */
-    private class MyTreeNode extends DefaultMutableTreeNode {
-        Folder folder;
+	private class MyTreeNode extends DefaultMutableTreeNode {
+
+		private static final long serialVersionUID = 1L;
+
+		private Folder folder;
+
         public MyTreeNode(final Folder usrObj) {
             super(usrObj);
             folder = usrObj;

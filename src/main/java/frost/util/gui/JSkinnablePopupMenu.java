@@ -23,8 +23,9 @@ import java.util.Vector;
 
 import javax.swing.JPopupMenu;
 
-@SuppressWarnings("serial")
 public class JSkinnablePopupMenu extends JPopupMenu {
+
+	private static final long serialVersionUID = 1L;
 
 	/*
 	 * We insert a weak reference into the Vector of all Frames

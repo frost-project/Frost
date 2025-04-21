@@ -30,8 +30,9 @@ import javax.swing.JTabbedPane;
  * @author $Author: artur8ur $
  * @version $Revision: 3244 $
  */
-@SuppressWarnings("serial")
 public class JTranslatableTabbedPane extends JTabbedPane implements LanguageListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private Language language;
 

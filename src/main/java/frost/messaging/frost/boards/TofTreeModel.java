@@ -36,10 +36,11 @@ import frost.storage.perst.messages.MessageStorage;
 /**
  * This class serves as both the data and selection models of the TofTree.
  */
-@SuppressWarnings("serial")
 public class TofTreeModel extends DefaultTreeModel {
 
-    private final DefaultTreeSelectionModel selectionModel;
+	private static final long serialVersionUID = 1L;
+
+	private final DefaultTreeSelectionModel selectionModel;
 
     /**
      * This method creates a new TofTreeModel with the given TreeNode

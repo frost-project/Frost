@@ -25,9 +25,9 @@ import org.xml.sax.SAXException;
 
 import frost.util.XMLizable;
 
-@SuppressWarnings("serial")
-
 public abstract class Attachment implements XMLizable, Comparable<Attachment> {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(Attachment.class);
 

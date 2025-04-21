@@ -29,10 +29,11 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
-public class AttachedBoardTableModel extends DefaultTableModel implements LanguageListener
-{
-    private Language language = null;
+public class AttachedBoardTableModel extends DefaultTableModel implements LanguageListener {
+
+	private static final long serialVersionUID = 1L;
+
+	private Language language = null;
 
     protected final static String columnNames[] = new String[3];
 

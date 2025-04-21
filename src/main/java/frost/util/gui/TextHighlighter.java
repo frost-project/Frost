@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.Highlight;
@@ -103,7 +103,8 @@ public class TextHighlighter {
     }
 
     // A private subclass of the default highlight painter
-    private class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
+	private class MyHighlightPainter extends DefaultHighlightPainter {
+
         public MyHighlightPainter(final Color color) {
             super(color);
         }

@@ -24,9 +24,11 @@ import javax.swing.text.Position;
 import javax.swing.tree.TreePath;
 
 //@author Santhosh Kumar T - santhosh@in.fiorano.com 
-@SuppressWarnings("serial")
-public class TreeFindAction extends FindAction{ 
-    @Override
+public class TreeFindAction extends FindAction {
+
+	private static final long serialVersionUID = 1L;
+
+	@Override
     protected boolean changed(JComponent comp2, String searchString, Position.Bias bias){ 
         JTree tree = (JTree)comp2; 
         boolean startingFromSelection = true; 

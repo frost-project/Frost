@@ -49,15 +49,11 @@ import frost.storage.LocalIdentitiesXmlDAO;
 import frost.util.XMLTools;
 import frost.util.gui.translation.Language;
 
-/**
- *
- * @author $Author: $
- * @version $Revision: $
- */
-@SuppressWarnings("serial")
 public class ManageLocalIdentitiesDialog extends JDialog {
 
-    private Language language = null;
+	private static final long serialVersionUID = 1L;
+
+	private Language language = null;
 
     private JPanel jContentPane = null;
     private JPanel buttonPanel = null;

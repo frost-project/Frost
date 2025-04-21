@@ -35,8 +35,9 @@ import javax.swing.text.Document;
 
 //TODO: Bug: if the text contains arabic characters, antialias will be disabled
 
-@SuppressWarnings("serial")
 public class AntialiasedTextArea extends JTextArea {
+
+	private static final long serialVersionUID = 1L;
 
 	private boolean antiAliasEnabled = false;
 

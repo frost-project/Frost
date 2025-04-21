@@ -52,13 +52,12 @@ import frost.util.gui.translation.Language;
  * @author $Author: artur8ur $
  * @version $Revision: 3244 $
  */
-@SuppressWarnings("serial")
 public class JDialogWithDetails extends JDialog {
-	
+
+	private static final long serialVersionUID = 1L;
+
 	private class Listener extends WindowAdapter implements ActionListener {
-		/* (non-Javadoc)
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
+
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == moreButton) {
 				moreButtonPressed();

@@ -18,9 +18,11 @@
 */
 package frost.messaging.freetalk.boards;
 
-@SuppressWarnings("serial")
 public class FreetalkBoard extends AbstractFreetalkNode {
-    private int messageCount;
+
+	private static final long serialVersionUID = 1L;
+
+	private int messageCount;
     private long firstSeenDate;
     private long latestMessageDate;
 

@@ -66,8 +66,9 @@ import frost.MainFrame;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-@SuppressWarnings("serial")
 public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateThreadListener, TreeSelectionListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardUpdateInformationFrame.class);
 

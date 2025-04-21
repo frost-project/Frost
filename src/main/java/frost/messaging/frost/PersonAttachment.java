@@ -24,8 +24,9 @@ import org.xml.sax.SAXException;
 import frost.identities.Identity;
 import frost.util.XMLTools;
 
-@SuppressWarnings("serial")
 public class PersonAttachment extends Attachment {
+
+	private static final long serialVersionUID = 1L;
 
 	private Identity identity;
 

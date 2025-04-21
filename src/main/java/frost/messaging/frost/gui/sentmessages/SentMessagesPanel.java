@@ -30,10 +30,11 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class SentMessagesPanel extends JPanel implements LanguageListener {
 
-    Language language = Language.getInstance();
+	private static final long serialVersionUID = 1L;
+
+	Language language = Language.getInstance();
 
     private JLabel sentMsgsLabel;
     private SentMessagesTable sentMessagesTable;

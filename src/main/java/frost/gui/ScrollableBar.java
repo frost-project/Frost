@@ -11,10 +11,11 @@ import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
-@SuppressWarnings("serial")
 public class ScrollableBar extends JComponent implements SwingConstants {
-  
-  static {
+
+	private static final long serialVersionUID = 1L;
+
+	static {
     UIManager.put("ScrollableBarUI", 
                   "frost.gui.ScrollableBarUI");
   }

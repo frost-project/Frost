@@ -36,11 +36,11 @@ import javax.swing.UIManager;
  * Provides a <code>JTabbedPane</code> with close icons in the tab titles.
  * If an icon is clicked the tab is removed from the pane.
  */
-@SuppressWarnings("serial")
-public class CloseableTabbedPane extends JTabbedPane
-{
+public class CloseableTabbedPane extends JTabbedPane {
 
-    //--- Data field(s) ---
+	private static final long serialVersionUID = 1L;
+
+	//--- Data field(s) ---
 
     private final Icon closeIcon;
 

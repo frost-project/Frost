@@ -34,8 +34,9 @@ import javax.swing.text.StyledEditorKit;
  * Use by JOptionPane for correct display Freenet's keys link.
  * @author ET
  */
-@SuppressWarnings("serial")
 public class LinkEditorKit extends StyledEditorKit {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 *  attribute on inline elements

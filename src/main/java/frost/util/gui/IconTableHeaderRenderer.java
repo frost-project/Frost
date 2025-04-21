@@ -30,10 +30,11 @@ import javax.swing.table.TableCellRenderer;
 /**
  * Renderer to use an icon in table header.
  */
-@SuppressWarnings("serial")
 public class IconTableHeaderRenderer extends JLabel implements TableCellRenderer {
 
-    public IconTableHeaderRenderer(final ImageIcon i) {
+	private static final long serialVersionUID = 1L;
+
+	public IconTableHeaderRenderer(final ImageIcon i) {
         setIcon(i);
         setText("");
         setHorizontalAlignment(SwingConstants.CENTER);

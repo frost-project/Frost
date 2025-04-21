@@ -26,8 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 //@author Santhosh Kumar T - santhosh@in.fiorano.com 
-@SuppressWarnings("serial")
-public class TableFindAction extends FindAction{ 
+public class TableFindAction extends FindAction {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(TableFindAction.class);
 

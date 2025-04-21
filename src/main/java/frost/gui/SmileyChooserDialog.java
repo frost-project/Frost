@@ -37,8 +37,9 @@ import org.slf4j.LoggerFactory;
 import frost.util.gui.SmileyCache;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class SmileyChooserDialog extends JDialog {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(SmileyChooserDialog.class);
 
@@ -56,8 +57,12 @@ public class SmileyChooserDialog extends JDialog {
         initialize();
     }
 
-    protected class SmileyImage extends JLabel {
-        String smileyText;
+	protected class SmileyImage extends JLabel {
+
+		private static final long serialVersionUID = 1L;
+
+		private String smileyText;
+
         public SmileyImage(final ImageIcon i, final String s) {
             super(i);
             smileyText = s;

@@ -35,10 +35,11 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class AttachedFilesTableModel extends DefaultTableModel implements LanguageListener {
 
-    private Language language = null;
+	private static final long serialVersionUID = 1L;
+
+	private Language language = null;
     NumberFormat numberFormat = NumberFormat.getInstance();
 
     protected final static String columnNames[] = new String[3];
@@ -124,9 +125,12 @@ public class AttachedFilesTableModel extends DefaultTableModel implements Langua
         TableColumn c = t.getColumnModel().getColumn(1); // size column
         c.setCellRenderer(new NumberRightRenderer());
     }
-    
-    private class NumberRightRenderer extends DefaultTableCellRenderer {
-        public NumberRightRenderer() {
+
+	private class NumberRightRenderer extends DefaultTableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
+		public NumberRightRenderer() {
             super();
         }
         @Override

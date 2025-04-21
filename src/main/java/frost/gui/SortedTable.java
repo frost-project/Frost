@@ -32,10 +32,11 @@ import javax.swing.table.TableModel;
 import frost.gui.model.SortedTableModel;
 import frost.gui.model.TableMember;
 
-@SuppressWarnings("serial")
-public class SortedTable<T extends TableMember<T>> extends JTable
-{
-    protected int sortedColumnIndex = 0;
+public class SortedTable<T extends TableMember<T>> extends JTable {
+
+	private static final long serialVersionUID = 1L;
+
+	protected int sortedColumnIndex = 0;
     protected boolean sortedColumnAscending = true;
 
     private SortHeaderRenderer columnHeadersRenderer = new SortHeaderRenderer();

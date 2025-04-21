@@ -34,10 +34,11 @@ import javax.swing.table.TableColumnModel;
 
 import frost.util.gui.MiscToolkit;
 
-@SuppressWarnings("serial")
 public class MessageTreeTableHeader extends JTableHeader {
 
-    private final MessageTreeTable messageTreeTable;
+	private static final long serialVersionUID = 1L;
+
+	private final MessageTreeTable messageTreeTable;
 
     private static Icon ascendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_ascending.png");
     private static Icon descendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_descending.png");

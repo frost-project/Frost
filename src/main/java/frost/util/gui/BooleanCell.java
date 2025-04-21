@@ -27,13 +27,14 @@ import javax.swing.SwingConstants;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-@SuppressWarnings("serial")
 public class BooleanCell {
 
 	/**
 	 * This inner class implements the default editor of a boolean table cell
 	 */
 	private static class Editor extends DefaultCellEditor implements TableCellEditor {
+
+		private static final long serialVersionUID = 1L;
 
 		public Editor() {
 			super(new JCheckBox());
@@ -46,6 +47,8 @@ public class BooleanCell {
 	 * This inner class implements the default renderer of a boolean table cell
 	 */
 	private static class Renderer extends JCheckBox implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
 
 		public Renderer() {
 			super();

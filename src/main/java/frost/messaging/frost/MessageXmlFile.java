@@ -43,8 +43,9 @@ import frost.util.FileAccess;
 import frost.util.XMLTools;
 import frost.util.XMLizable;
 
-@SuppressWarnings("serial")
 public class MessageXmlFile extends AbstractMessageObject implements XMLizable {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(MessageXmlFile.class);
 

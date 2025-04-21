@@ -63,10 +63,11 @@ import frost.util.gui.translation.LanguageListener;
  *
  * @author Scott Violet
  */
-@SuppressWarnings("serial")
 public class MessageTreeTableModel extends DefaultTreeModel implements TreeTableModel, LanguageListener {
 
-    private Language language = null;
+	private static final long serialVersionUID = 1L;
+
+	private Language language = null;
 
     public final static int COLUMN_INDEX_FLAGGED = 0;
     public final static int COLUMN_INDEX_STARRED = 1;

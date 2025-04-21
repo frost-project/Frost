@@ -47,10 +47,11 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class MessageWindow extends JFrame {
 
-    private final FrostMessageObject message;
+	private static final long serialVersionUID = 1L;
+
+	private final FrostMessageObject message;
     private final Window parentWindow;
 
     private MessageTextPane messageTextPane;
@@ -153,9 +154,11 @@ public class MessageWindow extends JFrame {
         }
     }
 
-    class MessageWindowTopPanel extends JPanel implements LanguageListener {
+	class MessageWindowTopPanel extends JPanel implements LanguageListener {
 
-        private JLabel Lsubject = null;
+		private static final long serialVersionUID = 1L;
+
+		private JLabel Lsubject = null;
         private JLabel Lfrom = null;
         private JLabel Lto = null;
         private JLabel Ldate = null;

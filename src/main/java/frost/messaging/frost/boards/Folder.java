@@ -26,10 +26,11 @@ import javax.swing.tree.TreeNode;
 /**
  * Represents a folder in the board tree.
  */
-@SuppressWarnings("serial")
 public class Folder extends AbstractNode {
-    
-    public Folder(String newName) {
+
+	private static final long serialVersionUID = 1L;
+
+	public Folder(String newName) {
         super(newName);
     }
     

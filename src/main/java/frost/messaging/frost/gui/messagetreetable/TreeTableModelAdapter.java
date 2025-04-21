@@ -64,8 +64,9 @@ import org.slf4j.LoggerFactory;
  * @author Philip Milne
  * @author Scott Violet
  */
-@SuppressWarnings("serial")
 public class TreeTableModelAdapter extends AbstractTableModel {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(TreeTableModelAdapter.class);
 

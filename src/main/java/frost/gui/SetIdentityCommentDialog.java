@@ -30,6 +30,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -44,8 +45,9 @@ import frost.util.gui.translation.Language;
  * @author Jan Gerritsen
  *
  */
-@SuppressWarnings("serial")
-public class SetIdentityCommentDialog extends javax.swing.JFrame {
+public class SetIdentityCommentDialog extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	protected  Language language = null;
 

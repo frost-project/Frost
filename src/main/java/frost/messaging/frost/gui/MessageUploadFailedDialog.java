@@ -42,10 +42,11 @@ import frost.messaging.frost.Attachment;
 import frost.messaging.frost.MessageXmlFile;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class MessageUploadFailedDialog extends JDialog {
 
-    private class ButtonListener implements ActionListener {
+	private static final long serialVersionUID = 1L;
+
+	private class ButtonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == retryButton) {

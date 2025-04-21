@@ -23,10 +23,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 /**
  * The base for board, folder, ...
  */
-@SuppressWarnings("serial")
 public abstract class AbstractNode extends DefaultMutableTreeNode implements Comparable<AbstractNode> {
 
-    protected String name = null;
+	private static final long serialVersionUID = 1L;
+
+	protected String name = null;
     protected String nameLowerCase = null; // often used
 
     protected AbstractNode(final String newName) {

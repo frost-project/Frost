@@ -13,12 +13,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
-@SuppressWarnings("serial")
 public class ScrollButton extends JButton {
 
-  private int direction;
-  private int buttonWidth;
-  private boolean small;
+	private static final long serialVersionUID = 1L;
+
+	private int direction;
+	private int buttonWidth;
+	private boolean small;
 
   public ScrollButton(int direction, int width) {
     this(direction, width, true);

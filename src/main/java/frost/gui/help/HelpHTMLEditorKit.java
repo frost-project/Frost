@@ -25,10 +25,11 @@ import javax.swing.text.html.StyleSheet;
 /**
  * @author notitaccu
  */
-@SuppressWarnings("serial")
 public class HelpHTMLEditorKit extends HTMLEditorKit {
 
-    private String url_prefix;
+	private static final long serialVersionUID = 1L;
+
+	private String url_prefix;
     
     private HelpHTMLDocument helpHTMLDocument = null;
 
@@ -56,7 +57,7 @@ public class HelpHTMLEditorKit extends HTMLEditorKit {
 //    /**
 //     * Factory which creates views for elements in the document.
 //     */
-//    public static class helpHTMLFactory extends HTMLEditorKit.HTMLFactory {
+//    public static class helpHTMLFactory extends HTMLFactory {
 //
 //        /**
 //         * Creates a new factory.

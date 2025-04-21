@@ -27,8 +27,9 @@ import java.awt.RenderingHints;
  * Original code of Frost software
  * @author ET
  */
-@SuppressWarnings("serial")
 public class AntialiasedTextPane extends TextPane {
+
+	private static final long serialVersionUID = 1L;
 
 	private boolean antiAliasEnabled = true;
 

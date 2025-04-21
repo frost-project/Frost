@@ -25,12 +25,10 @@ import java.util.EventObject;
  * @author $Author: artur8ur $
  * @version $Revision: 3244 $
  */
-@SuppressWarnings("serial")
 public class LanguageEvent extends EventObject {
 
-	/**
-	 * @param source
-	 */
+	private static final long serialVersionUID = 1L;
+
 	public LanguageEvent(Object source) {
 		super(source);
 	}

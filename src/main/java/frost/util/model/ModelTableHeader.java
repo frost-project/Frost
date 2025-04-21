@@ -35,8 +35,9 @@ import javax.swing.table.TableColumn;
  * It does nothing with them, but provides a couple of methods (headerClicked 
  * and headerReleased) that subclasses can override as necessary.
  */
-@SuppressWarnings("serial")
 abstract public class ModelTableHeader extends JTableHeader {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * This inner class is the popup menu that will be shown to let the user choose
@@ -44,9 +45,8 @@ abstract public class ModelTableHeader extends JTableHeader {
 	 */
 	private class ColumnsPopupMenu extends JPopupMenu {
 
-		/* (non-Javadoc)
-		 * @see javax.swing.JPopupMenu#show(java.awt.Component, int, int)
-		 */
+		private static final long serialVersionUID = 1L;
+
 		@Override
         public void show(Component invoker, int x, int y) {
 			removeAll();

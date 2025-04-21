@@ -54,8 +54,10 @@ import frost.util.gui.translation.TranslatableListModel;
  * @author $Author: artur8ur $
  * @version $Revision: 3244 $
  */
-@SuppressWarnings("serial")
 public class FontChooser extends JDialog {
+
+	private static final long serialVersionUID = 1L;
+
 	private class Listener implements ActionListener, ListSelectionListener, LanguageListener {
 
 		public Listener() {

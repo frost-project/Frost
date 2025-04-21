@@ -27,8 +27,9 @@ import javax.swing.text.DocumentFilter;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.Position;
 
-@SuppressWarnings("serial")
 public class ImmutableAreasDocument extends PlainDocument {
+
+	private static final long serialVersionUID = 1L;
 
 	private final ArrayList<ImmutableArea> immutableAreas = new ArrayList<ImmutableArea>();
 	private final MessageFilter filter = new MessageFilter();

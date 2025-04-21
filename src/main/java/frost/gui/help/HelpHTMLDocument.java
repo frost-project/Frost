@@ -33,8 +33,9 @@ import org.slf4j.LoggerFactory;
  * 
  * @author notitaccu
  */
-@SuppressWarnings("serial")
 public class HelpHTMLDocument extends HTMLDocument {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(HelpHTMLDocument.class);
 
@@ -113,7 +114,7 @@ public class HelpHTMLDocument extends HTMLDocument {
      * insertInsertTag, false, true); return reader; }
      */
 
-    public class HelpHTMLReader extends HTMLDocument.HTMLReader {
+	public class HelpHTMLReader extends HTMLReader {
 
         public HelpHTMLReader(int offset) {
             super(offset, 0, 0, null);
