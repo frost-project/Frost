@@ -48,12 +48,12 @@ application {
 dependencies {
 	implementation("org.slf4j:slf4j-api:2.0.17")
 	implementation("org.slf4j:jul-to-slf4j:2.0.17")
-	implementation("ch.qos.logback:logback-core:1.5.17")
-	implementation("ch.qos.logback:logback-classic:1.5.17")
+	implementation("ch.qos.logback:logback-core:1.5.18")
+	implementation("ch.qos.logback:logback-classic:1.5.18")
 	implementation("com.github.Spider-Admin:Perst:v4.40.0")
 	implementation("org.bouncycastle:bcprov-jdk18on:1.80")
 	implementation("com.toedter:jcalendar:1.4")
-	testImplementation(platform("org.junit:junit-bom:5.12.0"))
+	testImplementation(platform("org.junit:junit-bom:5.12.2"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
