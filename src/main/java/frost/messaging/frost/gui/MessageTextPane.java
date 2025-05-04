@@ -24,7 +24,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -492,19 +491,10 @@ public class MessageTextPane extends JPanel {
         Core.frostSettings.addPropertyChangeListener(Settings.SHOW_KEYS_AS_HYPERLINKS, propertyChangeListener);
     }
 
-    private void fontChanged() {
-        final String fontName = Core.frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"Monospaced\".");
-            Core.frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
-            font = new Font("Monospaced", fontStyle, fontSize);
-        }
-        messageTextArea.setFont(font);
-    }
+	private void fontChanged() {
+		messageTextArea.setFont(Core.frostSettings.getFont(Settings.MESSAGE_BODY_FONT_NAME,
+				Settings.MESSAGE_BODY_FONT_STYLE, Settings.MESSAGE_BODY_FONT_SIZE, "Monospaced"));
+	}
 
     private int positionDividers(final int attachedFiles, final int attachedBoards) {
 

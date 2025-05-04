@@ -20,7 +20,6 @@ package frost.fileTransfer.upload;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -264,19 +263,10 @@ public class UploadPanel extends JPanel implements LanguageListener, SimplePopup
 		}
 	}
 
-    private void fontChanged() {
-        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"SansSerif\".");
-            Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
-            font = new Font("SansSerif", fontStyle, fontSize);
-        }
-        modelTable.setFont(font);
-    }
+	private void fontChanged() {
+		modelTable.setFont(Core.frostSettings.getFont(Settings.FILE_LIST_FONT_NAME, Settings.FILE_LIST_FONT_STYLE,
+				Settings.FILE_LIST_FONT_SIZE, "SansSerif"));
+	}
 
     public void setModel(final UploadModel model) {
         this.model = model;

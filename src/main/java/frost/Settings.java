@@ -786,7 +786,23 @@ public class Settings implements ExitSavable {
 		return FreenetPriority.getPriority(getInteger(key));
 	}
 
-    public void setValue(final String key, String value) {
+	public Font getFont(String fontNameKey, String fontStyleKey, String fontSizeKey, String fallBackFontName) {
+		String fontName = Core.frostSettings.getString(fontNameKey);
+		Integer fontStyle = Core.frostSettings.getInteger(fontStyleKey);
+		Integer fontSize = Core.frostSettings.getInteger(fontSizeKey);
+		Font font = new Font(fontName, fontStyle, fontSize);
+		if (!font.getFamily().equals(fontName)) {
+			logger.error("The selected font \"{}\" was not found in your system.", fontName);
+			if (fallBackFontName != null) {
+				logger.error("That selection will be changed to \"{}\".", fallBackFontName);
+				Core.frostSettings.setValue(fontNameKey, fallBackFontName);
+				font = new Font(fallBackFontName, fontStyle, fontSize);
+			}
+		}
+		return font;
+	}
+
+	public void setValue(final String key, String value) {
         // for all dirs ensure correct separator chars and a separator checr at end of name
         if( key.endsWith(".dir") ) {
             value = setSystemFileSeparator(value);

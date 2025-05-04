@@ -237,24 +237,18 @@ public class DisplayPanel extends JPanel {
     /**
      * Load the settings of this panel
      */
-    private void loadSettings() {
-        String fontName = settings.getString(Settings.MESSAGE_BODY_FONT_NAME);
-        int fontSize = settings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
-        int fontStyle = settings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
-        selectedBodyFont = new Font(fontName, fontStyle, fontSize);
-        selectedMessageBodyFontLabel.setText(getFontLabel(selectedBodyFont));
+	private void loadSettings() {
+		selectedBodyFont = settings.getFont(Settings.MESSAGE_BODY_FONT_NAME, Settings.MESSAGE_BODY_FONT_STYLE,
+				Settings.MESSAGE_BODY_FONT_SIZE, null);
+		selectedMessageBodyFontLabel.setText(getFontLabel(selectedBodyFont));
 
-        fontName = settings.getString(Settings.MESSAGE_LIST_FONT_NAME);
-        fontSize = settings.getInteger(Settings.MESSAGE_LIST_FONT_SIZE);
-        fontStyle = settings.getInteger(Settings.MESSAGE_LIST_FONT_STYLE);
-        selectedMessageListFont = new Font(fontName, fontStyle, fontSize);
-        selectedMessageListFontLabel.setText(getFontLabel(selectedMessageListFont));
+		selectedMessageListFont = settings.getFont(Settings.MESSAGE_LIST_FONT_NAME, Settings.MESSAGE_LIST_FONT_STYLE,
+				Settings.MESSAGE_LIST_FONT_SIZE, null);
+		selectedMessageListFontLabel.setText(getFontLabel(selectedMessageListFont));
 
-        fontName = settings.getString(Settings.FILE_LIST_FONT_NAME);
-        fontSize = settings.getInteger(Settings.FILE_LIST_FONT_SIZE);
-        fontStyle = settings.getInteger(Settings.FILE_LIST_FONT_STYLE);
-        selectedFileListFont = new Font(fontName, fontStyle, fontSize);
-        selectedFileListFontLabel.setText(getFontLabel(selectedFileListFont));
+		selectedFileListFont = settings.getFont(Settings.FILE_LIST_FONT_NAME, Settings.FILE_LIST_FONT_STYLE,
+				Settings.FILE_LIST_FONT_SIZE, null);
+		selectedFileListFontLabel.setText(getFontLabel(selectedFileListFont));
 
         saveSortStatesCheckBox.setSelected(settings.getBoolean(Settings.SAVE_SORT_STATES));
         showColoredRowsCheckBox.setSelected(settings.getBoolean(Settings.SHOW_COLORED_ROWS));

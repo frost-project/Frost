@@ -22,7 +22,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -560,17 +559,8 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 	}
 
 	private void fontChanged() {
-		final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
-		final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
-		final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
-		Font font = new Font(fontName, fontStyle, fontSize);
-		if (!font.getFamily().equals(fontName)) {
-			logger.error("The selected font was not found in your system.");
-			logger.error("That selection will be changed to \"SansSerif\".");
-			Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
-			font = new Font("SansSerif", fontStyle, fontSize);
-		}
-		modelTable.setFont(font);
+		modelTable.setFont(Core.frostSettings.getFont(Settings.FILE_LIST_FONT_NAME, Settings.FILE_LIST_FONT_STYLE,
+				Settings.FILE_LIST_FONT_SIZE, "SansSerif"));
 	}
 
 	private void downloadPasteButtonPressed(final ActionEvent e) {

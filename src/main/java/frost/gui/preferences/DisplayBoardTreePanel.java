@@ -210,14 +210,12 @@ public class DisplayBoardTreePanel extends JPanel {
         boardTreeButton.addActionListener(listener);
     }
 
-    /**
-     * Load the settings of this panel
-     */
-    private void loadSettings() {
-    	String fontName = settings.getString(Settings.BOARD_TREE_FONT_NAME);
-        int fontSize = settings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
-        int fontStyle = settings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
-        selectedBodyFont = new Font(fontName, fontStyle, fontSize);
+	/**
+	 * Load the settings of this panel
+	 */
+	private void loadSettings() {
+		selectedBodyFont = settings.getFont(Settings.BOARD_TREE_FONT_NAME, Settings.BOARD_TREE_FONT_STYLE,
+				Settings.BOARD_TREE_FONT_SIZE, null);
         selectedBoardTreeFontLabel.setText(getFontLabel(selectedBodyFont));
 
         showBoardUpdateCountCheckBox.setSelected(settings.getBoolean(Settings.SHOW_BOARD_UPDATED_COUNT));

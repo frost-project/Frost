@@ -1190,20 +1190,14 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         ((DefaultTreeModel)getTree().getModel()).reload();
     }
 
-    private void fontChanged() {
-        final String fontName = Core.frostSettings.getString(Settings.MESSAGE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.MESSAGE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_LIST_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            Core.frostSettings.setValue(Settings.MESSAGE_LIST_FONT_NAME, "Monospaced");
-            font = new Font("Monospaced", fontStyle, fontSize);
-        }
-        // adjust row height to font size, add a margin
-        setRowHeight(Math.max(fontSize + ROW_HEIGHT_MARGIN, MINIMUM_ROW_HEIGHT));
+	private void fontChanged() {
+		final int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_LIST_FONT_SIZE);
+		setFont(Core.frostSettings.getFont(Settings.MESSAGE_LIST_FONT_NAME, Settings.MESSAGE_LIST_FONT_STYLE,
+				Settings.MESSAGE_LIST_FONT_SIZE, "Monospaced"));
 
-        setFont(font);
-    }
+		// adjust row height to font size, add a margin
+		setRowHeight(Math.max(fontSize + ROW_HEIGHT_MARGIN, MINIMUM_ROW_HEIGHT));
+	}
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {

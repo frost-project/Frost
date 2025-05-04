@@ -482,13 +482,11 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             this.setClosedIcon(MiscToolkit.loadImageIcon("/data/folder.png"));
             this.setOpenIcon(MiscToolkit.loadImageIcon("/data/folder-open.png"));
 
-            // provide startup font: paranoia - should be provided by initialize() of tree
-            final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
-            final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
-            final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
-            normalFont = new Font(fontName, fontStyle, fontSize);
-            boldFont = normalFont.deriveFont(Font.BOLD);
-        }
+			// provide startup font: paranoia - should be provided by initialize() of tree
+			normalFont = Core.frostSettings.getFont(Settings.BOARD_TREE_FONT_NAME, Settings.BOARD_TREE_FONT_STYLE,
+					Settings.BOARD_TREE_FONT_SIZE, null);
+			boldFont = normalFont.deriveFont(Font.BOLD);
+		}
 
         public void fontChanged(final Font font) {
             normalFont = font.deriveFont(Font.PLAIN);
@@ -771,13 +769,10 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
         // enable the machine ;)
         runningBoardUpdateThreads = new RunningBoardUpdateThreads();
 
-        // provide startup font
-        final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
-        final Font normalFont = new Font(fontName, fontStyle, fontSize);
-        setFont(normalFont);
-    }
+		// provide startup font
+		setFont(Core.frostSettings.getFont(Settings.BOARD_TREE_FONT_NAME, Settings.BOARD_TREE_FONT_STYLE,
+				Settings.BOARD_TREE_FONT_SIZE, null));
+	}
 
     private void cutNode(final AbstractNode node) {
         if (node != null) {
@@ -1273,22 +1268,14 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
         }
     }
 
-    private void fontChanged() {
-        final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"Tahoma\".");
-            Core.frostSettings.setValue(Settings.BOARD_TREE_FONT_NAME, "Tahoma");
-            font = new Font("Tahoma", fontStyle, fontSize);
-        }
-        // adjust row height to font size, add a margin
-        setRowHeight(Math.max(fontSize + ROW_HEIGHT_MARGIN, MINIMUM_ROW_HEIGHT));
+	private void fontChanged() {
+		final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
+		setFont(Core.frostSettings.getFont(Settings.BOARD_TREE_FONT_NAME, Settings.BOARD_TREE_FONT_STYLE,
+				Settings.BOARD_TREE_FONT_SIZE, "Tahoma"));
 
-        setFont(font);
-    }
+		// adjust row height to font size, add a margin
+		setRowHeight(Math.max(fontSize + ROW_HEIGHT_MARGIN, MINIMUM_ROW_HEIGHT));
+	}
 
     @Override
     public void setFont(final Font font) {

@@ -18,7 +18,6 @@
 */
 package frost.messaging.frost.gui.sentmessages;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -96,17 +95,10 @@ public class SentMessagesTable extends SortedModelTable<SentMessagesTableItem>
         tableModel.clear();
     }
 
-    private void setupTableFont() {
-        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
-            font = new Font("SansSerif", fontStyle, fontSize);
-        }
-        getTable().setFont(font);
-    }
+	private void setupTableFont() {
+		getTable().setFont(Core.frostSettings.getFont(Settings.FILE_LIST_FONT_NAME, Settings.FILE_LIST_FONT_STYLE,
+				Settings.FILE_LIST_FONT_SIZE, "SansSerif"));
+	}
 
 	@Override
 	public void languageChanged(LanguageEvent event) {

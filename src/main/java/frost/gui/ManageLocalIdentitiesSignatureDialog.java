@@ -21,7 +21,6 @@ package frost.gui;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -145,15 +144,8 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
         if (signatureTextArea == null) {
             signatureTextArea = new AntialiasedTextArea(6, 50);
 
-            String fontName = Core.frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
-            int fontStyle = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
-            int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
-            Font tofFont = new Font(fontName, fontStyle, fontSize);
-            if (!tofFont.getFamily().equals(fontName)) {
-                Core.frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
-                tofFont = new Font("Monospaced", fontStyle, fontSize);
-            }
-            signatureTextArea.setFont(tofFont);
+			signatureTextArea.setFont(Core.frostSettings.getFont(Settings.MESSAGE_BODY_FONT_NAME,
+					Settings.MESSAGE_BODY_FONT_STYLE, Settings.MESSAGE_BODY_FONT_SIZE, "Monospaced"));
             signatureTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
         }
         return signatureTextArea;

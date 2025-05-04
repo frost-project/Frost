@@ -20,7 +20,6 @@ package frost.fileTransfer.sharing;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -42,9 +41,6 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JToolBar;
 import javax.swing.event.PopupMenuEvent;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
@@ -70,8 +66,6 @@ import frost.util.model.SortedModelTable;
 public class SharedFilesPanel extends JPanel implements LanguageListener, SimplePopupMenuListener {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final Logger logger = LoggerFactory.getLogger(SharedFilesPanel.class);
 
 	private CopyKeysAndNamesAction copyKeysAndNamesAction;
 	private CopyExtendedInfoAction copyExtendedInfoAction;
@@ -253,19 +247,10 @@ public class SharedFilesPanel extends JPanel implements LanguageListener, Simple
         }
     }
 
-    private void fontChanged() {
-        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"SansSerif\".");
-            Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
-            font = new Font("SansSerif", fontStyle, fontSize);
-        }
-        modelTable.setFont(font);
-    }
+	private void fontChanged() {
+		modelTable.setFont(Core.frostSettings.getFont(Settings.FILE_LIST_FONT_NAME, Settings.FILE_LIST_FONT_STYLE,
+				Settings.FILE_LIST_FONT_SIZE, "SansSerif"));
+	}
 
     private void updateSharedFilesItemCount() {
         sharedFilesCount = model.getItemCount();

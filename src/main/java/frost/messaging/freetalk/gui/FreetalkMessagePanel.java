@@ -23,7 +23,6 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -879,19 +878,10 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         getMessageTable().saveLayout(frostSettings);
     }
 
-    private void fontChanged() {
-        final String fontName = settings.getString(Settings.MESSAGE_LIST_FONT_NAME);
-        final int fontStyle = settings.getInteger(Settings.MESSAGE_LIST_FONT_STYLE);
-        final int fontSize = settings.getInteger(Settings.MESSAGE_LIST_FONT_SIZE);
-        Font font = new Font(fontName, fontStyle, fontSize);
-        if (!font.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"SansSerif\".");
-            settings.setValue(Settings.MESSAGE_LIST_FONT_NAME, "SansSerif");
-            font = new Font("SansSerif", fontStyle, fontSize);
-        }
-        messageTable.setFont(font);
-    }
+	private void fontChanged() {
+		messageTable.setFont(settings.getFont(Settings.MESSAGE_LIST_FONT_NAME, Settings.MESSAGE_LIST_FONT_STYLE,
+				Settings.MESSAGE_LIST_FONT_SIZE, "SansSerif"));
+	}
 
     /**
      * Gets the content of the message selected in the tofTable.

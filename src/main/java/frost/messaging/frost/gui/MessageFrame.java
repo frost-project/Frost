@@ -22,7 +22,6 @@ import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -184,17 +183,8 @@ public class MessageFrame extends JFrame
 
         incOpenInstanceCount();
 
-        final String fontName = frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
-        Font tofFont = new Font(fontName, fontStyle, fontSize);
-        if (!tofFont.getFamily().equals(fontName)) {
-            logger.error("The selected font was not found in your system");
-            logger.error("That selection will be changed to \"Monospaced\".");
-            frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
-            tofFont = new Font("Monospaced", fontStyle, fontSize);
-        }
-        messageTextArea.setFont(tofFont);
+		messageTextArea.setFont(Core.frostSettings.getFont(Settings.MESSAGE_BODY_FONT_NAME,
+				Settings.MESSAGE_BODY_FONT_STYLE, Settings.MESSAGE_BODY_FONT_SIZE, "Monospaced"));
         messageTextArea.setAntiAliasEnabled(frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
         final ImmutableAreasDocument messageDocument = new ImmutableAreasDocument();
         headerArea = new ImmutableArea(messageDocument);
