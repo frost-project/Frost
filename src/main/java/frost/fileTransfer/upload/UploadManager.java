@@ -296,7 +296,7 @@ public class UploadManager implements ExitSavable {
         frostUploadItems.add(ulItem);
         FreenetPriority prio = FreenetPriority.PAUSE;
         if( itemIsEnabled ) {
-            prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+            prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD);
         }
         panel.changeItemPriorites(frostUploadItems, prio);
     }

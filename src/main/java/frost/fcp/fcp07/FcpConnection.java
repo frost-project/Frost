@@ -150,11 +150,11 @@ public class FcpConnection {
         	if( dlItem != null) {
         		prio = dlItem.getPriority();
         	} else {
-        		prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+        		prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD);
         	}
         
         } else if( type == FcpHandler.TYPE_MESSAGE ) {
-            prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
+            prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD);
 
         } else {
         	if( dlItem != null) {
@@ -366,10 +366,10 @@ public class FcpConnection {
             	if( ulItem != null) {
             		prio = ulItem.getPriority(); 
             	} else {
-            		prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+            		prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD);
             	}
             } else if( type == FcpHandler.TYPE_MESSAGE ) {
-                prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
+                prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD);
             } else {
             	if( ulItem != null) {
             		prio = ulItem.getPriority();

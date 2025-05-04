@@ -68,7 +68,7 @@ public class FrostDownloadItem extends ModelItem<FrostDownloadItem> implements C
     // if this downloadfile is a shared file then this object is set
     private transient FrostFileListFileObject fileListFileObject = null;
 
-    private FreenetPriority priority = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+    private FreenetPriority priority = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD);
 
     // non persistent fields
 	private transient int doneBlocks = 0;
@@ -187,7 +187,7 @@ public class FrostDownloadItem extends ModelItem<FrostDownloadItem> implements C
         associatedBoardName = newAssociatedBoardName;
         associatedMessageId = newAssociatedMessageId;
         if( newPriority == null ) {
-    		priority = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+    		priority = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD);
     	} else {
     		priority = newPriority;
     	}

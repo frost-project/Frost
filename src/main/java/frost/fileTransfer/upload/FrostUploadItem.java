@@ -66,7 +66,7 @@ public class FrostUploadItem extends ModelItem<FrostUploadItem> implements CopyT
     private int doneBlocks = -1;
     private Boolean isFinalized = null;
     private String errorCodeDescription = null;
-    private FreenetPriority priority = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+    private FreenetPriority priority = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD);
 
     // is only set if this uploaditem is a shared file
     private FrostSharedFileItem sharedFileItem = null;
@@ -97,7 +97,7 @@ public class FrostUploadItem extends ModelItem<FrostUploadItem> implements CopyT
         uploadAddedMillis = System.currentTimeMillis();
 
         state = STATE_WAITING;
-        priority = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+        priority = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD);
     }
 
     /**

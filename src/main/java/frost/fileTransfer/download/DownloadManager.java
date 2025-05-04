@@ -604,7 +604,7 @@ public class DownloadManager implements ExitSavable {
 				: dlItem.isEnabled().booleanValue());
 		FreenetPriority prio = FreenetPriority.PAUSE;
 		if (itemIsEnabled) {
-			prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+			prio = Core.frostSettings.getPriority(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD);
 		}
 		
 		List<FrostDownloadItem> frostDownloadItems = new ArrayList<FrostDownloadItem>();

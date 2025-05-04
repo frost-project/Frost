@@ -43,6 +43,7 @@ import java.util.Vector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import frost.fileTransfer.FreenetPriority;
 import frost.storage.ExitSavable;
 import frost.storage.StorageException;
 
@@ -780,6 +781,10 @@ public class Settings implements ExitSavable {
         }
         return val;
     }
+
+	public FreenetPriority getPriority(String key) {
+		return FreenetPriority.getPriority(getInteger(key));
+	}
 
     public void setValue(final String key, String value) {
         // for all dirs ensure correct separator chars and a separator checr at end of name
