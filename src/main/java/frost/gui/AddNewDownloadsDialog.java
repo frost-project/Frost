@@ -444,10 +444,10 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		
 		// recent download directory
 		final JMenu downloadDirRecentMenu = new JMenu(language.getString("DownloadPane.toolbar.downloadDirMenu.setDownloadDirTo"));
-		JMenuItem item = new JMenuItem(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
+		JMenuItem item = new JMenuItem(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
 		item.addActionListener( new java.awt.event.ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
-				setDownloadDir(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
+				setDownloadDir(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
 			}
 		});
 		downloadDirRecentMenu.add(item);

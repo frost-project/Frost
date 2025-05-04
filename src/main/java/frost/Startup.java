@@ -102,7 +102,7 @@ public class Startup {
     }
 
     private static void checkDirectories(final Settings settings) {
-        final File downloadDirectory = new File(settings.getValue(Settings.DIR_DOWNLOAD));
+        final File downloadDirectory = new File(settings.getString(Settings.DIR_DOWNLOAD));
         if( !downloadDirectory.isDirectory() ) {
             logger.info("Creating download directory");
             downloadDirectory.mkdirs();
@@ -114,13 +114,13 @@ public class Startup {
 //            execDirectory.mkdirs();
 //        }
 
-        final File tempDirectory = new File(settings.getValue(Settings.DIR_TEMP));
+        final File tempDirectory = new File(settings.getString(Settings.DIR_TEMP));
         if( !tempDirectory.isDirectory() ) {
             logger.info("Creating temp directory");
             tempDirectory.mkdirs();
         }
 
-        final File storeDirectory = new File(settings.getValue(Settings.DIR_STORE));
+        final File storeDirectory = new File(settings.getString(Settings.DIR_STORE));
         if( !storeDirectory.isDirectory() ) {
             logger.info("Creating store directory");
             storeDirectory.mkdirs();
@@ -128,7 +128,7 @@ public class Startup {
     }
 
     private static void cleanTempDir(final Settings settings) {
-        final File[] entries = new File(settings.getValue(Settings.DIR_TEMP)).listFiles();
+        final File[] entries = new File(settings.getString(Settings.DIR_TEMP)).listFiles();
         for( final File entry : entries ) {
             if( entry.isDirectory() == false ) {
                 entry.delete();

@@ -113,7 +113,7 @@ public class Core {
     private boolean initializeConnectivity() {
 
         // determine configured freenet version
-        final int freenetVersion = frostSettings.getIntValue(Settings.FREENET_VERSION); // only 7 is supported
+        final int freenetVersion = frostSettings.getInteger(Settings.FREENET_VERSION); // only 7 is supported
         if( freenetVersion != 7 ) {
             MiscToolkit.showMessage(
                     language.getString("Core.init.UnsupportedFreenetVersionBody")+": "+freenetVersion,
@@ -123,10 +123,10 @@ public class Core {
         }
 
         // get the list of available nodes
-        String nodesUnparsed = frostSettings.getValue(Settings.FREENET_FCP_ADDRESS);
+        String nodesUnparsed = frostSettings.getString(Settings.FREENET_FCP_ADDRESS);
         if ((nodesUnparsed == null) || (nodesUnparsed.length() == 0)) {
             frostSettings.setValue(Settings.FREENET_FCP_ADDRESS, "127.0.0.1:9481");
-            nodesUnparsed = frostSettings.getValue(Settings.FREENET_FCP_ADDRESS);
+            nodesUnparsed = frostSettings.getString(Settings.FREENET_FCP_ADDRESS);
         }
 
         final List<String> nodes = new ArrayList<String>();
@@ -222,7 +222,7 @@ public class Core {
             FcpHandler.inst().goneOnline();
         }
 
-        if (!frostSettings.getBoolValue(Settings.FILESHARING_DISABLE)) {
+        if (!frostSettings.getBoolean(Settings.FILESHARING_DISABLE)) {
             MiscToolkit.showSuppressableConfirmDialog(
                     MainFrame.getInstance(),
                     language.getString("Core.init.FileSharingEnabledBody"),
@@ -355,7 +355,7 @@ public class Core {
      */
     public void initialize() throws Exception {
 
-        final Splashscreen splashscreen = new Splashscreen(frostSettings.getBoolValue(Settings.DISABLE_SPLASHSCREEN));
+        final Splashscreen splashscreen = new Splashscreen(frostSettings.getBoolean(Settings.DISABLE_SPLASHSCREEN));
         splashscreen.setVisible(true);
 
         splashscreen.setText(language.getString("Splashscreen.message.1"));
@@ -365,26 +365,26 @@ public class Core {
         Startup.startupCheck(frostSettings);
 
         // if first startup ask user for freenet version to use
-        if( frostSettings.getIntValue(Settings.FREENET_VERSION) == 0 ) {
+        if( frostSettings.getInteger(Settings.FREENET_VERSION) == 0 ) {
             showFirstStartupDialog();
         }
 
         // we must be at migration level 2 (no mckoi)!!!
-        if( frostSettings.getIntValue(Settings.MIGRATE_VERSION) < 2 ) {
+        if( frostSettings.getInteger(Settings.MIGRATE_VERSION) < 2 ) {
             logger.error("You must update this Frost version from version 11-Dec-2007 !!!");
             System.exit(8);
         }
 
         // before opening the storages, maybe compact them
-        if( frostSettings.getBoolValue(Settings.PERST_COMPACT_STORAGES) ) {
+        if( frostSettings.getBoolean(Settings.PERST_COMPACT_STORAGES) ) {
             compactPerstStorages(splashscreen);
             frostSettings.setValue(Settings.PERST_COMPACT_STORAGES, false);
         }
 
         // one time: change cleanup settings to new default, they were way to high
-        if( frostSettings.getIntValue(Settings.MIGRATE_VERSION) < 3 ) {
+        if( frostSettings.getInteger(Settings.MIGRATE_VERSION) < 3 ) {
             frostSettings.setValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY, true);
-            if (frostSettings.getIntValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD) > 30) {
+            if (frostSettings.getInteger(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD) > 30) {
                 frostSettings.setValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD, 30);
             }
 
@@ -397,7 +397,7 @@ public class Core {
         }
 
         // maybe export perst storages to XML
-        if( frostSettings.getBoolValue(Settings.PERST_EXPORT_STORAGES) ) {
+        if( frostSettings.getBoolean(Settings.PERST_EXPORT_STORAGES) ) {
             exportStoragesToXml(splashscreen);
             frostSettings.setValue(Settings.PERST_EXPORT_STORAGES, false);
         }
@@ -442,7 +442,7 @@ public class Core {
         getFileTransferManager().initialize();
         UnsentMessagesManager.initialize();
 
-        if (frostSettings.getBoolValue(Settings.FREETALK_SHOW_TAB)) {
+        if (frostSettings.getBoolean(Settings.FREETALK_SHOW_TAB)) {
             FreetalkManager.initialize();
         }
 
@@ -450,7 +450,7 @@ public class Core {
         splashscreen.setProgress(70);
 
         // Display the tray icon (do this before mainframe initializes)
-        if ((frostSettings.getBoolValue(Settings.SHOW_SYSTRAY_ICON) == true) && SystraySupport.isSupported()) {
+        if ((frostSettings.getBoolean(Settings.SHOW_SYSTRAY_ICON) == true) && SystraySupport.isSupported()) {
             try {
                 if (!SystraySupport.initialize(title)) {
                     logger.error("Could not create systray icon.");
@@ -566,7 +566,7 @@ public class Core {
         getFileTransferManager().startTickers();
 
         // after X seconds, start filesharing threads if enabled
-        if( isFreenetOnline() && !frostSettings.getBoolValue(Settings.FILESHARING_DISABLE)) {
+        if( isFreenetOnline() && !frostSettings.getBoolean(Settings.FILESHARING_DISABLE)) {
             final Thread t = new Thread() {
                 @Override
                 public void run() {
@@ -604,8 +604,8 @@ public class Core {
             Language.initializeWithName(Frost.getCmdLineLocaleName());
         } else {
             // use config file parameter (format: de or de;ext
-            final String lang = frostSettings.getValue(Settings.LANGUAGE_LOCALE);
-            final String langIsExternal = frostSettings.getValue("localeExternal");
+            final String lang = frostSettings.getString(Settings.LANGUAGE_LOCALE);
+            final String langIsExternal = frostSettings.getString("localeExternal");
             if( (lang == null) || (lang.length() == 0) || lang.equals("default") ) {
                 // for default or if not set at all
                 frostSettings.setValue(Settings.LANGUAGE_LOCALE, "default");

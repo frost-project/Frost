@@ -66,7 +66,7 @@ public class MessageStorage extends AbstractFrostStorage implements ExitSavable 
 
     protected MessageStorage() {
         super();
-        storeInvalidMessages = Core.frostSettings.getBoolValue(Settings.STORAGE_STORE_INVALID_MESSAGES);
+        storeInvalidMessages = Core.frostSettings.getBoolean(Settings.STORAGE_STORE_INVALID_MESSAGES);
     }
 
     public static MessageStorage inst() {

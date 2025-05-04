@@ -169,7 +169,7 @@ public class Board extends AbstractNode {
     public boolean getStoreSentMessages() {
         if (!isConfigured() || storeSentMessages == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.STORAGE_STORE_SENT_MESSAGES);
+            return Core.frostSettings.getBoolean(Settings.STORAGE_STORE_SENT_MESSAGES);
         }
         return storeSentMessages.booleanValue();
     }
@@ -181,7 +181,7 @@ public class Board extends AbstractNode {
     public boolean getHideBad() {
         if (!isConfigured() || hideBad == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.MESSAGE_HIDE_BAD);
+            return Core.frostSettings.getBoolean(Settings.MESSAGE_HIDE_BAD);
         }
         return hideBad.booleanValue();
     }
@@ -193,7 +193,7 @@ public class Board extends AbstractNode {
     public boolean getHideCheck() {
         if (!isConfigured() || hideCheck == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.MESSAGE_HIDE_CHECK);
+            return Core.frostSettings.getBoolean(Settings.MESSAGE_HIDE_CHECK);
         }
         return hideCheck.booleanValue();
     }
@@ -205,7 +205,7 @@ public class Board extends AbstractNode {
     public boolean getHideObserve() {
         if (!isConfigured() || hideObserve == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.MESSAGE_HIDE_OBSERVE);
+            return Core.frostSettings.getBoolean(Settings.MESSAGE_HIDE_OBSERVE);
         }
         return hideObserve.booleanValue();
     }
@@ -217,7 +217,7 @@ public class Board extends AbstractNode {
     public int getHideMessageCount() {
         if (!isConfigured() || hideMessageCount == null) {
             // return default
-            return Core.frostSettings.getIntValue(Settings.MESSAGE_HIDE_COUNT);
+            return Core.frostSettings.getInteger(Settings.MESSAGE_HIDE_COUNT);
         }
     	return hideMessageCount.intValue();
     }
@@ -229,7 +229,7 @@ public class Board extends AbstractNode {
     public boolean getHideMessageCountExcludePrivate() {
         if (!isConfigured() || hideMessageCountExcludePrivate == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE);
+            return Core.frostSettings.getBoolean(Settings.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE);
         }
     	return hideMessageCountExcludePrivate.booleanValue();
     }
@@ -248,7 +248,7 @@ public class Board extends AbstractNode {
     public int getMaxMessageDisplay() {
         if (!isConfigured() || maxMessageDisplay == null) {
             // return default
-            return Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DISPLAY);
+            return Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DISPLAY);
         }
         return maxMessageDisplay.intValue();
     }
@@ -259,7 +259,7 @@ public class Board extends AbstractNode {
     public int getMaxMessageDownload() {
         if (!isConfigured() || maxMessageDownload == null) {
             // return default
-            return Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD);
+            return Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DOWNLOAD);
         }
         return maxMessageDownload.intValue();
     }
@@ -286,7 +286,7 @@ public class Board extends AbstractNode {
     public boolean getShowSignedOnly() {
         if (!isConfigured() || showSignedOnly == null) {
             // return default
-            return Core.frostSettings.getBoolValue(Settings.MESSAGE_HIDE_UNSIGNED);
+            return Core.frostSettings.getBoolean(Settings.MESSAGE_HIDE_UNSIGNED);
         }
         return showSignedOnly.booleanValue();
     }

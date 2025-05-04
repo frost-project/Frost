@@ -366,7 +366,7 @@ public class FcpMultiRequestConnectionFileTransferTools {
         msg.add("Verbosity=0");
         msg.add("MaxRetries=1");
         //msg.add("DontCompress=true");
-        boolean useEarlyEncode = Core.frostSettings.getBoolValue(Settings.FCP2_USE_EARLY_ENCODE);
+        boolean useEarlyEncode = Core.frostSettings.getBoolean(Settings.FCP2_USE_EARLY_ENCODE);
         if (useEarlyEncode) {
             msg.add("EarlyEncode=true");
         }

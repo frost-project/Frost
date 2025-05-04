@@ -209,9 +209,9 @@ public class ExpirationPanel extends JPanel {
      */
     private void loadSettings() {
 
-        TfMessageExpireDays.setText(settings.getValue(Settings.MESSAGE_EXPIRE_DAYS));
+        TfMessageExpireDays.setText(settings.getString(Settings.MESSAGE_EXPIRE_DAYS));
 
-        final String mode = settings.getValue(Settings.MESSAGE_EXPIRATION_MODE);
+        final String mode = settings.getString(Settings.MESSAGE_EXPIRATION_MODE);
         if( mode.toUpperCase().equals("KEEP") ) {
             RbKeepExpiredMessages.doClick();
         } else if( mode.toUpperCase().equals("ARCHIVE") ) {
@@ -222,14 +222,14 @@ public class ExpirationPanel extends JPanel {
             RbKeepExpiredMessages.doClick(); // // unknown value, use default
         }
 
-        CbKeepFlaggedAndStarred.setSelected(settings.getBoolValue(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED));
-        CbKeepUnread.setSelected(settings.getBoolValue(Settings.ARCHIVE_KEEP_UNREAD));
+        CbKeepFlaggedAndStarred.setSelected(settings.getBoolean(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED));
+        CbKeepUnread.setSelected(settings.getBoolean(Settings.ARCHIVE_KEEP_UNREAD));
 
-        CbRemoveOfflineFilesWithKey.setSelected(settings.getBoolValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY));
-        TfOfflineFilesMaxDaysOld.setText(settings.getValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD));
+        CbRemoveOfflineFilesWithKey.setSelected(settings.getBoolean(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY));
+        TfOfflineFilesMaxDaysOld.setText(settings.getString(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD));
 
-        TfCleanupIntervalDays.setText(settings.getValue(Settings.DB_CLEANUP_INTERVAL));
-        if( settings.getLongValue(Settings.DB_CLEANUP_LASTRUN) == 0 ) {
+        TfCleanupIntervalDays.setText(settings.getString(Settings.DB_CLEANUP_INTERVAL));
+        if( settings.getLong(Settings.DB_CLEANUP_LASTRUN) == 0 ) {
             CbCleanupNextStartup.setSelected(true);
         } else {
             CbCleanupNextStartup.setSelected(false);

@@ -118,7 +118,7 @@ public class FreetalkMessageTab implements LanguageListener {
 
             panel.add(getMessagePanel(), BorderLayout.CENTER);
 
-            int dividerLoc = Core.frostSettings.getIntValue("FreetalkTab.treeAndTabbedPaneSplitpaneDividerLocation");
+            int dividerLoc = Core.frostSettings.getInteger("FreetalkTab.treeAndTabbedPaneSplitpaneDividerLocation");
             if( dividerLoc < 10 ) {
                 dividerLoc = 160;
             }
@@ -375,7 +375,7 @@ public class FreetalkMessageTab implements LanguageListener {
         final String id = FcpFreetalkConnection.getNextFcpidentifier();
 
         ftManager.getConnection().registerCallback(
-                id, new ListMessagesCallback(mainFrame, board, Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_THREADS)));
+                id, new ListMessagesCallback(mainFrame, board, Core.frostSettings.getBoolean(Settings.FREETALK_SHOW_THREADS)));
 
         mainFrame.activateGlassPane();
 

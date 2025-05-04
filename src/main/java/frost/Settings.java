@@ -355,7 +355,7 @@ public class Settings implements ExitSavable {
 		// maybe restore a .bak of the .ini file
 		if ((settingsFile.isFile() == false) || (settingsFile.length() == 0)) {
 			// try to restore .bak file
-			final String configDirStr = getValue(Settings.DIR_CONFIG);
+			final String configDirStr = getString(Settings.DIR_CONFIG);
 			final File bakFile = new File(configDirStr + "frost.ini.bak");
 			if (bakFile.isFile() && (bakFile.length() > 0)) {
 				bakFile.renameTo(settingsFile);
@@ -432,12 +432,12 @@ public class Settings implements ExitSavable {
      * Adjust values as needed.
      */
     private void doChanges() {
-        if (this.getValue(Settings.MESSAGE_BASE).length() == 0) {
+        if (this.getString(Settings.MESSAGE_BASE).length() == 0) {
             this.setValue(Settings.MESSAGE_BASE, "news");
         }
 
         // adjust reshare interval, old default was 3
-        if( this.getIntValue(MIN_DAYS_BEFORE_FILE_RESHARE) == 3 ) {
+        if( this.getInteger(MIN_DAYS_BEFORE_FILE_RESHARE) == 3 ) {
             this.setValue(MIN_DAYS_BEFORE_FILE_RESHARE, 5);
         }
 
@@ -447,7 +447,7 @@ public class Settings implements ExitSavable {
 //        }
 
         // dynamically add archiveExtension .7z
-        final String tmp = this.getValue(Settings.FILEEXTENSION_ARCHIVE);
+        final String tmp = this.getString(Settings.FILEEXTENSION_ARCHIVE);
         if( (tmp != null) && (tmp.indexOf(".7z") < 0) ) {
             // add .7z
             this.setValue(Settings.FILEEXTENSION_ARCHIVE, tmp + ";.7z");
@@ -475,7 +475,7 @@ public class Settings implements ExitSavable {
 		}
 
 		// write to new file
-		final String configDirStr = getValue(Settings.DIR_CONFIG);
+		final String configDirStr = getString(Settings.DIR_CONFIG);
 		final File newFile = new File(configDirStr + "frost.ini.new");
 		final File oldFile = new File(configDirStr + "frost.ini.old");
 		final File bakFile = new File(configDirStr + "frost.ini.bak");
@@ -707,7 +707,7 @@ public class Settings implements ExitSavable {
      * is found or the settings are wrongly formatted or
      * any other conceivable exception.
      */
-    public String getValue(final String key) {
+    public String getString(final String key) {
         return (String) settingsHash.get(key);
     }
 
@@ -715,7 +715,7 @@ public class Settings implements ExitSavable {
         return settingsHash.get(key);
     }
 
-    public String[] getArrayValue(final String key) {
+    public String[] getStringList(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return new String[0];
@@ -729,7 +729,7 @@ public class Settings implements ExitSavable {
         return returnStrArr;
     }
 
-    public boolean getBoolValue(final String key) {
+    public boolean getBoolean(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return false;
@@ -744,10 +744,10 @@ public class Settings implements ExitSavable {
         } catch (final NullPointerException e) {
             return false;
         }
-        return getBoolValue(getDefaultValue(key));
+        return getBoolean(getDefaultValue(key));
     }
 
-    public int getIntValue(final String key) {
+    public int getInteger(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return 0;
@@ -756,7 +756,7 @@ public class Settings implements ExitSavable {
         try {
             val = Integer.parseInt(str);
         } catch (final NumberFormatException e) {
-            return getIntValue(getDefaultValue(key));
+            return getInteger(getDefaultValue(key));
         } catch (final Exception e) {
             return 0;
         }
@@ -764,7 +764,7 @@ public class Settings implements ExitSavable {
     }
 
 
-    public long getLongValue(final String key) {
+    public long getLong(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return 0L;
@@ -773,25 +773,9 @@ public class Settings implements ExitSavable {
         try {
             val = Long.parseLong(str);
         } catch (final NumberFormatException e) {
-            return getLongValue(getDefaultValue(key));
+            return getLong(getDefaultValue(key));
         } catch (final Exception e) {
             return 0L;
-        }
-        return val;
-    }
-
-    public float getFloatValue(final String key) {
-        float val = 0.0f;
-        final String str = (String) settingsHash.get(key);
-        if (str == null) {
-            return val;
-        }
-        try {
-            val = Float.parseFloat(str);
-        } catch (final NumberFormatException e) {
-            return getFloatValue(getDefaultValue(key));
-        } catch (final Exception e) {
-            return 0.0f;
         }
         return val;
     }
@@ -813,12 +797,6 @@ public class Settings implements ExitSavable {
         setValue(key, String.valueOf(value));
     }
     public void setValue(final String key, final long value) {
-        setValue(key, String.valueOf(value));
-    }
-    public void setValue(final String key, final Float value) {
-        setValue(key, String.valueOf(value));
-    }
-    public void setValue(final String key, final float value) {
         setValue(key, String.valueOf(value));
     }
     public void setValue(final String key, final Boolean value) {
@@ -1078,7 +1056,7 @@ public class Settings implements ExitSavable {
 	}
 
 	public String getFullHelpPath() {
-		return getBaseDirectory() + getValue(DIR_HELP);
+		return getBaseDirectory() + getString(DIR_HELP);
 	}
 
 	public static String getVersion() {

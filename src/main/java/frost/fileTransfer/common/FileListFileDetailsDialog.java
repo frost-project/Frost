@@ -115,8 +115,8 @@ public class FileListFileDetailsDialog extends JDialog implements LanguageListen
 	}
 
 	private void loadLayout() {
-        int lastHeight = Core.frostSettings.getIntValue("FileListFileDetailsDialog.height");
-        int lastWidth = Core.frostSettings.getIntValue("FileListFileDetailsDialog.width");
+        int lastHeight = Core.frostSettings.getInteger("FileListFileDetailsDialog.height");
+        int lastWidth = Core.frostSettings.getInteger("FileListFileDetailsDialog.width");
 
         final Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
 

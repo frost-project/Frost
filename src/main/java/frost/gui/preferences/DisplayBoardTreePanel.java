@@ -213,18 +213,18 @@ public class DisplayBoardTreePanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-    	String fontName = settings.getValue(Settings.BOARD_TREE_FONT_NAME);
-        int fontSize = settings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
-        int fontStyle = settings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
+    	String fontName = settings.getString(Settings.BOARD_TREE_FONT_NAME);
+        int fontSize = settings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
+        int fontStyle = settings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
         selectedBodyFont = new Font(fontName, fontStyle, fontSize);
         selectedBoardTreeFontLabel.setText(getFontLabel(selectedBodyFont));
 
-        showBoardUpdateCountCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_BOARD_UPDATED_COUNT));
-        showBoardDescTooltipsCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS));
-        preventBoardtreeReordering.setSelected(settings.getBoolValue(Settings.PREVENT_BOARDTREE_REORDERING));
-        showFlaggedStarredIndicators.setSelected(settings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR));
+        showBoardUpdateCountCheckBox.setSelected(settings.getBoolean(Settings.SHOW_BOARD_UPDATED_COUNT));
+        showBoardDescTooltipsCheckBox.setSelected(settings.getBoolean(Settings.SHOW_BOARDDESC_TOOLTIPS));
+        preventBoardtreeReordering.setSelected(settings.getBoolean(Settings.PREVENT_BOARDTREE_REORDERING));
+        showFlaggedStarredIndicators.setSelected(settings.getBoolean(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR));
 
-        showBoardUpdateVisualizationCheckBox.setSelected(settings.getBoolValue(Settings.BOARD_UPDATE_VISUALIZATION_ENABLED));
+        showBoardUpdateVisualizationCheckBox.setSelected(settings.getBoolean(Settings.BOARD_UPDATE_VISUALIZATION_ENABLED));
         refreshUpdateState();
 
         selectedColor = (Color) settings.getObjectValue(Settings.BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED);

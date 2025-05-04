@@ -175,9 +175,9 @@ public class UploadPanel extends JPanel implements LanguageListener, SimplePopup
             Core.frostSettings.addPropertyChangeListener(Settings.FILE_LIST_FONT_SIZE, listener);
             Core.frostSettings.addPropertyChangeListener(Settings.FILE_LIST_FONT_STYLE, listener);
 
-            removeFinishedUploadsCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.UPLOAD_REMOVE_FINISHED));
-            showExternalGlobalQueueItems.setSelected(Core.frostSettings.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD));
-            compressUploadsCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.COMPRESS_UPLOADS));
+            removeFinishedUploadsCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.UPLOAD_REMOVE_FINISHED));
+            showExternalGlobalQueueItems.setSelected(Core.frostSettings.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD));
+            compressUploadsCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.COMPRESS_UPLOADS));
 
             assignHotkeys();
 
@@ -265,9 +265,9 @@ public class UploadPanel extends JPanel implements LanguageListener, SimplePopup
 	}
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");

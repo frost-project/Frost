@@ -90,7 +90,7 @@ public class BoardUpdateBoardSelector {
 
         final long curTime = System.currentTimeMillis();
         // get in minutes
-        final int minUpdateInterval = Core.frostSettings.getIntValue(Settings.BOARD_AUTOUPDATE_MIN_INTERVAL);
+        final int minUpdateInterval = Core.frostSettings.getInteger(Settings.BOARD_AUTOUPDATE_MIN_INTERVAL);
         // min -> ms
         final long minUpdateIntervalMillis = minUpdateInterval * 60L * 1000L;
 

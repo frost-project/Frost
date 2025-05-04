@@ -89,7 +89,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
         setComparator(SearchTableComparators.getKeywordsComparator(), 7);
         setComparator(SearchTableComparators.getSourcesComparator(), 8);
 
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -242,7 +242,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -262,7 +262,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            final int tableIndex = Core.frostSettings.getIntValue(indexKey);
+            final int tableIndex = Core.frostSettings.getInteger(indexKey);
             if( tableIndex < 0 || tableIndex >= tableToModelIndex.length ) {
                 return false; // invalid table index value
             }
@@ -273,7 +273,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            final int columnWidth = Core.frostSettings.getIntValue(widthKey);
+            final int columnWidth = Core.frostSettings.getInteger(widthKey);
             if( columnWidth <= 0 ) {
                 return false; // invalid column width
             }
@@ -470,7 +470,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+            showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

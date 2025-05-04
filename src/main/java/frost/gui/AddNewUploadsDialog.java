@@ -582,7 +582,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		List<FrostUploadItem> frostUploadItemList = new ArrayList<FrostUploadItem>();
 		
-		final JFileChooser fc = new JFileChooser(Core.frostSettings.getValue(Settings.DIR_LAST_USED));
+		final JFileChooser fc = new JFileChooser(Core.frostSettings.getString(Settings.DIR_LAST_USED));
 		fc.setDialogTitle(language.getString("AddNewUploadsDialog.filechooser.title"));
 		fc.setFileHidingEnabled(true);
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);

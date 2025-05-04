@@ -70,7 +70,7 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 
         initLayout();
 
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
     }
 
     private void initLayout() {

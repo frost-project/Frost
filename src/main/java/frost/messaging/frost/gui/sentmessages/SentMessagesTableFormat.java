@@ -67,7 +67,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
         setComparator(new ToComparator(), 3);
         setComparator(new DateComparator(), 4);
         
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -139,12 +139,12 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
             }
         }
 
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
-            int sortedColumn = Core.frostSettings.getIntValue(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            boolean isSortedAsc = Core.frostSettings.getBoolValue(CFGKEY_SORTSTATE_SORTEDASCENDING);
+            int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
+            boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -165,7 +165,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
         
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             int sortedColumn = modelTable.getSortedColumn();
             boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -185,7 +185,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            int tableIndex = Core.frostSettings.getIntValue(indexKey);
+            int tableIndex = Core.frostSettings.getInteger(indexKey);
             if( tableIndex < 0 || tableIndex >= tableToModelIndex.length ) {
                 return false; // invalid table index value
             }
@@ -196,7 +196,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            int columnWidth = Core.frostSettings.getIntValue(widthKey);
+            int columnWidth = Core.frostSettings.getInteger(widthKey);
             if( columnWidth <= 0 ) {
                 return false; // invalid column width
             }
@@ -331,7 +331,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
 
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+            showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

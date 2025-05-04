@@ -60,7 +60,7 @@ public class DownloadTicker extends Thread {
 
     private boolean canAllocateDownloadThread() {
          synchronized (threadCountLock) {
-             if (allocatedThreads < Core.frostSettings.getIntValue(Settings.DOWNLOAD_MAX_THREADS)) {
+             if (allocatedThreads < Core.frostSettings.getInteger(Settings.DOWNLOAD_MAX_THREADS)) {
                  return true;
              }
          }
@@ -187,7 +187,7 @@ public class DownloadTicker extends Thread {
 
         dlItem.setState(FrostDownloadItem.STATE_TRYING);
 
-        final File targetFile = new File(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD) + dlItem.getFileName());
+        final File targetFile = new File(Core.frostSettings.getString(Settings.DIR_DOWNLOAD) + dlItem.getFileName());
         final DownloadThread newRequest = new DownloadThread(this, dlItem, targetFile);
         newRequest.start();
         return true;

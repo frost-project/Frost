@@ -94,7 +94,7 @@ public class StorageManager extends Timer {
 
 	public StorageManager(final Settings frostSettings) {
 		Runtime.getRuntime().addShutdownHook(shutdownThread);
-		final int autoSaveIntervalMinutes = frostSettings.getIntValue(Settings.AUTO_SAVE_INTERVAL);
+		final int autoSaveIntervalMinutes = frostSettings.getInteger(Settings.AUTO_SAVE_INTERVAL);
 		schedule(
 			autoTask,
 			autoSaveIntervalMinutes * 60L * 1000L,

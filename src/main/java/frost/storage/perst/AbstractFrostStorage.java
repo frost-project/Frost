@@ -199,7 +199,7 @@ public abstract class AbstractFrostStorage {
      * returns the value in bytes.
      */
     protected long getPagePoolSize(final String configKey) {
-        long pagePoolSize = Core.frostSettings.getLongValue(configKey);
+        long pagePoolSize = Core.frostSettings.getLong(configKey);
         if( pagePoolSize <= 0 ) {
             pagePoolSize = 1024;
         }
@@ -211,7 +211,7 @@ public abstract class AbstractFrostStorage {
      * Gets the provided filename and constructs the final filename (preceedes filename with store directory).
      */
     protected String buildStoragePath(final String filename) {
-        final String storeDir = Core.frostSettings.getValue(Settings.DIR_STORE);
+        final String storeDir = Core.frostSettings.getString(Settings.DIR_STORE);
         return storeDir + filename; // path to the database file
     }
 }

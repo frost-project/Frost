@@ -183,7 +183,7 @@ public class DownloadManager implements ExitSavable {
 			if (Core.frostSettings.getObjectValue(key) == null) {
 				break;
 			}
-			recentDownloadDirs.add(Core.frostSettings.getValue(key));
+			recentDownloadDirs.add(Core.frostSettings.getString(key));
 		}
 	}
 
@@ -199,7 +199,7 @@ public class DownloadManager implements ExitSavable {
 	public void addRecentDownloadDir(final String downloadDir) {
 		final String defaultDlDir = FileAccess
 				.appendSeparator(Core.frostSettings
-						.getValue(Settings.DIR_DOWNLOAD));
+						.getString(Settings.DIR_DOWNLOAD));
 		final String dlDir = FileAccess.appendSeparator(downloadDir);
 		final ListIterator<String> i = recentDownloadDirs.listIterator();
 		boolean found = false;
@@ -413,7 +413,7 @@ public class DownloadManager implements ExitSavable {
 				logger.warn("FILEDN: Download of {} failed.", filename);
 				// set new state -> failed or waiting for another try
 				if (downloadItem.getRetries() > Core.frostSettings
-						.getIntValue(Settings.DOWNLOAD_MAX_RETRIES)) {
+						.getInteger(Settings.DOWNLOAD_MAX_RETRIES)) {
 					// downloadItem.setEnabled(Boolean.valueOf(false)); // keep
 					// enabled to allow sending of requests for shared files
 					downloadItem.setState(FrostDownloadItem.STATE_FAILED);
@@ -442,7 +442,7 @@ public class DownloadManager implements ExitSavable {
 
 			// maybe track download
 			if (Core.frostSettings
-					.getBoolValue(Settings.TRACK_DOWNLOADS_ENABLED)
+					.getBoolean(Settings.TRACK_DOWNLOADS_ENABLED)
 					&& !downloadItem.isTracked()) {
 				TrackDownloadKeysStorage trackDownloadKeysStorage = TrackDownloadKeysStorage
 						.inst();
@@ -456,12 +456,12 @@ public class DownloadManager implements ExitSavable {
 
 			// maybe log successful download to file localdata/downloads.txt
 			if (Core.frostSettings
-					.getBoolValue(Settings.LOG_DOWNLOADS_ENABLED)
+					.getBoolean(Settings.LOG_DOWNLOADS_ENABLED)
 					&& !downloadItem.isLoggedToFile()) {
 				final String line = downloadItem.getKey() + "/"
 						+ downloadItem.getFileName();
 				final String fileName = Core.frostSettings
-						.getValue(Settings.DIR_LOCALDATA)
+						.getString(Settings.DIR_LOCALDATA)
 						+ "Frost-Downloads.log";
 				final File targetLogFile = new File(fileName);
 				FileAccess.appendLineToTextfile(targetLogFile, line);
@@ -469,7 +469,7 @@ public class DownloadManager implements ExitSavable {
 			}
 
 			final String execProg = Core.frostSettings
-					.getValue(Settings.EXEC_ON_DOWNLOAD);
+					.getString(Settings.EXEC_ON_DOWNLOAD);
 			if (execProg != null && execProg.length() > 0
 					&& !downloadItem.isExternal()
 					&& !downloadItem.isCompletionProgRun()) {
@@ -516,7 +516,7 @@ public class DownloadManager implements ExitSavable {
 
 			// maybe remove finished download immediately
 			if (Core.frostSettings
-					.getBoolValue(Settings.DOWNLOAD_REMOVE_FINISHED)) {
+					.getBoolean(Settings.DOWNLOAD_REMOVE_FINISHED)) {
 				FileTransferManager.inst().getDownloadManager().getModel()
 						.removeFinishedDownloads();
 			}
@@ -567,7 +567,7 @@ public class DownloadManager implements ExitSavable {
 
 			// check if waittime is expired
 			final long waittimeMillis = Core.frostSettings
-					.getIntValue(Settings.DOWNLOAD_WAITTIME) * 60L * 1000L;
+					.getInteger(Settings.DOWNLOAD_WAITTIME) * 60L * 1000L;
 			// min->millisec
 			if (dlItem.getLastDownloadStopTime() == 0 // never started
 					|| (System.currentTimeMillis() - dlItem
@@ -602,7 +602,7 @@ public class DownloadManager implements ExitSavable {
 				: dlItem.isEnabled().booleanValue());
 		FreenetPriority prio = FreenetPriority.PAUSE;
 		if (itemIsEnabled) {
-			prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+			prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
 		}
 		
 		List<FrostDownloadItem> frostDownloadItems = new ArrayList<FrostDownloadItem>();

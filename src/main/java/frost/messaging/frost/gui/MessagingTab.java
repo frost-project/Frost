@@ -153,7 +153,7 @@ public class MessagingTab extends JPanel implements LanguageListener {
 
         panel.add(getMessagePanel(), BorderLayout.CENTER);
 
-        int dividerLoc = Core.frostSettings.getIntValue("MainFrame.treeAndTabbedPaneSplitpaneDividerLocation");
+        int dividerLoc = Core.frostSettings.getInteger("MainFrame.treeAndTabbedPaneSplitpaneDividerLocation");
         if (dividerLoc < 10) {
             dividerLoc = 160;
         }
@@ -223,8 +223,8 @@ public class MessagingTab extends JPanel implements LanguageListener {
 
     public void postInitialize() {
         // select saved board (NOTE: this loads the message list!)
-        if (tofTree.getRowCount() > Core.frostSettings.getIntValue(Settings.BOARDLIST_LAST_SELECTED_BOARD)) {
-            tofTree.setSelectionRow(Core.frostSettings.getIntValue(Settings.BOARDLIST_LAST_SELECTED_BOARD));
+        if (tofTree.getRowCount() > Core.frostSettings.getInteger(Settings.BOARDLIST_LAST_SELECTED_BOARD)) {
+            tofTree.setSelectionRow(Core.frostSettings.getInteger(Settings.BOARDLIST_LAST_SELECTED_BOARD));
         }
     }
 

@@ -67,8 +67,8 @@ public class CleanUp {
         cleanPerstStorages(boardList);
 
         // cleanup and archive all X days
-        final int cleanupDatabaseInterval = Core.frostSettings.getIntValue(Settings.DB_CLEANUP_INTERVAL);
-        final long lastCleanupTime = Core.frostSettings.getLongValue(Settings.DB_CLEANUP_LASTRUN);
+        final int cleanupDatabaseInterval = Core.frostSettings.getInteger(Settings.DB_CLEANUP_INTERVAL);
+        final long lastCleanupTime = Core.frostSettings.getLong(Settings.DB_CLEANUP_LASTRUN);
         final long now = System.currentTimeMillis();
         final long intervalMillis = (cleanupDatabaseInterval) * 24L * 60L * 60L * 1000L; // interval days into millis
 
@@ -90,7 +90,7 @@ public class CleanUp {
     private static void cleanStorages(final List<Board> boardList) {
         int mode;
 
-        final String strMode = Core.frostSettings.getValue(Settings.MESSAGE_EXPIRATION_MODE);
+        final String strMode = Core.frostSettings.getString(Settings.MESSAGE_EXPIRATION_MODE);
         if( strMode.toUpperCase().equals("KEEP") ) {
             mode = KEEP_MESSAGES;
         } else if( strMode.toUpperCase().equals("ARCHIVE") ) {
@@ -128,13 +128,13 @@ public class CleanUp {
         }
 
         // take maximum
-        int defaultDaysOld = Core.frostSettings.getIntValue(Settings.MESSAGE_EXPIRE_DAYS) + 1;
+        int defaultDaysOld = Core.frostSettings.getInteger(Settings.MESSAGE_EXPIRE_DAYS) + 1;
 
-        if( defaultDaysOld < Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DISPLAY) ) {
-            defaultDaysOld = Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DISPLAY) + 1;
+        if( defaultDaysOld < Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DISPLAY) ) {
+            defaultDaysOld = Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DISPLAY) + 1;
         }
-        if( defaultDaysOld < Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD) ) {
-            defaultDaysOld = Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD) + 1;
+        if( defaultDaysOld < Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DOWNLOAD) ) {
+            defaultDaysOld = Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DOWNLOAD) + 1;
         }
 
         for( final Board board : boardList ) {
@@ -145,8 +145,8 @@ public class CleanUp {
                 currentDaysOld = Math.max(board.getMaxMessageDownload(), currentDaysOld);
             }
 
-            final boolean archiveKeepUnread = Core.frostSettings.getBoolValue(Settings.ARCHIVE_KEEP_UNREAD);
-            final boolean archiveKeepFlaggedAndStarred = Core.frostSettings.getBoolValue(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED);
+            final boolean archiveKeepUnread = Core.frostSettings.getBoolean(Settings.ARCHIVE_KEEP_UNREAD);
+            final boolean archiveKeepFlaggedAndStarred = Core.frostSettings.getBoolean(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED);
 
             splashScreen.setText("Archiving messages in board: "+board.getName());
 
@@ -208,7 +208,7 @@ public class CleanUp {
      */
     private static void cleanupIndexSlotsStorage(final List<Board> boardList) {
 
-        int maxDaysOld = Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD) * 2;
+        int maxDaysOld = Core.frostSettings.getInteger(Settings.MAX_MESSAGE_DOWNLOAD) * 2;
 
         // max from any board
         for( final Board board : boardList ) {
@@ -252,8 +252,8 @@ public class CleanUp {
      * Remove owners that were not seen for more than MINIMUM_DAYS_OLD days and have no CHK key set.
      */
     private static void cleanupFileListFileOwners() {
-        final boolean removeOfflineFilesWithKey = Core.frostSettings.getBoolValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY);
-        final int offlineFilesMaxDaysOld = Core.frostSettings.getIntValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD);
+        final boolean removeOfflineFilesWithKey = Core.frostSettings.getBoolean(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY);
+        final int offlineFilesMaxDaysOld = Core.frostSettings.getInteger(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD);
 
         int deletedCount = 0;
         try {

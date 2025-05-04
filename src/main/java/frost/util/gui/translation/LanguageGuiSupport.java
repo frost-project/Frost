@@ -185,8 +185,8 @@ public class LanguageGuiSupport {
         // finally select currently choosed language
         boolean anItemIsSelected = false;
 
-        final String configuredLang = Core.frostSettings.getValue(Settings.LANGUAGE_LOCALE);
-        final String langIsExternal = Core.frostSettings.getValue("localeExternal");
+        final String configuredLang = Core.frostSettings.getString(Settings.LANGUAGE_LOCALE);
+        final String langIsExternal = Core.frostSettings.getString("localeExternal");
         boolean isExternal;
         if( langIsExternal == null || langIsExternal.length() == 0 || !langIsExternal.equals("true")) {
             isExternal = false;

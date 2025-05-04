@@ -96,7 +96,7 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
      * @return  true if Frost is configured to use persistent uploads and downloads, false if not
      */
     public static boolean isPersistenceEnabled() {
-    	return Core.frostSettings.getBoolValue(Settings.FCP2_USE_PERSISTENCE);
+    	return Core.frostSettings.getBoolean(Settings.FCP2_USE_PERSISTENCE);
     }
 
     /**
@@ -104,8 +104,8 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
      */
     public PersistenceManager(final UploadModel um, final DownloadModel dm) throws Throwable {
 
-        showExternalItemsDownload = Core.frostSettings.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD);
-        showExternalItemsUpload = Core.frostSettings.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD);
+        showExternalItemsDownload = Core.frostSettings.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD);
+        showExternalItemsUpload = Core.frostSettings.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD);
 
         if (FcpHandler.inst().getFreenetNode() == null) {
             throw new Exception("No freenet nodes defined");
@@ -117,13 +117,13 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
         Core.frostSettings.addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(final PropertyChangeEvent evt) {
                 if( evt.getPropertyName().equals(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD) ) {
-                    showExternalItemsDownload = Core.frostSettings.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD);
+                    showExternalItemsDownload = Core.frostSettings.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD);
                     if( showExternalItemsDownload ) {
                         // get external items
                         showExternalDownloadItems();
                     }
                 } else if( evt.getPropertyName().equals(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD) ) {
-                    showExternalItemsUpload = Core.frostSettings.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD);
+                    showExternalItemsUpload = Core.frostSettings.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_UPLOAD);
                     if( showExternalItemsUpload ) {
                         // get external items
                         showExternalUploadItems();
@@ -303,7 +303,7 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
     private void applyPriority(final FrostDownloadItem dlItem, final FcpPersistentGet getReq) {
         // apply externally changed priority
         if( dlItem.getPriority() != getReq.getPriority() ) {
-            if (Core.frostSettings.getBoolValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD)) {
+            if (Core.frostSettings.getBoolean(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD)) {
                 // reset priority with our current value
                 fcpTools.changeRequestPriority(getReq.getIdentifier(), dlItem.getPriority());
             } else {
@@ -415,7 +415,7 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
 
         // apply externally changed priority
         if( ulItem.getPriority() != putReq.getPriority() ) {
-            if (Core.frostSettings.getBoolValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD)) {
+            if (Core.frostSettings.getBoolean(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD)) {
                 // reset priority with our current value
                 fcpTools.changeRequestPriority(putReq.getIdentifier(), ulItem.getPriority());
             } else {
@@ -486,7 +486,7 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
         boolean isLimited = true;
         int currentAllowedUploadCount = 0;
         {
-            final int allowedConcurrentUploads = Core.frostSettings.getIntValue(Settings.UPLOAD_MAX_THREADS);
+            final int allowedConcurrentUploads = Core.frostSettings.getInteger(Settings.UPLOAD_MAX_THREADS);
             if( allowedConcurrentUploads <= 0 ) {
                 isLimited = false;
             } else {
@@ -559,7 +559,7 @@ public class PersistenceManager implements IFcpPersistentRequestsHandler {
         boolean isLimited = true;
         int currentAllowedDownloadCount = 0;
         {
-            final int allowedConcurrentDownloads = Core.frostSettings.getIntValue(Settings.DOWNLOAD_MAX_THREADS);
+            final int allowedConcurrentDownloads = Core.frostSettings.getInteger(Settings.DOWNLOAD_MAX_THREADS);
             if( allowedConcurrentDownloads <= 0 ) {
                 isLimited = false;
             } else {

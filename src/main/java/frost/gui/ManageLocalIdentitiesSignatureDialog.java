@@ -142,16 +142,16 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
         if (signatureTextArea == null) {
             signatureTextArea = new AntialiasedTextArea(6, 50);
 
-            String fontName = Core.frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
-            int fontStyle = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
-            int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
+            String fontName = Core.frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
+            int fontStyle = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
+            int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
             Font tofFont = new Font(fontName, fontStyle, fontSize);
             if (!tofFont.getFamily().equals(fontName)) {
                 Core.frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
                 tofFont = new Font("Monospaced", fontStyle, fontSize);
             }
             signatureTextArea.setFont(tofFont);
-            signatureTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
+            signatureTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
         }
         return signatureTextArea;
     }

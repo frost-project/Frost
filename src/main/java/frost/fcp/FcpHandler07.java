@@ -54,7 +54,7 @@ public class FcpHandler07 extends FcpHandler {
      */
     @Override
     public void goneOnline() {
-        if( Core.frostSettings.getBoolValue(Settings.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES) ) {
+        if( Core.frostSettings.getBoolean(Settings.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES) ) {
             try {
                 msgTransferConnection = new MessageTransferHandler();
                 msgTransferConnection.start();
@@ -89,7 +89,7 @@ public class FcpHandler07 extends FcpHandler {
             // use the shared socket
             logger.debug("GET_START(S)({}): {}", cnt, key);
             final String id = "get-" + FcpSocket.getNextFcpId();
-            final FreenetPriority prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
+            final FreenetPriority prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
             final MessageTransferTask task = new MessageTransferTask(id, key, targetFile, prio, maxSize, maxRetries);
 
             // enqueue task
@@ -127,7 +127,7 @@ public class FcpHandler07 extends FcpHandler {
             // use the shared socket
             logger.debug("PUT_START(S)({}): {}", cnt, key);
             final String id = "get-" + FcpSocket.getNextFcpId();
-            final FreenetPriority prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
+            final FreenetPriority prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
             final MessageTransferTask task = new MessageTransferTask(id, key, sourceFile, prio);
 
             // enqueue task

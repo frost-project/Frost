@@ -232,16 +232,16 @@ class SearchPanel extends JPanel {
      * Loads the settings of this panel
      */
     private void loadSettings() {
-        audioExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_AUDIO));
-        imageExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_IMAGE));
-        videoExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_VIDEO));
-        documentExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_DOCUMENT));
-        executableExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_EXECUTABLE));
-        archiveExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_ARCHIVE));
-        maxSearchResultsTextField.setText(Integer.toString(settings.getIntValue(Settings.SEARCH_MAX_RESULTS)));
-        disableFilesharingCheckBox.setSelected(settings.getBoolValue(Settings.FILESHARING_DISABLE));
-        ignoreCheckAndBelowCheckBox.setSelected(settings.getBoolValue(Settings.FILESHARING_IGNORE_CHECK_AND_BELOW));
-        rememberSharedFileDownloadedCheckBox.setSelected(settings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED));
+        audioExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_AUDIO));
+        imageExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_IMAGE));
+        videoExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_VIDEO));
+        documentExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_DOCUMENT));
+        executableExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_EXECUTABLE));
+        archiveExtensionTextField.setText(settings.getString(Settings.FILEEXTENSION_ARCHIVE));
+        maxSearchResultsTextField.setText(Integer.toString(settings.getInteger(Settings.SEARCH_MAX_RESULTS)));
+        disableFilesharingCheckBox.setSelected(settings.getBoolean(Settings.FILESHARING_DISABLE));
+        ignoreCheckAndBelowCheckBox.setSelected(settings.getBoolean(Settings.FILESHARING_IGNORE_CHECK_AND_BELOW));
+        rememberSharedFileDownloadedCheckBox.setSelected(settings.getBoolean(Settings.REMEMBER_SHAREDFILE_DOWNLOADED));
     }
 
     public void ok() {

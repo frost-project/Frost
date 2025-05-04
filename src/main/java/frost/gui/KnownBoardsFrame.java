@@ -132,7 +132,7 @@ public class KnownBoardsFrame extends JDialog {
             }
         });
 
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
 
         hiddenNames = KnownBoardsManager.getInstance().loadHiddenBoardNames();
     }

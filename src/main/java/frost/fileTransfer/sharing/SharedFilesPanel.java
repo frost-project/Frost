@@ -184,7 +184,7 @@ public class SharedFilesPanel extends JPanel implements LanguageListener, Simple
 
     public void uploadAddFilesButton_actionPerformed(final ActionEvent e) {
 
-        final JFileChooser fc = new JFileChooser(Core.frostSettings.getValue(Settings.DIR_LAST_USED));
+        final JFileChooser fc = new JFileChooser(Core.frostSettings.getString(Settings.DIR_LAST_USED));
         fc.setDialogTitle(language.getString("SharedFilesPane.filechooser.title"));
         fc.setFileHidingEnabled(true);
         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -254,9 +254,9 @@ public class SharedFilesPanel extends JPanel implements LanguageListener, Simple
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");

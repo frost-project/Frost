@@ -67,7 +67,7 @@ public class FileListStorage extends AbstractFrostStorage implements ExitSavable
 
     @Override
     public boolean initStorage() {
-        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
+        rememberSharedFileDownloaded = Core.frostSettings.getBoolean(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
         Core.frostSettings.addPropertyChangeListener(Settings.REMEMBER_SHAREDFILE_DOWNLOADED, this);
 
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
@@ -705,6 +705,6 @@ boolean alwaysUseLatestChkKey = true; // FIXME: must be true as long as the key 
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
+        rememberSharedFileDownloaded = Core.frostSettings.getBoolean(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
     }
 }

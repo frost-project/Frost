@@ -88,7 +88,7 @@ class UploadPanel extends JPanel {
     }
 
     private void browseExecPressed() {
-        final JFileChooser fc = new JFileChooser(settings.getValue(Settings.DIR_LAST_USED));
+        final JFileChooser fc = new JFileChooser(settings.getString(Settings.DIR_LAST_USED));
         fc.setDialogTitle(language.getString("Options.downloads.filechooser.title"));
         fc.setFileHidingEnabled(true);
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -188,14 +188,14 @@ class UploadPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        priorityTextField.setText(settings.getValue(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
-        enforceFrostPriorityFileUpload.setSelected(settings.getBoolValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD));
-        threadsTextField.setText(settings.getValue(Settings.UPLOAD_MAX_THREADS));
-        maxRetriesTextField.setText("" + settings.getIntValue(Settings.UPLOAD_MAX_RETRIES));
-        waitTimeTextField.setText("" + settings.getIntValue(Settings.UPLOAD_WAITTIME));
-        logUploadsCheckBox.setSelected(settings.getBoolValue(Settings.LOG_UPLOADS_ENABLED));
-        removeNotExistingfiles.setSelected(settings.getBoolValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES));
-        execTextField.setText(settings.getValue(Settings.EXEC_ON_UPLOAD));
+        priorityTextField.setText(settings.getString(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+        enforceFrostPriorityFileUpload.setSelected(settings.getBoolean(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD));
+        threadsTextField.setText(settings.getString(Settings.UPLOAD_MAX_THREADS));
+        maxRetriesTextField.setText("" + settings.getInteger(Settings.UPLOAD_MAX_RETRIES));
+        waitTimeTextField.setText("" + settings.getInteger(Settings.UPLOAD_WAITTIME));
+        logUploadsCheckBox.setSelected(settings.getBoolean(Settings.LOG_UPLOADS_ENABLED));
+        removeNotExistingfiles.setSelected(settings.getBoolean(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES));
+        execTextField.setText(settings.getString(Settings.EXEC_ON_UPLOAD));
     }
 
     public void ok() {

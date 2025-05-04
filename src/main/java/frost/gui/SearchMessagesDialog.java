@@ -1674,11 +1674,11 @@ public class SearchMessagesDialog extends JFrame implements LanguageListener {
 
     private void loadWindowState() {
         // load size, location and state of window
-        int lastHeight = Core.frostSettings.getIntValue("searchMessagesDialog.lastFrameHeight");
-        int lastWidth = Core.frostSettings.getIntValue("searchMessagesDialog.lastFrameWidth");
-        final int lastPosX = Core.frostSettings.getIntValue("searchMessagesDialog.lastFramePosX");
-        final int lastPosY = Core.frostSettings.getIntValue("searchMessagesDialog.lastFramePosY");
-        final boolean lastMaximized = Core.frostSettings.getBoolValue("searchMessagesDialog.lastFrameMaximized");
+        int lastHeight = Core.frostSettings.getInteger("searchMessagesDialog.lastFrameHeight");
+        int lastWidth = Core.frostSettings.getInteger("searchMessagesDialog.lastFrameWidth");
+        final int lastPosX = Core.frostSettings.getInteger("searchMessagesDialog.lastFramePosX");
+        final int lastPosY = Core.frostSettings.getInteger("searchMessagesDialog.lastFramePosY");
+        final boolean lastMaximized = Core.frostSettings.getBoolean("searchMessagesDialog.lastFrameMaximized");
 
         if( (lastHeight <= 0) || (lastWidth <= 0) ) {
             // first call

@@ -69,7 +69,7 @@ public class DownloadModel extends SortedModel<FrostDownloadItem> implements Exi
 		final FrostFileListFileObject flfToAdd = itemToAdd.getFileListFileObject(); 
 
 		// If download tracking is enabled, check if file has not been already downloaded
-		if (Core.frostSettings.getBoolValue(Settings.TRACK_DOWNLOADS_ENABLED)) {
+		if (Core.frostSettings.getBoolean(Settings.TRACK_DOWNLOADS_ENABLED)) {
 
 			// Only check if the file is not lingering around in finished
 			// state...

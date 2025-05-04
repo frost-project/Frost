@@ -295,7 +295,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 			downloadDirTextField.setMinimumSize(downloadTextField.getPreferredSize());
 
 			downloadTextField.setDocument(new HandleMultiLineKeysDocument());
-			downloadDirTextField.setText(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
+			downloadDirTextField.setText(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
 
 			downloadDirDefaultBackground = downloadDirTextField.getBackground();
 			updateDownloadDirTextFieldBackground();
@@ -339,10 +339,10 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 
 			// Settings
 			removeFinishedDownloadsCheckBox.setSelected(Core.frostSettings
-					.getBoolValue(Settings.DOWNLOAD_REMOVE_FINISHED));
+					.getBoolean(Settings.DOWNLOAD_REMOVE_FINISHED));
 			showExternalGlobalQueueItems.setSelected(Core.frostSettings
-					.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD));
-			setDownloadingActivated(Core.frostSettings.getBoolValue(Settings.DOWNLOADING_ACTIVATED));
+					.getBoolean(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD));
+			setDownloadingActivated(Core.frostSettings.getBoolean(Settings.DOWNLOADING_ACTIVATED));
 
 			assignHotkeys();
 
@@ -560,9 +560,9 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 	}
 
 	private void fontChanged() {
-		final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
-		final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
-		final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
+		final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
+		final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
+		final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
 		Font font = new Font(fontName, fontStyle, fontSize);
 		if (!font.getFamily().equals(fontName)) {
 			logger.error("The selected font was not found in your system.");
@@ -1229,7 +1229,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 
 				downloadDirRecentMenu.removeAll();
 
-				item = new JMenuItem(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
+				item = new JMenuItem(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
 				downloadDirRecentMenu.add(item);
 				item.addActionListener(this);
 

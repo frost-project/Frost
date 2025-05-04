@@ -662,7 +662,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 	public DownloadTableFormat() {
 		super();
 
-		fileSharingDisabled = Core.frostSettings.getBoolValue(Settings.FILESHARING_DISABLE);
+		fileSharingDisabled = Core.frostSettings.getBoolean(Settings.FILESHARING_DISABLE);
 		
 		language = Language.getInstance();
 		language.addLanguageListener(this);
@@ -690,7 +690,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 			setComparator(new PriorityComparator(), columnCounter++);
 		}
 
-		showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+		showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
 		Core.frostSettings.addPropertyChangeListener(this);
 	}
 
@@ -895,12 +895,12 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 
         modelTable = (SortedModelTable<FrostDownloadItem>) lModelTable;
         
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
-            final int sortedColumn = Core.frostSettings.getIntValue(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            final boolean isSortedAsc = Core.frostSettings.getBoolValue(CFGKEY_SORTSTATE_SORTEDASCENDING);
+            final int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
+            final boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -1023,7 +1023,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexAll, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -1060,7 +1060,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
         	}
 
         	// get saved position
-        	final int tableIndex = Core.frostSettings.getIntValue(indexKey);
+        	final int tableIndex = Core.frostSettings.getInteger(indexKey);
         	if( tableIndex < 0 || tableIndex >= tableToModelIndex.length ) {
         		return false; // invalid table index value
         	}
@@ -1073,7 +1073,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
         	}
 
         	// Get saved width
-        	final int columnWidth = Core.frostSettings.getIntValue(widthKey);
+        	final int columnWidth = Core.frostSettings.getInteger(widthKey);
         	if( columnWidth <= 0 || columnIndexInModel < 0 || columnIndexInModel >= tableToModelIndex.length) {
         		return false; 
         	}
@@ -1122,7 +1122,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+            showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

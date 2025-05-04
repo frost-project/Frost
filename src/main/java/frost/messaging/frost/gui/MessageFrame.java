@@ -184,9 +184,9 @@ public class MessageFrame extends JFrame
 
         incOpenInstanceCount();
 
-        final String fontName = frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
+        final String fontName = frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
+        final int fontStyle = frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
+        final int fontSize = frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
         Font tofFont = new Font(fontName, fontStyle, fontSize);
         if (!tofFont.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
@@ -195,7 +195,7 @@ public class MessageFrame extends JFrame
             tofFont = new Font("Monospaced", fontStyle, fontSize);
         }
         messageTextArea.setFont(tofFont);
-        messageTextArea.setAntiAliasEnabled(frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
+        messageTextArea.setAntiAliasEnabled(frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
         final ImmutableAreasDocument messageDocument = new ImmutableAreasDocument();
         headerArea = new ImmutableArea(messageDocument);
         messageDocument.addImmutableArea(headerArea); // user must not change the header of the message
@@ -273,7 +273,7 @@ public class MessageFrame extends JFrame
     }
 
     private void attachFile_actionPerformed(final ActionEvent e) {
-        final String lastUsedDirectory = frostSettings.getValue(Settings.DIR_LAST_USED);
+        final String lastUsedDirectory = frostSettings.getString(Settings.DIR_LAST_USED);
         final JFileChooser fc = new JFileChooser(lastUsedDirectory);
         fc.setDialogTitle(language.getString("MessageFrame.fileChooser.title"));
         fc.setFileHidingEnabled(false);
@@ -328,7 +328,7 @@ public class MessageFrame extends JFrame
             newText += "\n\n";
         }
 
-        if (frostSettings.getBoolValue("useAltEdit")) {
+        if (frostSettings.getBoolean("useAltEdit")) {
             // build our transfer object that the parser will provide us in its callback
             final TransferObject to = new TransferObject();
             to.newBoard = newBoard;
@@ -406,9 +406,9 @@ public class MessageFrame extends JFrame
             isInitializedSigned = true;
         } else {
             // use remembered sender name, maybe per board
-            String userName = Core.frostSettings.getValue("userName."+board.getBoardFilename());
+            String userName = Core.frostSettings.getString("userName."+board.getBoardFilename());
             if( (userName == null) || (userName.length() == 0) ) {
-                userName = Core.frostSettings.getValue(Settings.LAST_USED_FROMNAME);
+                userName = Core.frostSettings.getString(Settings.LAST_USED_FROMNAME);
             }
             if( Core.getIdentitiesManager().isMySelf(userName) ) {
                 // isSigned

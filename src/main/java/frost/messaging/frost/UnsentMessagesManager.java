@@ -90,7 +90,7 @@ public class UnsentMessagesManager {
      */
     public static FrostUnsentMessageObject getUnsentMessage(final Board targetBoard, final String fromName) {
 
-        if( Core.frostSettings.getBoolValue(Settings.MESSAGE_UPLOAD_DISABLED) ) {
+        if( Core.frostSettings.getBoolean(Settings.MESSAGE_UPLOAD_DISABLED) ) {
             return null;
         }
 
@@ -116,7 +116,7 @@ public class UnsentMessagesManager {
      */
     public static List<Board> getBoardsWithSendableMessages() {
 
-        if( Core.frostSettings.getBoolValue(Settings.MESSAGE_UPLOAD_DISABLED) ) {
+        if( Core.frostSettings.getBoolean(Settings.MESSAGE_UPLOAD_DISABLED) ) {
             return Collections.emptyList();
         }
 

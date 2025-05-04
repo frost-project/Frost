@@ -62,13 +62,13 @@ public class FileAccess {
     public static File createTempFile(final String prefix, final String suffix) {
         File tmpFile = null;
         try {
-            tmpFile = File.createTempFile(prefix, suffix, new File(Core.frostSettings.getValue(Settings.DIR_TEMP)));
+            tmpFile = File.createTempFile(prefix, suffix, new File(Core.frostSettings.getString(Settings.DIR_TEMP)));
         } catch( final Throwable ex ) {
         }
         if( tmpFile == null ) {
             do {
                 tmpFile = new File(
-                        Core.frostSettings.getValue(Settings.DIR_TEMP)+
+                        Core.frostSettings.getString(Settings.DIR_TEMP)+
                         prefix+
                         System.currentTimeMillis()+
                         suffix);

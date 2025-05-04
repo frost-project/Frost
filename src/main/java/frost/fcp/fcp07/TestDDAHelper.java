@@ -90,7 +90,7 @@ public class TestDDAHelper {
             return false;
         }
         
-        if (!Core.frostSettings.getBoolValue(Settings.FCP2_USE_DDA)) {
+        if (!Core.frostSettings.getBoolean(Settings.FCP2_USE_DDA)) {
             return false;
         }
         

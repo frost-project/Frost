@@ -90,7 +90,7 @@ public class Frost {
 
 		// still not set? use config file setting
 		if (!isSet) {
-			final String landf = Core.frostSettings.getValue(Settings.LOOK_AND_FEEL);
+			final String landf = Core.frostSettings.getString(Settings.LOOK_AND_FEEL);
 			if (landf != null && landf.length() > 0) {
 				logger.info("Set LookAndFeel from settings");
 				isSet = MiscToolkit.setLookAndFeel(landf);

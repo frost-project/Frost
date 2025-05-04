@@ -499,7 +499,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
             setComparator(new PriorityComparator(), 9);
         }
 
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -659,12 +659,12 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
 
         modelTable = (SortedModelTable<FrostUploadItem>) lModelTable;
 
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
-            final int sortedColumn = Core.frostSettings.getIntValue(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            final boolean isSortedAsc = Core.frostSettings.getBoolValue(CFGKEY_SORTSTATE_SORTEDASCENDING);
+            final int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
+            final boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -740,7 +740,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -760,7 +760,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            final int tableIndex = Core.frostSettings.getIntValue(indexKey);
+            final int tableIndex = Core.frostSettings.getInteger(indexKey);
             if( tableIndex < 0 || tableIndex >= tableToModelIndex.length ) {
                 return false; // invalid table index value
             }
@@ -771,7 +771,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
                 return false; // column not found, abort
             }
             // build array of table to model associations
-            final int columnWidth = Core.frostSettings.getIntValue(widthKey);
+            final int columnWidth = Core.frostSettings.getInteger(widthKey);
             if( columnWidth <= 0 ) {
                 return false; // invalid column width
             }
@@ -806,7 +806,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+            showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

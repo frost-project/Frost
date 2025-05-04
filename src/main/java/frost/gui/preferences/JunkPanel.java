@@ -141,10 +141,10 @@ public class JunkPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        hideJunkMessagesCheckBox.setSelected(settings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES));
-        markJunkIdentityBadCheckBox.setSelected(settings.getBoolValue(Settings.JUNK_MARK_JUNK_IDENTITY_BAD));
-        stopBoardUpdatesWhenDosedCheckBox.setSelected(settings.getBoolValue(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED));
-        TfInvalidSubsequentMessagesThreshold.setText(""+settings.getIntValue(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD));
+        hideJunkMessagesCheckBox.setSelected(settings.getBoolean(Settings.JUNK_HIDE_JUNK_MESSAGES));
+        markJunkIdentityBadCheckBox.setSelected(settings.getBoolean(Settings.JUNK_MARK_JUNK_IDENTITY_BAD));
+        stopBoardUpdatesWhenDosedCheckBox.setSelected(settings.getBoolean(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED));
+        TfInvalidSubsequentMessagesThreshold.setText(""+settings.getInteger(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD));
     }
 
     public void ok() {

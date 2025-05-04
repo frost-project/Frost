@@ -492,9 +492,9 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             this.setOpenIcon(MiscToolkit.loadImageIcon("/data/folder-open.png"));
 
             // provide startup font: paranoia - should be provided by initialize() of tree
-            final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
-            final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
-            final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
+            final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
+            final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
+            final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
             normalFont = new Font(fontName, fontStyle, fontSize);
             boldFont = normalFont.deriveFont(Font.BOLD);
         }
@@ -707,12 +707,12 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
         super(model);
         this.model = model;
 
-        showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS);
-        showBoardUpdatedCount = Core.frostSettings.getBoolValue(Settings.SHOW_BOARD_UPDATED_COUNT);
-        showBoardUpdateVisualization = Core.frostSettings.getBoolValue(Settings.SHOW_BOARD_UPDATE_VISUALIZATION);
-        showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
-        stopBoardUpdatesWhenDOSed = Core.frostSettings.getBoolValue(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED);
-        maxInvalidMessagesPerDayThreshold = Core.frostSettings.getIntValue(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD);
+        showBoardDescriptionToolTips = Core.frostSettings.getBoolean(Settings.SHOW_BOARDDESC_TOOLTIPS);
+        showBoardUpdatedCount = Core.frostSettings.getBoolean(Settings.SHOW_BOARD_UPDATED_COUNT);
+        showBoardUpdateVisualization = Core.frostSettings.getBoolean(Settings.SHOW_BOARD_UPDATE_VISUALIZATION);
+        showFlaggedStarredIndicators = Core.frostSettings.getBoolean(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
+        stopBoardUpdatesWhenDOSed = Core.frostSettings.getBoolean(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED);
+        maxInvalidMessagesPerDayThreshold = Core.frostSettings.getInteger(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD);
 
         setRowHeight(18); // we use 16x16 icons, keep a gap
     }
@@ -781,9 +781,9 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
         runningBoardUpdateThreads = new RunningBoardUpdateThreads();
 
         // provide startup font
-        final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
         final Font normalFont = new Font(fontName, fontStyle, fontSize);
         setFont(normalFont);
     }
@@ -866,13 +866,13 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
      */
     private boolean loadTree() {
         final TofTreeXmlIO xmlio = new TofTreeXmlIO();
-        String boardIniFilename = settings.getValue(Settings.DIR_CONFIG) + "boards.xml";
+        String boardIniFilename = settings.getString(Settings.DIR_CONFIG) + "boards.xml";
         // the call changes the toftree and loads nodes into it
         final File iniFile = new File(boardIniFilename);
         if( iniFile.exists() == false ) {
             logger.warn("boards.xml file not found, reading default file (will be saved to boards.xml on exit).");
             final String defaultBoardsFile = "boards.xml.default07";
-            boardIniFilename = settings.getValue(Settings.DIR_CONFIG) + defaultBoardsFile;
+            boardIniFilename = settings.getString(Settings.DIR_CONFIG) + defaultBoardsFile;
         }
 
         final String unsentName = language.getString("UnsentMessages.folderName");
@@ -924,7 +924,7 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
     public void save() throws StorageException {
 
         // board list is important, create bak files bak, bak2, bak3, bak4
-        final String configDir = settings.getValue(Settings.DIR_CONFIG);
+        final String configDir = settings.getString(Settings.DIR_CONFIG);
         final File xmlFile = new File(configDir + "boards.xml");
         final File bakFile = new File(configDir + "boards.xml.bak");
         final File bak2File = new File(configDir + "boards.xml.bak2");
@@ -1201,7 +1201,7 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             // get the older messages, if configured start backload only after 12 hours
             final long before12hours = now - (12L * 60L * 60L * 1000L); // 12 hours
             boolean downloadCompleteBackload;
-            if( (Core.frostSettings.getBoolValue(Settings.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD) == false)
+            if( (Core.frostSettings.getBoolean(Settings.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD) == false)
                     && (before12hours < board.getLastBackloadUpdateFinishedMillis()) )
             {
                 downloadCompleteBackload = false;
@@ -1239,22 +1239,22 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if( evt.getPropertyName().equals(Settings.SHOW_BOARDDESC_TOOLTIPS) ) {
-            showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS);
+            showBoardDescriptionToolTips = Core.frostSettings.getBoolean(Settings.SHOW_BOARDDESC_TOOLTIPS);
         } else if( evt.getPropertyName().equals(Settings.SHOW_BOARD_UPDATED_COUNT ) ) {
-            showBoardUpdatedCount = Core.frostSettings.getBoolValue(Settings.SHOW_BOARD_UPDATED_COUNT);
+            showBoardUpdatedCount = Core.frostSettings.getBoolean(Settings.SHOW_BOARD_UPDATED_COUNT);
             updateTree(); // redraw tree nodes
         } else if( evt.getPropertyName().equals(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR) ) {
-            showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
+            showFlaggedStarredIndicators = Core.frostSettings.getBoolean(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
             updateTree(); // redraw tree nodes
         } else if( evt.getPropertyName().equals(Settings.SHOW_BOARD_UPDATE_VISUALIZATION) ) {
-            showBoardUpdateVisualization = Core.frostSettings.getBoolValue(Settings.SHOW_BOARD_UPDATE_VISUALIZATION);
+            showBoardUpdateVisualization = Core.frostSettings.getBoolean(Settings.SHOW_BOARD_UPDATE_VISUALIZATION);
             updateTree(); // redraw tree nodes
         } else if( evt.getPropertyName().equals(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED) ) {
-            stopBoardUpdatesWhenDOSed = Core.frostSettings.getBoolValue(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED);
+            stopBoardUpdatesWhenDOSed = Core.frostSettings.getBoolean(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED);
             updateAllBoardDosStatus();
             updateTree(); // redraw tree nodes
         } else if( evt.getPropertyName().equals(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD) ) {
-            maxInvalidMessagesPerDayThreshold = Core.frostSettings.getIntValue(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD);
+            maxInvalidMessagesPerDayThreshold = Core.frostSettings.getInteger(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD);
         } else if( evt.getPropertyName().equals(Settings.BOARD_TREE_FONT_NAME) ) {
             fontChanged();
         } else if( evt.getPropertyName().equals(Settings.BOARD_TREE_FONT_SIZE) ) {
@@ -1283,9 +1283,9 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.BOARD_TREE_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.BOARD_TREE_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");

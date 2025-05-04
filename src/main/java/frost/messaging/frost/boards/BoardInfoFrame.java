@@ -152,7 +152,7 @@ public class BoardInfoFrame extends JFrame implements BoardUpdateThreadListener,
         setSize(width, height);
         setLocationRelativeTo(mainFrame);
 
-        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolean(Settings.SHOW_COLORED_ROWS);
 
 		language = Language.getInstance();
 		languageChanged(null);

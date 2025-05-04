@@ -107,9 +107,9 @@ public class UnsentMessagesTable extends SortedModelTable<UnsentMessagesTableIte
     }
 
     private void setupTableFont() {
-        final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.FILE_LIST_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.FILE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");

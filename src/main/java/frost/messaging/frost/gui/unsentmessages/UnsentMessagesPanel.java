@@ -118,7 +118,7 @@ public class UnsentMessagesPanel extends JPanel implements LanguageListener {
         unsentMsgsLabel.setBorder(BorderFactory.createEmptyBorder(2,4,2,2));
         disableMessageUpload = new JCheckBox();
         disableMessageUpload.setBorder(BorderFactory.createEmptyBorder(2,16,2,2));
-        disableMessageUpload.setSelected(Core.frostSettings.getBoolValue(Settings.MESSAGE_UPLOAD_DISABLED));
+        disableMessageUpload.setSelected(Core.frostSettings.getBoolean(Settings.MESSAGE_UPLOAD_DISABLED));
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         p.add(unsentMsgsLabel);
         p.add(disableMessageUpload);

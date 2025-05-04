@@ -217,22 +217,22 @@ public class DisplayMessagesPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        messageBodyAACheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
-        msgTableMultilineSelectCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_MULTILINE_SELECT));
-        msgTableScrollHorizontalCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_SCROLL_HORIZONTAL));
-        sortThreadRootMsgsAscendingCheckBox.setSelected(settings.getBoolValue(Settings.SORT_THREADROOTMSGS_ASCENDING));
-        showCollapsedThreadsCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS));
-        expandRootChildrenCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_EXPAND_ROOT_CHILDREN));
-        expandUnreadThreadsCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_EXPAND_UNREAD_THREADS));
-        doubleClickShowsMessageCheckBox.setSelected(settings.getBoolValue(Settings.MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE));
-        showDeletedMessagesCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_DELETED_MESSAGES));
-        dontShowOwnMessagesAsNewCheckBox.setSelected(settings.getBoolValue(Settings.HANDLE_OWN_MESSAGES_AS_NEW_DISABLED));
-        dontShowOwnMessagesAsMECheckBox.setSelected(settings.getBoolValue(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED));
+        messageBodyAACheckBox.setSelected(settings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
+        msgTableMultilineSelectCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_MULTILINE_SELECT));
+        msgTableScrollHorizontalCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_SCROLL_HORIZONTAL));
+        sortThreadRootMsgsAscendingCheckBox.setSelected(settings.getBoolean(Settings.SORT_THREADROOTMSGS_ASCENDING));
+        showCollapsedThreadsCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS));
+        expandRootChildrenCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_EXPAND_ROOT_CHILDREN));
+        expandUnreadThreadsCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_EXPAND_UNREAD_THREADS));
+        doubleClickShowsMessageCheckBox.setSelected(settings.getBoolean(Settings.MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE));
+        showDeletedMessagesCheckBox.setSelected(settings.getBoolean(Settings.SHOW_DELETED_MESSAGES));
+        dontShowOwnMessagesAsNewCheckBox.setSelected(settings.getBoolean(Settings.HANDLE_OWN_MESSAGES_AS_NEW_DISABLED));
+        dontShowOwnMessagesAsMECheckBox.setSelected(settings.getBoolean(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED));
 
-        TFindicateLowReceivedMessagesCountRed.setText(settings.getValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED));
-        TFindicateLowReceivedMessagesCountLightRed.setText(settings.getValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED));
+        TFindicateLowReceivedMessagesCountRed.setText(settings.getString(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED));
+        TFindicateLowReceivedMessagesCountLightRed.setText(settings.getString(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED));
 
-        indicateLowReceivedMessagesCheckBox.setSelected(settings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES));
+        indicateLowReceivedMessagesCheckBox.setSelected(settings.getBoolean(Settings.INDICATE_LOW_RECEIVED_MESSAGES));
         indicateLowReceivedMessagesChanged();
         collapsedThreadsOptionsChanged();
     }

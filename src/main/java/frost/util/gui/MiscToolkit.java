@@ -328,7 +328,7 @@ public class MiscToolkit {
             final String frostSettingName,
             final String checkboxText)
     {
-        final boolean showConfirmDialog = Core.frostSettings.getBoolValue(frostSettingName);
+        final boolean showConfirmDialog = Core.frostSettings.getBoolean(frostSettingName);
         if( !showConfirmDialog ) {
             // no confirmation, always YES
             return JOptionPane.YES_OPTION;

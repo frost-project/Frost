@@ -142,15 +142,15 @@ public class UploadManager implements ExitSavable {
                 getModel().notifySharedFileUploadWasSuccessful(uploadItem);
             } else {
                 // maybe log successful manual upload to file localdata/uploads.txt
-                if( Core.frostSettings.getBoolValue(Settings.LOG_UPLOADS_ENABLED) && !uploadItem.isLoggedToFile() ) {
+                if( Core.frostSettings.getBoolean(Settings.LOG_UPLOADS_ENABLED) && !uploadItem.isLoggedToFile() ) {
                     final String line = uploadItem.getKey() + "/" + uploadItem.getFileName();
-                    final String fileName = Core.frostSettings.getValue(Settings.DIR_LOCALDATA) + "Frost-Uploads.log";
+                    final String fileName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "Frost-Uploads.log";
                     final File targetFile = new File(fileName);
                     FileAccess.appendLineToTextfile(targetFile, line);
                     uploadItem.setLoggedToFile(true);
                 }
 
-                final String execProg = Core.frostSettings.getValue(Settings.EXEC_ON_UPLOAD);
+                final String execProg = Core.frostSettings.getString(Settings.EXEC_ON_UPLOAD);
                 if( execProg != null && execProg.length() > 0 && !uploadItem.isCompletionProgRun() ) {
                     final File dir = uploadItem.getFile().getParentFile();
                     final Map<String, String> oldEnv = System.getenv();
@@ -187,7 +187,7 @@ public class UploadManager implements ExitSavable {
             }
 
             // maybe remove finished upload immediately
-            if( Core.frostSettings.getBoolValue(Settings.UPLOAD_REMOVE_FINISHED) ) {
+            if( Core.frostSettings.getBoolean(Settings.UPLOAD_REMOVE_FINISHED) ) {
                 getModel().removeFinishedUploads();
             }
         } else {
@@ -200,7 +200,7 @@ public class UploadManager implements ExitSavable {
             } else {
                 uploadItem.setRetries(uploadItem.getRetries() + 1);
 
-                if (uploadItem.getRetries() > Core.frostSettings.getIntValue(Settings.UPLOAD_MAX_RETRIES)) {
+                if (uploadItem.getRetries() > Core.frostSettings.getInteger(Settings.UPLOAD_MAX_RETRIES)) {
                     uploadItem.setEnabled(Boolean.FALSE);
                     uploadItem.setState(FrostUploadItem.STATE_FAILED);
                 } else {
@@ -259,7 +259,7 @@ public class UploadManager implements ExitSavable {
                 continue;
             }
             // check if items waittime between tries is expired so we could restart it
-            final long waittimeMillis = Core.frostSettings.getIntValue(Settings.UPLOAD_WAITTIME) * 60L * 1000L;
+            final long waittimeMillis = Core.frostSettings.getInteger(Settings.UPLOAD_WAITTIME) * 60L * 1000L;
             if ((currentTime - ulItem.getLastUploadStopTimeMillis()) < waittimeMillis) {
                 continue;
             }
@@ -296,7 +296,7 @@ public class UploadManager implements ExitSavable {
         frostUploadItems.add(ulItem);
         FreenetPriority prio = FreenetPriority.PAUSE;
         if( itemIsEnabled ) {
-            prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+            prio = FreenetPriority.getPriority(Core.frostSettings.getInteger(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
         }
         panel.changeItemPriorites(frostUploadItems, prio);
     }

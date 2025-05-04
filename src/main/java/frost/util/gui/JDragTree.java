@@ -450,7 +450,7 @@ public class JDragTree extends JTree implements DragGestureListener, DragSourceL
 	// DragGestureListener interface method
 	public void dragGestureRecognized(DragGestureEvent e)
 	{
-        if( Core.frostSettings.getBoolValue(Settings.PREVENT_BOARDTREE_REORDERING) ) {
+        if( Core.frostSettings.getBoolean(Settings.PREVENT_BOARDTREE_REORDERING) ) {
             // drag n drop not allowed
             return;
         }

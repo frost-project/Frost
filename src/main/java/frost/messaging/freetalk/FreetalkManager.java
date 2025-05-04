@@ -60,7 +60,7 @@ public class FreetalkManager {
     }
 
     public String getLoginUserId() {
-        final String uid = Core.frostSettings.getValue(Settings.FREETALK_LOGIN_USERID);
+        final String uid = Core.frostSettings.getString(Settings.FREETALK_LOGIN_USERID);
         if (uid == null) {
             return "";
         }

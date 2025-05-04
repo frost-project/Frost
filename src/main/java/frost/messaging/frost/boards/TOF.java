@@ -100,7 +100,7 @@ public class TOF implements PropertyChangeListener {
     private TOF(final TofTreeModel tofTreeModel) {
         super();
         this.tofTreeModel = tofTreeModel;
-        hideJunkMessages = Core.frostSettings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES);
+        hideJunkMessages = Core.frostSettings.getBoolean(Settings.JUNK_HIDE_JUNK_MESSAGES);
         Core.frostSettings.addPropertyChangeListener(Settings.JUNK_HIDE_JUNK_MESSAGES, this);
     }
 
@@ -276,7 +276,7 @@ public class TOF implements PropertyChangeListener {
      */
     public void receivedValidMessage(final FrostMessageObject newMsg, final Board board, final int index) {
 
-        if( newMsg.isMessageFromME() && Core.frostSettings.getBoolValue(Settings.HANDLE_OWN_MESSAGES_AS_NEW_DISABLED) ) {
+        if( newMsg.isMessageFromME() && Core.frostSettings.getBoolean(Settings.HANDLE_OWN_MESSAGES_AS_NEW_DISABLED) ) {
             newMsg.setNew(false);
         } else {
             newMsg.setNew(true);
@@ -419,9 +419,9 @@ public class TOF implements PropertyChangeListener {
 
         final FrostMessageObject rootNode = (FrostMessageObject)MainFrame.getInstance().getMessageTreeModel().getRoot();
         final MessageTreeTable treeTable = MainFrame.getInstance().getMessageTreeTable();
-        final boolean expandUnread = Core.frostSettings.getBoolValue(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) && Core.frostSettings.getBoolValue(Settings.MSGTABLE_EXPAND_UNREAD_THREADS);
+        final boolean expandUnread = Core.frostSettings.getBoolean(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) && Core.frostSettings.getBoolean(Settings.MSGTABLE_EXPAND_UNREAD_THREADS);
 
-        final boolean showThreads = Core.frostSettings.getBoolValue(Settings.SHOW_THREADS);
+        final boolean showThreads = Core.frostSettings.getBoolean(Settings.SHOW_THREADS);
 
         if( (showThreads == false) ||
             (newMessage.getMessageId() == null) ||
@@ -543,9 +543,9 @@ public class TOF implements PropertyChangeListener {
 
             public FlatMessageRetrieval(final FrostMessageObject root) {
                 rootNode = root;
-                blockMsgSubject = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
-                blockMsgBody = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED);
-                blockMsgBoardname = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED);
+                blockMsgSubject = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
+                blockMsgBody = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED);
+                blockMsgBoardname = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED);
             }
             public boolean messageRetrieved(final FrostMessageObject mo) {
                 if( !isBlocked(mo, board, blockMsgSubject, blockMsgBody, blockMsgBoardname) ) {
@@ -578,9 +578,9 @@ public class TOF implements PropertyChangeListener {
             public void buildThreads() {
                 // messageList was filled by callback
 
-                final boolean blockMsgSubject = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
-                final boolean blockMsgBody = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED);
-                final boolean blockMsgBoardname = Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED);
+                final boolean blockMsgSubject = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
+                final boolean blockMsgBody = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED);
+                final boolean blockMsgBoardname = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED);
 
                 // HashSet contains a msgid if the msg was loaded OR was not existing
                 HashSet<String> messageIds = new HashSet<String>();
@@ -605,7 +605,7 @@ public class TOF implements PropertyChangeListener {
                 }
 
                 // for threads, check msgrefs and load all existing msgs pointed to by refs
-                final boolean showDeletedMessages = Core.frostSettings.getBoolValue("showDeletedMessages");
+                final boolean showDeletedMessages = Core.frostSettings.getBoolean("showDeletedMessages");
                 LinkedList<FrostMessageObject> newLoadedMsgs = new LinkedList<FrostMessageObject>();
                 LinkedList<FrostMessageObject> newLoadedMsgs2 = new LinkedList<FrostMessageObject>();
 
@@ -798,10 +798,10 @@ public class TOF implements PropertyChangeListener {
          */
         private void loadMessages(final MessageCallback callback) {
 
-            final boolean showDeletedMessages = Core.frostSettings.getBoolValue("showDeletedMessages");
-            final boolean showUnreadOnly = Core.frostSettings.getBoolValue(Settings.SHOW_UNREAD_ONLY);
-            final boolean showFlaggedOnly = Core.frostSettings.getBoolValue(Settings.SHOW_FLAGGED_ONLY);
-            final boolean showStarredOnly = Core.frostSettings.getBoolValue(Settings.SHOW_STARRED_ONLY);
+            final boolean showDeletedMessages = Core.frostSettings.getBoolean("showDeletedMessages");
+            final boolean showUnreadOnly = Core.frostSettings.getBoolean(Settings.SHOW_UNREAD_ONLY);
+            final boolean showFlaggedOnly = Core.frostSettings.getBoolean(Settings.SHOW_FLAGGED_ONLY);
+            final boolean showStarredOnly = Core.frostSettings.getBoolean(Settings.SHOW_STARRED_ONLY);
             int whatToShow = MessageStorage.SHOW_DEFAULT;
 
             if (showUnreadOnly) {
@@ -841,7 +841,7 @@ public class TOF implements PropertyChangeListener {
 
             final FrostMessageObject rootNode = new FrostMessageObject(true);
 
-            final boolean loadThreads = Core.frostSettings.getBoolValue(Settings.SHOW_THREADS);
+            final boolean loadThreads = Core.frostSettings.getBoolean(Settings.SHOW_THREADS);
 
             // update SortStateBean
             MessageTreeTableSortStateBean.setThreaded(loadThreads);
@@ -919,10 +919,10 @@ public class TOF implements PropertyChangeListener {
                 final MessageTreeTable treeTable = MainFrame.getInstance().getMessageTreeTable();
 
                 treeTable.setNewRootNode(rootNode);
-                if( !Core.frostSettings.getBoolValue(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) ) {
+                if( !Core.frostSettings.getBoolean(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) ) {
                     treeTable.expandAll(true);
                 } else {
-                	if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_EXPAND_ROOT_CHILDREN) ) {
+                	if( Core.frostSettings.getBoolean(Settings.MSGTABLE_EXPAND_ROOT_CHILDREN) ) {
                 		treeTable.expandRootChildren();
                 	}
                 }
@@ -955,7 +955,7 @@ public class TOF implements PropertyChangeListener {
                     }
                 }
 
-                if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) && Core.frostSettings.getBoolValue(Settings.MSGTABLE_EXPAND_UNREAD_THREADS) ) {
+                if( Core.frostSettings.getBoolean(Settings.MSGTABLE_SHOW_COLLAPSED_THREADS) && Core.frostSettings.getBoolean(Settings.MSGTABLE_EXPAND_UNREAD_THREADS) ) {
 					final Enumeration<TreeNode> messageObjectEnumeration = rootNode.depthFirstEnumeration();
                     while(messageObjectEnumeration.hasMoreElements()){
 						final FrostMessageObject frostMessageObject = (FrostMessageObject) messageObjectEnumeration
@@ -980,9 +980,9 @@ public class TOF implements PropertyChangeListener {
         return isBlocked(
                 message,
                 board,
-                Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED),
-                Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED),
-                Core.frostSettings.getBoolValue(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED));
+                Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED),
+                Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED),
+                Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED));
     }
 
     /**
@@ -1035,7 +1035,7 @@ public class TOF implements PropertyChangeListener {
             if ( blockMsgSubject ) {
                 final String header = message.getSubject().toLowerCase();
                 final StringTokenizer blockWords =
-                    new StringTokenizer(Core.frostSettings.getValue(Settings.MESSAGE_BLOCK_SUBJECT), ";");
+                    new StringTokenizer(Core.frostSettings.getString(Settings.MESSAGE_BLOCK_SUBJECT), ";");
                 while (blockWords.hasMoreTokens()) {
                     final String blockWord = blockWords.nextToken().trim();
                     if ((blockWord.length() > 0) && (header.indexOf(blockWord) >= 0)) {
@@ -1047,7 +1047,7 @@ public class TOF implements PropertyChangeListener {
             if ( blockMsgBody ) {
                 final String content = message.getContent().toLowerCase();
                 final StringTokenizer blockWords =
-                    new StringTokenizer(Core.frostSettings.getValue(Settings.MESSAGE_BLOCK_BODY), ";");
+                    new StringTokenizer(Core.frostSettings.getString(Settings.MESSAGE_BLOCK_BODY), ";");
                 while (blockWords.hasMoreTokens()) {
                     final String blockWord = blockWords.nextToken().trim();
                     if ((blockWord.length() > 0) && (content.indexOf(blockWord) >= 0)) {
@@ -1059,7 +1059,7 @@ public class TOF implements PropertyChangeListener {
             if ( blockMsgBoardname ) {
                 final AttachmentList<BoardAttachment> boardAttachmentList =  message.getAttachmentsOfTypeBoard();
                 final StringTokenizer blockWords =
-                    new StringTokenizer(Core.frostSettings.getValue(Settings.MESSAGE_BLOCK_BOARDNAME), ";");
+                    new StringTokenizer(Core.frostSettings.getString(Settings.MESSAGE_BLOCK_BOARDNAME), ";");
 
                 while (blockWords.hasMoreTokens()) {
                     final String blockWord = blockWords.nextToken().trim();
@@ -1081,19 +1081,19 @@ public class TOF implements PropertyChangeListener {
      */
     private void processAttachedBoards(final FrostMessageObject currentMsg) {
         if( currentMsg.isMessageStatusOLD() &&
-            (Core.frostSettings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_UNSIGNED) == true) )
+            (Core.frostSettings.getBoolean(Settings.KNOWNBOARDS_BLOCK_FROM_UNSIGNED) == true) )
         {
             logger.info("Boards from unsigned message blocked");
         } else if( currentMsg.isMessageStatusBAD() &&
-                   (Core.frostSettings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_BAD) == true) )
+                   (Core.frostSettings.getBoolean(Settings.KNOWNBOARDS_BLOCK_FROM_BAD) == true) )
         {
             logger.info("Boards from BAD message blocked");
         } else if( currentMsg.isMessageStatusCHECK() &&
-                   (Core.frostSettings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_CHECK) == true) )
+                   (Core.frostSettings.getBoolean(Settings.KNOWNBOARDS_BLOCK_FROM_CHECK) == true) )
         {
             logger.info("Boards from CHECK message blocked");
         } else if( currentMsg.isMessageStatusOBSERVE() &&
-                   (Core.frostSettings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_OBSERVE) == true) )
+                   (Core.frostSettings.getBoolean(Settings.KNOWNBOARDS_BLOCK_FROM_OBSERVE) == true) )
         {
             logger.info("Boards from OBSERVE message blocked");
         } else if( currentMsg.isMessageStatusTAMPERED() ) {
@@ -1177,7 +1177,7 @@ public class TOF implements PropertyChangeListener {
 
     public void propertyChange(final PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(Settings.JUNK_HIDE_JUNK_MESSAGES)) {
-            hideJunkMessages = Core.frostSettings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES);
+            hideJunkMessages = Core.frostSettings.getBoolean(Settings.JUNK_HIDE_JUNK_MESSAGES);
         }
     }
 }

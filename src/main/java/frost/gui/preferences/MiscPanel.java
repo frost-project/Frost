@@ -168,18 +168,18 @@ class MiscPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        showSystrayIconCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_SYSTRAY_ICON));
-        minimizeToSystrayCheckBox.setSelected(settings.getBoolValue(Settings.MINIMIZE_TO_SYSTRAY));
-        compactDatabaseAtNextStartupCheckBox.setSelected(settings.getBoolValue(Settings.PERST_COMPACT_STORAGES));
-        freenetNodeTextField.setText(settings.getValue(Settings.FREENET_FCP_ADDRESS));
-        autoSaveIntervalTextField.setText(Integer.toString(settings.getIntValue(Settings.AUTO_SAVE_INTERVAL)));
-        autoSaveLocalIdentitiesCheckBox.setSelected(settings.getBoolValue(Settings.AUTO_SAVE_LOCAL_IDENTITIES));
+        showSystrayIconCheckBox.setSelected(settings.getBoolean(Settings.SHOW_SYSTRAY_ICON));
+        minimizeToSystrayCheckBox.setSelected(settings.getBoolean(Settings.MINIMIZE_TO_SYSTRAY));
+        compactDatabaseAtNextStartupCheckBox.setSelected(settings.getBoolean(Settings.PERST_COMPACT_STORAGES));
+        freenetNodeTextField.setText(settings.getString(Settings.FREENET_FCP_ADDRESS));
+        autoSaveIntervalTextField.setText(Integer.toString(settings.getInteger(Settings.AUTO_SAVE_INTERVAL)));
+        autoSaveLocalIdentitiesCheckBox.setSelected(settings.getBoolean(Settings.AUTO_SAVE_LOCAL_IDENTITIES));
 
-        splashScreenCheckBox.setSelected(settings.getBoolValue(Settings.DISABLE_SPLASHSCREEN));
-        useDDACheckBox.setSelected(settings.getBoolValue(Settings.FCP2_USE_DDA));
-        usePersistenceCheckBox.setSelected(settings.getBoolValue(Settings.FCP2_USE_PERSISTENCE));
+        splashScreenCheckBox.setSelected(settings.getBoolean(Settings.DISABLE_SPLASHSCREEN));
+        useDDACheckBox.setSelected(settings.getBoolean(Settings.FCP2_USE_DDA));
+        usePersistenceCheckBox.setSelected(settings.getBoolean(Settings.FCP2_USE_PERSISTENCE));
         
-        browserAddressTextField.setText(settings.getValue(Settings.BROWSER_ADDRESS));
+        browserAddressTextField.setText(settings.getString(Settings.BROWSER_ADDRESS));
     }
 
     public void ok() {

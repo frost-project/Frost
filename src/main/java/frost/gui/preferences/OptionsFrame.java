@@ -515,31 +515,31 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
         }
 
         // now check if some settings changed
-        if( !checkMaxMessageDisplay.equals(settings.getValue(Settings.MAX_MESSAGE_DISPLAY))
-            || (checkSignedOnly != settings.getBoolValue(Settings.MESSAGE_HIDE_UNSIGNED))
-            || (checkHideBadMessages != settings.getBoolValue(Settings.MESSAGE_HIDE_BAD))
-            || (checkHideCheckMessages != settings.getBoolValue(Settings.MESSAGE_HIDE_CHECK))
-            || (checkHideObserveMessages != settings.getBoolValue(Settings.MESSAGE_HIDE_OBSERVE))
-            || (checkHideJunkMessages != settings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES))
-            || (checkBlock != settings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED))
-            || (checkBlockBody != settings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED))
-            || (checkShowDeletedMessages != settings.getBoolValue(Settings.SHOW_DELETED_MESSAGES))
-            || (showColoredRows != settings.getBoolValue(Settings.SHOW_COLORED_ROWS))
-            || (checkShowOwnMessagesAsMeDisabled != settings.getBoolValue(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED))
-            || (checkIndicateLowReceivedMessages != settings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES))
+        if( !checkMaxMessageDisplay.equals(settings.getString(Settings.MAX_MESSAGE_DISPLAY))
+            || (checkSignedOnly != settings.getBoolean(Settings.MESSAGE_HIDE_UNSIGNED))
+            || (checkHideBadMessages != settings.getBoolean(Settings.MESSAGE_HIDE_BAD))
+            || (checkHideCheckMessages != settings.getBoolean(Settings.MESSAGE_HIDE_CHECK))
+            || (checkHideObserveMessages != settings.getBoolean(Settings.MESSAGE_HIDE_OBSERVE))
+            || (checkHideJunkMessages != settings.getBoolean(Settings.JUNK_HIDE_JUNK_MESSAGES))
+            || (checkBlock != settings.getBoolean(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED))
+            || (checkBlockBody != settings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED))
+            || (checkShowDeletedMessages != settings.getBoolean(Settings.SHOW_DELETED_MESSAGES))
+            || (showColoredRows != settings.getBoolean(Settings.SHOW_COLORED_ROWS))
+            || (checkShowOwnMessagesAsMeDisabled != settings.getBoolean(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED))
+            || (checkIndicateLowReceivedMessages != settings.getBoolean(Settings.INDICATE_LOW_RECEIVED_MESSAGES))
           )
         {
             // at least one setting changed, reload messages
             shouldReloadMessages = true;
         }
 
-        if( !checkMaxMessageDownload.equals(settings.getValue(Settings.MAX_MESSAGE_DOWNLOAD)) ) {
+        if( !checkMaxMessageDownload.equals(settings.getString(Settings.MAX_MESSAGE_DOWNLOAD)) ) {
             shouldResetLastBackloadUpdateFinishedMillis = true;
         }
 
         // if settings was true before and now its disabled
         if( (checkRememberSharedFileDownloaded == true)
-                && (settings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED) == false) )
+                && (settings.getBoolean(Settings.REMEMBER_SHAREDFILE_DOWNLOADED) == false) )
         {
             shouldResetSharedFilesLastDownloaded = true;
         }
@@ -552,23 +552,23 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
      */
     private void setDataElements() {
         // first set some settings to check later if they are changed by user
-        checkMaxMessageDisplay = settings.getValue(Settings.MAX_MESSAGE_DISPLAY);
-        checkMaxMessageDownload = settings.getValue(Settings.MAX_MESSAGE_DOWNLOAD);
-        checkSignedOnly = settings.getBoolValue(Settings.MESSAGE_HIDE_UNSIGNED);
-        checkHideBadMessages = settings.getBoolValue(Settings.MESSAGE_HIDE_BAD);
-        checkHideCheckMessages = settings.getBoolValue(Settings.MESSAGE_HIDE_CHECK);
-        checkHideObserveMessages = settings.getBoolValue(Settings.MESSAGE_HIDE_OBSERVE);
-        checkHideJunkMessages = settings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES);
-        checkBlock = settings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
-        checkBlockBody = settings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED);
-        checkShowDeletedMessages = settings.getBoolValue(Settings.SHOW_DELETED_MESSAGES);
-        checkShowOwnMessagesAsMeDisabled = settings.getBoolValue(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED);
+        checkMaxMessageDisplay = settings.getString(Settings.MAX_MESSAGE_DISPLAY);
+        checkMaxMessageDownload = settings.getString(Settings.MAX_MESSAGE_DOWNLOAD);
+        checkSignedOnly = settings.getBoolean(Settings.MESSAGE_HIDE_UNSIGNED);
+        checkHideBadMessages = settings.getBoolean(Settings.MESSAGE_HIDE_BAD);
+        checkHideCheckMessages = settings.getBoolean(Settings.MESSAGE_HIDE_CHECK);
+        checkHideObserveMessages = settings.getBoolean(Settings.MESSAGE_HIDE_OBSERVE);
+        checkHideJunkMessages = settings.getBoolean(Settings.JUNK_HIDE_JUNK_MESSAGES);
+        checkBlock = settings.getBoolean(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED);
+        checkBlockBody = settings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED);
+        checkShowDeletedMessages = settings.getBoolean(Settings.SHOW_DELETED_MESSAGES);
+        checkShowOwnMessagesAsMeDisabled = settings.getBoolean(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED);
 
-        checkIndicateLowReceivedMessages = settings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
+        checkIndicateLowReceivedMessages = settings.getBoolean(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
 
-        checkRememberSharedFileDownloaded = settings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
+        checkRememberSharedFileDownloaded = settings.getBoolean(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
 
-        showColoredRows = settings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        showColoredRows = settings.getBoolean(Settings.SHOW_COLORED_ROWS);
     }
 
     /**

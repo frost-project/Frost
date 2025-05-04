@@ -255,8 +255,8 @@ public class FreetalkMessageTextPane extends JPanel {
         setLayout(new BorderLayout());
 
         final MessageDecoder decoder = new MessageDecoder();
-        decoder.setSmileyDecode(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_SMILEYS));
-        decoder.setFreenetKeysDecode(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
+        decoder.setSmileyDecode(Core.frostSettings.getBoolean(Settings.FREETALK_SHOW_SMILEYS));
+        decoder.setFreenetKeysDecode(Core.frostSettings.getBoolean(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
         messageTextArea = new AntialiasedTextPane(decoder);
         messageTextArea.setEditable(false);
         messageTextArea.setDoubleBuffered(true);
@@ -264,7 +264,7 @@ public class FreetalkMessageTextPane extends JPanel {
 //        messageTextArea.setLineWrap(true);
 //        messageTextArea.setWrapStyleWord(true);
 
-        messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
+        messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
 
         messageBodyScrollPane = new JScrollPane(messageTextArea);
         messageBodyScrollPane.setWheelScrollingEnabled(true);
@@ -357,7 +357,7 @@ public class FreetalkMessageTextPane extends JPanel {
         propertyChangeListener = new PropertyChangeListener() {
             public void propertyChange(final PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_ANTIALIAS)) {
-                    messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
+                    messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolean(Settings.MESSAGE_BODY_ANTIALIAS));
                 } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_NAME)) {
                     fontChanged();
                 } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_SIZE)) {
@@ -365,14 +365,14 @@ public class FreetalkMessageTextPane extends JPanel {
                 } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_STYLE)) {
                     fontChanged();
                 } else if (evt.getPropertyName().equals(Settings.FREETALK_SHOW_SMILEYS)) {
-                    ((MessageDecoder)messageTextArea.getDecoder()).setSmileyDecode(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_SMILEYS));
+                    ((MessageDecoder)messageTextArea.getDecoder()).setSmileyDecode(Core.frostSettings.getBoolean(Settings.FREETALK_SHOW_SMILEYS));
                     if( selectedMessage != null ) {
                         update_messageSelected(selectedMessage);
                     } else {
                         setMessageText(messageTextArea.getText());
                     }
                 } else if (evt.getPropertyName().equals(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS)) {
-                    ((MessageDecoder)messageTextArea.getDecoder()).setFreenetKeysDecode(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
+                    ((MessageDecoder)messageTextArea.getDecoder()).setFreenetKeysDecode(Core.frostSettings.getBoolean(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
                     if( selectedMessage != null ) {
                         update_messageSelected(selectedMessage);
                     } else {
@@ -391,9 +391,9 @@ public class FreetalkMessageTextPane extends JPanel {
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
+        final String fontName = Core.frostSettings.getString(Settings.MESSAGE_BODY_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getInteger(Settings.MESSAGE_BODY_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
@@ -421,7 +421,7 @@ public class FreetalkMessageTextPane extends JPanel {
         FileAccess.saveDialog(
             MainFrame.getInstance(),
             messageTextArea.getText(),
-            Core.frostSettings.getValue(Settings.DIR_LAST_USED),
+            Core.frostSettings.getString(Settings.DIR_LAST_USED),
             language.getString("MessagePane.messageText.saveDialog.title"));
     }
 

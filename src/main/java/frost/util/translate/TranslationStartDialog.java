@@ -149,7 +149,7 @@ public class TranslationStartDialog extends JFrame {
             final TreeMap<ComboBoxEntry,ComboBoxEntry> tm = new TreeMap<ComboBoxEntry,ComboBoxEntry>();
             
             ComboBoxEntry selectedEntry = null;
-            String current_locale = Core.frostSettings.getValue(Settings.LANGUAGE_LOCALE);
+            String current_locale = Core.frostSettings.getString(Settings.LANGUAGE_LOCALE);
             if( current_locale.equals("default") ) {
             	current_locale = "en";
             }

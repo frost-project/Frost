@@ -481,13 +481,13 @@ class SearchThread extends Thread implements FileListCallback {
         tabComponent.setSearchThread(this); // will notify this thread to stop if tab was closed
         this.searchTable = searchTable;
 
-        audioExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_AUDIO);
-        videoExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_VIDEO);
-        documentExtension   = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_DOCUMENT);
-        executableExtension = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_EXECUTABLE);
-        archiveExtension    = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_ARCHIVE);
-        imageExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_IMAGE);
-        maxSearchResults    = Core.frostSettings.getIntValue(Settings.SEARCH_MAX_RESULTS);
+        audioExtension      = Core.frostSettings.getStringList(Settings.FILEEXTENSION_AUDIO);
+        videoExtension      = Core.frostSettings.getStringList(Settings.FILEEXTENSION_VIDEO);
+        documentExtension   = Core.frostSettings.getStringList(Settings.FILEEXTENSION_DOCUMENT);
+        executableExtension = Core.frostSettings.getStringList(Settings.FILEEXTENSION_EXECUTABLE);
+        archiveExtension    = Core.frostSettings.getStringList(Settings.FILEEXTENSION_ARCHIVE);
+        imageExtension      = Core.frostSettings.getStringList(Settings.FILEEXTENSION_IMAGE);
+        maxSearchResults    = Core.frostSettings.getInteger(Settings.SEARCH_MAX_RESULTS);
 
         if( maxSearchResults <= 0 ) {
             maxSearchResults = 10000; // default

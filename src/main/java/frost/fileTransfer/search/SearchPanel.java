@@ -156,10 +156,10 @@ public class SearchPanel extends JPanel implements LanguageListener {
         final JMenuItem hideObserveUserFilesCheckBox = new JCheckBoxMenuItem(language.getString("SearchPane.toolbar.searchOptions.hideFilesFromPeopleMarkedObserve"));
         final JMenuItem hideFilesWithoutChkCheckBox = new JCheckBoxMenuItem(language.getString("SearchPane.toolbar.searchOptions.hideFilesWithoutChk"));
 
-        hideBadUserFilesCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_BAD));
-        hideCheckUserFilesCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_CHECK));
-        hideObserveUserFilesCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_OBSERVE));
-        hideFilesWithoutChkCheckBox.setSelected(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
+        hideBadUserFilesCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_BAD));
+        hideCheckUserFilesCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_CHECK));
+        hideObserveUserFilesCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_OBSERVE));
+        hideFilesWithoutChkCheckBox.setSelected(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
 
         hideBadUserFilesCheckBox.addItemListener( new ItemListener() {
             public void itemStateChanged(final ItemEvent e) {
@@ -245,10 +245,10 @@ public class SearchPanel extends JPanel implements LanguageListener {
             final SearchParameters sp = new SearchParameters(true);
             sp.setExtensions(searchComboBox.getSelectedKey());
             sp.setSimpleSearchString(searchTextField.getText());
-            sp.setHideBadUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_BAD));
-            sp.setHideCheckUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_CHECK));
-            sp.setHideObserveUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_OBSERVE));
-            sp.setHideFilesWithoutChkKey(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
+            sp.setHideBadUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_BAD));
+            sp.setHideCheckUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_CHECK));
+            sp.setHideObserveUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_OBSERVE));
+            sp.setHideFilesWithoutChkKey(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
             return sp;
         }
 
@@ -471,10 +471,10 @@ public class SearchPanel extends JPanel implements LanguageListener {
             sp.setCommentString(searchCommentTextField.getText());
             sp.setKeywordString(searchKeywordsTextField.getText());
             sp.setOwnerString(searchOwnerTextField.getText());
-            sp.setHideBadUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_BAD));
-            sp.setHideCheckUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_CHECK));
-            sp.setHideObserveUserFiles(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_OBSERVE));
-            sp.setHideFilesWithoutChkKey(Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
+            sp.setHideBadUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_BAD));
+            sp.setHideCheckUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_CHECK));
+            sp.setHideObserveUserFiles(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_OBSERVE));
+            sp.setHideFilesWithoutChkKey(Core.frostSettings.getBoolean(Settings.SEARCH_HIDE_FILES_WITHOUT_CHK));
             return sp;
         }
 

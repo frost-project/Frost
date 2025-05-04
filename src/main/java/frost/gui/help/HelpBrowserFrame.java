@@ -130,11 +130,11 @@ public class HelpBrowserFrame extends JFrame {
 
     private void loadWindowState() {
         // load size, location and state of window
-        int lastHeight = Core.frostSettings.getIntValue("helpBrowser.lastFrameHeight");
-        int lastWidth = Core.frostSettings.getIntValue("helpBrowser.lastFrameWidth");
-        final int lastPosX = Core.frostSettings.getIntValue("helpBrowser.lastFramePosX");
-        final int lastPosY = Core.frostSettings.getIntValue("helpBrowser.lastFramePosY");
-        final boolean lastMaximized = Core.frostSettings.getBoolValue("helpBrowser.lastFrameMaximized");
+        int lastHeight = Core.frostSettings.getInteger("helpBrowser.lastFrameHeight");
+        int lastWidth = Core.frostSettings.getInteger("helpBrowser.lastFrameWidth");
+        final int lastPosX = Core.frostSettings.getInteger("helpBrowser.lastFramePosX");
+        final int lastPosY = Core.frostSettings.getInteger("helpBrowser.lastFramePosY");
+        final boolean lastMaximized = Core.frostSettings.getBoolean("helpBrowser.lastFrameMaximized");
 
         if( lastHeight <= 0 || lastWidth <= 0 ) {
             // first call
