@@ -61,7 +61,7 @@ public class SortedTableHeader extends ModelTableHeader {
 		 * If the defaultRenderer of the JTableHeader is an instance of JLabel
 		 * (like DefaultTableCellRenderer), it paints an arrow if necessary. Then,
 		 * it calls the defaultRenderer so that it finishes the job.
-		 * @see javax.swing.table.TableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
+		 * @see TableCellRenderer#getTableCellRendererComponent(JTable, Object, boolean, boolean, int, int)
 	 	 */
 		public Component getTableCellRendererComponent(final JTable lTable, final Object value, final boolean isSelected, final boolean hasFocus, final int row, final int column) {
 			final TableCellRenderer defaultRenderer = lTable.getTableHeader().getDefaultRenderer();
@@ -115,7 +115,7 @@ public class SortedTableHeader extends ModelTableHeader {
 	 * This method is called by the superclass when the user clicks on a column (the mouse
 	 * button is pressed). It gets the number of the column whose header was clicked and
 	 * notifies the associated SortedModelTable of the event.
-	 * @see frost.util.model.ModelTableHeader#headerClicked(java.awt.event.MouseEvent)
+	 * @see ModelTableHeader#headerClicked(MouseEvent)
 	 */
 	@Override
     protected void headerClicked(final MouseEvent e) {

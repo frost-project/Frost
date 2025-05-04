@@ -32,6 +32,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -528,8 +530,8 @@ public class FreetalkMessageTextPane extends JPanel {
                 // maybe convert html codes (e.g. %2c -> , )
                 if( filename.indexOf("%") > 0 ) {
                     try {
-                        filename = java.net.URLDecoder.decode(filename, "UTF-8");
-                    } catch (final java.io.UnsupportedEncodingException ex) {
+                        filename = URLDecoder.decode(filename, "UTF-8");
+                    } catch (final UnsupportedEncodingException ex) {
                         logger.error("Decode of HTML code failed", ex);
                     }
                 }
@@ -684,8 +686,8 @@ public class FreetalkMessageTextPane extends JPanel {
                 // maybe convert html codes (e.g. %2c -> , )
                 if( name.indexOf("%") > 0 ) {
                     try {
-                        name = java.net.URLDecoder.decode(name, "UTF-8");
-                    } catch (final java.io.UnsupportedEncodingException ex) {
+                        name = URLDecoder.decode(name, "UTF-8");
+                    } catch (final UnsupportedEncodingException ex) {
                         logger.error("Decode of HTML code failed", ex);
                     }
                 }

@@ -50,9 +50,6 @@ public abstract class AbstractFreetalkNode extends DefaultMutableTreeNode implem
         return nameLowerCase;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Comparable#compareTo(java.lang.Object)
-     */
     public int compareTo(final AbstractFreetalkNode o) {
         final AbstractFreetalkNode board = o;
         // If both objects are of the same kind, sort by name

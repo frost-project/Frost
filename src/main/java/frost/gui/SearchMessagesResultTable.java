@@ -40,8 +40,9 @@ import frost.messaging.frost.FrostSearchResultMessageObject;
 import frost.util.gui.IconTableHeaderRenderer;
 import frost.util.gui.MiscToolkit;
 
-@SuppressWarnings("serial")
 public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMessageObject> {
+
+	private static final long serialVersionUID = 1L;
 
     private final CellRenderer cellRenderer = new CellRenderer();
     private final BooleanCellRenderer booleanCellRenderer = new BooleanCellRenderer();
@@ -159,11 +160,13 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 //    }
 
     /**
-     * This renderer renders rows in different colors.
-     * New messages gets a bold look, messages with attachments a blue color.
-     * Encrypted messages get a red color, no matter if they have attachments.
+	 * This renderer renders rows in different colors. New messages gets a bold
+	 * look, messages with attachments a blue color. Encrypted messages get a red
+	 * color, no matter if they have attachments.
      */
     private class CellRenderer extends DefaultTableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
 
         private Font boldFont = null;
         private Font normalFont = null;
@@ -300,9 +303,6 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
             return this;
         }
 
-        /* (non-Javadoc)
-         * @see java.awt.Component#setFont(java.awt.Font)
-         */
         @Override
         public void setFont(final Font font) {
             super.setFont(font);
@@ -316,6 +316,8 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
     }
 
     private class BooleanCellRenderer extends JLabel implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
 
         public BooleanCellRenderer() {
             super();

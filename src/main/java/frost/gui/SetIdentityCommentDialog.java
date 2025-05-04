@@ -23,7 +23,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.Instant;
 
 import javax.swing.BorderFactory;
@@ -72,7 +74,7 @@ public class SetIdentityCommentDialog extends JFrame {
 		setTitle(language.getString("SetIdentityCommentDialog.title"));
 
 		// Set window size
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		int width, height;
 		
@@ -93,7 +95,7 @@ public class SetIdentityCommentDialog extends JFrame {
 
 		// OK Button
 		okButton = new JButton(language.getString("Common.ok"));
-		okButton.addActionListener( new java.awt.event.ActionListener() {
+		okButton.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				identity.setComment(commentTextArea.getText());
 				dispose();
@@ -102,7 +104,7 @@ public class SetIdentityCommentDialog extends JFrame {
 
 		// Cancel Button
 		cancelButton = new JButton(language.getString("Common.cancel"));
-		cancelButton.addActionListener( new java.awt.event.ActionListener() {
+		cancelButton.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
 				dispose();
 			}

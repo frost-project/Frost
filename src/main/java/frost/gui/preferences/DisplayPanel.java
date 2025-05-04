@@ -39,11 +39,12 @@ import frost.util.gui.translation.Language;
 /**
  * Display Panel. Contains appearance options
  */
-@SuppressWarnings("serial")
-class DisplayPanel extends JPanel {
+public class DisplayPanel extends JPanel {
 
-    public class Listener implements ActionListener {
-        public void actionPerformed(final ActionEvent e) {
+	private static final long serialVersionUID = 1L;
+
+	public class Listener implements ActionListener {
+	       public void actionPerformed(final ActionEvent e) {
             if (e.getSource() == messageBodyButton) {
                 messageBodyButtonPressed();
             }

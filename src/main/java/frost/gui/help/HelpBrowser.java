@@ -24,6 +24,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -404,7 +405,7 @@ public class HelpBrowser extends JPanel implements LanguageListener, SimplePopup
          * had focus.
          *
          * @param e the focus event
-         * @see java.awt.event.FocusListener#focusGained
+         * @see FocusListener#focusGained
          */
         @Override
         public void focusGained(final FocusEvent evt) {
@@ -425,7 +426,7 @@ public class HelpBrowser extends JPanel implements LanguageListener, SimplePopup
          * if appropriate.
          *
          * @param e the focus event
-         * @see java.awt.event.FocusListener#focusLost
+         * @see FocusListener#focusLost
          */
         @Override
         public void focusLost(final FocusEvent evt) {

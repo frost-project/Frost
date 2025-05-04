@@ -31,10 +31,6 @@ public class SortedModelTable<T extends ModelItem<T>> extends ModelTable<T> {
 	private int currentSortedColumnNumber = -1;
 	private boolean ascending;
 	
-	/**
-	 * @param newModel
-	 * @param newTableFormat
-	 */
 	public SortedModelTable(SortedModel<T> newModel) {
 
         super(newModel.getTableFormat());
@@ -46,9 +42,7 @@ public class SortedModelTable<T extends ModelItem<T>> extends ModelTable<T> {
 		
 		getTable().setTableHeader(new SortedTableHeader(this));
 	}
-	/**
-	 * @param columnNumber
-	 */
+
 	void columnClicked(int columnNumber) {
 		if (columnNumber != currentSortedColumnNumber) {
 			currentSortedColumnNumber = columnNumber;
@@ -117,9 +111,6 @@ public class SortedModelTable<T extends ModelItem<T>> extends ModelTable<T> {
 		return model.getItemAt(rowIndex);
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.util.model.gui.ModelTable#setColumnVisible(int, boolean)
-	 */
 	@Override
     public void setColumnVisible(int index, boolean visible) {
 		super.setColumnVisible(index, visible);

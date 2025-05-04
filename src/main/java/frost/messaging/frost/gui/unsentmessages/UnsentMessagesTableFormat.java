@@ -271,11 +271,14 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
     	}
     }
 
-    @SuppressWarnings("serial")
 	private class SubjectRenderer extends ShowColoredLinesRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public SubjectRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             JTable table,
@@ -301,11 +304,14 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
         }
     }
 
-    @SuppressWarnings("serial")
 	private class ShowContentTooltipRenderer extends ShowColoredLinesRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public ShowContentTooltipRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             JTable table,
@@ -328,11 +334,14 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
         }
     }
     
-    @SuppressWarnings("serial")
 	private class ShowColoredLinesRenderer extends DefaultTableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public ShowColoredLinesRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             JTable table,

@@ -66,8 +66,9 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSavable, PropertyChangeListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(FreetalkBoardTree.class);
 
@@ -105,9 +106,6 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
 //            initialize();
 //        }
 //
-//        /* (non-Javadoc)
-//         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-//         */
 //        public void actionPerformed(final ActionEvent e) {
 //            final Object source = e.getSource();
 //
@@ -201,9 +199,6 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
 //            sendMessageItem.addActionListener(this);
 //        }
 //
-//        /* (non-Javadoc)
-//         * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-//         */
 //        public void languageChanged(final LanguageEvent event) {
 //            refreshLanguage();
 //        }
@@ -265,9 +260,6 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
 //            }
 //        }
 //
-//        /* (non-Javadoc)
-//         * @see javax.swing.JPopupMenu#show(java.awt.Component, int, int)
-//         */
 //        @Override
 //        public void show(final Component invoker, final int x, final int y) {
 //            final int selRow = getRowForLocation(x, y);
@@ -394,9 +386,11 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
         }
     }
 
-    private class CellRenderer extends DefaultTreeCellRenderer {
+	private class CellRenderer extends DefaultTreeCellRenderer {
 
-        private final Border borderFlaggedAndStarredMsgs = BorderFactory.createCompoundBorder(
+		private static final long serialVersionUID = 1L;
+
+		private final Border borderFlaggedAndStarredMsgs = BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 2, 0, 0, Color.red),    // outside
                 BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue) ); // inside
         private final Border borderStarredMsgs = BorderFactory.createCompoundBorder(

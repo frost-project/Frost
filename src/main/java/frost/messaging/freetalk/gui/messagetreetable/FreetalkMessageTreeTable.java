@@ -67,6 +67,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicTreeUI;
@@ -103,8 +104,9 @@ import frost.util.gui.MiscToolkit;
  * @author Philip Milne
  * @author Scott Violet
  */
-@SuppressWarnings("serial")
 public class FreetalkMessageTreeTable extends JTable implements PropertyChangeListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(FreetalkMessageTreeTable.class);
 
@@ -401,11 +403,14 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
     	return retValue;
     }
 
-    /**
-     * A TreeCellRenderer that displays a JTree.
-     */
-    public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
-    	/** Last table/tree row asked to renderer. */
+	/**
+	 * A TreeCellRenderer that displays a JTree.
+	 */
+	public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
+		/** Last table/tree row asked to renderer. */
     	protected int visibleRow;
 
         private Font boldFont = null;
@@ -441,12 +446,17 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
             super.processKeyEvent(e);
         }
 
-        class OwnTreeCellRenderer extends DefaultTreeCellRenderer {
-            int treeWidth;
+		private class OwnTreeCellRenderer extends DefaultTreeCellRenderer {
+
+			private static final long serialVersionUID = 1L;
+
+			private int treeWidth;
+
             public OwnTreeCellRenderer() {
                 super();
                 setVerticalAlignment(CENTER);
             }
+
             @Override
             public Component getTreeCellRendererComponent(
                     final JTree lTree,
@@ -650,14 +660,17 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         }
         }
 
-        /**
-         * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel
-         * to listen for changes in the ListSelectionModel it maintains. Once
-         * a change in the ListSelectionModel happens, the paths are updated
-         * in the DefaultTreeSelectionModel.
-         */
-        class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
-    	/** Set to true when we are updating the ListSelectionModel. */
+		/**
+		 * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel to listen
+		 * for changes in the ListSelectionModel it maintains. Once a change in the
+		 * ListSelectionModel happens, the paths are updated in the
+		 * DefaultTreeSelectionModel.
+		 */
+		private class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+
+			private static final long serialVersionUID = 1L;
+
+		/** Set to true when we are updating the ListSelectionModel. */
     	protected boolean         updatingListSelectionModel;
 
     	public ListToTreeSelectionModelWrapper() {
@@ -746,9 +759,11 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
     	}
     }
 
-    private class BooleanCellRenderer extends JLabel implements TableCellRenderer {
+	private class BooleanCellRenderer extends JLabel implements TableCellRenderer {
 
-        public BooleanCellRenderer() {
+		private static final long serialVersionUID = 1L;
+
+		public BooleanCellRenderer() {
             super();
             setHorizontalAlignment(CENTER);
             setVerticalAlignment(CENTER);
@@ -814,14 +829,16 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         repaint();
     }
 
-    /**
-     * This renderer renders rows in different colors.
-     * New messages gets a bold look, messages with attachments a blue color.
-     * Encrypted messages get a red color, no matter if they have attachments.
-     */
-    private class StringCellRenderer extends DefaultTableCellRenderer {
+	/**
+	 * This renderer renders rows in different colors. New messages gets a bold
+	 * look, messages with attachments a blue color. Encrypted messages get a red
+	 * color, no matter if they have attachments.
+	 */
+	private class StringCellRenderer extends DefaultTableCellRenderer {
 
-        private Font boldFont;
+		private static final long serialVersionUID = 1L;
+
+		private Font boldFont;
         private Font boldItalicFont;
         private Font normalFont;
         private boolean isDeleted = false;
@@ -829,7 +846,7 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         private final Color col_check   = new Color(0xFF, 0xCC, 0x00);
         private final Color col_observe = new Color(0x00, 0xD0, 0x00);
         private final Color col_bad     = new Color(0xFF, 0x00, 0x00);
-        final javax.swing.border.EmptyBorder border = new javax.swing.border.EmptyBorder(0, 0, 0, 3);
+        final EmptyBorder border = new EmptyBorder(0, 0, 0, 3);
 
         public StringCellRenderer() {
             setVerticalAlignment(CENTER);
@@ -988,8 +1005,11 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         }
     }
 
-    public class TreeTableCellEditor extends DefaultCellEditor {
-        public TreeTableCellEditor() {
+	public class TreeTableCellEditor extends DefaultCellEditor {
+
+		private static final long serialVersionUID = 1L;
+
+		public TreeTableCellEditor() {
             super(new JCheckBox());
         }
 

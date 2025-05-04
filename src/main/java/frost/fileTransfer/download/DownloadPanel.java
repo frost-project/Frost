@@ -646,11 +646,6 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see frost.SettingsUpdater#updateSettings()
-	 */
 	public void updateSettings() {
 		Core.frostSettings.setValue(Settings.DOWNLOADING_ACTIVATED, isDownloadingActivated());
 	}
@@ -782,7 +777,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 				changePriorityMenu = new JMenu();
         		for(final FreenetPriority priority : FreenetPriority.values()) {
         			JMenuItem priorityMenuItem = new JMenuItem();
-        			priorityMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        			priorityMenuItem.addActionListener(new ActionListener() {
         				public void actionPerformed(final ActionEvent actionEvent) {
         					changeItemPriorites(modelTable.getSelectedItems(), priority);
         				}

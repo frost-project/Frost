@@ -22,6 +22,8 @@ import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 import javax.swing.JButton;
@@ -76,7 +78,7 @@ public class StatisticsDialog extends JDialog {
     /**
      * This method initializes jContentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
@@ -201,14 +203,14 @@ public class StatisticsDialog extends JDialog {
     /**
      * This method initializes Bclose
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBclose() {
         if( Bclose == null ) {
             Bclose = new JButton();
             Bclose.setText("Close");
-            Bclose.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bclose.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     setVisible(false);
                 }
             });

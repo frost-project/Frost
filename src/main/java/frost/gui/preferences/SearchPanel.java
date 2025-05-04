@@ -37,15 +37,11 @@ import frost.storage.perst.filelist.FileListStorage;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-/**
- *
- * @author $Author: $
- * @version $Revision: $
- */
-@SuppressWarnings("serial")
-class SearchPanel extends JPanel {
+public class SearchPanel extends JPanel {
 
-    private MainFrame mainFrame;
+	private static final long serialVersionUID = 1L;
+
+	private MainFrame mainFrame;
     private Settings settings = null;
     private Language language = null;
 

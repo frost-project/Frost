@@ -35,8 +35,9 @@ import frost.Core;
 import frost.MainFrame;
 import frost.util.gui.MiscToolkit;
 
-@SuppressWarnings("serial")
 public class HelpBrowserFrame extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(HelpBrowserFrame.class);
 

@@ -41,71 +41,38 @@ public class AntialiasedTextArea extends JTextArea {
 
 	private boolean antiAliasEnabled = false;
 
-	/**
-	 * 
-	 */
 	public AntialiasedTextArea() {
 		super();
 	}
 
-	/**
-	 * @param rows
-	 * @param columns
-	 */
 	public AntialiasedTextArea(int rows, int columns) {
 		super(rows, columns);
 	}
 
-	/**
-	 * @param text
-	 */
 	public AntialiasedTextArea(String text) {
 		super(text);
 	}
 
-	/**
-	 * @param text
-	 * @param rows
-	 * @param columns
-	 */
 	public AntialiasedTextArea(String text, int rows, int columns) {
 		super(text, rows, columns);
 	}
 
-	/**
-	 * @param doc
-	 */
 	public AntialiasedTextArea(Document doc) {
 		super(doc);
 	}
 
-	/**
-	 * @param doc
-	 * @param text
-	 * @param rows
-	 * @param columns
-	 */
 	public AntialiasedTextArea(Document doc, String text, int rows, int columns) {
 		super(doc, text, rows, columns);
 	}
 
-	/**
-	 * @return
-	 */
 	public boolean isAntiAliasEnabled() {
 		return antiAliasEnabled;
 	}
 
-	/**
-	 * @param b
-	 */
 	public void setAntiAliasEnabled(boolean b) {
 		antiAliasEnabled = b;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.Component#paint(java.awt.Graphics)
-	 */
 	@Override
     public void paint(Graphics g) {
 		if (antiAliasEnabled) {
@@ -114,5 +81,4 @@ public class AntialiasedTextArea extends JTextArea {
 		}
 		super.paint(g);
 	}
-
 }

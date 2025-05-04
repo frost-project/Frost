@@ -732,18 +732,12 @@ public class KnownBoardsFrame extends JDialog {
             columnNames[3] = language.getString("KnownBoardsFrame.table.description");
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.TableModel#isCellEditable(int, int)
-         */
         @Override
         public boolean isCellEditable(int row, int col)
         {
             return false;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.TableModel#getColumnName(int)
-         */
         @Override
         public String getColumnName(int column)
         {
@@ -753,18 +747,12 @@ public class KnownBoardsFrame extends JDialog {
             return null;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.TableModel#getColumnCount()
-         */
         @Override
         public int getColumnCount()
         {
             return columnNames.length;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.table.TableModel#getColumnClass(int)
-         */
         @Override
         public Class<?> getColumnClass(int column)
         {

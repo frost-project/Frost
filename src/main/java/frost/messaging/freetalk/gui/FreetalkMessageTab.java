@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -267,7 +268,7 @@ public class FreetalkMessageTab implements LanguageListener {
             buttonToolBar.add(removeBoardButton);
             buttonToolBar.add(Box.createRigidArea(blankSpace));
 
-            newBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            newBoardButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     createNewBoard();
                 }
@@ -422,7 +423,7 @@ public class FreetalkMessageTab implements LanguageListener {
 
         ftManager.getConnection().registerCallback(id, new PutMessageCallback(mainFrame));
 
-        final java.util.List<String> targetBoardNames = new ArrayList<String>();
+        final List<String> targetBoardNames = new ArrayList<String>();
         for (final FreetalkBoard fb : msg.getTargetBoards()) {
             targetBoardNames.add(fb.getName());
         }

@@ -38,10 +38,11 @@ import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
-class NewsPanel extends JPanel {
+public class NewsPanel extends JPanel {
 
-    private class Listener implements ActionListener, ChangeListener {
+	private static final long serialVersionUID = 1L;
+
+	private class Listener implements ActionListener, ChangeListener {
         public void actionPerformed(final ActionEvent e) {
             if (e.getSource() == automaticBoardUpdateCheckBox) {
                 refreshUpdateState();

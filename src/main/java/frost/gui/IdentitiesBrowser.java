@@ -201,7 +201,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes contentPane
 	 *
-	 * @return javax.swing.JPanel
+	 * @return JPanel
 	 */
 	private JPanel getJContentPane() {
 		if( contentPane == null ) {
@@ -216,7 +216,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes identitiesScrollPane
 	 *
-	 * @return javax.swing.JScrollPane
+	 * @return JScrollPane
 	 */
 	private JScrollPane getIdentitiesScrollPane() {
 		if( identitiesScrollPane == null ) {
@@ -259,7 +259,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes identitiesTable
 	 *
-	 * @return javax.swing.JTable
+	 * @return JTable
 	 */
 	private SortedTable<InnerTableMember> getIdentitiesTable() {
 		if( identitiesTable == null ) {
@@ -344,7 +344,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes filterPanel
 	 *
-	 * @return javax.swing.JPanel
+	 * @return JPanel
 	 */
 	private JPanel getFilterPanel() {
 		if( filterPanel == null ) {
@@ -380,7 +380,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes mainPanel
 	 *
-	 * @return javax.swing.JPanel
+	 * @return JPanel
 	 */
 	private JPanel getMainPanel() {
 		if( mainPanel == null ) {
@@ -470,7 +470,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes closeButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getCloseButton() {
 		if( closeButton == null ) {
@@ -490,7 +490,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes markGOODButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getMarkGOODButton() {
 		if( markGOODButton == null ) {
@@ -516,7 +516,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes markOBSERVEButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getMarkOBSERVEButton() {
 		if( markOBSERVEButton == null ) {
@@ -542,7 +542,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes markCHECKButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getMarkCHECKButton() {
 		if( markCHECKButton == null ) {
@@ -568,7 +568,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes markBADButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getMarkBADButton() {
 		if( markBADButton == null ) {
@@ -594,7 +594,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes deleteButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getDeleteButton() {
 		if( deleteButton == null ) {
@@ -965,7 +965,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes cleanupButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getCleanupButton() {
 		if( cleanupButton == null ) {
@@ -1037,7 +1037,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes lookupTextField
 	 *
-	 * @return javax.swing.JTextField
+	 * @return JTextField
 	 */
 	private JTextField getLookupTextField() {
 		if( lookupTextField == null ) {
@@ -1062,7 +1062,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes filterTextField
 	 *
-	 * @return javax.swing.JTextField
+	 * @return JTextField
 	 */
 	private JTextField getFilterTextField() {
 		if( filterTextField == null ) {
@@ -1215,7 +1215,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes importButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getImportButton() {
 		if( importButton == null ) {
@@ -1261,7 +1261,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	/**
 	 * This method initializes exportButton
 	 *
-	 * @return javax.swing.JButton
+	 * @return JButton
 	 */
 	private JButton getExportButton() {
 		if( exportButton == null ) {

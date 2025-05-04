@@ -28,17 +28,11 @@ public class ReverseComparator<T> implements Comparator<T> {
 
 	private Comparator<T> delegate;
 
-	/**
-	 * @param newDelegate 
-	 */
 	public ReverseComparator(Comparator<T> newDelegate) {
 		super();
 		delegate = newDelegate;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-	 */
 	public int compare(T o1, T o2) {
 		return -delegate.compare(o1, o2);
 	}

@@ -31,7 +31,9 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.Vector;
 
@@ -57,8 +59,9 @@ import frost.util.gui.translation.Language;
 /**
  * Main options frame.
  */
-@SuppressWarnings("serial")
 public class OptionsFrame extends JDialog implements ListSelectionListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(OptionsFrame.class);
 
@@ -225,13 +228,13 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
             final JButton okButton = new JButton(language.getString("Common.ok"));
             final JButton cancelButton = new JButton(language.getString("Common.cancel"));
 
-            okButton.addActionListener(new java.awt.event.ActionListener() {
+            okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     okButton_actionPerformed(e);
                 }
             });
             cancelButton
-                .addActionListener(new java.awt.event.ActionListener() {
+                .addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     cancelButton_actionPerformed(e);
                 }
@@ -484,7 +487,7 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
 
     /**
      * When window is about to close, do same as if CANCEL was pressed.
-     * @see java.awt.Window#processWindowEvent(java.awt.event.WindowEvent)
+     * @see Window#processWindowEvent(WindowEvent)
      */
     @Override
     protected void processWindowEvent(final WindowEvent e) {
@@ -601,7 +604,7 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
      * Implementing the ListSelectionListener.
      * Must change the content of contentAreaPanel to the selected
      * panel.
-     * @see javax.swing.event.ListSelectionListener#valueChanged(javax.swing.event.ListSelectionEvent)
+     * @see ListSelectionListener#valueChanged(ListSelectionEvent)
      */
     public void valueChanged(final ListSelectionEvent e) {
         if (e.getValueIsAdjusting()) {

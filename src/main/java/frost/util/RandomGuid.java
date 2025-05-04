@@ -74,7 +74,7 @@ public class RandomGuid {
 	/** 
 	 * This method returns a String representation of the guid in
 	 * the standard format for GUIDs, like F45C47D0-FF4E-11D8-9669-0800200C9A66
-	 * @see java.lang.Object#toString()
+	 * @see Object#toString()
 	 */	
 	@Override
     public String toString() {

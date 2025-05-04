@@ -65,9 +65,6 @@ abstract public class SortedModel<T extends ModelItem<T>> {
         return tableFormat;
     }
 
-	/* (non-Javadoc)
-	 * @see frost.util.Model#addItem(frost.util.ModelItem)
-	 */
 	protected void addItem(final T item) {
 
         if (columnNumber == -1) {
@@ -243,9 +240,6 @@ abstract public class SortedModel<T extends ModelItem<T>> {
 		return removeItems(items);
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.util.Model#removeItems(frost.util.ModelItem)
-	 */
 	public boolean removeItems(final List<T> items) {
 		//We clear the link to the model of each item
 		for( final T element : items ) {

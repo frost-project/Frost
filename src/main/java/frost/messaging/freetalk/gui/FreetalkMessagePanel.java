@@ -90,8 +90,9 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class FreetalkMessagePanel extends JPanel implements PropertyChangeListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(FreetalkMessagePanel.class);
 
@@ -225,11 +226,11 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         }
     }
 
-    private class PopupMenuSubjectText
-        extends JPopupMenu
-        implements ActionListener, LanguageListener
-    {
-        JMenuItem copySubjectText = new JMenuItem();
+	private class PopupMenuSubjectText extends JPopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
+
+		private JMenuItem copySubjectText = new JMenuItem();
 
         public PopupMenuSubjectText() {
             super();
@@ -262,11 +263,11 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         }
     }
 
-    private class PopupMenuMessageTable
-        extends JPopupMenu
-        implements ActionListener, LanguageListener {
+	private class PopupMenuMessageTable extends JPopupMenu implements ActionListener, LanguageListener {
 
-        private final JMenuItem markAllMessagesReadItem = new JMenuItem();
+		private static final long serialVersionUID = 1L;
+
+		private final JMenuItem markAllMessagesReadItem = new JMenuItem();
         private final JMenuItem markSelectedMessagesReadItem = new JMenuItem();
         private final JMenuItem markSelectedMessagesUnreadItem = new JMenuItem();
         private final JMenuItem markThreadReadItem = new JMenuItem();
@@ -1505,7 +1506,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     /**
      * @return a list of all selected, non dummy messages; or an empty list
      */
-    private java.util.List<FrostMessageObject> getSelectedMessages() {
+    private List<FrostMessageObject> getSelectedMessages() {
         if( messageTable.getSelectedRowCount() <= 1 && !isCorrectlySelectedMessage() ) {
             return Collections.emptyList();
         }
@@ -1516,7 +1517,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
             return Collections.emptyList();
         }
 
-        final java.util.List<FrostMessageObject> msgs = new ArrayList<FrostMessageObject>(rows.length);
+        final List<FrostMessageObject> msgs = new ArrayList<FrostMessageObject>(rows.length);
         for( final int ix : rows ) {
             final FrostMessageObject targetMessage = (FrostMessageObject)getMessageTableModel().getRow(ix);
             if( targetMessage != null && !targetMessage.isDummy() ) {
@@ -1631,7 +1632,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 //            if (initial != null) {
 //
 //            	final TreeNode[] path = initial.getPath();
-//            	final java.util.List<TreeNode> path_list = java.util.Arrays.asList(path);
+//            	final List<TreeNode> path_list = Arrays.asList(path);
 //
 //            	for( int idx = initial.getLevel(); idx > 0 && nextMessage == null; idx-- ) {
 //            		final FreetalkMessage parent = (FreetalkMessage) path[idx];

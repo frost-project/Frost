@@ -123,9 +123,6 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             initialize();
         }
 
-        /* (non-Javadoc)
-         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-         */
         public void actionPerformed(final ActionEvent e) {
             final Object source = e.getSource();
 
@@ -219,9 +216,6 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             sendMessageItem.addActionListener(this);
         }
 
-        /* (non-Javadoc)
-         * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-         */
         public void languageChanged(final LanguageEvent event) {
             refreshLanguage();
         }
@@ -283,9 +277,6 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
             }
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.JPopupMenu#show(java.awt.Component, int, int)
-         */
         @Override
         public void show(final Component invoker, final int x, final int y) {
             final int selRow = getRowForLocation(x, y);

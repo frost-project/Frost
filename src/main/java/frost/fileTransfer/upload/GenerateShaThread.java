@@ -43,32 +43,20 @@ public class GenerateShaThread extends Thread {
     private static final int wait1minute = 1 * 60 * 1000;
     FileQueue fileQueue;
 
-    /**
-     * @param newUploadFilesManager
-     */
     public GenerateShaThread(NewUploadFilesManager newUploadFilesManager) {
         this.newUploadFilesManager = newUploadFilesManager;
         fileQueue = new FileQueue();
     }
 
-    /**
-     * @param f
-     */
     public void addToFileQueue(final NewUploadFile f) {
         // awakes thread
         fileQueue.appendFileToQueue(f);
     }
 
-    /**
-     * @return
-     */
     public int getQueueSize() {
         return fileQueue.getQueueSize();
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Thread#run()
-     */
     @Override
     public void run() {
 
@@ -117,11 +105,6 @@ public class GenerateShaThread extends Thread {
         }
     }
 
-    /**
-     * 
-     * @author $Author: $
-     * @version $Revision: $
-     */
     private class FileQueue {
 
         private final LinkedList<NewUploadFile> queue = new LinkedList<NewUploadFile>();
@@ -146,17 +129,11 @@ public class GenerateShaThread extends Thread {
             return null;
         }
 
-        /**
-         * @param f
-         */
         public synchronized void appendFileToQueue(final NewUploadFile f) {
             queue.addLast(f);
             notifyAll(); // notify all waiters (if any) of new record
         }
 
-        /**
-         * @return
-         */
         public synchronized int getQueueSize() {
             return queue.size();
         }

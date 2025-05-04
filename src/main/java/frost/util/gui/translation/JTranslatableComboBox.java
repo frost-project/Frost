@@ -31,10 +31,6 @@ public class JTranslatableComboBox extends JComboBox<CheckBoxItem> implements La
 	private Language language = null;
 	private String[] keys;
 
-	/**
-	 * @param language
-	 * @param keys
-	 */
 	public JTranslatableComboBox(Language language, String[] keys) {
 		super();
 		this.language = language;
@@ -47,16 +43,10 @@ public class JTranslatableComboBox extends JComboBox<CheckBoxItem> implements La
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-	 */
 	public void languageChanged(LanguageEvent event) {
 		refreshLanguage();		
 	}
 
-	/**
-	 * 
-	 */
 	private void refreshLanguage() {
 		for (int i = 0; i < keys.length; i++) {
 			CheckBoxItem item = getItemAt(i);
@@ -68,10 +58,7 @@ public class JTranslatableComboBox extends JComboBox<CheckBoxItem> implements La
 		addItem(dummy);
 		removeItem(dummy);	
 	}
-	
-	/**
-	 * @return
-	 */
+
 	public String getSelectedKey() { 
 		Object selectedItem = getSelectedItem();
 		if ((selectedItem != null) && (selectedItem instanceof CheckBoxItem)) {
@@ -97,5 +84,4 @@ public class JTranslatableComboBox extends JComboBox<CheckBoxItem> implements La
 			}
 		}
 	}
-
 }

@@ -20,17 +20,25 @@
 package frost.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.WindowConstants;
+import javax.swing.border.EtchedBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
@@ -108,13 +116,13 @@ public class TargetFolderChooser extends JDialog {
         final int y = (screen.height-dlgSizeY)/2;
         setBounds(x,y,dlgSizeX,dlgSizeY);
 
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setModal(true);
         this.setTitle(language.getString("TargetFolderChooser.title"));
         this.setContentPane(getJContentPane());
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
+        this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(final java.awt.event.WindowEvent e) {
+            public void windowClosing(final WindowEvent e) {
                 cancelButtonPressed();
             }
         });
@@ -123,14 +131,14 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes jContentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
             jContentPane = new JPanel();
             jContentPane.setLayout(new BorderLayout());
-            jContentPane.add(getJScrollPane(), java.awt.BorderLayout.CENTER);
-            jContentPane.add(getButtonsPanel(), java.awt.BorderLayout.SOUTH);
+            jContentPane.add(getJScrollPane(), BorderLayout.CENTER);
+            jContentPane.add(getButtonsPanel(), BorderLayout.SOUTH);
         }
         return jContentPane;
     }
@@ -138,12 +146,12 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes buttonsPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getButtonsPanel() {
         if( buttonsPanel == null ) {
             final FlowLayout flowLayout = new FlowLayout();
-            flowLayout.setAlignment(java.awt.FlowLayout.RIGHT);
+            flowLayout.setAlignment(FlowLayout.RIGHT);
             buttonsPanel = new JPanel();
             buttonsPanel.setLayout(flowLayout);
             buttonsPanel.add(getOkButton(), null);
@@ -155,7 +163,7 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes folderTree
      *
-     * @return javax.swing.JTree
+     * @return JTree
      */
     private JTree getFolderTree() {
         if( folderTree == null ) {
@@ -169,15 +177,15 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes okButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getOkButton() {
         if( okButton == null ) {
             okButton = new JButton();
             okButton.setText(language.getString("Common.ok"));
             okButton.setSelected(false);
-            okButton.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            okButton.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     okButtonPressed();
                 }
             });
@@ -188,14 +196,14 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes cancelButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getCancelButton() {
         if( cancelButton == null ) {
             cancelButton = new JButton();
             cancelButton.setText(language.getString("Common.cancel"));
-            cancelButton.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            cancelButton.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     cancelButtonPressed();
                 }
             });
@@ -222,15 +230,15 @@ public class TargetFolderChooser extends JDialog {
     /**
      * This method initializes jScrollPane
      *
-     * @return javax.swing.JScrollPane
+     * @return JScrollPane
      */
     private JScrollPane getJScrollPane() {
         if( jScrollPane == null ) {
             jScrollPane = new JScrollPane();
-            jScrollPane.setBackground(java.awt.Color.white);
-            jScrollPane.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-                    javax.swing.BorderFactory.createEmptyBorder(2,2,2,2),
-                    javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.LOWERED)));
+            jScrollPane.setBackground(Color.white);
+            jScrollPane.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createEmptyBorder(2,2,2,2),
+                    BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
             jScrollPane.setViewportView(getFolderTree());
         }
         return jScrollPane;

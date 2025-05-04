@@ -86,9 +86,6 @@ public class DownloadTicker extends Thread {
 		return runningThreads;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Runnable#run()
-	 */
 	@Override
     public void run() {
 		super.run();

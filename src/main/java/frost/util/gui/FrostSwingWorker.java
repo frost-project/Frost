@@ -57,7 +57,7 @@ public abstract class FrostSwingWorker {
 	private ThreadVar threadVar;
 
 	private GlassPane glassPane;
-	private java.awt.Component aComponent;
+	private Component aComponent;
 
 	/**
 	 * Start a thread that will call the <code>construct</code> method  and then exit.
@@ -128,7 +128,7 @@ public abstract class FrostSwingWorker {
 	 * This method will be implemented by the inner class of SwingWorker
 	 * It should only consist of the logic that's unrelated to UI
 	 *
-	 * @throws java.lang.RuntimeException thrown if there are any errors in the non-ui logic
+	 * @throws RuntimeException thrown if there are any errors in the non-ui logic
 	 */
 	protected abstract void doNonUILogic() throws RuntimeException;
 	/**
@@ -136,7 +136,7 @@ public abstract class FrostSwingWorker {
 	 * It should only consist of the logic that's related to UI updating, after
 	 * the doNonUILogic() method is done.
 	 *
-	 * @throws java.lang.RuntimeException thrown if there are any problems executing the ui update logic
+	 * @throws RuntimeException thrown if there are any problems executing the ui update logic
 	 */
 	protected abstract void doUIUpdateLogic() throws RuntimeException;
 	/**
@@ -160,7 +160,7 @@ public abstract class FrostSwingWorker {
 	/**
 	 * Getter method
 	 *
-	 * @return java.awt.Component
+	 * @return Component
 	 */
 	protected Component getAComponent() {
 		return aComponent;
@@ -187,7 +187,7 @@ public abstract class FrostSwingWorker {
 	/**
 	 * Setter method
 	 *
-	 * @param newAComponent java.awt.Component
+	 * @param newAComponent Component
 	 */
 	protected void setAComponent(Component newAComponent) {
 		aComponent = newAComponent;

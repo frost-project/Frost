@@ -50,10 +50,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
+import javax.swing.Timer;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -67,8 +69,9 @@ import frost.Core;
 import frost.Settings;
 import frost.messaging.frost.boards.AbstractNode;
 
-@SuppressWarnings("serial")
 public class JDragTree extends JTree implements DragGestureListener, DragSourceListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(JDragTree.class);
 
@@ -82,7 +85,7 @@ public class JDragTree extends JTree implements DragGestureListener, DragSourceL
 		 private Rectangle2D     _raGhost        = new Rectangle2D.Float();
 		 private Color           _colorCueLine;
 		 private Point           _ptLast         = new Point();
-		 private javax.swing.Timer           _timerHover;
+		 private Timer           _timerHover;
 		 private int             _nLeftRight     = 0;    // Cumulative left/right mouse movement
 //		 private int             _nShift         = 0;
 
@@ -98,7 +101,7 @@ public class JDragTree extends JTree implements DragGestureListener, DragSourceL
 
 			 // Set up a hover timer, so that a node will be automatically expanded or collapsed
 			 // if the user lingers on it for more than a short time
-			 _timerHover = new javax.swing.Timer(1000, new ActionListener()
+			 _timerHover = new Timer(1000, new ActionListener()
 			 {
 				 public void actionPerformed(ActionEvent e)
 				 {
@@ -390,7 +393,7 @@ public class JDragTree extends JTree implements DragGestureListener, DragSourceL
 
 		public boolean isDataFlavorSupported(DataFlavor flavor)
 		{
-			return java.util.Arrays.asList(_flavors).contains(flavor);
+			return Arrays.asList(_flavors).contains(flavor);
 		}
 
 		public synchronized Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException

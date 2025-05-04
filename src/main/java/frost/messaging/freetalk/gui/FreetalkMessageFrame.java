@@ -37,6 +37,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -591,32 +592,32 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
             //------------------------------------------------------------------------
             // Actionlistener
             //------------------------------------------------------------------------
-            Bsend.addActionListener(new java.awt.event.ActionListener() {
+            Bsend.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     send_actionPerformed(e);
                 }
             });
-            Bcancel.addActionListener(new java.awt.event.ActionListener() {
+            Bcancel.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     windowIsClosing();
                 }
             });
-            BattachFile.addActionListener(new java.awt.event.ActionListener() {
+            BattachFile.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     attachFile_actionPerformed(e);
                 }
             });
-//            BattachBoard.addActionListener(new java.awt.event.ActionListener() {
+//            BattachBoard.addActionListener(new ActionListener() {
 //                public void actionPerformed(final ActionEvent e) {
 //                    attachBoards_actionPerformed(e);
 //                }
 //            });
-//            encrypt.addActionListener(new java.awt.event.ActionListener() {
+//            encrypt.addActionListener(new ActionListener() {
 //                public void actionPerformed(final ActionEvent e) {
 //                    encrypt_actionPerformed(e);
 //                }
 //            });
-            BchooseSmiley.addActionListener(new java.awt.event.ActionListener() {
+            BchooseSmiley.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     chooseSmiley_actionPerformed(e);
                 }
@@ -772,7 +773,7 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
 
         final JMenuItem removeFiles = new JMenuItem(language.getString("MessageFrame.attachmentTables.popupmenu.remove"));
 
-        removeFiles.addActionListener(new java.awt.event.ActionListener() {
+        removeFiles.addActionListener(new ActionListener() {
             public void actionPerformed(final ActionEvent e) {
                 removeSelectedItemsFromTable(filesTable);
             }
@@ -1148,8 +1149,8 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
 
             ownIdentitiesComboBox.setEditable(false);
 
-            ownIdentitiesComboBox.addItemListener(new java.awt.event.ItemListener() {
-                public void itemStateChanged(final java.awt.event.ItemEvent e) {
+            ownIdentitiesComboBox.addItemListener(new ItemListener() {
+                public void itemStateChanged(final ItemEvent e) {
                     if( e.getStateChange() == ItemEvent.DESELECTED ) {
                         return;
                     }

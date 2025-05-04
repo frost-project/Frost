@@ -28,8 +28,9 @@ import frost.Settings;
 import frost.identities.Identity;
 import frost.identities.LocalIdentity;
 
-@SuppressWarnings("serial")
 public abstract class AbstractMessageStatusProvider extends DefaultMutableTreeNode {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractMessageStatusProvider.class);
 

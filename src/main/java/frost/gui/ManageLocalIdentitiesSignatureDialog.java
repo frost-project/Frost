@@ -22,6 +22,8 @@ import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -33,10 +35,11 @@ import frost.Settings;
 import frost.util.gui.textpane.AntialiasedTextArea;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class ManageLocalIdentitiesSignatureDialog extends JDialog {
 
-    private Language language = Language.getInstance();
+	private static final long serialVersionUID = 1L;
+
+	private Language language = Language.getInstance();
     
     private JPanel jContentPane = null;
     private JPanel buttonPanel = null;
@@ -70,7 +73,7 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
     /**
      * This method initializes jContentPane
      * 
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
@@ -86,7 +89,7 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
     /**
      * This method initializes buttonPanel	
      * 	
-     * @return javax.swing.JPanel	
+     * @return JPanel	
      */
     private JPanel getButtonPanel() {
         if( buttonPanel == null ) {
@@ -103,14 +106,14 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
     /**
      * This method initializes Bok	
      * 	
-     * @return javax.swing.JButton	
+     * @return JButton	
      */
     private JButton getBok() {
         if( Bok == null ) {
             Bok = new JButton();
             Bok.setText("Ok");
-            Bok.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
+            Bok.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
                     returnValue = getSignatureTextArea().getText();
                     setVisible(false);
                 }
@@ -122,14 +125,14 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
     /**
      * This method initializes Bcancel	
      * 	
-     * @return javax.swing.JButton	
+     * @return JButton	
      */
     private JButton getBcancel() {
         if( Bcancel == null ) {
             Bcancel = new JButton();
             Bcancel.setText("Cancel");
-            Bcancel.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
+            Bcancel.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
                     returnValue = null;
                     setVisible(false);
                 }

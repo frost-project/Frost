@@ -114,7 +114,7 @@ abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableMo
 		 * This method is executed in the Swing event thread. It gets the selected items
 		 * and places them in an attribute so that the methods getSelectedItem and getSelectedItems
 		 * can return them
-		 * @see java.lang.Runnable#run()
+		 * @see Runnable#run()
 		 */
 		public void run() {
 			synchronized (model) {
@@ -207,23 +207,14 @@ abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableMo
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getColumnCount()
-	 */
 	public int getColumnCount() {
 		return visibleColumns.size();
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getRowCount()
-	 */
 	public int getRowCount() {
 		return model.getItemCount();
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getValueAt(int, int)
-	 */
 	public Object getValueAt(final int rowIndex, final int columnIndex) {
 		final int index = convertColumnIndexToFormat(columnIndex);
 		final T mi = model.getItemAt(rowIndex);
@@ -282,9 +273,6 @@ abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableMo
 		return scrollPane;
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#getColumnName(int)
-	 */
 	@Override
     public String getColumnName(final int column) {
 		final int index = convertColumnIndexToFormat(column);
@@ -310,9 +298,6 @@ abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableMo
 		table.setRowHeight(font.getSize() + 5);
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#isCellEditable(int, int)
-	 */
 	@Override
     public boolean isCellEditable(final int rowIndex, final int columnIndex) {
 		final int index = convertColumnIndexToFormat(columnIndex);
@@ -371,9 +356,6 @@ abstract public class ModelTable<T extends ModelItem<T>> extends AbstractTableMo
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.TableModel#setValueAt(java.lang.Object, int, int)
-	 */
 	@Override
     public void setValueAt(final Object aValue, final int rowIndex, final int columnIndex) {
 		final int index = convertColumnIndexToFormat(columnIndex);

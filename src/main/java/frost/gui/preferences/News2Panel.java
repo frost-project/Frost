@@ -35,10 +35,11 @@ import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
-class News2Panel extends JPanel {
+public class News2Panel extends JPanel {
 
-    private class Listener implements ActionListener {
+	private static final long serialVersionUID = 1L;
+
+	private class Listener implements ActionListener {
         public void actionPerformed(final ActionEvent e) {
             if (e.getSource() == blockSubjectCheckBox) {
                 blockSubjectPressed();

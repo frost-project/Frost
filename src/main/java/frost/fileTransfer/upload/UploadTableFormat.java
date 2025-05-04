@@ -30,6 +30,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -68,11 +69,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
     /**
      * Renders DONE with green background and FAILED with red background.
      */
-    @SuppressWarnings("serial")
 	private class BaseRenderer extends DefaultTableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public BaseRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,
@@ -103,8 +107,10 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class BlocksProgressRenderer extends JProgressBar implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public BlocksProgressRenderer() {
             super();
             setMinimum(0);
@@ -112,6 +118,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
             setStringPainted(true);
             setBorderPainted(false);
         }
+
         public Component getTableCellRendererComponent(
             final JTable table,
             final Object value,
@@ -149,11 +156,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class ShowContentTooltipRenderer extends BaseRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public ShowContentTooltipRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,
@@ -175,11 +185,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class ShowNameTooltipRenderer extends BaseRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public ShowNameTooltipRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,
@@ -218,11 +231,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class ShowStateContentTooltipRenderer extends BaseRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public ShowStateContentTooltipRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,
@@ -245,11 +261,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class IsEnabledRenderer extends JCheckBox implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public IsEnabledRenderer() {
             super();
         }
+
         public Component getTableCellRendererComponent(
             final JTable table,
             final Object value,
@@ -280,11 +299,14 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         }
     }
 
-    @SuppressWarnings("serial")
 	private class IsSharedRenderer extends BaseRenderer {
+
+		private static final long serialVersionUID = 1L;
+
         public IsSharedRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,
@@ -312,12 +334,16 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
     /**
      * This inner class implements the renderer for the column "FileSize"
      */
-    @SuppressWarnings("serial")
 	private class RightAlignRenderer extends BaseRenderer {
-        final javax.swing.border.EmptyBorder border = new javax.swing.border.EmptyBorder(0, 0, 0, 3);
+
+		private static final long serialVersionUID = 1L;
+
+		private final EmptyBorder border = new EmptyBorder(0, 0, 0, 3);
+
         public RightAlignRenderer() {
             super();
         }
+
         @Override
         public Component getTableCellRendererComponent(
             final JTable table,

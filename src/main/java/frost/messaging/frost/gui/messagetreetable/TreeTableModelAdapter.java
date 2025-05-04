@@ -78,28 +78,19 @@ public class TreeTableModelAdapter extends AbstractTableModel {
 
     private final Listener listener = new Listener();
 
-    /**
-     *
-     */
     private class Listener implements TreeWillExpandListener, TreeExpansionListener, TreeModelListener {
 
-        /**
-         *
-         */
         public Listener() {
             super();
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeWillExpandListener#treeWillExpand(javax.swing.event.TreeExpansionEvent)
-         */
         public void treeWillExpand(final TreeExpansionEvent event) throws ExpandVetoException {
         }
 
         /**
          * Remember child rows to fire a tableRowDeleted event later in collapse listener
          *
-         * @see javax.swing.event.TreeWillExpandListener#treeWillCollapse(javax.swing.event.TreeExpansionEvent)
+         * @see TreeWillExpandListener#treeWillCollapse(TreeExpansionEvent)
          */
         public void treeWillCollapse(final TreeExpansionEvent event) throws ExpandVetoException {
             final DefaultMutableTreeNode collapsedNode = (DefaultMutableTreeNode) event.getPath().getLastPathComponent();
@@ -123,9 +114,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
             collapsedToRow = toRow;
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeExpansionListener#treeExpanded(javax.swing.event.TreeExpansionEvent)
-         */
         public void treeExpanded(final TreeExpansionEvent event) {
             final DefaultMutableTreeNode expandedNode = (DefaultMutableTreeNode)event.getPath().getLastPathComponent();
             // X new rows are below the expanded node
@@ -159,7 +147,7 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         /**
          * Fire table event, use toRow computed in treeWillCollpaseListener
          *
-         * @see javax.swing.event.TreeExpansionListener#treeCollapsed(javax.swing.event.TreeExpansionEvent)
+         * @see TreeExpansionListener#treeCollapsed(TreeExpansionEvent)
          */
         public void treeCollapsed(final TreeExpansionEvent event) {
             final DefaultMutableTreeNode collapsedNode = (DefaultMutableTreeNode)event.getPath().getLastPathComponent();
@@ -169,9 +157,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
             fireTableRowsDeleted(fromRow, toRow);
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeModelListener#treeNodesChanged(javax.swing.event.TreeModelEvent)
-         */
         public void treeNodesChanged(final TreeModelEvent e) {
             final DefaultMutableTreeNode node = (DefaultMutableTreeNode)e.getTreePath().getLastPathComponent();
             final int[] childIndices = e.getChildIndices();
@@ -190,9 +175,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
             });
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeModelListener#treeNodesInserted(javax.swing.event.TreeModelEvent)
-         */
         public void treeNodesInserted(final TreeModelEvent e) {
             final DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.getChildren()[0];
             final int[] childIndices = e.getChildIndices();
@@ -209,9 +191,6 @@ public class TreeTableModelAdapter extends AbstractTableModel {
             });
         }        
         
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeModelListener#treeNodesRemoved(javax.swing.event.TreeModelEvent)
-         */
         public void treeNodesRemoved(final TreeModelEvent e) {
             final DefaultMutableTreeNode node = (DefaultMutableTreeNode)e.getTreePath().getLastPathComponent();
             final int[] childIndices = e.getChildIndices();
@@ -230,20 +209,12 @@ public class TreeTableModelAdapter extends AbstractTableModel {
             });
         }
 
-        /* (non-Javadoc)
-         * @see javax.swing.event.TreeModelListener#treeStructureChanged(javax.swing.event.TreeModelEvent)
-         */
         public void treeStructureChanged(final TreeModelEvent e) {
 //            delayedFireTableDataChanged();
             fireTableDataChanged();
         }
     }
 
-    /**
-     * @param treeTableModel
-     * @param tree
-     * @param tt
-     */
     public TreeTableModelAdapter(final TreeTableModel treeTableModel, final JTree tree, final MessageTreeTable tt) {
         this.tree = tree;
         this.treeTable = tt;
@@ -254,38 +225,22 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         treeTableModel.addTreeModelListener(listener);
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getColumnCount()
-     */
     public int getColumnCount() {
         return treeTableModel.getColumnCount();
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#getColumnName(int)
-     */
     public String getColumnName(final int column) {
         return treeTableModel.getColumnName(column);
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#getColumnClass(int)
-     */
     public Class<?> getColumnClass(final int column) {
         return treeTableModel.getColumnClass(column);
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getRowCount()
-     */
     public int getRowCount() {
         return tree.getRowCount();
     }
 
-    /**
-     * @param row
-     * @return
-     */
     protected Object nodeForRow(final int row) {
         final TreePath treePath = tree.getPathForRow(row);
         if( treePath != null ) {
@@ -295,31 +250,18 @@ public class TreeTableModelAdapter extends AbstractTableModel {
         }
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getValueAt(int, int)
-     */
     public Object getValueAt(final int row, final int column) {
         return treeTableModel.getValueAt(nodeForRow(row), column);
     }
 
-    /**
-     * @param row
-     * @return
-     */
     public Object getRow(final int row) {
         return nodeForRow(row);
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#isCellEditable(int, int)
-     */
     public boolean isCellEditable(final int row, final int column) {
         return treeTableModel.isCellEditable(nodeForRow(row), column);
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.AbstractTableModel#setValueAt(java.lang.Object, int, int)
-     */
     public void setValueAt(final Object value, final int row, final int column) {
         treeTableModel.setValueAt(value, nodeForRow(row), column);
     }

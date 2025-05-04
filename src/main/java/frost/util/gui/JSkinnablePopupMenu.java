@@ -88,9 +88,6 @@ public class JSkinnablePopupMenu extends JPopupMenu {
 		addToPopupList();
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
 	@Override
     protected void finalize() throws Throwable {
 		removeFromPopupList();

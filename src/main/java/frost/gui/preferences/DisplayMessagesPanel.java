@@ -35,10 +35,11 @@ import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class DisplayMessagesPanel extends JPanel {
 
-    private class Listener implements ChangeListener {
+	private static final long serialVersionUID = 1L;
+
+	private class Listener implements ChangeListener {
         public void stateChanged(final ChangeEvent e) {
             if (e.getSource() == indicateLowReceivedMessagesCheckBox) {
                 indicateLowReceivedMessagesChanged();

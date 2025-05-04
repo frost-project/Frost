@@ -41,10 +41,11 @@ import frost.util.gui.FontChooser;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class DisplayBoardTreePanel extends JPanel {
 
-    private class Listener implements ActionListener {
+	private static final long serialVersionUID = 1L;
+
+	private class Listener implements ActionListener {
         public void actionPerformed(final ActionEvent e) {
             if( e.getSource() == selectedColorButton ) {
                 selectedColorPressed();

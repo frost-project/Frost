@@ -30,11 +30,6 @@ import frost.storage.StorageException;
 import frost.storage.perst.FrostFilesStorage;
 import frost.storage.perst.NewUploadFile;
 
-/**
- * 
- * @author $Author: $
- * @version $Revision: $
- */
 public class NewUploadFilesManager implements ExitSavable {
 
 	private static final Logger logger = LoggerFactory.getLogger(NewUploadFilesManager.class);
@@ -42,16 +37,10 @@ public class NewUploadFilesManager implements ExitSavable {
     private LinkedList<NewUploadFile> newUploadFiles;
     private GenerateShaThread generateShaThread;
 
-    /**
-     * 
-     */
     public NewUploadFilesManager() {
         super();
     }
     
-    /**
-     * @throws StorageException
-     */
     public void initialize() throws StorageException {
         try {
             newUploadFiles = FrostFilesStorage.inst().loadNewUploadFiles();
@@ -69,9 +58,6 @@ public class NewUploadFilesManager implements ExitSavable {
         generateShaThread.start();
     }
 
-    /* (non-Javadoc)
-     * @see frost.storage.ExitSavable#exitSave()
-     */
     public void exitSave() throws StorageException {
         synchronized(newUploadFiles) {
             try {
@@ -83,9 +69,6 @@ public class NewUploadFilesManager implements ExitSavable {
         }
     }
 
-    /**
-     * @param newFiles
-     */
     public void addNewUploadFiles(final List<NewUploadFile> newFiles) {
         synchronized(newUploadFiles) {
             for( final NewUploadFile nuf : newFiles ) {
@@ -97,9 +80,6 @@ public class NewUploadFilesManager implements ExitSavable {
         }
     }
 
-    /**
-     * @param nuf
-     */
     public void deleteNewUploadFile(final NewUploadFile nuf) {
         synchronized(newUploadFiles) {
             newUploadFiles.remove(nuf);

@@ -90,25 +90,16 @@ abstract public class ModelTableHeader extends JTableHeader {
 			super();
 		}
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-		 */
 		@Override
         public void mouseClicked(MouseEvent e) {
 			headerClicked(e);
 		}
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-		 */
 		@Override
         public void mouseReleased(MouseEvent e) {
 			headerReleased(e);
 		}
 
-		/* (non-Javadoc)
-		 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-		 */
 		public void actionPerformed(ActionEvent e) {
 			if (popup != null) {
 				int position = popup.getComponentIndex((Component) e.getSource());

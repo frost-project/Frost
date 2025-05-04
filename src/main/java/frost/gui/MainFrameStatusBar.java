@@ -42,8 +42,9 @@ import frost.util.gui.translation.Language;
 /**
  * Represents the mainframe status bar.
  */
-@SuppressWarnings("serial")
 public class MainFrameStatusBar extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
     private final Language language;
 
@@ -81,6 +82,9 @@ public class MainFrameStatusBar extends JPanel {
         p0.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         statusLabelTofup = new JLabel() {
+
+			private static final long serialVersionUID = 1L;
+
             @Override
             public String getToolTipText(final MouseEvent me) {
                 if( statusBarInformations == null ) {
@@ -101,6 +105,9 @@ public class MainFrameStatusBar extends JPanel {
         p1.setAlignmentY(Component.CENTER_ALIGNMENT);
 
         statusLabelTofdn = new JLabel() {
+
+			private static final long serialVersionUID = 1L;
+
             @Override
             public String getToolTipText(final MouseEvent me) {
                 if( statusBarInformations == null ) {
@@ -123,6 +130,9 @@ public class MainFrameStatusBar extends JPanel {
         // shown only if filesharing is enabled
         if( Core.isFreenetOnline() && !Core.frostSettings.getBoolean(Settings.FILESHARING_DISABLE)) {
             fileListDownloadQueueSizeLabel = new JLabel() {
+
+				private static final long serialVersionUID = 1L;
+
                 @Override
                 public String getToolTipText(final MouseEvent me) {
                     final String txt = language.getString("MainFrame.statusBar.tooltip.fileListDownloadQueueSize");

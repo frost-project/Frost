@@ -47,9 +47,6 @@ public abstract class AbstractTableFormat<ModelItemType extends ModelItem<ModelI
 		columnEditable = new HashMap<Integer,Boolean>();
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.util.model.gui.ModelTableFormat#customizeTable(frost.util.model.gui.ModelTable)
-	 */
 	public void customizeTable(ModelTable<ModelItemType> modelTable){
 		// Nothing here. Override in subclasses if necessary.
 	}
@@ -58,34 +55,21 @@ public abstract class AbstractTableFormat<ModelItemType extends ModelItem<ModelI
         // Nothing here. Override in subclasses if necessary.
     }
 
-	/**
-	 * @return
-	 */
 	public int getColumnCount() {
 		return columnNames.size();
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.util.model.gui.ModelTableFormat#addTable(javax.swing.JTable)
-	 */
 	public synchronized void addTable(JTable table) {
 		if (tables == null) { 
 			tables = new Vector<JTable>();
 		}
 		tables.add(table);
 	}
-	
-	/* (non-Javadoc)
-	 * @see frost.util.model.gui.ModelTableFormat#getColumnName(int)
-	 */
+
 	public String getColumnName(int column) {
 		return columnNames.get(column);
 	}
 	
-	/**
-	 * @param index
-	 * @param name
-	 */
 	protected void setColumnName(int index, String name) {
 		columnNames.put(index, name); 
 	}
@@ -104,9 +88,6 @@ public abstract class AbstractTableFormat<ModelItemType extends ModelItem<ModelI
 		}	
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.util.model.gui.ModelTableFormat#isColumnEditable(int)
-	 */
 	public boolean isColumnEditable(int column) {
 		if( columnEditable.containsKey(column)) {
 			return columnEditable.get(column);
@@ -126,11 +107,10 @@ public abstract class AbstractTableFormat<ModelItemType extends ModelItem<ModelI
 
 	/***
 	 * By default all columns are not editable. Override in subclasses when needed.
-	 * @see frost.util.model.gui.ModelTableFormat#setCellValue(java.lang.Object, frost.util.model.ModelItem, int)
+	 * @see ModelTableFormat#setCellValue(Object, ModelItem, int)
 	 */
 	public void setCellValue(Object value, ModelItemType item, int columnIndex) {
 		logger.warn("The column number {} is not editable.", columnIndex);
 		throw new RuntimeException("Method setCellValue not implemented, needs to be deined by subclass if it has editable columns");
 	}
-
 }

@@ -212,9 +212,6 @@ public class JDialogWithDetails extends JDialog {
 		return userPanel;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.awt.Component#setVisible(boolean)
-	 */
 	@Override
     public void setVisible(boolean b) {
 		if (b) {

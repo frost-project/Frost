@@ -228,9 +228,6 @@ public class SharedFileXmlFile implements XMLizable {
         }
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(final Object obj) {
         final SharedFileXmlFile other = (SharedFileXmlFile) obj;

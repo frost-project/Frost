@@ -37,8 +37,9 @@ import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
-class UploadPanel extends JPanel {
+public class UploadPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
     public class Listener implements ActionListener {
         public void actionPerformed(final ActionEvent e) {

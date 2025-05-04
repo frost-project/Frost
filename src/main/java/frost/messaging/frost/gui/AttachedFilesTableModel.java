@@ -26,6 +26,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -144,7 +145,7 @@ public class AttachedFilesTableModel extends DefaultTableModel implements Langua
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             setHorizontalAlignment(SwingConstants.RIGHT);
             // col is right aligned, give some space to next column
-            setBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 3));
+            setBorder(new EmptyBorder(0, 0, 0, 3));
             return this;
         }
     }

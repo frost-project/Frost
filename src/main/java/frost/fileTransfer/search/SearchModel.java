@@ -18,6 +18,8 @@
 */
 package frost.fileTransfer.search;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -56,8 +58,8 @@ public class SearchModel extends SortedModel<FrostSearchItem> {
             // maybe convert html codes (e.g. %2c -> , )
             if( filename.indexOf("%") > 0 ) {
                 try {
-                    filename = java.net.URLDecoder.decode(filename, "UTF-8");
-                } catch (final java.io.UnsupportedEncodingException ex) {
+                    filename = URLDecoder.decode(filename, "UTF-8");
+                } catch (final UnsupportedEncodingException ex) {
                     logger.error("Decode of HTML code failed", ex);
                 }
             }

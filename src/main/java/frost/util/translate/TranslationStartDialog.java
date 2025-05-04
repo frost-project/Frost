@@ -21,6 +21,9 @@ package frost.util.translate;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Locale;
 import java.util.TreeMap;
@@ -38,8 +41,9 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageGuiSupport;
 import frost.util.gui.translation.TranslateableFrostResourceBundle;
 
-@SuppressWarnings("serial")
 public class TranslationStartDialog extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
     Language language = Language.getInstance();
 
@@ -77,47 +81,47 @@ public class TranslationStartDialog extends JFrame {
     /**
      * This method initializes jContentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
             final GridBagConstraints gridBagConstraints11 = new GridBagConstraints();
             gridBagConstraints11.gridx = 0;
-            gridBagConstraints11.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints11.insets = new java.awt.Insets(3,5,0,5);
+            gridBagConstraints11.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints11.insets = new Insets(3,5,0,5);
             gridBagConstraints11.gridy = 3;
             jLabel2 = new JLabel();
             jLabel2.setText("(The fallback language for all missing keys is english.)");
             final GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
             gridBagConstraints4.gridx = 0;
-            gridBagConstraints4.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints4.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints4.weightx = 1.0;
             gridBagConstraints4.gridy = 6;
             final GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
-            gridBagConstraints3.fill = java.awt.GridBagConstraints.NONE;
+            gridBagConstraints3.fill = GridBagConstraints.NONE;
             gridBagConstraints3.gridy = 4;
             gridBagConstraints3.weightx = 0.0;
-            gridBagConstraints3.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints3.insets = new java.awt.Insets(5,25,10,5);
+            gridBagConstraints3.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints3.insets = new Insets(5,25,10,5);
             gridBagConstraints3.gridx = 0;
             final GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
             gridBagConstraints2.gridx = 0;
-            gridBagConstraints2.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints2.insets = new java.awt.Insets(15,5,0,5);
+            gridBagConstraints2.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints2.insets = new Insets(15,5,0,5);
             gridBagConstraints2.gridy = 2;
             jLabel1 = new JLabel();
             jLabel1.setText("Choose the language used as source for the translation:");
             final GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-            gridBagConstraints1.fill = java.awt.GridBagConstraints.NONE;
+            gridBagConstraints1.fill = GridBagConstraints.NONE;
             gridBagConstraints1.gridy = 1;
             gridBagConstraints1.weightx = 0.0;
-            gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints1.insets = new java.awt.Insets(5,25,0,5);
+            gridBagConstraints1.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints1.insets = new Insets(5,25,0,5);
             gridBagConstraints1.gridx = 0;
             final GridBagConstraints gridBagConstraints = new GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints.insets = new java.awt.Insets(5,5,0,5);
+            gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints.insets = new Insets(5,5,0,5);
             gridBagConstraints.gridy = 0;
             jLabel = new JLabel();
             jLabel.setText("Choose the target language to translate into:");
@@ -136,7 +140,7 @@ public class TranslationStartDialog extends JFrame {
     /**
      * This method initializes CBoxTargetLanguage
      *
-     * @return javax.swing.JComboBox
+     * @return JComboBox
      */
 	private JComboBox<ComboBoxEntry> getCBoxTargetLanguage() {
         if( comboBoxTargetLanguage == null ) {
@@ -198,7 +202,7 @@ public class TranslationStartDialog extends JFrame {
     /**
      * This method initializes CBoxSourceLanguage
      *
-     * @return javax.swing.JComboBox
+     * @return JComboBox
      */
 	private JComboBox<ComboBoxEntry> getCBoxSourceLanguage() {
         if( comboBoxSourceLanguage == null ) {
@@ -246,12 +250,12 @@ public class TranslationStartDialog extends JFrame {
     /**
      * This method initializes jPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJPanel() {
         if( jPanel == null ) {
             final FlowLayout flowLayout = new FlowLayout();
-            flowLayout.setAlignment(java.awt.FlowLayout.RIGHT);
+            flowLayout.setAlignment(FlowLayout.RIGHT);
             jPanel = new JPanel();
             jPanel.setLayout(flowLayout);
             jPanel.add(getBok(), null);
@@ -263,14 +267,14 @@ public class TranslationStartDialog extends JFrame {
     /**
      * This method initializes Bok
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBok() {
         if( Bok == null ) {
             Bok = new JButton();
             Bok.setText("Ok");
-            Bok.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bok.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     ComboBoxEntry cbe;
                     cbe = (ComboBoxEntry) getCBoxSourceLanguage().getSelectedItem();
                     final String sourceLanguageName = cbe.getLocale().getLanguage();
@@ -342,8 +346,8 @@ public class TranslationStartDialog extends JFrame {
         if( Bcancel == null ) {
             Bcancel = new JButton();
             Bcancel.setText("Cancel");
-            Bcancel.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bcancel.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     setVisible(false);
                     dispose();
                 }

@@ -124,7 +124,7 @@ public class FcpRequest {
                 try {
                     results = connection.getKeyToFile(type, key, target, maxSize, maxRetries, dlItem);
                     break;
-                } catch( final java.net.ConnectException e ) {
+                } catch( final ConnectException e ) {
                     tries++;
                     continue;
                 } catch( final DataNotFoundException ex ) { // frost.FcpTools.DataNotFoundException

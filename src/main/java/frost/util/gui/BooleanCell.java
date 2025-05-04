@@ -55,9 +55,6 @@ public class BooleanCell {
 			setHorizontalAlignment(SwingConstants.CENTER);	
 		}
 
-		/* (non-Javadoc)
-		 * @see javax.swing.table.TableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
-		 */
 		public Component getTableCellRendererComponent(
 			JTable table,
 			Object value,

@@ -23,7 +23,12 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -88,49 +93,49 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes jContentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
             final GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
-            gridBagConstraints31.fill = java.awt.GridBagConstraints.NONE;
+            gridBagConstraints31.fill = GridBagConstraints.NONE;
             gridBagConstraints31.gridy = 10;
             gridBagConstraints31.weightx = 0.0;
             gridBagConstraints31.gridwidth = 1;
-            gridBagConstraints31.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints31.insets = new java.awt.Insets(5,15,5,0);
+            gridBagConstraints31.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints31.insets = new Insets(5,15,5,0);
             gridBagConstraints31.gridx = 0;
             final GridBagConstraints gridBagConstraints22 = new GridBagConstraints();
             gridBagConstraints22.gridx = 0;
-            gridBagConstraints22.insets = new java.awt.Insets(15,5,0,0);
+            gridBagConstraints22.insets = new Insets(15,5,0,0);
             gridBagConstraints22.gridwidth = 2;
-            gridBagConstraints22.anchor = java.awt.GridBagConstraints.NORTHWEST;
+            gridBagConstraints22.anchor = GridBagConstraints.NORTHWEST;
             gridBagConstraints22.gridy = 9;
             final GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
             gridBagConstraints21.gridx = 0;
-            gridBagConstraints21.insets = new java.awt.Insets(0,10,0,0);
-            gridBagConstraints21.anchor = java.awt.GridBagConstraints.NORTHWEST;
+            gridBagConstraints21.insets = new Insets(0,10,0,0);
+            gridBagConstraints21.anchor = GridBagConstraints.NORTHWEST;
             gridBagConstraints21.gridy = 3;
             final GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
             gridBagConstraints7.gridx = 0;
             gridBagConstraints7.gridwidth = 2;
-            gridBagConstraints7.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints7.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints7.gridy = 11;
             final GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
             gridBagConstraints2.gridx = 0;
-            gridBagConstraints2.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints2.insets = new java.awt.Insets(0,10,0,0);
+            gridBagConstraints2.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints2.insets = new Insets(0,10,0,0);
             gridBagConstraints2.gridy = 2;
             final GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
             gridBagConstraints1.gridx = 0;
-            gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints1.insets = new java.awt.Insets(0,10,0,0);
+            gridBagConstraints1.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints1.insets = new Insets(0,10,0,0);
             gridBagConstraints1.gridy = 1;
             final GridBagConstraints gridBagConstraints = new GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints.insets = new java.awt.Insets(3,3,0,3);
-            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints.insets = new Insets(3,3,0,3);
+            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints.weightx = 1.0;
             gridBagConstraints.gridwidth = 1;
             gridBagConstraints.gridy = 0;
@@ -152,12 +157,12 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes Pbuttons
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getPbuttons() {
         if( Pbuttons == null ) {
             final FlowLayout flowLayout = new FlowLayout();
-            flowLayout.setAlignment(java.awt.FlowLayout.RIGHT);
+            flowLayout.setAlignment(FlowLayout.RIGHT);
             Pbuttons = new JPanel();
             Pbuttons.setLayout(flowLayout);
             Pbuttons.add(getBok(), null);
@@ -169,14 +174,14 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes Bexit
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBexit() {
         if( Bexit == null ) {
             Bexit = new JButton();
             Bexit.setText(language.getString("Common.exit"));
-            Bexit.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bexit.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     exitChoosed = true;
                     setVisible(false);
                     dispose();
@@ -189,14 +194,14 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes Bok
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBok() {
         if( Bok == null ) {
             Bok = new JButton();
             Bok.setText(language.getString("Common.ok"));
-            Bok.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bok.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     exitChoosed = false;
                     if( getCBoverrideHostAndPort().isSelected() ) {
                         ownHostAndPort = getTFhostAndPort().getText();
@@ -221,14 +226,14 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes CBoverrideHostAndPort
      *
-     * @return javax.swing.JCheckBox
+     * @return JCheckBox
      */
     private JCheckBox getCBoverrideHostAndPort() {
         if( CBoverrideHostAndPort == null ) {
             CBoverrideHostAndPort = new JCheckBox();
             CBoverrideHostAndPort.setText(language.getString("FirstStartupDialog.overrideFcpHost.label"));
-            CBoverrideHostAndPort.addItemListener(new java.awt.event.ItemListener() {
-                public void itemStateChanged(final java.awt.event.ItemEvent e) {
+            CBoverrideHostAndPort.addItemListener(new ItemListener() {
+                public void itemStateChanged(final ItemEvent e) {
                     getTFhostAndPort().setEnabled(getCBoverrideHostAndPort().isSelected());
                 }
             });
@@ -239,7 +244,7 @@ public class FirstStartupDialog extends JDialog {
     /**
      * This method initializes TFhostAndPort
      *
-     * @return javax.swing.JTextField
+     * @return JTextField
      */
     private JTextField getTFhostAndPort() {
         if( TFhostAndPort == null ) {

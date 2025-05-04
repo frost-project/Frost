@@ -34,8 +34,9 @@ import javax.swing.SwingConstants;
 import frost.Settings;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class JunkPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
     private Settings settings = null;
     private Language language = null;

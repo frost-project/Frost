@@ -271,6 +271,7 @@ public class TOF implements PropertyChangeListener {
         final FrostMessageObject newMsg = new FrostMessageObject(currentMsg, owner, board, index);
         receivedValidMessage(newMsg, board, index);
     }
+
     /**
      * Add new valid msg to database
      */
@@ -547,6 +548,7 @@ public class TOF implements PropertyChangeListener {
                 blockMsgBody = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BODY_ENABLED);
                 blockMsgBoardname = Core.frostSettings.getBoolean(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED);
             }
+
             public boolean messageRetrieved(final FrostMessageObject mo) {
                 if( !isBlocked(mo, board, blockMsgSubject, blockMsgBody, blockMsgBoardname) ) {
                     rootNode.add(mo);
@@ -571,10 +573,12 @@ public class TOF implements PropertyChangeListener {
             public ThreadedMessageRetrieval(final FrostMessageObject root) {
                 rootNode = root;
             }
+
             public boolean messageRetrieved(final FrostMessageObject mo) {
                 messageList.add(mo);
                 return isCancel();
             }
+
             public void buildThreads() {
                 // messageList was filled by callback
 
@@ -797,7 +801,6 @@ public class TOF implements PropertyChangeListener {
          * Start to load messages one by one.
          */
         private void loadMessages(final MessageCallback callback) {
-
             final boolean showDeletedMessages = Core.frostSettings.getBoolean("showDeletedMessages");
             final boolean showUnreadOnly = Core.frostSettings.getBoolean(Settings.SHOW_UNREAD_ONLY);
             final boolean showFlaggedOnly = Core.frostSettings.getBoolean(Settings.SHOW_FLAGGED_ONLY);

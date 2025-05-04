@@ -21,6 +21,7 @@ package frost.gui;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Iterator;
 
@@ -225,12 +226,12 @@ public class SortedTable<T extends TableMember<T>> extends JTable {
 
 		if( selectedRows.length > 0 ) {
 			// Sort - needed for binary search!
-			java.util.Arrays.sort( selectedRows );
+			Arrays.sort( selectedRows );
 			SortedTableModel<T> sortedTableModel = getModel();
 			
 			// Traverse all entries and look if they are not in the list of selected items
 			for( int z = sortedTableModel.getRowCount() - 1 ; z > -1 ; z--) {
-				if( java.util.Arrays.binarySearch(selectedRows, z) < 0) {
+				if( Arrays.binarySearch(selectedRows, z) < 0) {
 					sortedTableModel.deleteRow(z);
 				}
 			}

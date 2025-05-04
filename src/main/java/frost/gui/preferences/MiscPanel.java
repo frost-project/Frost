@@ -36,8 +36,9 @@ import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
-class MiscPanel extends JPanel {
+public class MiscPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger =  LoggerFactory.getLogger(MiscPanel.class);
 

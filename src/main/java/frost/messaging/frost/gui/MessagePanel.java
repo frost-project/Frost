@@ -34,6 +34,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.LinkedList;
@@ -96,8 +97,9 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class MessagePanel extends JPanel implements PropertyChangeListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(MessagePanel.class);
 
@@ -237,11 +239,11 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-	private class PopupMenuSubjectText
-        extends JSkinnablePopupMenu
-        implements ActionListener, LanguageListener
-    {
-        JMenuItem copySubjectText = new JMenuItem();
+	private class PopupMenuSubjectText extends JSkinnablePopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
+
+		private JMenuItem copySubjectText = new JMenuItem();
 
         public PopupMenuSubjectText() {
             super();
@@ -274,9 +276,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-	private class PopupMenuMessageTable
-        extends JSkinnablePopupMenu
-        implements ActionListener, LanguageListener {
+	private class PopupMenuMessageTable extends JSkinnablePopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
 
         private final JMenuItem markAllMessagesReadItem = new JMenuItem();
         private final JMenuItem markSelectedMessagesReadItem = new JMenuItem();
@@ -837,6 +839,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
     // assign F5 key - start board update
         final Action boardUpdateAction = new AbstractAction() {
+
+		private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 final TofTree tofTree = frostMessageTab.getTofTree();
                 final Board selectedBoard = tofTree.getSelectedBoard();
@@ -851,6 +856,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
     // assign DELETE key - delete message
         final Action deleteMessageAction = new AbstractAction() {
+
+		private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 deleteSelectedMessage();
             }
@@ -863,6 +871,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
     // assign ENTER key - open message viewer
         final Action openMessageAction = new AbstractAction() {
+
+		private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 showCurrentMessagePopupWindow();
             }
@@ -871,6 +882,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
     // assign N key - next unread (to whole news panel, including tree)
         this.getActionMap().put("NEXT_MSG", new AbstractAction() {
+
+		private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 selectNextUnreadMessage();
             }
@@ -880,6 +894,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign B key - set BAD
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_B, 0), "SET_BAD");
         this.getActionMap().put("SET_BAD", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 setTrustState_actionPerformed(IdentityState.BAD);
             }
@@ -888,6 +905,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign G key - set GOOD
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_G, 0), "SET_GOOD");
         this.getActionMap().put("SET_GOOD", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 setTrustState_actionPerformed(IdentityState.GOOD);
             }
@@ -896,6 +916,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign C key - set CHECK
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_C, 0), "SET_CHECK");
         this.getActionMap().put("SET_CHECK", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 setTrustState_actionPerformed(IdentityState.CHECK);
             }
@@ -904,6 +927,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign O key - set OBSERVE
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_O, 0), "SET_OBSERVE");
         this.getActionMap().put("SET_OBSERVE", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 setTrustState_actionPerformed(IdentityState.OBSERVE);
             }
@@ -912,6 +938,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign F key - toggle FLAGGED
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_F, 0), "TOGGLE_FLAGGED");
         this.getActionMap().put("TOGGLE_FLAGGED", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 updateBooleanState(BooleanState.FLAGGED);
             }
@@ -920,6 +949,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign S key - toggle STARRED
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "TOGGLE_STARRED");
         this.getActionMap().put("TOGGLE_STARRED", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 updateBooleanState(BooleanState.STARRED);
             }
@@ -928,6 +960,9 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     // assign J key - toggle JUNK
         this.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_J, 0), "TOGGLE_JUNK");
         this.getActionMap().put("TOGGLE_JUNK", new AbstractAction() {
+
+			private static final long serialVersionUID = 1L;
+
             public void actionPerformed(final ActionEvent event) {
                 updateBooleanState(BooleanState.JUNK);
             }
@@ -1632,7 +1667,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     /**
      * @return a list of all selected, non dummy messages; or an empty list
      */
-    private java.util.List<FrostMessageObject> getSelectedMessages() {
+    private List<FrostMessageObject> getSelectedMessages() {
         if( (messageTable.getSelectedRowCount() <= 1) && !isCorrectlySelectedMessage() ) {
             return Collections.emptyList();
         }
@@ -1643,7 +1678,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
             return Collections.emptyList();
         }
 
-        final java.util.List<FrostMessageObject> msgs = new ArrayList<FrostMessageObject>(rows.length);
+        final List<FrostMessageObject> msgs = new ArrayList<FrostMessageObject>(rows.length);
         for( final int ix : rows ) {
             final FrostMessageObject targetMessage = (FrostMessageObject)getMessageTableModel().getRow(ix);
             if( (targetMessage != null) && !targetMessage.isDummy() ) {
@@ -1767,7 +1802,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
             if (initial != null) {
 
             	final TreeNode[] path = initial.getPath();
-            	final java.util.List<TreeNode> path_list = java.util.Arrays.asList(path);
+            	final List<TreeNode> path_list = Arrays.asList(path);
 
             	for( int idx = initial.getLevel(); (idx > 0) && (nextMessage == null); idx-- ) {
             		final FrostMessageObject parent = (FrostMessageObject) path[idx];

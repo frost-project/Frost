@@ -411,7 +411,7 @@ public class FileAccess {
     /**
     * Create given directory
     */
-   public static boolean createDir(final java.io.File dir) {
+   public static boolean createDir(final File dir) {
        if( dir.isDirectory() ) {
     	   return true;
        }

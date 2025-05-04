@@ -30,47 +30,27 @@ public class PersonAttachment extends Attachment {
 
 	private Identity identity;
 
-	/**
-	 * @param e
-	 * @throws SAXException
-	 */
 	public PersonAttachment(final Element e) throws SAXException {
 		loadXMLElement(e);
 	}
 
-	/**
-	 * @param newIdentity
-	 */
 	public PersonAttachment(final Identity newIdentity) {
 		identity = newIdentity;
 	}
 
-	/*
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
 	public int compareTo(Attachment attachment) {
 		return toString().compareTo(attachment.toString());
 	}
 
-
-	/**
-	 * @return
-	 */
 	public Identity getIdentity() {
 		return identity;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.messages.Attachment#getType()
-	 */
 	@Override
     public int getType() {
 		return Attachment.PERSON;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.XMLizable#getXMLElement(org.w3c.dom.Document)
-	 */
 	public Element getXMLElement(final Document container) {
 		final Element el = container.createElement("Attachment");
 		el.setAttribute("type", "person");
@@ -78,9 +58,6 @@ public class PersonAttachment extends Attachment {
 		return el;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.XMLizable#loadXMLElement(org.w3c.dom.Element)
-	 */
 	public void loadXMLElement(final Element e) throws SAXException {
 		final Element _person =
 			XMLTools.getChildElementsByTagName(e, "Identity").iterator().next();

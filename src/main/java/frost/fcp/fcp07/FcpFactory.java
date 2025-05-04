@@ -51,9 +51,9 @@ public class FcpFactory {
             } catch (final UnknownHostException e) {
                 logger.error("FcpConnection.getFcpConnectionInstance: UnknownHostException", e);
                 break;
-            } catch (final java.net.ConnectException e) {
-                /*  IOException java.net.ConnectException: Connection refused: connect  */
-                logger.error("FcpConnection.getFcpConnectionInstance: java.net.ConnectException, this was try {}/{}", tries + 1, maxTries, e);
+            } catch (final ConnectException e) {
+                /*  IOException ConnectException: Connection refused: connect  */
+                logger.error("FcpConnection.getFcpConnectionInstance: ConnectException, this was try {}/{}", tries + 1, maxTries, e);
             } catch (final IOException e) {
                 logger.error("FcpConnection.getFcpConnectionInstance: IOException, this was try {}/{}", tries + 1, maxTries, e);
             } catch (final Throwable e) {

@@ -25,6 +25,7 @@ import java.awt.Frame;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
 
@@ -200,8 +201,8 @@ public class FileListFileDetailsDialog extends JDialog implements LanguageListen
         if( Bclose == null ) {
             Bclose = new JButton();
             Bclose.setText(language.getString("FileListFileDetailsDialog.button.close"));
-            Bclose.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bclose.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     saveLayout();
                     setVisible(false);
                 }

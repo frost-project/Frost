@@ -36,9 +36,6 @@ public class JTranslatableTabbedPane extends JTabbedPane implements LanguageList
 
 	private Language language;
 
-	/**
-	 * @param language
-	 */
 	public JTranslatableTabbedPane(Language language) {
 		super();
 		this.language = language;
@@ -53,7 +50,7 @@ public class JTranslatableTabbedPane extends JTabbedPane implements LanguageList
 	 * This method returns the localized title
 	 * of the tab in the specified position.
 	 * 
-	 * @see javax.swing.JTabbedPane#getTitleAt(int)
+	 * @see JTabbedPane#getTitleAt(int)
 	 */
 	@Override
     public String getTitleAt(int index) {
@@ -66,7 +63,7 @@ public class JTranslatableTabbedPane extends JTabbedPane implements LanguageList
 	 * has the Language key passed as a parameter, 
 	 * or -1 if no one was found.
 	 * 
-	 * @see javax.swing.JTabbedPane#indexOfTab(java.lang.String)
+	 * @see JTabbedPane#indexOfTab(String)
 	 */
 	@Override
     public int indexOfTab(String key) {
@@ -78,12 +75,8 @@ public class JTranslatableTabbedPane extends JTabbedPane implements LanguageList
 		return -1;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-	 */
 	public void languageChanged(LanguageEvent event) {
 		revalidate();
 		repaint();
 	}
-
 }

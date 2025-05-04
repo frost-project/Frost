@@ -29,6 +29,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 import org.slf4j.Logger;
@@ -74,7 +75,7 @@ public class SmileyChooserDialog extends JDialog {
 
     protected class Listener implements MouseListener {
         public void mouseClicked(final MouseEvent e) {
-            if( javax.swing.SwingUtilities.isLeftMouseButton(e) ) {
+            if( SwingUtilities.isLeftMouseButton(e) ) {
                 if( e.getSource() instanceof SmileyImage ) {
                     final SmileyImage si = (SmileyImage)e.getSource();
                     iconChoosed(si.getSmileyText());

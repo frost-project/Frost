@@ -27,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.Box.Filler;
@@ -355,7 +356,7 @@ public class SearchPanel extends JPanel implements LanguageListener {
         public void doLayout() {
             // Note: BoxLayout uses the maximumSize!
             int nonJtextfieldComponentsWidth = 0;
-            final java.util.List<Integer> jtextfieldIndices = new ArrayList<Integer>(); // yes we use autoboxing
+            final List<Integer> jtextfieldIndices = new ArrayList<Integer>(); // yes we use autoboxing
             for (int x=0; x<getComponentCount(); x++) {
                 final Component c = getComponent(x);
                 if (c==null) {

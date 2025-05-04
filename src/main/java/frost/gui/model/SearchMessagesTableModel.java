@@ -49,17 +49,11 @@ public class SearchMessagesTableModel extends SortedTableModel<FrostSearchResult
         refreshLanguage();
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#isCellEditable(int, int)
-     */
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getColumnName(int)
-     */
     @Override
     public String getColumnName(int column) {
         if( column >= 0 && column < columnNames.length )
@@ -67,17 +61,11 @@ public class SearchMessagesTableModel extends SortedTableModel<FrostSearchResult
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getColumnCount()
-     */
     @Override
     public int getColumnCount() {
         return columnNames.length;
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.table.TableModel#getColumnClass(int)
-     */
     @Override
     public Class<?> getColumnClass(int column) {
         if( column >= 0 && column < columnClasses.length )
@@ -85,9 +73,6 @@ public class SearchMessagesTableModel extends SortedTableModel<FrostSearchResult
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-     */
     public void languageChanged(LanguageEvent event) {
         refreshLanguage();
     }

@@ -35,8 +35,10 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -93,8 +95,9 @@ import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
 import frost.util.gui.translation.LanguageListener;
 
-@SuppressWarnings("serial")
 public class MessageTextPane extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(MessageTextPane.class);
 
@@ -302,7 +305,11 @@ public class MessageTextPane extends JPanel {
         // build attached boards scroll pane
         attachedBoardsModel = new AttachedBoardTableModel();
         boardsTable = new JTable(attachedBoardsModel) {
-            DescColumnRenderer descColRenderer = new DescColumnRenderer();
+
+			private static final long serialVersionUID = 1L;
+
+			private DescColumnRenderer descColRenderer = new DescColumnRenderer();
+
             @Override
             public TableCellRenderer getCellRenderer(final int row, final int column) {
                 if( column == 2 ) {
@@ -310,8 +317,12 @@ public class MessageTextPane extends JPanel {
                 }
                 return super.getCellRenderer(row, column);
             }
+
             // renderer that show a tooltip text, used for the description column
             class DescColumnRenderer extends DefaultTableCellRenderer {
+
+				private static final long serialVersionUID = 1L;
+
                 @Override
                 public Component getTableCellRendererComponent(
                     final JTable table,
@@ -696,9 +707,9 @@ public class MessageTextPane extends JPanel {
     	addKeysInText(currentMessageText);
     }
 
-    private class PopupMenuAttachmentBoard
-    extends JSkinnablePopupMenu
-    implements ActionListener, LanguageListener {
+	private class PopupMenuAttachmentBoard extends JSkinnablePopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
 
 //        private JMenuItem cancelItem = new JMenuItem();
         private final JMenuItem saveBoardsItem = new JMenuItem();
@@ -753,9 +764,9 @@ public class MessageTextPane extends JPanel {
         }
     }
 
-    private class PopupMenuAttachmentFile
-        extends JSkinnablePopupMenu
-        implements ActionListener, LanguageListener {
+	private class PopupMenuAttachmentFile extends JSkinnablePopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
 
 //        private JMenuItem cancelItem = new JMenuItem();
         private final JMenuItem saveAttachmentItem = new JMenuItem();
@@ -863,8 +874,8 @@ public class MessageTextPane extends JPanel {
                 // maybe convert html codes (e.g. %2c -> , )
                 if( filename.indexOf("%") > 0 ) {
                     try {
-                        filename = java.net.URLDecoder.decode(filename, "UTF-8");
-                    } catch (final java.io.UnsupportedEncodingException ex) {
+                        filename = URLDecoder.decode(filename, "UTF-8");
+                    } catch (final UnsupportedEncodingException ex) {
                         logger.error("Decode of HTML code failed", ex);
                     }
                 }
@@ -923,9 +934,9 @@ public class MessageTextPane extends JPanel {
         }
     }
 
-	private class PopupMenuHyperLink
-    extends JSkinnablePopupMenu
-    implements ActionListener, LanguageListener {
+	private class PopupMenuHyperLink extends JSkinnablePopupMenu implements ActionListener, LanguageListener {
+
+		private static final long serialVersionUID = 1L;
 
         private final JMenuItem cancelItem = new JMenuItem();
 
@@ -1084,8 +1095,8 @@ public class MessageTextPane extends JPanel {
                 // maybe convert html codes (e.g. %2c -> , )
                 if( name.indexOf("%") >= 0 ) {
                     try {
-                        name = java.net.URLDecoder.decode(name, "UTF-8");
-                    } catch (final java.io.UnsupportedEncodingException ex) {
+                        name = URLDecoder.decode(name, "UTF-8");
+                    } catch (final UnsupportedEncodingException ex) {
                         logger.error("Decode of HTML code failed", ex);
                     }
                 }
@@ -1150,15 +1161,14 @@ public class MessageTextPane extends JPanel {
     }
 
     private void openFileInBrowser_action(final List<String> items) {
-		if (!java.awt.Desktop.isDesktopSupported()) {
+		if (!Desktop.isDesktopSupported()) {
 			return;
 		}
-		if (!Desktop.getDesktop().isSupported(java.awt.Desktop.Action.BROWSE)) {
+		if (!Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 			return;
 		}
 
-		final String browserAddress = Core.frostSettings
-				.getString(Settings.BROWSER_ADDRESS);
+		final String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
 		if (browserAddress.length() == 0) {
 			logger.warn("Browser address not configured");
 			return;

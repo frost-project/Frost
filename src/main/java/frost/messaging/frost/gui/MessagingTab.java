@@ -393,51 +393,51 @@ public class MessagingTab extends JPanel implements LanguageListener {
             MiscToolkit.configureButton(configBoardButton, "MainFrame.toolbar.tooltip.configureBoard", language);
 
             // add action listener
-            knownBoardsButton.addActionListener(new java.awt.event.ActionListener() {
+            knownBoardsButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofDisplayKnownBoardsMenuItem_actionPerformed(e);
                 }
             });
-            searchMessagesButton.addActionListener(new java.awt.event.ActionListener() {
+            searchMessagesButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     startSearchMessagesDialog();
                 }
             });
-            newBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            newBoardButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofTree.createNewBoard(mainFrame);
                 }
             });
-            newFolderButton.addActionListener(new java.awt.event.ActionListener() {
+            newFolderButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofTree.createNewFolder(mainFrame);
                 }
             });
-            renameFolderButton.addActionListener(new java.awt.event.ActionListener() {
+            renameFolderButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     renameFolder((Folder)tofTreeModel.getSelectedNode());
                 }
             });
-            removeBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            removeBoardButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofTree.removeNode(tofTreeModel.getSelectedNode());
                 }
             });
 
-            configBoardButton.addActionListener(new java.awt.event.ActionListener() {
+            configBoardButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofTree.configureBoard(tofTreeModel.getSelectedNode());
                 }
             });
 
-            systemTrayButton.addActionListener(new java.awt.event.ActionListener() {
+            systemTrayButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     if (SystraySupport.isInitialized()) {
                         SystraySupport.minimizeToTray();
                     }
                 }
             });
-            boardInfoButton.addActionListener(new java.awt.event.ActionListener() {
+            boardInfoButton.addActionListener(new ActionListener() {
                 public void actionPerformed(final ActionEvent e) {
                     tofDisplayBoardInfoMenuItem_actionPerformed(e);
                 }

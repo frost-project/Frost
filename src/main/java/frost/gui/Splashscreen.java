@@ -140,9 +140,6 @@ public class Splashscreen extends JDialog {
         }
     }
 
-    /* (non-Javadoc)
-     * @see java.awt.Component#setVisible(boolean)
-     */
     @Override
     public void setVisible(final boolean b) {
         if (!noSplash) {

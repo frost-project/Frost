@@ -3,7 +3,10 @@ package frost.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -50,8 +53,9 @@ import frost.util.gui.JSkinnablePopupMenu;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
 public class AddNewUploadsDialog extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(AddNewUploadsDialog.class);
 
@@ -88,7 +92,7 @@ public class AddNewUploadsDialog extends JFrame {
 			int height = (int) (parentFrame.getHeight() * 0.75);
 
 			if( width < 1000 ) {
-				Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 				if( screenSize.width > 1300 ) {
 					width = 1200;
@@ -99,7 +103,7 @@ public class AddNewUploadsDialog extends JFrame {
 			}
 
 			if( height < 500 ) {
-				Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 				if( screenSize.width > 900 ) {
 					height = 800;
@@ -116,7 +120,7 @@ public class AddNewUploadsDialog extends JFrame {
 			
 			// Add Button
 			final JButton addButton = new JButton(language.getString("Common.add"));
-			addButton.addActionListener( new java.awt.event.ActionListener() {
+			addButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					List<FrostUploadItem> frostUploadItmeList = addFileChooser();
 					for( final FrostUploadItem frotUploadItem : frostUploadItmeList) {
@@ -127,7 +131,7 @@ public class AddNewUploadsDialog extends JFrame {
 			
 			// Remove selected button
 			final JButton removeSelectedButton = new JButton(language.getString("AddNewUploadsDialog.button.removeSelected"));
-			removeSelectedButton.addActionListener( new java.awt.event.ActionListener() {
+			removeSelectedButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					addNewUploadsTable.removeSelected();
 				}
@@ -135,7 +139,7 @@ public class AddNewUploadsDialog extends JFrame {
 
 			// Remove but selected button
 			final JButton removeButSeelctedButton = new JButton(language.getString("AddNewUploadsDialog.button.removeButSelected"));
-			removeButSeelctedButton.addActionListener( new java.awt.event.ActionListener() {
+			removeButSeelctedButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					addNewUploadsTable.removeButSelected();
 				}
@@ -143,7 +147,7 @@ public class AddNewUploadsDialog extends JFrame {
 			
 			// OK Button
 			final JButton okButton = new JButton(language.getString("Common.ok"));
-			okButton.addActionListener( new java.awt.event.ActionListener() {
+			okButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					FileTransferManager.inst().getUploadManager().getModel().addUploadItemList(getUploads());
 					
@@ -153,7 +157,7 @@ public class AddNewUploadsDialog extends JFrame {
 
 			// Cancel Button
 			final JButton cancelButton = new JButton(language.getString("Common.cancel"));
-			cancelButton.addActionListener( new java.awt.event.ActionListener() {
+			cancelButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					addNewUploadsTableModel.clearDataModel();
 					dispose();
@@ -221,7 +225,7 @@ public class AddNewUploadsDialog extends JFrame {
 	private void initTablePopupMenu() {
 		// Rename
 		final JMenuItem renameMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.rename"));
-		renameMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		renameMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.new SelectedItemsAction() {
 					protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -236,7 +240,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Add Prefix
 		final JMenuItem addPrefixMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.addPrefix"));
-		addPrefixMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		addPrefixMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				final String fileNamePrefix = JOptionPane.showInputDialog(
 						AddNewUploadsDialog.this,
@@ -257,7 +261,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Enable compression
 		final JMenuItem enableCompressionMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.enableCompression"));
-		enableCompressionMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		enableCompressionMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.new SelectedItemsAction() {
 					protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -270,7 +274,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Disable compression
 		final JMenuItem disableCompressionMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.disableCompression"));
-		disableCompressionMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		disableCompressionMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.new SelectedItemsAction() {
 					protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -285,7 +289,7 @@ public class AddNewUploadsDialog extends JFrame {
 		final JMenu changeFreenetCompatibilityModeMenu = new JMenu(language.getString("AddNewUploadsDialog.popupMenu.changeFreenetCompatibilityMode"));
 		for(final FreenetCompatibilityMode freenetCompatibilityMode : FreenetCompatibilityMode.values()) {
 			JMenuItem changeFreenetCompatibilityModeMenutItem = new JMenuItem(freenetCompatibilityMode.toString());
-			changeFreenetCompatibilityModeMenutItem.addActionListener(new java.awt.event.ActionListener() {
+			changeFreenetCompatibilityModeMenutItem.addActionListener(new ActionListener() {
 				public void actionPerformed(final ActionEvent actionEvent) {
 					addNewUploadsTable.new SelectedItemsAction() {
 						protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -302,7 +306,7 @@ public class AddNewUploadsDialog extends JFrame {
 		final JMenu changePriorityMenu = new JMenu(language.getString("Common.priority.changePriority"));
 		for(final FreenetPriority priority : FreenetPriority.values()) {
 			JMenuItem priorityMenuItem = new JMenuItem(priority.getName());
-			priorityMenuItem.addActionListener(new java.awt.event.ActionListener() {
+			priorityMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(final ActionEvent actionEvent) {
 					addNewUploadsTable.new SelectedItemsAction() {
 						protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -316,7 +320,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Enable upload
 		final JMenuItem enableUploadMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.enableUpload"));
-		enableUploadMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		enableUploadMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.new SelectedItemsAction() {
 					protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -329,7 +333,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Disable upload
 		final JMenuItem disableUploadMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.popupMenu.disableUpload"));
-		disableUploadMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		disableUploadMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.new SelectedItemsAction() {
 					protected void action(AddNewUploadsTableMember addNewUploadsTableMember) {
@@ -341,7 +345,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Remove Selected
 		final JMenuItem removeSelectedMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.button.removeSelected"));
-		removeSelectedMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		removeSelectedMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.removeSelected();
 			}
@@ -349,7 +353,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		// Remove But Selected
 		final JMenuItem removeButSelectedMenuItem = new JMenuItem(language.getString("AddNewUploadsDialog.button.removeButSelected"));
-		removeButSelectedMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		removeButSelectedMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewUploadsTable.removeButSelected();
 			}
@@ -616,8 +620,10 @@ public class AddNewUploadsDialog extends JFrame {
 		return frostUploadItemList;
 	}
 
+	private static class AddNewUploadsTableModel extends SortedTableModel<AddNewUploadsTableMember> {
 
-	private static class AddNewUploadsTableModel extends SortedTableModel<AddNewUploadsTableMember>{ 
+		private static final long serialVersionUID = 1L;
+
 		private Language language = null;
 
 		protected static String columnNames[];
@@ -723,9 +729,11 @@ public class AddNewUploadsDialog extends JFrame {
 			return defaultColumnWidthRatio;
 		}
 	}
-	
+
 	private class AddNewUploadsTable extends SortedTable<AddNewUploadsTableMember> {
-		
+
+		private static final long serialVersionUID = 1L;
+
 		public AddNewUploadsTable(SortedTableModel<AddNewUploadsTableMember> model) {
 			super(model);
 			this.setIntercellSpacing(new Dimension(5, 1));
@@ -733,7 +741,7 @@ public class AddNewUploadsDialog extends JFrame {
 
 		@Override
 		public String getToolTipText(final MouseEvent mouseEvent) {
-			final java.awt.Point point = mouseEvent.getPoint();
+			final Point point = mouseEvent.getPoint();
 			final int rowIndex = rowAtPoint(point);
 			final int colIndex = columnAtPoint(point);
 			final int realColumnIndex = convertColumnIndexToModel(colIndex);

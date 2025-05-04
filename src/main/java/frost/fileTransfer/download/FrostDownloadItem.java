@@ -17,6 +17,8 @@
 */
 package frost.fileTransfer.download;
 
+import java.io.File;
+
 import frost.Core;
 import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
@@ -353,7 +355,7 @@ public class FrostDownloadItem extends ModelItem<FrostDownloadItem> implements C
 
     public boolean setDownloadDir(final String dir) {
     	String dirName = FileAccess.appendSeparator(dir);
-    	if( FileAccess.createDir(new java.io.File(dirName)) ) {
+		if (FileAccess.createDir(new File(dirName))) {
     		downloadDir = dirName;
     		return true;
     	}

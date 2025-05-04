@@ -95,7 +95,7 @@ public class LinkEditorKit extends StyledEditorKit {
 		 */
 		@Override
         public void mousePressed(MouseEvent e) {
-//			if (!javax.swing.SwingUtilities.isLeftMouseButton(e))
+//			if (!SwingUtilities.isLeftMouseButton(e))
 //				return;
 			JEditorPane p = (JEditorPane)e.getComponent();
 			if (p.isEditable())
@@ -110,7 +110,7 @@ public class LinkEditorKit extends StyledEditorKit {
 		 */
 		@Override
         public void mouseReleased(MouseEvent e)	{
-//			if (!javax.swing.SwingUtilities.isLeftMouseButton(e) || activeElement == null) {
+//			if (!SwingUtilities.isLeftMouseButton(e) || activeElement == null) {
 //                return;
 //            }
             if (activeElement == null) {

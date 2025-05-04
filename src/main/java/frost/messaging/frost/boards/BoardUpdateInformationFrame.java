@@ -88,10 +88,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
 
     private final TofTreeModel tofTreeModel;
 
-    /**
-     * @param parentFrame
-     * @param tofTree
-     */
     public BoardUpdateInformationFrame(final JFrame parentFrame, final TofTree tofTree) {
         super();
         this.tofTree = tofTree;
@@ -103,9 +99,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         setLocationRelativeTo(parentFrame);
     }
 
-    /**
-     *
-     */
     private void initGUI() {
         try {
             getContentPane().setLayout(new BorderLayout());
@@ -209,16 +202,10 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         }
     }
 
-    /**
-     *
-     */
     private void clearTaContent() {
         taContent.setText("No informations available");
     }
 
-    /**
-     * @param evt
-     */
     private void cbBoardsActionPerformed(final ActionEvent evt) {
 		JComboBox<?> cb = (JComboBox<?>) evt.getSource();
         final Board selectedBoard = (Board)cb.getSelectedItem();
@@ -240,9 +227,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         }
     }
 
-    /**
-     * @param evt
-     */
     private void cbDatesActionPerformed(final ActionEvent evt) {
 		JComboBox<?> cb = (JComboBox<?>) evt.getSource();
         final BoardUpdateInformation selectedItem = (BoardUpdateInformation)cb.getSelectedItem();
@@ -273,9 +257,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         }
     }
 
-    /**
-     *
-     */
     public void startDialog() {
         tofTree.getRunningBoardUpdateThreads().addBoardUpdateThreadListener(this);
         MainFrame.getInstance().getMessagingTab().getTofTree().addTreeSelectionListener(this);
@@ -284,9 +265,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         setVisible(true);
     }
 
-    /**
-     *
-     */
     private void closeDialog() {
         MainFrame.getInstance().getMessagingTab().getTofTree().removeTreeSelectionListener(this);
         tofTree.getRunningBoardUpdateThreads().removeBoardUpdateThreadListener(this);
@@ -294,16 +272,10 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         dispose();
     }
 
-    /**
-     * @param evt
-     */
     private void BcloseActionPerformed(final ActionEvent evt) {
         closeDialog();
     }
 
-    /* (non-Javadoc)
-     * @see javax.swing.JFrame#processWindowEvent(java.awt.event.WindowEvent)
-     */
     @Override
     protected void processWindowEvent(final WindowEvent e) {
         if( e.getID() == WindowEvent.WINDOW_CLOSING ) {
@@ -313,16 +285,10 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
         super.processWindowEvent(e);
     }
 
-    /**
-     * @return
-     */
     public static boolean isDialogShowing() {
         return isShowing;
     }
 
-    /**
-     * @param val
-     */
     public static void setDialogShowing(final boolean val) {
         isShowing = val;
     }
@@ -338,14 +304,11 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
     /**
      * Is called if a Thread is started.
      *
-     * @see frost.messaging.frost.boards.BoardUpdateThreadListener#boardUpdateThreadStarted(frost.messaging.frost.boards.BoardUpdateThread)
+     * @see BoardUpdateThreadListener#boardUpdateThreadStarted(BoardUpdateThread)
      */
     public void boardUpdateThreadStarted(final BoardUpdateThread thread) {
     }
 
-    /* (non-Javadoc)
-     * @see frost.messaging.frost.boards.BoardUpdateThreadListener#boardUpdateInformationChanged(frost.messaging.frost.boards.BoardUpdateThread, frost.messaging.frost.boards.BoardUpdateInformation)
-     */
     public void boardUpdateInformationChanged(final BoardUpdateThread thread, final BoardUpdateInformation bui) {
 
        SwingUtilities.invokeLater(new Runnable() {
@@ -355,10 +318,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
        });
     }
 
-    /**
-     * @param thread
-     * @param bui
-     */
     private void updateGui(final BoardUpdateThread thread, final BoardUpdateInformation bui) {
        maybeUpdateSummaryTextArea();
 
@@ -411,9 +370,6 @@ public class BoardUpdateInformationFrame extends JFrame implements BoardUpdateTh
        taContent.setText( bui.getInfoString() );
    }
 
-    /**
-     *
-     */
     private void maybeUpdateSummaryTextArea() {
 
         if (tabbedPane.getSelectedIndex() == 1) {

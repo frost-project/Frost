@@ -532,7 +532,7 @@ public class Settings implements ExitSavable {
      *
      * @see #removePropertyChangeListener
      * @see #getPropertyChangeListeners
-     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #addPropertyChangeListener(String, PropertyChangeListener)
      */
     public synchronized void addPropertyChangeListener(final PropertyChangeListener listener) {
         if (listener == null) {
@@ -553,9 +553,9 @@ public class Settings implements ExitSavable {
      * @param propertyName one of the property names listed above
      * @param listener the PropertyChangeListener to be added
      *
-     * @see #removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
-     * @see #getPropertyChangeListeners(java.lang.String)
-     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #removePropertyChangeListener(String, PropertyChangeListener)
+     * @see #getPropertyChangeListeners(String)
+     * @see #addPropertyChangeListener(String, PropertyChangeListener)
      */
     public synchronized void addPropertyChangeListener(
         final String propertyName,
@@ -598,7 +598,7 @@ public class Settings implements ExitSavable {
      *
      * @see #addPropertyChangeListener
      * @see #getPropertyChangeListeners
-     * @see #removePropertyChangeListener(java.lang.String,java.beans.PropertyChangeListener)
+     * @see #removePropertyChangeListener(String,PropertyChangeListener)
      */
     public synchronized void removePropertyChangeListener(final PropertyChangeListener listener) {
         if ((listener == null) || (changeSupport == null)) {
@@ -616,9 +616,9 @@ public class Settings implements ExitSavable {
      * @param propertyName a valid property name
      * @param listener the PropertyChangeListener to be removed
      *
-     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
-     * @see #getPropertyChangeListeners(java.lang.String)
-     * @see #removePropertyChangeListener(java.beans.PropertyChangeListener)
+     * @see #addPropertyChangeListener(String, PropertyChangeListener)
+     * @see #getPropertyChangeListeners(String)
+     * @see #removePropertyChangeListener(PropertyChangeListener)
      */
     public synchronized void removePropertyChangeListener(
         final String propertyName,
@@ -656,8 +656,8 @@ public class Settings implements ExitSavable {
      *
      * @see      #addPropertyChangeListener
      * @see      #removePropertyChangeListener
-     * @see      #getPropertyChangeListeners(java.lang.String)
-     * @see      java.beans.PropertyChangeSupport#getPropertyChangeListeners
+     * @see      #getPropertyChangeListeners(String)
+     * @see      PropertyChangeSupport#getPropertyChangeListeners
      */
     public synchronized PropertyChangeListener[] getPropertyChangeListeners() {
         if (changeSupport == null) {
@@ -674,8 +674,8 @@ public class Settings implements ExitSavable {
      *         the named property or an empty array if no listeners have
      *         been added
      *
-     * @see #addPropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
-     * @see #removePropertyChangeListener(java.lang.String, java.beans.PropertyChangeListener)
+     * @see #addPropertyChangeListener(String, PropertyChangeListener)
+     * @see #removePropertyChangeListener(String, PropertyChangeListener)
      * @see #getPropertyChangeListeners
      */
     public synchronized PropertyChangeListener[] getPropertyChangeListeners(final String propertyName) {
@@ -762,7 +762,6 @@ public class Settings implements ExitSavable {
         }
         return val;
     }
-
 
     public long getLong(final String key) {
         final String str = (String) settingsHash.get(key);

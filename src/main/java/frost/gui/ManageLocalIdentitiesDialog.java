@@ -24,6 +24,8 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
@@ -109,14 +111,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes jContentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         if( jContentPane == null ) {
             jContentPane = new JPanel();
             jContentPane.setLayout(new BorderLayout());
-            jContentPane.add(getButtonPanel(), java.awt.BorderLayout.SOUTH);
-            jContentPane.add(getMainPanel(), java.awt.BorderLayout.CENTER);
+            jContentPane.add(getButtonPanel(), BorderLayout.SOUTH);
+            jContentPane.add(getMainPanel(), BorderLayout.CENTER);
         }
         return jContentPane;
     }
@@ -124,12 +126,12 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes buttonPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getButtonPanel() {
         if( buttonPanel == null ) {
             final FlowLayout flowLayout = new FlowLayout();
-            flowLayout.setAlignment(java.awt.FlowLayout.RIGHT);
+            flowLayout.setAlignment(FlowLayout.RIGHT);
             buttonPanel = new JPanel();
             buttonPanel.setLayout(flowLayout);
             buttonPanel.add(getBclose(), null);
@@ -140,7 +142,7 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes mainPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getMainPanel() {
         if( mainPanel == null ) {
@@ -148,22 +150,22 @@ public class ManageLocalIdentitiesDialog extends JDialog {
             gridBagConstraints2.gridx = 1;
             gridBagConstraints2.gridheight = 1;
             gridBagConstraints2.weightx = 0.0;
-            gridBagConstraints2.fill = java.awt.GridBagConstraints.VERTICAL;
+            gridBagConstraints2.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints2.weighty = 1.0;
-            gridBagConstraints2.insets = new java.awt.Insets(3,0,0,0);
+            gridBagConstraints2.insets = new Insets(3,0,0,0);
             gridBagConstraints2.gridy = 1;
             final GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-            gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
+            gridBagConstraints1.fill = GridBagConstraints.BOTH;
             gridBagConstraints1.gridy = 1;
             gridBagConstraints1.weightx = 0.3;
             gridBagConstraints1.weighty = 1.0;
-            gridBagConstraints1.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints1.insets = new java.awt.Insets(3,5,3,5);
+            gridBagConstraints1.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints1.insets = new Insets(3,5,3,5);
             gridBagConstraints1.gridx = 0;
             final GridBagConstraints gridBagConstraints = new GridBagConstraints();
             gridBagConstraints.gridx = 0;
-            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints.insets = new java.awt.Insets(5,5,0,5);
+            gridBagConstraints.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints.insets = new Insets(5,5,0,5);
             gridBagConstraints.gridy = 0;
             jLabel = new JLabel();
             jLabel.setText("Local Identities:");
@@ -179,14 +181,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes Bclose
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBclose() {
         if( Bclose == null ) {
             Bclose = new JButton();
             Bclose.setText("ManageLocalIdentities.button.close");
-            Bclose.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            Bclose.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     setVisible(false);
                 }
             });
@@ -197,7 +199,7 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes SPlist
      *
-     * @return javax.swing.JScrollPane
+     * @return JScrollPane
      */
     private JScrollPane getSPlist() {
         if( SPlist == null ) {
@@ -210,7 +212,7 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes jPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJPanel() {
         if( jPanel == null ) {
@@ -221,37 +223,37 @@ public class ManageLocalIdentitiesDialog extends JDialog {
             gridBagConstraints9.gridy = 2;
             final GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
             gridBagConstraints8.gridx = 0;
-            gridBagConstraints8.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints8.insets = new java.awt.Insets(5,3,0,5);
+            gridBagConstraints8.fill = GridBagConstraints.HORIZONTAL;
+            gridBagConstraints8.insets = new Insets(5,3,0,5);
             gridBagConstraints8.gridy = 5;
             final GridBagConstraints gridBagConstraints7 = new GridBagConstraints();
             gridBagConstraints7.gridx = 0;
-            gridBagConstraints7.fill = java.awt.GridBagConstraints.HORIZONTAL;
-            gridBagConstraints7.insets = new java.awt.Insets(15,3,0,5);
+            gridBagConstraints7.fill = GridBagConstraints.HORIZONTAL;
+            gridBagConstraints7.insets = new Insets(15,3,0,5);
             gridBagConstraints7.gridy = 4;
             final GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
             gridBagConstraints6.gridx = 0;
-            gridBagConstraints6.fill = java.awt.GridBagConstraints.VERTICAL;
+            gridBagConstraints6.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints6.weighty = 1.0;
             gridBagConstraints6.gridy = 6;
             Ldummy = new JLabel();
             Ldummy.setText("");
             final GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
             gridBagConstraints5.gridx = 0;
-            gridBagConstraints5.insets = new java.awt.Insets(15,3,0,5);
-            gridBagConstraints5.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints5.insets = new Insets(15,3,0,5);
+            gridBagConstraints5.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints5.gridy = 3;
             final GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
             gridBagConstraints4.gridx = 0;
-            gridBagConstraints4.insets = new java.awt.Insets(5,3,0,5);
-            gridBagConstraints4.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints4.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints4.insets = new Insets(5,3,0,5);
+            gridBagConstraints4.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints4.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints4.gridy = 1;
             final GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
             gridBagConstraints3.gridx = 0;
             gridBagConstraints3.insets = new Insets(0, 3, 0, 5);
-            gridBagConstraints3.anchor = java.awt.GridBagConstraints.NORTHWEST;
-            gridBagConstraints3.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            gridBagConstraints3.anchor = GridBagConstraints.NORTHWEST;
+            gridBagConstraints3.fill = GridBagConstraints.HORIZONTAL;
             gridBagConstraints3.gridy = 0;
             jPanel = new JPanel();
             jPanel.setLayout(new GridBagLayout());
@@ -269,7 +271,7 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes identitiesList
      *
-     * @return javax.swing.JList
+     * @return JList
      */
     private JList<LocalIdentity> getIdentitiesList() {
         if( identitiesList == null ) {
@@ -297,14 +299,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BaddNewIdentity
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBaddNewIdentity() {
         if( BaddNewIdentity == null ) {
             BaddNewIdentity = new JButton();
             BaddNewIdentity.setText("ManageLocalIdentities.button.createNewIdentity");
-            BaddNewIdentity.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BaddNewIdentity.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     final LocalIdentity newIdentity = Core.getIdentitiesManager().createIdentity();
                     if( newIdentity != null ) {
                         getIdentitiesModel().addElement(newIdentity);
@@ -318,14 +320,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BdeleteIdentity
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBdeleteIdentity() {
         if( BdeleteIdentity == null ) {
             BdeleteIdentity = new JButton();
             BdeleteIdentity.setText("ManageLocalIdentities.button.deleteIdentity");
-            BdeleteIdentity.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BdeleteIdentity.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
 
                     final LocalIdentity li = getIdentitiesList().getSelectedValue();
                     if( li == null ) {
@@ -400,14 +402,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BimportIdentityXml
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBimportIdentityXml() {
         if( BimportIdentityXml == null ) {
             BimportIdentityXml = new JButton();
             BimportIdentityXml.setText("ManageLocalIdentities.button.importIdentity");
-            BimportIdentityXml.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BimportIdentityXml.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     final File xmlFile = chooseIdentitiesFile();
                     if( xmlFile == null ) {
                         return;
@@ -556,14 +558,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BimportXml
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBimportXml() {
         if( BimportXml == null ) {
             BimportXml = new JButton();
             BimportXml.setText("ManageLocalIdentities.button.importXml");
-            BimportXml.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BimportXml.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     final File xmlFile = chooseXmlImportFile();
                     if( xmlFile == null ) {
                         return;
@@ -611,14 +613,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BexportXml
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBexportXml() {
         if( BexportXml == null ) {
             BexportXml = new JButton();
             BexportXml.setText("ManageLocalIdentities.button.exportXml");
-            BexportXml.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BexportXml.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
 
                     JOptionPane.showMessageDialog(
                             ManageLocalIdentitiesDialog.this,
@@ -654,14 +656,14 @@ public class ManageLocalIdentitiesDialog extends JDialog {
     /**
      * This method initializes BsetSignature
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBsetSignature() {
         if( BsetSignature == null ) {
             BsetSignature = new JButton();
             BsetSignature.setText("ManageLocalIdentities.button.editSignature");
-            BsetSignature.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(final java.awt.event.ActionEvent e) {
+            BsetSignature.addActionListener(new ActionListener() {
+                public void actionPerformed(final ActionEvent e) {
                     final LocalIdentity li = getIdentitiesList().getSelectedValue();
                     if( li == null ) {
                         return;

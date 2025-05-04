@@ -22,7 +22,10 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -73,8 +76,9 @@ import frost.util.gui.JSkinnablePopupMenu;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
 
-@SuppressWarnings("serial")
-public class AddNewDownloadsDialog extends javax.swing.JFrame {
+public class AddNewDownloadsDialog extends JFrame {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(AddNewDownloadsDialog.class);
 
@@ -112,7 +116,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			int height = (int) (parentFrame.getHeight() * 0.75);
 
 			if( width < 1000 ) {
-				Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 				if( screenSize.width > 1300 ) {
 					width = 1200;
@@ -123,7 +127,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			}
 
 			if( height < 500 ) {
-				Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 				if( screenSize.width > 900 ) {
 					height = 800;
@@ -142,7 +146,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			// Remove already Downloaded Button
 			removeAlreadyDownloadedButton = new JButton(language.getString("AddNewDownloadsDialog.button.removeAlreadyDownloadedButton"));
 			removeAlreadyDownloadedButton.setToolTipText(language.getString("AddNewDownloadsDialog.buttonTooltip.removeAlreadyDownloadedButton"));
-			removeAlreadyDownloadedButton.addActionListener( new java.awt.event.ActionListener() {
+			removeAlreadyDownloadedButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					removeAlreadyDownloadedButton_actionPerformed(e);
 				}
@@ -151,7 +155,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			// Remove already exists Button
 			removeAlreadyExistsButton = new JButton(language.getString("AddNewDownloadsDialog.button.removeAlreadyExistsButton"));
 			removeAlreadyExistsButton.setToolTipText(language.getString("AddNewDownloadsDialog.buttonTooltip.removeAlreadyExistsButton"));
-			removeAlreadyExistsButton.addActionListener( new java.awt.event.ActionListener() {
+			removeAlreadyExistsButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					removeAlreadyExistsButton_actionPerformed(e);
 				}
@@ -159,7 +163,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 			// OK Button
 			okButton = new JButton(language.getString("Common.ok"));
-			okButton.addActionListener( new java.awt.event.ActionListener() {
+			okButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					FileTransferManager.inst().getDownloadManager().getModel().addDownloadItemList(getDownloads());
 					
@@ -169,7 +173,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 			// Cancel Button
 			cancelButton = new JButton(language.getString("Common.cancel"));
-			cancelButton.addActionListener( new java.awt.event.ActionListener() {
+			cancelButton.addActionListener( new ActionListener() {
 				public void actionPerformed(final ActionEvent e) {
 					addNewDownloadsTableModel.clearDataModel();
 					dispose();
@@ -343,7 +347,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 		// Rename file
 		final JMenuItem renameFile = new JMenuItem(language.getString("AddNewDownloadsDialog.button.renameFile"));
-		renameFile.addActionListener( new java.awt.event.ActionListener() {
+		renameFile.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewDownloadsTable.new SelectedItemsAction() {
 					protected void action(AddNewDownloadsTableMember addNewDownloadsTableMember) {
@@ -359,7 +363,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		
 		// prefix Filename
 		final JMenuItem prefixFilename = new JMenuItem(language.getString("AddNewDownloadsDialog.button.prefixFilename"));
-		prefixFilename.addActionListener( new java.awt.event.ActionListener() {
+		prefixFilename.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				final String prefix = JOptionPane.showInputDialog(
 					AddNewDownloadsDialog.this,
@@ -378,7 +382,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 		// Change Download Directory
 		final JMenuItem changeDownloadDir = new JMenuItem(language.getString("AddNewDownloadsDialog.button.changeDownloadDir"));
-		changeDownloadDir.addActionListener( new java.awt.event.ActionListener() {
+		changeDownloadDir.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				changeDownloadDir_actionPerformed();
 			}
@@ -387,7 +391,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 		// Remove item item(s) list
 		final JMenuItem removeDownload = new JMenuItem(language.getString("AddNewDownloadsDialog.button.removeDownload"));
-		removeDownload.addActionListener( new java.awt.event.ActionListener() {
+		removeDownload.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewDownloadsTable.removeSelected();
 			}
@@ -395,7 +399,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 		// Remove but selected item(s) from list
 		final JMenuItem removeButSelectedDownload = new JMenuItem(language.getString("AddNewDownloadsDialog.button.removeButSelectedDownload"));
-		removeButSelectedDownload.addActionListener( new java.awt.event.ActionListener() {
+		removeButSelectedDownload.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewDownloadsTable.removeButSelected();
 			}
@@ -405,7 +409,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		final JMenu changePriorityMenu = new JMenu(language.getString("Common.priority.changePriority"));
 		for(final FreenetPriority priority : FreenetPriority.values()) {
 			JMenuItem priorityMenuItem = new JMenuItem(priority.getName());
-			priorityMenuItem.addActionListener(new java.awt.event.ActionListener() {
+			priorityMenuItem.addActionListener(new ActionListener() {
 				public void actionPerformed(final ActionEvent actionEvent) {
 					addNewDownloadsTable.new SelectedItemsAction() {
 						protected void action(AddNewDownloadsTableMember addNewDownloadsTableMember) {
@@ -419,7 +423,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		
 		// Enable download
 		final JMenuItem enableDownloadMenuItem = new JMenuItem(language.getString("AddNewDownloadsDialog.popupMenu.enableDownload"));
-		enableDownloadMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		enableDownloadMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewDownloadsTable.new SelectedItemsAction() {
 					protected void action(AddNewDownloadsTableMember addNewDownloadsTableMember) {
@@ -432,7 +436,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		
 		// Disable download
 		final JMenuItem disableDownloadMenuItem = new JMenuItem(language.getString("AddNewDownloadsDialog.popupMenu.disableDownload"));
-		disableDownloadMenuItem.addActionListener( new java.awt.event.ActionListener() {
+		disableDownloadMenuItem.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				addNewDownloadsTable.new SelectedItemsAction() {
 					protected void action(AddNewDownloadsTableMember addNewDownloadsTableMember) {
@@ -445,7 +449,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		// recent download directory
 		final JMenu downloadDirRecentMenu = new JMenu(language.getString("DownloadPane.toolbar.downloadDirMenu.setDownloadDirTo"));
 		JMenuItem item = new JMenuItem(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
-		item.addActionListener( new java.awt.event.ActionListener() {
+		item.addActionListener( new ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
 				setDownloadDir(Core.frostSettings.getString(Settings.DIR_DOWNLOAD));
 			}
@@ -459,7 +463,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 				final String dir = iter.previous();
 
 				item = new JMenuItem(dir);
-				item.addActionListener( new java.awt.event.ActionListener() {
+				item.addActionListener( new ActionListener() {
 					public void actionPerformed(final ActionEvent actionEvent) {
 						setDownloadDir(dir);
 					}
@@ -507,7 +511,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			final AddNewDownloadsTableMember addNewDownloadsTableMember =
 				addNewDownloadsTableModel.getRow(indexPos);
 			final FrostDownloadItem frostDownloadItem = addNewDownloadsTableMember.getDownloadItem();
-			if(new java.io.File(frostDownloadItem.getDownloadDir() + frostDownloadItem.getFileName()).exists() ) {
+			if(new File(frostDownloadItem.getDownloadDir() + frostDownloadItem.getFileName()).exists() ) {
 				addNewDownloadsTableModel.deleteRow(addNewDownloadsTableMember);
 			}
 		}
@@ -527,11 +531,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 	private void changeDownloadDir_actionPerformed() {
 		// Open dialog to request dir
 		final JFileChooser chooser = new JFileChooser();
-		chooser.setCurrentDirectory(
-				new java.io.File(
-						Core.frostSettings.getDefaultValue(Settings.DIR_DOWNLOAD)
-				)
-		);
+		chooser.setCurrentDirectory(new File(Core.frostSettings.getDefaultValue(Settings.DIR_DOWNLOAD)));
 		chooser.setDialogTitle(language.getString("AddNewDownloadsDialog.changeDirDialog.title"));
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooser.setAcceptAllFileFilterUsed(false);
@@ -552,8 +552,10 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		};
 	}
 
-	
-	private static class AddNewDownloadsTableModel extends SortedTableModel<AddNewDownloadsTableMember>{
+	private static class AddNewDownloadsTableModel extends SortedTableModel<AddNewDownloadsTableMember> {
+
+		private static final long serialVersionUID = 1L;
+
 		private Language language = null;
 
 		protected  static String columnNames[];
@@ -713,7 +715,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		}
 
 		public void updateExistsCheck() {
-			File existingFile = new java.io.File(frostDownloadItem.getDownloadDir() + frostDownloadItem.getFileName());
+			File existingFile = new File(frostDownloadItem.getDownloadDir() + frostDownloadItem.getFileName());
 			exists = existingFile.exists();
 			if( exists) {
 				final long date = existingFile.lastModified();
@@ -761,8 +763,10 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			}
 		}
 	}
-	
+
 	private class AddNewDownloadsTable extends SortedTable<AddNewDownloadsTableMember> {
+
+		private static final long serialVersionUID = 1L;
 
 		private CenterCellRenderer centerCellRenderer;
 		
@@ -785,7 +789,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 
 		@Override
 		public String getToolTipText(final MouseEvent mouseEvent) {
-			final java.awt.Point point = mouseEvent.getPoint();
+			final Point point = mouseEvent.getPoint();
 			final int rowIndex = rowAtPoint(point);
 			final int colIndex = columnAtPoint(point);
 			final int realColumnIndex = convertColumnIndexToModel(colIndex);
@@ -843,8 +847,11 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 			}
 			return super.getCellEditor(rowIndex, columnIndex);
 		}
-		
+
 		private class CenterCellRenderer extends JLabel implements TableCellRenderer {
+
+			private static final long serialVersionUID = 1L;
+
 			public Component getTableCellRendererComponent(final JTable table,
 					final Object value, final boolean isSelected, final boolean hasFocus,
 					final int row, final int column) {
@@ -853,12 +860,15 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 				return this;
 			}
 		}
-		
+
 		@Override
 		protected JTableHeader createDefaultTableHeader() {
 			return new JTableHeader(columnModel) {
+
+				private static final long serialVersionUID = 1L;
+
 				public String getToolTipText(final MouseEvent e) {
-					final java.awt.Point p = e.getPoint();
+					final Point p = e.getPoint();
 					final int index = columnModel.getColumnIndexAtX(p.x);
 					final int realIndex = columnModel.getColumn(index).getModelIndex();
 					return columnTooltips[realIndex];

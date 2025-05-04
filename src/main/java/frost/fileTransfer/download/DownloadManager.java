@@ -18,6 +18,8 @@
 package frost.fileTransfer.download;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -281,8 +283,8 @@ public class DownloadManager implements ExitSavable {
 			// maybe convert html codes (e.g. %2c -> , )
 			if (key.indexOf("%") > 0) {
 				try {
-					key = java.net.URLDecoder.decode(key, "UTF-8");
-				} catch (final java.io.UnsupportedEncodingException ex) {
+					key = URLDecoder.decode(key, "UTF-8");
+				} catch (final UnsupportedEncodingException ex) {
 					logger.error("Decode of HTML code failed", ex);
 				}
 			}

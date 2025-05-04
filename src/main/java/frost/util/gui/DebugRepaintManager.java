@@ -40,17 +40,12 @@ public class DebugRepaintManager extends RepaintManager {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DebugRepaintManager.class);
 
-	/* (non-Javadoc)
-	 * @see javax.swing.RepaintManager#addDirtyRegion(javax.swing.JComponent, int, int, int, int)
-	 */
 	@Override
     public void addDirtyRegion(JComponent c, int x, int y, int w, int h) {
 		checkThread();
 		super.addDirtyRegion(c, x, y, w, h);
 	}
-	/* (non-Javadoc)
-	 * @see javax.swing.RepaintManager#addInvalidComponent(javax.swing.JComponent)
-	 */
+
 	@Override
     public synchronized void addInvalidComponent(JComponent invalidComponent) {
 		checkThread();

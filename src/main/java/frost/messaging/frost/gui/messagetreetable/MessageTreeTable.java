@@ -57,6 +57,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTree;
@@ -67,6 +68,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicTreeUI;
@@ -105,8 +107,9 @@ import frost.util.gui.MiscToolkit;
  * @author Philip Milne
  * @author Scott Violet
  */
-@SuppressWarnings("serial")
 public class MessageTreeTable extends JTable implements PropertyChangeListener {
+
+	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = LoggerFactory.getLogger(MessageTreeTable.class);
 
@@ -470,6 +473,9 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
      * A TreeCellRenderer that displays a JTree.
      */
 	public class TreeTableCellRenderer extends JTree implements TableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
+
     	/** Last table/tree row asked to renderer. */
     	protected int visibleRow;
 
@@ -506,8 +512,12 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
             super.processKeyEvent(e);
         }
 
-        class OwnTreeCellRenderer extends DefaultTreeCellRenderer {
-            int treeWidth;
+		private class OwnTreeCellRenderer extends DefaultTreeCellRenderer {
+
+			private static final long serialVersionUID = 1L;
+
+			private int treeWidth;
+
             public OwnTreeCellRenderer() {
                 super();
                 setVerticalAlignment(CENTER);
@@ -717,12 +727,15 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         }
 
         /**
-         * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel
-         * to listen for changes in the ListSelectionModel it maintains. Once
-         * a change in the ListSelectionModel happens, the paths are updated
-         * in the DefaultTreeSelectionModel.
+		 * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel to listen
+		 * for changes in the ListSelectionModel it maintains. Once a change in the
+		 * ListSelectionModel happens, the paths are updated in the
+		 * DefaultTreeSelectionModel.
          */
-		class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+		private class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
+
+			private static final long serialVersionUID = 1L;
+
     	/** Set to true when we are updating the ListSelectionModel. */
     	protected boolean         updatingListSelectionModel;
 
@@ -814,6 +827,8 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
 
 	private class BooleanCellRenderer extends JLabel implements TableCellRenderer {
 
+		private static final long serialVersionUID = 1L;
+
         public BooleanCellRenderer() {
             super();
             setHorizontalAlignment(CENTER);
@@ -881,11 +896,13 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     }
 
     /**
-     * This renderer renders rows in different colors.
-     * New messages gets a bold look, messages with attachments a blue color.
-     * Encrypted messages get a red color, no matter if they have attachments.
+	 * This renderer renders rows in different colors. New messages gets a bold
+	 * look, messages with attachments a blue color. Encrypted messages get a red
+	 * color, no matter if they have attachments.
      */
 	private class StringCellRenderer extends DefaultTableCellRenderer {
+
+		private static final long serialVersionUID = 1L;
 
         private Font boldFont;
         private Font boldItalicFont;
@@ -895,7 +912,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         private final Color col_check   = new Color(0xFF, 0xCC, 0x00);
         private final Color col_observe = new Color(0x00, 0xD0, 0x00);
         private final Color col_bad     = new Color(0xFF, 0x00, 0x00);
-        final javax.swing.border.EmptyBorder border = new javax.swing.border.EmptyBorder(0, 0, 0, 3);
+        final EmptyBorder border = new EmptyBorder(0, 0, 0, 3);
 
         private Object toolTipValue = null;
         private Identity toolTipId = null;
@@ -909,7 +926,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         /**
          * This method is overriden so the tooltip is only generated when truly needed
          *
-         * @see javax.swing.JComponent#getToolTipText(java.awt.event.MouseEvent)
+         * @see JComponent#getToolTipText(MouseEvent)
          */
         public String getToolTipText(MouseEvent event) {
             if (toolTipId != null) {
@@ -1086,6 +1103,9 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     }
 
 	public class TreeTableCellEditor extends DefaultCellEditor {
+
+		private static final long serialVersionUID = 1L;
+
         public TreeTableCellEditor() {
             super(new JCheckBox());
         }

@@ -39,17 +39,11 @@ public class FileAttachment extends Attachment implements CopyToClipboardItem {
     private long size = 0; // Filesize
     private String filename = new String();
 
-	/* (non-Javadoc)
-	 * @see frost.messages.Attachment#getType()
-	 */
 	@Override
     public int getType() {
 		return Attachment.FILE;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.XMLizable#getXMLElement(org.w3c.dom.Document)
-	 */
 	public Element getXMLElement(final Document doc) {
 
         final Element fileelement = doc.createElement("File");
@@ -76,9 +70,6 @@ public class FileAttachment extends Attachment implements CopyToClipboardItem {
 		return element;
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.XMLizable#loadXMLElement(org.w3c.dom.Element)
-	 */
 	public void loadXMLElement(final Element e) throws SAXException {
 		final Element _file = XMLTools.getChildElementsByTagName(e, "File").iterator().next();
 
@@ -87,10 +78,6 @@ public class FileAttachment extends Attachment implements CopyToClipboardItem {
 		size = Long.parseLong(XMLTools.getChildElementsTextValue(_file, "size"));
 	}
 
-	/**
-	 * @param e
-	 * @throws SAXException
-	 */
 	public FileAttachment(final Element e) throws SAXException {
 		loadXMLElement(e);
 	}
@@ -117,9 +104,6 @@ public class FileAttachment extends Attachment implements CopyToClipboardItem {
         size = file.length();
     }
 
-    /*
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
     public int compareTo(Attachment attachment) {
 		return toString().compareTo(attachment.toString());
 	}
@@ -127,15 +111,19 @@ public class FileAttachment extends Attachment implements CopyToClipboardItem {
     public String getFileName() {
         return filename;
     }
+
     public String getKey() {
         return key;
     }
+
     public void setKey(final String k) {
         key = k;
     }
+
     public long getFileSize() {
         return size;
     }
+
     public File getInternalFile() {
         return file;
     }

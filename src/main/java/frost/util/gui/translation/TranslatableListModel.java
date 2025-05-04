@@ -19,6 +19,7 @@
 package frost.util.gui.translation;
 
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  * A translatable list model contains keys to a Language. It shows the localized values on screen.
@@ -39,16 +40,13 @@ public class TranslatableListModel extends DefaultListModel<String> implements L
 		language.addLanguageListener(this);
 	}
 
-	/* (non-Javadoc)
-	 * @see frost.gui.translation.LanguageListener#languageChanged(frost.gui.translation.LanguageEvent)
-	 */
 	public void languageChanged(LanguageEvent event) {
 		fireContentsChanged(this, 0, getSize() - 1);
 	}
 
 	/** 
 	 * This method returns the internationalized value at a given position
-	 * @see javax.swing.ListModel#getElementAt(int)
+	 * @see ListModel#getElementAt(int)
 	 */
 	@Override
 	public String getElementAt(int index) {

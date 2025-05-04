@@ -48,9 +48,6 @@ public class FreetalkFileAttachment implements CopyToClipboardItem {
         size = file.length();
     }
 
-    /*
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
 	public int compareTo(final Object o) {
 		final String myName = getFileName();
 		final String otherName = ((FreetalkFileAttachment) o).getFileName();

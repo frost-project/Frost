@@ -21,8 +21,10 @@ package frost.messaging.freetalk.gui;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +34,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -206,98 +209,98 @@ public class FreetalkMessageWindow extends JFrame {
         // subject, from, (to), date/board
         private void initialize() {
             Lboard = new JLabel();
-            Lboard.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12));
+            Lboard.setFont(new Font("Dialog", Font.BOLD, 12));
             Ldate = new JLabel();
-            Ldate.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12));
+            Ldate.setFont(new Font("Dialog", Font.BOLD, 12));
             Lfrom = new JLabel();
-            Lfrom.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12));
+            Lfrom.setFont(new Font("Dialog", Font.BOLD, 12));
             Lsubject = new JLabel();
-            Lsubject.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12));
+            Lsubject.setFont(new Font("Dialog", Font.BOLD, 12));
             Lto = new JLabel();
-            Lto.setFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 12));
+            Lto.setFont(new Font("Dialog", Font.BOLD, 12));
 
             final GridBagConstraints BreplyConstraints = new GridBagConstraints(); // Breply
             BreplyConstraints.gridx = 5;
-            BreplyConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+            BreplyConstraints.anchor = GridBagConstraints.NORTHEAST;
             BreplyConstraints.gridheight = 3;
-            BreplyConstraints.insets = new java.awt.Insets(5,5,5,5);
+            BreplyConstraints.insets = new Insets(5,5,5,5);
             BreplyConstraints.gridy = 1;
 
             final GridBagConstraints LsubjectConstraints = new GridBagConstraints();  // Lsubject
             LsubjectConstraints.gridx = 0;
-            LsubjectConstraints.insets = new java.awt.Insets(1,5,1,2);
-            LsubjectConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            LsubjectConstraints.insets = new Insets(1,5,1,2);
+            LsubjectConstraints.anchor = GridBagConstraints.WEST;
             LsubjectConstraints.gridy = 1;
 
             final GridBagConstraints TFsubjectConstraints = new GridBagConstraints(); // TFsubject
-            TFsubjectConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            TFsubjectConstraints.fill = GridBagConstraints.HORIZONTAL;
             TFsubjectConstraints.gridy = 1;
             TFsubjectConstraints.weightx = 1.0;
             TFsubjectConstraints.gridwidth = 4;
-            TFsubjectConstraints.insets = new java.awt.Insets(1,1,1,5);
-            TFsubjectConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            TFsubjectConstraints.insets = new Insets(1,1,1,5);
+            TFsubjectConstraints.anchor = GridBagConstraints.WEST;
             TFsubjectConstraints.gridx = 1;
 
             final GridBagConstraints LfromConstraints = new GridBagConstraints(); // Lfrom
             LfromConstraints.gridx = 0;
-            LfromConstraints.insets = new java.awt.Insets(1,5,1,2);
-            LfromConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            LfromConstraints.insets = new Insets(1,5,1,2);
+            LfromConstraints.anchor = GridBagConstraints.WEST;
             LfromConstraints.gridy = 2;
 
             final GridBagConstraints TFfromConstraints = new GridBagConstraints(); // TFfrom
-            TFfromConstraints.fill = java.awt.GridBagConstraints.NONE;
+            TFfromConstraints.fill = GridBagConstraints.NONE;
             TFfromConstraints.gridy = 2;
             TFfromConstraints.weightx = 1.0;
             TFfromConstraints.gridwidth = 4;
-            TFfromConstraints.insets = new java.awt.Insets(1,1,1,5);
-            TFfromConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            TFfromConstraints.insets = new Insets(1,1,1,5);
+            TFfromConstraints.anchor = GridBagConstraints.WEST;
             TFfromConstraints.gridx = 1;
 
             final GridBagConstraints LtoConstraints = new GridBagConstraints(); // Lto
             LtoConstraints.gridx = 0;
-            LtoConstraints.insets = new java.awt.Insets(1,5,1,2);
-            LtoConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            LtoConstraints.insets = new Insets(1,5,1,2);
+            LtoConstraints.anchor = GridBagConstraints.WEST;
             LtoConstraints.gridy = 3;
 
             final GridBagConstraints TFtoConstraints = new GridBagConstraints(); // TFto
-            TFtoConstraints.fill = java.awt.GridBagConstraints.NONE;
+            TFtoConstraints.fill = GridBagConstraints.NONE;
             TFtoConstraints.gridy = 3;
             TFtoConstraints.weightx = 1.0;
             TFtoConstraints.gridwidth = 4;
-            TFtoConstraints.insets = new java.awt.Insets(1,1,1,5);
-            TFtoConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            TFtoConstraints.insets = new Insets(1,1,1,5);
+            TFtoConstraints.anchor = GridBagConstraints.WEST;
             TFtoConstraints.gridx = 1;
 
             final GridBagConstraints LdateConstraints = new GridBagConstraints(); // Ldate
             LdateConstraints.gridx = 0;
-            LdateConstraints.insets = new java.awt.Insets(1,5,1,2);
-            LdateConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            LdateConstraints.insets = new Insets(1,5,1,2);
+            LdateConstraints.anchor = GridBagConstraints.WEST;
             LdateConstraints.gridy = 4;
 
             final GridBagConstraints TFdateConstraints = new GridBagConstraints(); // TFdate
-            TFdateConstraints.fill = java.awt.GridBagConstraints.NONE;
+            TFdateConstraints.fill = GridBagConstraints.NONE;
             TFdateConstraints.gridy = 4;
             TFdateConstraints.weightx = 0.0;
-            TFdateConstraints.insets = new java.awt.Insets(1,1,1,5);
-            TFdateConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            TFdateConstraints.insets = new Insets(1,1,1,5);
+            TFdateConstraints.anchor = GridBagConstraints.WEST;
             TFdateConstraints.gridx = 1;
 
             final GridBagConstraints LboardConstraints = new GridBagConstraints(); // Lboard
             LboardConstraints.gridx = 2;
-            LboardConstraints.insets = new java.awt.Insets(1,8,1,2);
-            LboardConstraints.anchor = java.awt.GridBagConstraints.WEST;
+            LboardConstraints.insets = new Insets(1,8,1,2);
+            LboardConstraints.anchor = GridBagConstraints.WEST;
             LboardConstraints.gridy = 4;
 
             final GridBagConstraints TFboardConstraints = new GridBagConstraints(); // TFboard
-            TFboardConstraints.fill = java.awt.GridBagConstraints.NONE;
+            TFboardConstraints.fill = GridBagConstraints.NONE;
             TFboardConstraints.gridy = 4;
             TFboardConstraints.weightx = 0.0;
-            TFboardConstraints.anchor = java.awt.GridBagConstraints.WEST;
-            TFboardConstraints.insets = new java.awt.Insets(1,1,1,5);
+            TFboardConstraints.anchor = GridBagConstraints.WEST;
+            TFboardConstraints.insets = new Insets(1,1,1,5);
             TFboardConstraints.gridx = 4;
 
             this.setLayout(new GridBagLayout());
-            this.setSize(new java.awt.Dimension(496,254));
+            this.setSize(new Dimension(496,254));
             this.add(Lsubject, LsubjectConstraints);
             this.add(Lfrom, LfromConstraints);
             this.add(Ldate, LdateConstraints);
@@ -327,7 +330,7 @@ public class FreetalkMessageWindow extends JFrame {
             if( TFsubject == null ) {
                 TFsubject = new JTextField();
                 TFsubject.setText(" "+innerMessage.getTitle());
-                TFsubject.setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+                TFsubject.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
                 TFsubject.setEditable(false);
             }
             return TFsubject;
@@ -337,7 +340,7 @@ public class FreetalkMessageWindow extends JFrame {
             if( TFfrom == null ) {
                 TFfrom = new JTextField();
                 TFfrom.setText(" "+innerMessage.getAuthor());
-                TFfrom.setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+                TFfrom.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
                 TFfrom.setEditable(false);
             }
             return TFfrom;
@@ -347,7 +350,7 @@ public class FreetalkMessageWindow extends JFrame {
 //            if( TFto == null ) {
 //                TFto = new JTextField();
 //                TFto.setText(" "+innerMessage.getRecipientName());
-//                TFto.setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+//                TFto.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 //                TFto.setEditable(false);
 //            }
 //            return TFto;
@@ -357,7 +360,7 @@ public class FreetalkMessageWindow extends JFrame {
             if( TFdate == null ) {
                 TFdate = new JTextField();
                 TFdate.setText(" "+innerMessage.getDateAndTimeString());
-                TFdate.setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+                TFdate.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
                 TFdate.setEditable(false);
             }
             return TFdate;
@@ -367,7 +370,7 @@ public class FreetalkMessageWindow extends JFrame {
             if( TFboard == null ) {
                 TFboard = new JTextField();
                 TFboard.setText(" "+innerMessage.getBoard().getName());
-                TFboard.setBorder(javax.swing.BorderFactory.createEmptyBorder(2,2,2,2));
+                TFboard.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
                 TFboard.setEditable(false);
             }
             return TFboard;
