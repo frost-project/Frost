@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.fileTransfer.SharedFileXmlFile;
@@ -71,7 +71,7 @@ public class FileListManager {
         //   (this wrap-around ensures that each file will be send over the time)
 
         // compute minDate, items last shared before this date must be reshared
-        final int maxAge = Core.frostSettings.getIntValue(SettingsClass.MIN_DAYS_BEFORE_FILE_RESHARE);
+        final int maxAge = Core.frostSettings.getIntValue(Settings.MIN_DAYS_BEFORE_FILE_RESHARE);
         final long maxDiff = maxAge * 24L * 60L * 60L * 1000L;
         final long now = System.currentTimeMillis();
         final long minDate = now - maxDiff;
@@ -207,7 +207,7 @@ public class FileListManager {
             return false;
         }
 
-        final boolean fileListAntiSpamMode = Core.frostSettings.getBoolValue(SettingsClass.FILESHARING_IGNORE_CHECK_AND_BELOW);
+        final boolean fileListAntiSpamMode = Core.frostSettings.getBoolValue(Settings.FILESHARING_IGNORE_CHECK_AND_BELOW);
 
         Identity localOwner;
         synchronized( Core.getIdentitiesManager().getLockObject() ) {
@@ -247,7 +247,7 @@ public class FileListManager {
             }
         }
 
-        if (localOwner.isBAD() && Core.frostSettings.getBoolValue(SettingsClass.SEARCH_HIDE_BAD)) {
+        if (localOwner.isBAD() && Core.frostSettings.getBoolValue(Settings.SEARCH_HIDE_BAD)) {
             logger.info("Skipped index file from BAD user {}", localOwner.getUniqueName());
             return true;
         }

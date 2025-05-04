@@ -39,7 +39,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.fileTransfer.PersistenceManager;
@@ -662,7 +662,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 	public DownloadTableFormat() {
 		super();
 
-		fileSharingDisabled = Core.frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE);
+		fileSharingDisabled = Core.frostSettings.getBoolValue(Settings.FILESHARING_DISABLE);
 		
 		language = Language.getInstance();
 		language.addLanguageListener(this);
@@ -690,7 +690,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 			setComparator(new PriorityComparator(), columnCounter++);
 		}
 
-		showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+		showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
 		Core.frostSettings.addPropertyChangeListener(this);
 	}
 
@@ -895,7 +895,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 
         modelTable = (SortedModelTable<FrostDownloadItem>) lModelTable;
         
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
@@ -1023,7 +1023,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexAll, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -1121,8 +1121,8 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
+            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

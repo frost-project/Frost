@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 
 public abstract class AbstractFrostStorage {
 
@@ -211,7 +211,7 @@ public abstract class AbstractFrostStorage {
      * Gets the provided filename and constructs the final filename (preceedes filename with store directory).
      */
     protected String buildStoragePath(final String filename) {
-        final String storeDir = Core.frostSettings.getValue(SettingsClass.DIR_STORE);
+        final String storeDir = Core.frostSettings.getValue(Settings.DIR_STORE);
         return storeDir + filename; // path to the database file
     }
 }

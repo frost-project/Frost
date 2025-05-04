@@ -56,7 +56,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fcp.FreenetKeys;
 import frost.gui.model.SortedTableModel;
 import frost.gui.model.TableMember;
@@ -194,7 +194,7 @@ public class ManageTrackedDownloads extends JDialog implements SimplePopupMenuLi
 	private void addKeysButton_actionPerformed(final ActionEvent event) {
 		// Open choose Directory dialog
 		final JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setCurrentDirectory(new File(Core.frostSettings.getDefaultValue(SettingsClass.DIR_DOWNLOAD)));
+		fileChooser.setCurrentDirectory(new File(Core.frostSettings.getDefaultValue(Settings.DIR_DOWNLOAD)));
 		fileChooser.setDialogTitle(language.getString("AddNewDownloadsDialog.changeDirDialog.title"));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		fileChooser.setAcceptAllFileFilterUsed(false);

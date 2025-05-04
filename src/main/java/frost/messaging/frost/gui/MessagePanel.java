@@ -73,7 +73,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.gui.SetIdentityCommentDialog;
 import frost.identities.IdentitiesManager;
 import frost.identities.Identity;
@@ -177,7 +177,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
                 // accepting only mouse pressed event as double click, otherwise it will be triggered twice
                 if(e.getID() == MouseEvent.MOUSE_PRESSED ) {
                     if((e.getClickCount() == 2) && (e.getComponent() == messageTable) ) {
-                        if( Core.frostSettings.getBoolValue(SettingsClass.MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE) ) {
+                        if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE) ) {
                         showCurrentMessagePopupWindow();
                         }
                     } else if((e.getClickCount() == 1) && (e.getComponent() == messageTable) ) {
@@ -431,7 +431,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
                     return;
                 }
 
-                if( Core.frostSettings.getBoolValue(SettingsClass.SHOW_THREADS) ) {
+                if( Core.frostSettings.getBoolValue(Settings.SHOW_THREADS) ) {
                     if( messageTable.getSelectedRowCount() == 1 ) {
                         add(expandThreadItem);
                         add(collapseThreadItem);
@@ -518,7 +518,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-    private final SettingsClass settings;
+    private final Settings settings;
     private final Language language  = Language.getInstance();
     private IdentitiesManager identitiesManager;
     private JFrame parentFrame;
@@ -561,7 +561,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     private String unreadMessagesCountPrefix = "";
     private final JLabel unreadMessagesCountLabel = new JLabel("");
 
-    public MessagePanel(final SettingsClass settings, final MainFrame mf, final MessagingTab fmt) {
+    public MessagePanel(final Settings settings, final MainFrame mf, final MessagingTab fmt) {
         super();
         this.settings = settings;
         mainFrame = mf;
@@ -591,7 +591,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
         ImageIcon icon;
 
-        toggleShowUnreadOnly.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_UNREAD_ONLY));
+        toggleShowUnreadOnly.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_UNREAD_ONLY));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/software-update-available.png");
         toggleShowUnreadOnly.setIcon(icon);
         toggleShowUnreadOnly.setRolloverEnabled(true);
@@ -601,7 +601,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         toggleShowUnreadOnly.setFocusPainted(false);
         toggleShowUnreadOnly.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowUnreadOnly"));
 
-        toggleShowFlaggedOnly.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_FLAGGED_ONLY));
+        toggleShowFlaggedOnly.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_FLAGGED_ONLY));
         icon = MiscToolkit.loadImageIcon("/data/flagged.gif");
         toggleShowFlaggedOnly.setIcon(icon);
         toggleShowFlaggedOnly.setRolloverEnabled(true);
@@ -611,7 +611,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         toggleShowFlaggedOnly.setFocusPainted(false);
         toggleShowFlaggedOnly.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowFlaggedOnly"));
 
-        toggleShowStarredOnly.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_STARRED_ONLY));
+        toggleShowStarredOnly.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_STARRED_ONLY));
         icon = MiscToolkit.loadImageIcon("/data/starred.gif");
         toggleShowStarredOnly.setIcon(icon);
         toggleShowStarredOnly.setRolloverEnabled(true);
@@ -621,7 +621,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         toggleShowStarredOnly.setFocusPainted(false);
         toggleShowStarredOnly.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowStarredOnly"));
 
-        toggleShowThreads.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_THREADS));
+        toggleShowThreads.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_THREADS));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/toggle-treeview.png");
         toggleShowThreads.setIcon(icon);
         toggleShowThreads.setRolloverEnabled(true);
@@ -631,7 +631,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         toggleShowThreads.setFocusPainted(false);
         toggleShowThreads.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowThreads"));
 
-        toggleShowSmileys.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_SMILEYS));
+        toggleShowSmileys.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_SMILEYS));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/face-smile.png");
         toggleShowSmileys.setIcon(icon);
         toggleShowSmileys.setRolloverEnabled(true);
@@ -641,7 +641,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         toggleShowSmileys.setFocusPainted(false);
         toggleShowSmileys.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowSmileys"));
 
-        toggleShowHyperlinks.setSelected(Core.frostSettings.getBoolValue(SettingsClass.SHOW_KEYS_AS_HYPERLINKS));
+        toggleShowHyperlinks.setSelected(Core.frostSettings.getBoolValue(Settings.SHOW_KEYS_AS_HYPERLINKS));
         icon = MiscToolkit.loadImageIcon("/data/togglehyperlinks.gif");
         toggleShowHyperlinks.setIcon(icon);
         toggleShowHyperlinks.setRolloverEnabled(true);
@@ -758,18 +758,18 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
             refreshLanguage();
             language.addLanguageListener(listener);
 
-            FrostMessageObject.sortThreadRootMsgsAscending = settings.getBoolValue(SettingsClass.SORT_THREADROOTMSGS_ASCENDING);
+            FrostMessageObject.sortThreadRootMsgsAscending = settings.getBoolValue(Settings.SORT_THREADROOTMSGS_ASCENDING);
 
-            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
-            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
-            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
+            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
 
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.SORT_THREADROOTMSGS_ASCENDING, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.MSGTABLE_MULTILINE_SELECT, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.SORT_THREADROOTMSGS_ASCENDING, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.MSGTABLE_MULTILINE_SELECT, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.MSGTABLE_SCROLL_HORIZONTAL, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
 
             // build messages list scroll pane
             final MessageTreeTableModel messageTableModel = new MessageTreeTableModel(new DefaultMutableTreeNode());
@@ -805,7 +805,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
             msgTableAndMsgTextSplitpane.setDividerSize(10);
             msgTableAndMsgTextSplitpane.setResizeWeight(0.5d);
             msgTableAndMsgTextSplitpane.setMinimumSize(new Dimension(50, 20));
-            int dividerLoc = Core.frostSettings.getIntValue(SettingsClass.MSGTABLE_MSGTEXT_DIVIDER_LOCATION);
+            int dividerLoc = Core.frostSettings.getIntValue(Settings.MSGTABLE_MSGTEXT_DIVIDER_LOCATION);
             if( dividerLoc < 10 ) {
                 dividerLoc = 160;
             }
@@ -934,22 +934,22 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         });
     }
 
-    public void saveLayout(final SettingsClass frostSettings) {
-        frostSettings.setValue(SettingsClass.MSGTABLE_MSGTEXT_DIVIDER_LOCATION,
+    public void saveLayout(final Settings frostSettings) {
+        frostSettings.setValue(Settings.MSGTABLE_MSGTEXT_DIVIDER_LOCATION,
                 msgTableAndMsgTextSplitpane.getDividerLocation());
 
         getMessageTable().saveLayout(frostSettings);
     }
 
     private void fontChanged() {
-        final String fontName = settings.getValue(SettingsClass.MESSAGE_LIST_FONT_NAME);
-        final int fontStyle = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_STYLE);
-        final int fontSize = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_SIZE);
+        final String fontName = settings.getValue(Settings.MESSAGE_LIST_FONT_NAME);
+        final int fontStyle = settings.getIntValue(Settings.MESSAGE_LIST_FONT_STYLE);
+        final int fontSize = settings.getIntValue(Settings.MESSAGE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"SansSerif\".");
-            settings.setValue(SettingsClass.MESSAGE_LIST_FONT_NAME, "SansSerif");
+            settings.setValue(Settings.MESSAGE_LIST_FONT_NAME, "SansSerif");
             font = new Font("SansSerif", fontStyle, fontSize);
         }
         messageTable.setFont(font);
@@ -1205,33 +1205,33 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
             toggleShowStarredOnly.setSelected(false);
         }
 
-    	Core.frostSettings.setValue(SettingsClass.SHOW_UNREAD_ONLY, toggleShowUnreadOnly.isSelected());
-    	Core.frostSettings.setValue(SettingsClass.SHOW_STARRED_ONLY, toggleShowStarredOnly.isSelected());
-    	Core.frostSettings.setValue(SettingsClass.SHOW_FLAGGED_ONLY, toggleShowFlaggedOnly.isSelected());
+    	Core.frostSettings.setValue(Settings.SHOW_UNREAD_ONLY, toggleShowUnreadOnly.isSelected());
+    	Core.frostSettings.setValue(Settings.SHOW_STARRED_ONLY, toggleShowStarredOnly.isSelected());
+    	Core.frostSettings.setValue(Settings.SHOW_FLAGGED_ONLY, toggleShowFlaggedOnly.isSelected());
 
         // reload messages
         MainFrame.getInstance().tofTree_actionPerformed(null, true);
     }
 
     private void toggleShowThreads_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.SHOW_THREADS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.SHOW_THREADS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.SHOW_THREADS, newValue);
+        Core.frostSettings.setValue(Settings.SHOW_THREADS, newValue);
         // reload messages
         MainFrame.getInstance().tofTree_actionPerformed(null, true);
     }
 
     private void toggleShowSmileys_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.SHOW_SMILEYS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.SHOW_SMILEYS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.SHOW_SMILEYS, newValue);
+        Core.frostSettings.setValue(Settings.SHOW_SMILEYS, newValue);
         // redraw is done in textpane by propertychangelistener!
     }
 
     private void toggleShowHyperlinks_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.SHOW_KEYS_AS_HYPERLINKS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.SHOW_KEYS_AS_HYPERLINKS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.SHOW_KEYS_AS_HYPERLINKS, newValue);
+        Core.frostSettings.setValue(Settings.SHOW_KEYS_AS_HYPERLINKS, newValue);
         // redraw is done in textpane by propertychangelistener!
     }
 
@@ -1760,7 +1760,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         final DefaultTreeModel tableModel = getMessageTreeModel();
 
         // use a different method based on threaded or not threaded view
-        if( Core.frostSettings.getBoolValue(SettingsClass.SHOW_THREADS) ) {
+        if( Core.frostSettings.getBoolValue(Settings.SHOW_THREADS) ) {
 
             final FrostMessageObject initial = getSelectedMessage();
 
@@ -1849,7 +1849,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
 
         final List<Identity> identitiesToMarkBad;
         if( (state == BooleanState.JUNK)
-                && Core.frostSettings.getBoolValue(SettingsClass.JUNK_MARK_JUNK_IDENTITY_BAD)
+                && Core.frostSettings.getBoolValue(Settings.JUNK_MARK_JUNK_IDENTITY_BAD)
                 && doEnable )
         {
             // we set junk to true and we want to set all junk senders to bad
@@ -1997,7 +1997,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     }
 
     private void updateMsgTableMultilineSelect() {
-        if( Core.frostSettings.getBoolValue(SettingsClass.MSGTABLE_MULTILINE_SELECT) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_MULTILINE_SELECT) ) {
             messageTable.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         } else {
             messageTable.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
@@ -2005,7 +2005,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     }
 
     private void updateMsgTableResizeMode() {
-        if( Core.frostSettings.getBoolValue(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_SCROLL_HORIZONTAL) ) {
             // show horizontal scrollbar if needed
             getMessageTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         } else {
@@ -2015,18 +2015,18 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.MSGTABLE_MULTILINE_SELECT)) {
+        if (evt.getPropertyName().equals(Settings.MSGTABLE_MULTILINE_SELECT)) {
             updateMsgTableMultilineSelect();
-        } else if (evt.getPropertyName().equals(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL)) {
+        } else if (evt.getPropertyName().equals(Settings.MSGTABLE_SCROLL_HORIZONTAL)) {
             updateMsgTableResizeMode();
-        } else if (evt.getPropertyName().equals(SettingsClass.SORT_THREADROOTMSGS_ASCENDING)) {
-            FrostMessageObject.sortThreadRootMsgsAscending = settings.getBoolValue(SettingsClass.SORT_THREADROOTMSGS_ASCENDING);
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES)) {
-            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED)) {
-            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED)) {
-            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+        } else if (evt.getPropertyName().equals(Settings.SORT_THREADROOTMSGS_ASCENDING)) {
+            FrostMessageObject.sortThreadRootMsgsAscending = settings.getBoolValue(Settings.SORT_THREADROOTMSGS_ASCENDING);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES)) {
+            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED)) {
+            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED)) {
+            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
         }
     }
 }

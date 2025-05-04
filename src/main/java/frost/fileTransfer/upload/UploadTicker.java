@@ -19,7 +19,7 @@
 package frost.fileTransfer.upload;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.PersistenceManager;
 import frost.util.Mixed;
@@ -67,7 +67,7 @@ public class UploadTicker extends Thread {
 
     private boolean canAllocateUploadingThread() {
         synchronized (uploadingCountLock) {
-            if (allocatedUploadingThreads < Core.frostSettings.getIntValue(SettingsClass.UPLOAD_MAX_THREADS)) {
+            if (allocatedUploadingThreads < Core.frostSettings.getIntValue(Settings.UPLOAD_MAX_THREADS)) {
                 return true;
             }
         }
@@ -157,7 +157,7 @@ public class UploadTicker extends Thread {
         while (true) {
             Mixed.wait(1000);
             // this is executed each second, so this counter counts seconds
-            if (Core.frostSettings.getBoolValue(SettingsClass.UPLOAD_REMOVE_NOT_EXISTING_FILES)) {
+            if (Core.frostSettings.getBoolValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES)) {
             removeNotExistingFilesCounter++;
             removeNotExistingFiles();
             }

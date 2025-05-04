@@ -33,7 +33,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
@@ -54,7 +54,7 @@ class NewsPanel extends JPanel {
         }
     }
 
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JLabel uploadPrioLabel = new JLabel();
@@ -97,7 +97,7 @@ class NewsPanel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected NewsPanel(final SettingsClass settings) {
+    protected NewsPanel(final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -251,28 +251,28 @@ class NewsPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        uploadPrioTextField.setText(settings.getValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
-        downloadPrioTextField.setText(settings.getValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
-        useOneConnectionForMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES));
+        uploadPrioTextField.setText(settings.getValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
+        downloadPrioTextField.setText(settings.getValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
+        useOneConnectionForMessagesCheckBox.setSelected(settings.getBoolValue(Settings.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES));
 
-        displayDaysTextField.setText(settings.getValue(SettingsClass.MAX_MESSAGE_DISPLAY));
-        downloadDaysTextField.setText(settings.getValue(SettingsClass.MAX_MESSAGE_DOWNLOAD));
-        messageBaseTextField.setText(settings.getValue(SettingsClass.MESSAGE_BASE));
-        alwaysDownloadBackloadCheckBox.setSelected(settings.getBoolValue(SettingsClass.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD));
+        displayDaysTextField.setText(settings.getValue(Settings.MAX_MESSAGE_DISPLAY));
+        downloadDaysTextField.setText(settings.getValue(Settings.MAX_MESSAGE_DOWNLOAD));
+        messageBaseTextField.setText(settings.getValue(Settings.MESSAGE_BASE));
+        alwaysDownloadBackloadCheckBox.setSelected(settings.getBoolValue(Settings.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD));
 
-        minimumIntervalTextField.setText(settings.getValue(SettingsClass.BOARD_AUTOUPDATE_MIN_INTERVAL));
-        concurrentUpdatesTextField.setText(settings.getValue(SettingsClass.BOARD_AUTOUPDATE_CONCURRENT_UPDATES));
+        minimumIntervalTextField.setText(settings.getValue(Settings.BOARD_AUTOUPDATE_MIN_INTERVAL));
+        concurrentUpdatesTextField.setText(settings.getValue(Settings.BOARD_AUTOUPDATE_CONCURRENT_UPDATES));
 
         // this setting is in MainFrame
         automaticBoardUpdateCheckBox.setSelected(MainFrame.getInstance().isAutomaticBoardUpdateEnabled());
         refreshUpdateState();
 
-        storeSentMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.STORAGE_STORE_SENT_MESSAGES));
-        silentlyRetryCheckBox.setSelected(settings.getBoolValue(SettingsClass.SILENTLY_RETRY_MESSAGES));
+        storeSentMessagesCheckBox.setSelected(settings.getBoolValue(Settings.STORAGE_STORE_SENT_MESSAGES));
+        silentlyRetryCheckBox.setSelected(settings.getBoolValue(Settings.SILENTLY_RETRY_MESSAGES));
 
-        altEditCheckBox.setSelected(settings.getBoolValue(SettingsClass.ALTERNATE_EDITOR_ENABLED));
+        altEditCheckBox.setSelected(settings.getBoolValue(Settings.ALTERNATE_EDITOR_ENABLED));
         altEditTextField.setEnabled(altEditCheckBox.isSelected());
-        altEditTextField.setText(settings.getValue(SettingsClass.ALTERNATE_EDITOR_COMMAND));
+        altEditTextField.setText(settings.getValue(Settings.ALTERNATE_EDITOR_COMMAND));
     }
 
     public void ok() {
@@ -307,27 +307,27 @@ class NewsPanel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD, uploadPrioTextField.getText());
-        settings.setValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD, downloadPrioTextField.getText());
-        settings.setValue(SettingsClass.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES, useOneConnectionForMessagesCheckBox.isSelected());
+        settings.setValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD, uploadPrioTextField.getText());
+        settings.setValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD, downloadPrioTextField.getText());
+        settings.setValue(Settings.FCP2_USE_ONE_CONNECTION_FOR_MESSAGES, useOneConnectionForMessagesCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.MAX_MESSAGE_DISPLAY, displayDaysTextField.getText());
-        settings.setValue(SettingsClass.MAX_MESSAGE_DOWNLOAD, downloadDaysTextField.getText());
-        settings.setValue(SettingsClass.MESSAGE_BASE, messageBaseTextField.getText().trim().toLowerCase());
-        settings.setValue(SettingsClass.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD, alwaysDownloadBackloadCheckBox.isSelected());
+        settings.setValue(Settings.MAX_MESSAGE_DISPLAY, displayDaysTextField.getText());
+        settings.setValue(Settings.MAX_MESSAGE_DOWNLOAD, downloadDaysTextField.getText());
+        settings.setValue(Settings.MESSAGE_BASE, messageBaseTextField.getText().trim().toLowerCase());
+        settings.setValue(Settings.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD, alwaysDownloadBackloadCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.BOARD_AUTOUPDATE_CONCURRENT_UPDATES, concurrentUpdatesTextField.getText());
-        settings.setValue(SettingsClass.BOARD_AUTOUPDATE_MIN_INTERVAL, minimumIntervalTextField.getText());
+        settings.setValue(Settings.BOARD_AUTOUPDATE_CONCURRENT_UPDATES, concurrentUpdatesTextField.getText());
+        settings.setValue(Settings.BOARD_AUTOUPDATE_MIN_INTERVAL, minimumIntervalTextField.getText());
 
         // settings.setValue(SettingsClass.BOARD_AUTOUPDATE_ENABLED, automaticBoardUpdateCheckBox.isSelected());
         // we change setting in MainFrame, this is auto-saved during frostSettings.save()
         MainFrame.getInstance().setAutomaticBoardUpdateEnabled(automaticBoardUpdateCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.STORAGE_STORE_SENT_MESSAGES, storeSentMessagesCheckBox.isSelected());
-        settings.setValue(SettingsClass.SILENTLY_RETRY_MESSAGES, silentlyRetryCheckBox.isSelected());
+        settings.setValue(Settings.STORAGE_STORE_SENT_MESSAGES, storeSentMessagesCheckBox.isSelected());
+        settings.setValue(Settings.SILENTLY_RETRY_MESSAGES, silentlyRetryCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.ALTERNATE_EDITOR_ENABLED, altEditCheckBox.isSelected());
-        settings.setValue(SettingsClass.ALTERNATE_EDITOR_COMMAND, altEditTextField.getText());
+        settings.setValue(Settings.ALTERNATE_EDITOR_ENABLED, altEditCheckBox.isSelected());
+        settings.setValue(Settings.ALTERNATE_EDITOR_COMMAND, altEditTextField.getText());
     }
 
     private void refreshUpdateState() {

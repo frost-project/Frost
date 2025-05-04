@@ -58,7 +58,7 @@ import javax.swing.table.TableColumn;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.SortedTable;
 import frost.gui.model.SortedTableModel;
@@ -152,7 +152,7 @@ public class BoardInfoFrame extends JFrame implements BoardUpdateThreadListener,
         setSize(width, height);
         setLocationRelativeTo(mainFrame);
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
 
 		language = Language.getInstance();
 		languageChanged(null);

@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fcp.FcpHandler;
 import frost.fcp.NodeAddress;
 import frost.fcp.fcp07.freetalk.FcpFreetalkConnection;
@@ -60,7 +60,7 @@ public class FreetalkManager {
     }
 
     public String getLoginUserId() {
-        final String uid = Core.frostSettings.getValue(SettingsClass.FREETALK_LOGIN_USERID);
+        final String uid = Core.frostSettings.getValue(Settings.FREETALK_LOGIN_USERID);
         if (uid == null) {
             return "";
         }

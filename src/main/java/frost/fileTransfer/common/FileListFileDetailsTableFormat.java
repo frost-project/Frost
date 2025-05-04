@@ -29,7 +29,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.gui.RatingStringProvider;
 import frost.identities.Identity;
 import frost.util.gui.MiscToolkit;
@@ -78,7 +78,7 @@ public class FileListFileDetailsTableFormat extends SortedTableFormat<FileListFi
 
         loadIcons();
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
     }
 
     private void loadIcons() {
@@ -173,7 +173,7 @@ public class FileListFileDetailsTableFormat extends SortedTableFormat<FileListFi
 
         modelTable.getTable().setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
@@ -225,7 +225,7 @@ public class FileListFileDetailsTableFormat extends SortedTableFormat<FileListFi
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);

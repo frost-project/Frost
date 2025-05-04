@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.identities.Identity;
 import frost.identities.LocalIdentity;
 import frost.storage.ExitSavable;
@@ -63,7 +63,7 @@ public class IdentitiesStorage extends AbstractFrostStorage implements ExitSavab
     @Override
     public boolean initStorage() {
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_IDENTITIES);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_IDENTITIES);
 
         open(databaseFilePath, pagePoolSize, true, true, false);
 

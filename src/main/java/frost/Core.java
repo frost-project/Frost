@@ -76,7 +76,7 @@ public class Core {
 	private static final Logger logger = LoggerFactory.getLogger(Core.class);
 
     // Core instanciates itself, frostSettings must be created before instance=Core() !
-    public static final SettingsClass frostSettings = new SettingsClass();
+    public static final Settings frostSettings = new Settings();
 
     private static Core instance = null;
 
@@ -113,7 +113,7 @@ public class Core {
     private boolean initializeConnectivity() {
 
         // determine configured freenet version
-        final int freenetVersion = frostSettings.getIntValue(SettingsClass.FREENET_VERSION); // only 7 is supported
+        final int freenetVersion = frostSettings.getIntValue(Settings.FREENET_VERSION); // only 7 is supported
         if( freenetVersion != 7 ) {
             MiscToolkit.showMessage(
                     language.getString("Core.init.UnsupportedFreenetVersionBody")+": "+freenetVersion,
@@ -123,10 +123,10 @@ public class Core {
         }
 
         // get the list of available nodes
-        String nodesUnparsed = frostSettings.getValue(SettingsClass.FREENET_FCP_ADDRESS);
+        String nodesUnparsed = frostSettings.getValue(Settings.FREENET_FCP_ADDRESS);
         if ((nodesUnparsed == null) || (nodesUnparsed.length() == 0)) {
-            frostSettings.setValue(SettingsClass.FREENET_FCP_ADDRESS, "127.0.0.1:9481");
-            nodesUnparsed = frostSettings.getValue(SettingsClass.FREENET_FCP_ADDRESS);
+            frostSettings.setValue(Settings.FREENET_FCP_ADDRESS, "127.0.0.1:9481");
+            nodesUnparsed = frostSettings.getValue(Settings.FREENET_FCP_ADDRESS);
         }
 
         final List<String> nodes = new ArrayList<String>();
@@ -153,7 +153,7 @@ public class Core {
                     "Frost doesn' support multiple Freenet nodes and will use the first configured node.",
                     JOptionPane.ERROR_MESSAGE,
                     "Warning: Using first configured node");
-            frostSettings.setValue(SettingsClass.FREENET_FCP_ADDRESS, nodes.get(0));
+            frostSettings.setValue(Settings.FREENET_FCP_ADDRESS, nodes.get(0));
         }
 
         // init the factory with configured node
@@ -222,14 +222,14 @@ public class Core {
             FcpHandler.inst().goneOnline();
         }
 
-        if (!frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE)) {
+        if (!frostSettings.getBoolValue(Settings.FILESHARING_DISABLE)) {
             MiscToolkit.showSuppressableConfirmDialog(
                     MainFrame.getInstance(),
                     language.getString("Core.init.FileSharingEnabledBody"),
                     language.getString("Core.init.FileSharingEnabledTitle"),
                     JOptionPane.OK_OPTION,
                     JOptionPane.WARNING_MESSAGE,
-                    SettingsClass.CONFIRM_FILESHARING_IS_ENABLED,
+                    Settings.CONFIRM_FILESHARING_IS_ENABLED,
                     language.getString("Common.suppressConfirmationCheckbox") );
         }
 
@@ -281,17 +281,17 @@ public class Core {
         }
 
         // first startup, no migrate needed
-        frostSettings.setValue(SettingsClass.MIGRATE_VERSION, 3);
+        frostSettings.setValue(Settings.MIGRATE_VERSION, 3);
 
         // set used version
         final int freenetVersion = 7;
-        frostSettings.setValue(SettingsClass.FREENET_VERSION, freenetVersion);
+        frostSettings.setValue(Settings.FREENET_VERSION, freenetVersion);
 
 		// Init FCP and FPROXY settings
 		String fcpAddress = startdlg.getOwnHostAndPort();
 		if (fcpAddress != null) {
-			frostSettings.setValue(SettingsClass.FREENET_FCP_ADDRESS, fcpAddress);
-			frostSettings.setValue(SettingsClass.BROWSER_ADDRESS, SettingsClass.generateFproxyAddress(fcpAddress));
+			frostSettings.setValue(Settings.FREENET_FCP_ADDRESS, fcpAddress);
+			frostSettings.setValue(Settings.BROWSER_ADDRESS, Settings.generateFproxyAddress(fcpAddress));
 		}
 	}
 
@@ -355,7 +355,7 @@ public class Core {
      */
     public void initialize() throws Exception {
 
-        final Splashscreen splashscreen = new Splashscreen(frostSettings.getBoolValue(SettingsClass.DISABLE_SPLASHSCREEN));
+        final Splashscreen splashscreen = new Splashscreen(frostSettings.getBoolValue(Settings.DISABLE_SPLASHSCREEN));
         splashscreen.setVisible(true);
 
         splashscreen.setText(language.getString("Splashscreen.message.1"));
@@ -365,41 +365,41 @@ public class Core {
         Startup.startupCheck(frostSettings);
 
         // if first startup ask user for freenet version to use
-        if( frostSettings.getIntValue(SettingsClass.FREENET_VERSION) == 0 ) {
+        if( frostSettings.getIntValue(Settings.FREENET_VERSION) == 0 ) {
             showFirstStartupDialog();
         }
 
         // we must be at migration level 2 (no mckoi)!!!
-        if( frostSettings.getIntValue(SettingsClass.MIGRATE_VERSION) < 2 ) {
+        if( frostSettings.getIntValue(Settings.MIGRATE_VERSION) < 2 ) {
             logger.error("You must update this Frost version from version 11-Dec-2007 !!!");
             System.exit(8);
         }
 
         // before opening the storages, maybe compact them
-        if( frostSettings.getBoolValue(SettingsClass.PERST_COMPACT_STORAGES) ) {
+        if( frostSettings.getBoolValue(Settings.PERST_COMPACT_STORAGES) ) {
             compactPerstStorages(splashscreen);
-            frostSettings.setValue(SettingsClass.PERST_COMPACT_STORAGES, false);
+            frostSettings.setValue(Settings.PERST_COMPACT_STORAGES, false);
         }
 
         // one time: change cleanup settings to new default, they were way to high
-        if( frostSettings.getIntValue(SettingsClass.MIGRATE_VERSION) < 3 ) {
-            frostSettings.setValue(SettingsClass.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY, true);
-            if (frostSettings.getIntValue(SettingsClass.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD) > 30) {
-                frostSettings.setValue(SettingsClass.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD, 30);
+        if( frostSettings.getIntValue(Settings.MIGRATE_VERSION) < 3 ) {
+            frostSettings.setValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY, true);
+            if (frostSettings.getIntValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD) > 30) {
+                frostSettings.setValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD, 30);
             }
 
             // run cleanup now
-            frostSettings.setValue(SettingsClass.DB_CLEANUP_LASTRUN, 0L);
+            frostSettings.setValue(Settings.DB_CLEANUP_LASTRUN, 0L);
             // run compact during next startup (after the cleanup)
-            frostSettings.setValue(SettingsClass.PERST_COMPACT_STORAGES, true);
+            frostSettings.setValue(Settings.PERST_COMPACT_STORAGES, true);
             // migration is done
-            frostSettings.setValue(SettingsClass.MIGRATE_VERSION, 3);
+            frostSettings.setValue(Settings.MIGRATE_VERSION, 3);
         }
 
         // maybe export perst storages to XML
-        if( frostSettings.getBoolValue(SettingsClass.PERST_EXPORT_STORAGES) ) {
+        if( frostSettings.getBoolValue(Settings.PERST_EXPORT_STORAGES) ) {
             exportStoragesToXml(splashscreen);
-            frostSettings.setValue(SettingsClass.PERST_EXPORT_STORAGES, false);
+            frostSettings.setValue(Settings.PERST_EXPORT_STORAGES, false);
         }
 
         // initialize perst storages
@@ -442,7 +442,7 @@ public class Core {
         getFileTransferManager().initialize();
         UnsentMessagesManager.initialize();
 
-        if (frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_TAB)) {
+        if (frostSettings.getBoolValue(Settings.FREETALK_SHOW_TAB)) {
             FreetalkManager.initialize();
         }
 
@@ -450,7 +450,7 @@ public class Core {
         splashscreen.setProgress(70);
 
         // Display the tray icon (do this before mainframe initializes)
-        if ((frostSettings.getBoolValue(SettingsClass.SHOW_SYSTRAY_ICON) == true) && SystraySupport.isSupported()) {
+        if ((frostSettings.getBoolValue(Settings.SHOW_SYSTRAY_ICON) == true) && SystraySupport.isSupported()) {
             try {
                 if (!SystraySupport.initialize(title)) {
                     logger.error("Could not create systray icon.");
@@ -566,7 +566,7 @@ public class Core {
         getFileTransferManager().startTickers();
 
         // after X seconds, start filesharing threads if enabled
-        if( isFreenetOnline() && !frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE)) {
+        if( isFreenetOnline() && !frostSettings.getBoolValue(Settings.FILESHARING_DISABLE)) {
             final Thread t = new Thread() {
                 @Override
                 public void run() {
@@ -604,11 +604,11 @@ public class Core {
             Language.initializeWithName(Frost.getCmdLineLocaleName());
         } else {
             // use config file parameter (format: de or de;ext
-            final String lang = frostSettings.getValue(SettingsClass.LANGUAGE_LOCALE);
+            final String lang = frostSettings.getValue(Settings.LANGUAGE_LOCALE);
             final String langIsExternal = frostSettings.getValue("localeExternal");
             if( (lang == null) || (lang.length() == 0) || lang.equals("default") ) {
                 // for default or if not set at all
-                frostSettings.setValue(SettingsClass.LANGUAGE_LOCALE, "default");
+                frostSettings.setValue(Settings.LANGUAGE_LOCALE, "default");
                 Language.initializeWithName(null);
             } else {
                 boolean isExternal;

@@ -32,7 +32,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
@@ -40,7 +40,7 @@ public class ExpirationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	private transient SettingsClass settings;
+	private transient Settings settings;
 	private transient Language language;
 
     private final JLabel LcleanupIntervalDays = new JLabel();
@@ -65,7 +65,7 @@ public class ExpirationPanel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected ExpirationPanel(final JDialog owner, final SettingsClass settings) {
+    protected ExpirationPanel(final JDialog owner, final Settings settings) {
         super();
         this.language = Language.getInstance();
         this.settings = settings;
@@ -209,9 +209,9 @@ public class ExpirationPanel extends JPanel {
      */
     private void loadSettings() {
 
-        TfMessageExpireDays.setText(settings.getValue(SettingsClass.MESSAGE_EXPIRE_DAYS));
+        TfMessageExpireDays.setText(settings.getValue(Settings.MESSAGE_EXPIRE_DAYS));
 
-        final String mode = settings.getValue(SettingsClass.MESSAGE_EXPIRATION_MODE);
+        final String mode = settings.getValue(Settings.MESSAGE_EXPIRATION_MODE);
         if( mode.toUpperCase().equals("KEEP") ) {
             RbKeepExpiredMessages.doClick();
         } else if( mode.toUpperCase().equals("ARCHIVE") ) {
@@ -222,14 +222,14 @@ public class ExpirationPanel extends JPanel {
             RbKeepExpiredMessages.doClick(); // // unknown value, use default
         }
 
-        CbKeepFlaggedAndStarred.setSelected(settings.getBoolValue(SettingsClass.ARCHIVE_KEEP_FLAGGED_AND_STARRED));
-        CbKeepUnread.setSelected(settings.getBoolValue(SettingsClass.ARCHIVE_KEEP_UNREAD));
+        CbKeepFlaggedAndStarred.setSelected(settings.getBoolValue(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED));
+        CbKeepUnread.setSelected(settings.getBoolValue(Settings.ARCHIVE_KEEP_UNREAD));
 
-        CbRemoveOfflineFilesWithKey.setSelected(settings.getBoolValue(SettingsClass.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY));
-        TfOfflineFilesMaxDaysOld.setText(settings.getValue(SettingsClass.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD));
+        CbRemoveOfflineFilesWithKey.setSelected(settings.getBoolValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY));
+        TfOfflineFilesMaxDaysOld.setText(settings.getValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD));
 
-        TfCleanupIntervalDays.setText(settings.getValue(SettingsClass.DB_CLEANUP_INTERVAL));
-        if( settings.getLongValue(SettingsClass.DB_CLEANUP_LASTRUN) == 0 ) {
+        TfCleanupIntervalDays.setText(settings.getValue(Settings.DB_CLEANUP_INTERVAL));
+        if( settings.getLongValue(Settings.DB_CLEANUP_LASTRUN) == 0 ) {
             CbCleanupNextStartup.setSelected(true);
         } else {
             CbCleanupNextStartup.setSelected(false);
@@ -241,27 +241,27 @@ public class ExpirationPanel extends JPanel {
      */
     private void saveSettings() {
 
-        settings.setValue(SettingsClass.MESSAGE_EXPIRE_DAYS, TfMessageExpireDays.getText());
+        settings.setValue(Settings.MESSAGE_EXPIRE_DAYS, TfMessageExpireDays.getText());
 
         if( RbKeepExpiredMessages.isSelected() ) {
-            settings.setValue(SettingsClass.MESSAGE_EXPIRATION_MODE, "KEEP");
+            settings.setValue(Settings.MESSAGE_EXPIRATION_MODE, "KEEP");
         } else if( RbArchiveExpiredMessages.isSelected() ) {
-            settings.setValue(SettingsClass.MESSAGE_EXPIRATION_MODE, "ARCHIVE");
+            settings.setValue(Settings.MESSAGE_EXPIRATION_MODE, "ARCHIVE");
         } else if( RbDeleteExpiredMessages.isSelected() ) {
-            settings.setValue(SettingsClass.MESSAGE_EXPIRATION_MODE, "DELETE");
+            settings.setValue(Settings.MESSAGE_EXPIRATION_MODE, "DELETE");
         } else {
-            settings.setValue(SettingsClass.MESSAGE_EXPIRATION_MODE, "KEEP");
+            settings.setValue(Settings.MESSAGE_EXPIRATION_MODE, "KEEP");
         }
 
-        settings.setValue(SettingsClass.ARCHIVE_KEEP_FLAGGED_AND_STARRED, CbKeepFlaggedAndStarred.isSelected());
-        settings.setValue(SettingsClass.ARCHIVE_KEEP_UNREAD, CbKeepUnread.isSelected());
+        settings.setValue(Settings.ARCHIVE_KEEP_FLAGGED_AND_STARRED, CbKeepFlaggedAndStarred.isSelected());
+        settings.setValue(Settings.ARCHIVE_KEEP_UNREAD, CbKeepUnread.isSelected());
 
-        settings.setValue(SettingsClass.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY, CbRemoveOfflineFilesWithKey.isSelected());
-        settings.setValue(SettingsClass.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD, TfOfflineFilesMaxDaysOld.getText());
+        settings.setValue(Settings.DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY, CbRemoveOfflineFilesWithKey.isSelected());
+        settings.setValue(Settings.DB_CLEANUP_OFFLINEFILESMAXDAYSOLD, TfOfflineFilesMaxDaysOld.getText());
 
-        settings.setValue(SettingsClass.DB_CLEANUP_INTERVAL, TfCleanupIntervalDays.getText());
+        settings.setValue(Settings.DB_CLEANUP_INTERVAL, TfCleanupIntervalDays.getText());
         if( CbCleanupNextStartup.isSelected() ) {
-            settings.setValue(SettingsClass.DB_CLEANUP_LASTRUN, 0L);
+            settings.setValue(Settings.DB_CLEANUP_LASTRUN, 0L);
         }
     }
 

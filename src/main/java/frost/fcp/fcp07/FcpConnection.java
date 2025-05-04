@@ -34,7 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.ext.DefaultMIMETypes;
 import frost.fcp.FcpHandler;
 import frost.fcp.FcpResultGet;
@@ -150,11 +150,11 @@ public class FcpConnection {
         	if( dlItem != null) {
         		prio = dlItem.getPriority();
         	} else {
-        		prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+        		prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
         	}
         
         } else if( type == FcpHandler.TYPE_MESSAGE ) {
-            prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
+            prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD));
 
         } else {
         	if( dlItem != null) {
@@ -366,10 +366,10 @@ public class FcpConnection {
             	if( ulItem != null) {
             		prio = ulItem.getPriority(); 
             	} else {
-            		prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+            		prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
             	}
             } else if( type == FcpHandler.TYPE_MESSAGE ) {
-                prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(SettingsClass.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
+                prio = FreenetPriority.getPriority(Core.frostSettings.getIntValue(Settings.FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD));
             } else {
             	if( ulItem != null) {
             		prio = ulItem.getPriority();

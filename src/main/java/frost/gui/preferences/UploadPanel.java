@@ -33,7 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
@@ -49,7 +49,7 @@ class UploadPanel extends JPanel {
     }
 
     private JDialog owner = null;
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JLabel priorityLabel = new JLabel();
@@ -77,7 +77,7 @@ class UploadPanel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected UploadPanel(final SettingsClass settings) {
+    protected UploadPanel(final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -88,7 +88,7 @@ class UploadPanel extends JPanel {
     }
 
     private void browseExecPressed() {
-        final JFileChooser fc = new JFileChooser(settings.getValue(SettingsClass.DIR_LAST_USED));
+        final JFileChooser fc = new JFileChooser(settings.getValue(Settings.DIR_LAST_USED));
         fc.setDialogTitle(language.getString("Options.downloads.filechooser.title"));
         fc.setFileHidingEnabled(true);
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -97,7 +97,7 @@ class UploadPanel extends JPanel {
         final int returnVal = fc.showOpenDialog(owner);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             final File file = fc.getSelectedFile();
-            settings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+            settings.setValue(Settings.DIR_LAST_USED, file.getParent());
             execTextField.setText(file.getPath());
         }
     }
@@ -188,14 +188,14 @@ class UploadPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        priorityTextField.setText(settings.getValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
-        enforceFrostPriorityFileUpload.setSelected(settings.getBoolValue(SettingsClass.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD));
-        threadsTextField.setText(settings.getValue(SettingsClass.UPLOAD_MAX_THREADS));
-        maxRetriesTextField.setText("" + settings.getIntValue(SettingsClass.UPLOAD_MAX_RETRIES));
-        waitTimeTextField.setText("" + settings.getIntValue(SettingsClass.UPLOAD_WAITTIME));
-        logUploadsCheckBox.setSelected(settings.getBoolValue(SettingsClass.LOG_UPLOADS_ENABLED));
-        removeNotExistingfiles.setSelected(settings.getBoolValue(SettingsClass.UPLOAD_REMOVE_NOT_EXISTING_FILES));
-        execTextField.setText(settings.getValue(SettingsClass.EXEC_ON_UPLOAD));
+        priorityTextField.setText(settings.getValue(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD));
+        enforceFrostPriorityFileUpload.setSelected(settings.getBoolValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD));
+        threadsTextField.setText(settings.getValue(Settings.UPLOAD_MAX_THREADS));
+        maxRetriesTextField.setText("" + settings.getIntValue(Settings.UPLOAD_MAX_RETRIES));
+        waitTimeTextField.setText("" + settings.getIntValue(Settings.UPLOAD_WAITTIME));
+        logUploadsCheckBox.setSelected(settings.getBoolValue(Settings.LOG_UPLOADS_ENABLED));
+        removeNotExistingfiles.setSelected(settings.getBoolValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES));
+        execTextField.setText(settings.getValue(Settings.EXEC_ON_UPLOAD));
     }
 
     public void ok() {
@@ -220,13 +220,13 @@ class UploadPanel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_UPLOAD, priorityTextField.getText());
-        settings.setValue(SettingsClass.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD, enforceFrostPriorityFileUpload.isSelected());
-        settings.setValue(SettingsClass.UPLOAD_MAX_THREADS, threadsTextField.getText());
-        settings.setValue(SettingsClass.UPLOAD_MAX_RETRIES, maxRetriesTextField.getText());
-        settings.setValue(SettingsClass.UPLOAD_WAITTIME, waitTimeTextField.getText());
-        settings.setValue(SettingsClass.LOG_UPLOADS_ENABLED, logUploadsCheckBox.isSelected());
-        settings.setValue(SettingsClass.UPLOAD_REMOVE_NOT_EXISTING_FILES, removeNotExistingfiles.isSelected());
-        settings.setValue(SettingsClass.EXEC_ON_UPLOAD, execTextField.getText());
+        settings.setValue(Settings.FCP2_DEFAULT_PRIO_FILE_UPLOAD, priorityTextField.getText());
+        settings.setValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD, enforceFrostPriorityFileUpload.isSelected());
+        settings.setValue(Settings.UPLOAD_MAX_THREADS, threadsTextField.getText());
+        settings.setValue(Settings.UPLOAD_MAX_RETRIES, maxRetriesTextField.getText());
+        settings.setValue(Settings.UPLOAD_WAITTIME, waitTimeTextField.getText());
+        settings.setValue(Settings.LOG_UPLOADS_ENABLED, logUploadsCheckBox.isSelected());
+        settings.setValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES, removeNotExistingfiles.isSelected());
+        settings.setValue(Settings.EXEC_ON_UPLOAD, execTextField.getText());
     }
 }

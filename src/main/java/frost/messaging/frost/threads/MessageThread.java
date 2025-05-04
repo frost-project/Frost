@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.identities.Identity;
 import frost.identities.LocalIdentity;
 import frost.messaging.frost.FrostMessageObject;
@@ -155,7 +155,7 @@ public class MessageThread extends BoardUpdateThreadObject implements BoardUpdat
         } else {
             downKey = new StringBuilder()
                     .append("KSK@frost/message/")
-                    .append(Core.frostSettings.getValue(SettingsClass.MESSAGE_BASE))
+                    .append(Core.frostSettings.getValue(Settings.MESSAGE_BASE))
                     .append("/")
                     .append(dirdate)
                     .append("-")
@@ -214,7 +214,7 @@ public class MessageThread extends BoardUpdateThreadObject implements BoardUpdat
 
                 final boolean quicklyFailOnAdnf;
                 final int maxRetries;
-                if( Core.frostSettings.getBoolValue(SettingsClass.FCP2_QUICKLY_FAIL_ON_ADNF) ) {
+                if( Core.frostSettings.getBoolValue(Settings.FCP2_QUICKLY_FAIL_ON_ADNF) ) {
                     quicklyFailOnAdnf = true;
                     maxRetries = 2;
                 } else {
@@ -533,7 +533,7 @@ public class MessageThread extends BoardUpdateThreadObject implements BoardUpdat
         } else {
             key = new StringBuilder()
                     .append("KSK@frost/message/")
-                    .append(Core.frostSettings.getValue(SettingsClass.MESSAGE_BASE))
+                    .append(Core.frostSettings.getValue(Settings.MESSAGE_BASE))
                     .append("/")
                     .append(message.getDateStr())
                     .append("-")
@@ -568,7 +568,7 @@ public class MessageThread extends BoardUpdateThreadObject implements BoardUpdat
         } else {
             key = new StringBuilder()
                     .append("KSK@frost/message/")
-                    .append(Core.frostSettings.getValue(SettingsClass.MESSAGE_BASE))
+                    .append(Core.frostSettings.getValue(Settings.MESSAGE_BASE))
                     .append("/")
                     .append(message.getDateStr())
                     .append("-")

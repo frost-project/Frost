@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fcp.FcpHandler;
 import frost.fileTransfer.SharedFilesCHKKeyManager;
 import frost.storage.perst.IndexSlot;
@@ -60,7 +60,7 @@ public class FilePointersThread extends Thread {
     private static FilePointersThread instance = new FilePointersThread();
 
     private FilePointersThread() {
-        final String fileBase = Core.frostSettings.getValue(SettingsClass.FILE_BASE);
+        final String fileBase = Core.frostSettings.getValue(Settings.FILE_BASE);
         keyPrefix = "KSK@frost/filepointers/" + fileBase + "-";
     }
 
@@ -146,7 +146,7 @@ public class FilePointersThread extends Thread {
 
             final boolean quicklyFailOnAdnf;
             final int maxRetries;
-            if( Core.frostSettings.getBoolValue(SettingsClass.FCP2_QUICKLY_FAIL_ON_ADNF) ) {
+            if( Core.frostSettings.getBoolValue(Settings.FCP2_QUICKLY_FAIL_ON_ADNF) ) {
                 quicklyFailOnAdnf = true;
                 maxRetries = 2;
             } else {
@@ -231,7 +231,7 @@ public class FilePointersThread extends Thread {
             // +1 for today
             int downloadBack;
             if( downloadFullBackloadCount > 0 ) {
-                downloadBack = 1 + Core.frostSettings.getIntValue(SettingsClass.MAX_FILELIST_DOWNLOAD_DAYS);
+                downloadBack = 1 + Core.frostSettings.getIntValue(Settings.MAX_FILELIST_DOWNLOAD_DAYS);
                 downloadFullBackloadCount--;
             } else {
                 downloadBack = 2; // today and yesterday only

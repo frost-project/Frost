@@ -33,7 +33,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.model.SearchMessagesTableModel;
 import frost.messaging.frost.FrostSearchResultMessageObject;
@@ -70,7 +70,7 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 
         initLayout();
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
     }
 
     private void initLayout() {

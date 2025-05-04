@@ -27,7 +27,7 @@ import java.util.List;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.boards.Board;
 import frost.messaging.frost.threads.FileAttachmentUploadThread;
 import frost.storage.perst.messages.MessageStorage;
@@ -90,7 +90,7 @@ public class UnsentMessagesManager {
      */
     public static FrostUnsentMessageObject getUnsentMessage(final Board targetBoard, final String fromName) {
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.MESSAGE_UPLOAD_DISABLED) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MESSAGE_UPLOAD_DISABLED) ) {
             return null;
         }
 
@@ -116,7 +116,7 @@ public class UnsentMessagesManager {
      */
     public static List<Board> getBoardsWithSendableMessages() {
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.MESSAGE_UPLOAD_DISABLED) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MESSAGE_UPLOAD_DISABLED) ) {
             return Collections.emptyList();
         }
 

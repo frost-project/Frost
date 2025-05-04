@@ -69,7 +69,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.identities.Identity;
 import frost.identities.LocalIdentity;
 import frost.messaging.freetalk.FreetalkMessage;
@@ -404,7 +404,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
                     return;
                 }
 
-                if( Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_THREADS) ) {
+                if( Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_THREADS) ) {
                     if( messageTable.getSelectedRowCount() == 1 ) {
                         add(expandThreadItem);
                         add(collapseThreadItem);
@@ -482,7 +482,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         }
     }
 
-    private final SettingsClass settings;
+    private final Settings settings;
     private final Language language  = Language.getInstance();
     private JFrame parentFrame;
 
@@ -522,7 +522,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     private String unreadMessagesCountPrefix = "";
     private final JLabel unreadMessagesCountLabel = new JLabel("");
 
-    public FreetalkMessagePanel(final SettingsClass settings, final MainFrame mf, final FreetalkMessageTab fmt) {
+    public FreetalkMessagePanel(final Settings settings, final MainFrame mf, final FreetalkMessageTab fmt) {
         super();
         this.settings = settings;
         mainFrame = mf;
@@ -552,7 +552,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 
         ImageIcon icon;
 
-        toggleShowUnreadOnly.setSelected(Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_UNREAD_ONLY));
+        toggleShowUnreadOnly.setSelected(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_UNREAD_ONLY));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/software-update-available.png");
         toggleShowUnreadOnly.setIcon(icon);
         toggleShowUnreadOnly.setRolloverEnabled(true);
@@ -562,7 +562,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         toggleShowUnreadOnly.setFocusPainted(false);
         toggleShowUnreadOnly.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowUnreadOnly"));
 
-        toggleShowThreads.setSelected(Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_THREADS));
+        toggleShowThreads.setSelected(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_THREADS));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/toggle-treeview.png");
         toggleShowThreads.setIcon(icon);
         toggleShowThreads.setRolloverEnabled(true);
@@ -572,7 +572,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         toggleShowThreads.setFocusPainted(false);
         toggleShowThreads.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowThreads"));
 
-        toggleShowSmileys.setSelected(Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_SMILEYS));
+        toggleShowSmileys.setSelected(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_SMILEYS));
         icon = MiscToolkit.loadImageIcon("/data/toolbar/face-smile.png");
         toggleShowSmileys.setIcon(icon);
         toggleShowSmileys.setRolloverEnabled(true);
@@ -582,7 +582,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         toggleShowSmileys.setFocusPainted(false);
         toggleShowSmileys.setToolTipText(language.getString("MessagePane.toolbar.tooltip.toggleShowSmileys"));
 
-        toggleShowHyperlinks.setSelected(Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
+        toggleShowHyperlinks.setSelected(Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS));
         icon = MiscToolkit.loadImageIcon("/data/togglehyperlinks.gif");
         toggleShowHyperlinks.setIcon(icon);
         toggleShowHyperlinks.setRolloverEnabled(true);
@@ -695,18 +695,18 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
             refreshLanguage();
             language.addLanguageListener(listener);
 
-            FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolValue(SettingsClass.SORT_THREADROOTMSGS_ASCENDING);
+            FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolValue(Settings.SORT_THREADROOTMSGS_ASCENDING);
 
 //            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
 //            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
 //            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
 
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.SORT_THREADROOTMSGS_ASCENDING, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.MSGTABLE_MULTILINE_SELECT, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
-            Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.SORT_THREADROOTMSGS_ASCENDING, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.MSGTABLE_MULTILINE_SELECT, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.MSGTABLE_SCROLL_HORIZONTAL, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
+            Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
 
             // build messages list scroll pane
             final FreetalkMessageTreeTableModel messageTableModel = new FreetalkMessageTreeTableModel(new DefaultMutableTreeNode());
@@ -744,7 +744,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
             msgTableAndMsgTextSplitpane.setResizeWeight(0.5d);
             msgTableAndMsgTextSplitpane.setMinimumSize(new Dimension(50, 20));
 
-            int dividerLoc = Core.frostSettings.getIntValue(SettingsClass.FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION);
+            int dividerLoc = Core.frostSettings.getIntValue(Settings.FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION);
             if( dividerLoc < 10 ) {
                 dividerLoc = 160;
             }
@@ -871,22 +871,22 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 //        });
     }
 
-    public void saveLayout(final SettingsClass frostSettings) {
-        frostSettings.setValue(SettingsClass.FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION,
+    public void saveLayout(final Settings frostSettings) {
+        frostSettings.setValue(Settings.FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION,
                 msgTableAndMsgTextSplitpane.getDividerLocation());
 
         getMessageTable().saveLayout(frostSettings);
     }
 
     private void fontChanged() {
-        final String fontName = settings.getValue(SettingsClass.MESSAGE_LIST_FONT_NAME);
-        final int fontStyle = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_STYLE);
-        final int fontSize = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_SIZE);
+        final String fontName = settings.getValue(Settings.MESSAGE_LIST_FONT_NAME);
+        final int fontStyle = settings.getIntValue(Settings.MESSAGE_LIST_FONT_STYLE);
+        final int fontSize = settings.getIntValue(Settings.MESSAGE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"SansSerif\".");
-            settings.setValue(SettingsClass.MESSAGE_LIST_FONT_NAME, "SansSerif");
+            settings.setValue(Settings.MESSAGE_LIST_FONT_NAME, "SansSerif");
             font = new Font("SansSerif", fontStyle, fontSize);
         }
         messageTable.setFont(font);
@@ -1115,32 +1115,32 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     }
 
     private void toggleShowUnreadOnly_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_UNREAD_ONLY);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_UNREAD_ONLY);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.FREETALK_SHOW_UNREAD_ONLY, newValue);
+        Core.frostSettings.setValue(Settings.FREETALK_SHOW_UNREAD_ONLY, newValue);
         // reload messages
 //        MainFrame.getInstance().tofTree_actionPerformed(null, true);
     }
 
     private void toggleShowThreads_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_THREADS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_THREADS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.FREETALK_SHOW_THREADS, newValue);
+        Core.frostSettings.setValue(Settings.FREETALK_SHOW_THREADS, newValue);
         // reload messages
         ftMessageTab.boardTree_actionPerformed();
     }
 
     private void toggleShowSmileys_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_SMILEYS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_SMILEYS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.FREETALK_SHOW_SMILEYS, newValue);
+        Core.frostSettings.setValue(Settings.FREETALK_SHOW_SMILEYS, newValue);
         // redraw is done in textpane by propertychangelistener!
     }
 
     private void toggleShowHyperlinks_actionPerformed(final ActionEvent e) {
-        final boolean oldValue = Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_KEYS_AS_HYPERLINKS);
+        final boolean oldValue = Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS);
         final boolean newValue = !oldValue;
-        Core.frostSettings.setValue(SettingsClass.FREETALK_SHOW_KEYS_AS_HYPERLINKS, newValue);
+        Core.frostSettings.setValue(Settings.FREETALK_SHOW_KEYS_AS_HYPERLINKS, newValue);
         // redraw is done in textpane by propertychangelistener!
     }
 
@@ -1712,7 +1712,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 
         final List<Identity> identitiesToMarkBad;
         if( state == BooleanState.JUNK
-                && Core.frostSettings.getBoolValue(SettingsClass.JUNK_MARK_JUNK_IDENTITY_BAD)
+                && Core.frostSettings.getBoolValue(Settings.JUNK_MARK_JUNK_IDENTITY_BAD)
                 && doEnable )
         {
             // we set junk to true and we want to set all junk senders to bad
@@ -1861,7 +1861,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     }
 
     private void updateMsgTableMultilineSelect() {
-        if( Core.frostSettings.getBoolValue(SettingsClass.MSGTABLE_MULTILINE_SELECT) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_MULTILINE_SELECT) ) {
             messageTable.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         } else {
             messageTable.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
@@ -1869,7 +1869,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     }
 
     private void updateMsgTableResizeMode() {
-        if( Core.frostSettings.getBoolValue(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL) ) {
+        if( Core.frostSettings.getBoolValue(Settings.MSGTABLE_SCROLL_HORIZONTAL) ) {
             // show horizontal scrollbar if needed
             getMessageTable().setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         } else {
@@ -1879,12 +1879,12 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.MSGTABLE_MULTILINE_SELECT)) {
+        if (evt.getPropertyName().equals(Settings.MSGTABLE_MULTILINE_SELECT)) {
             updateMsgTableMultilineSelect();
-        } else if (evt.getPropertyName().equals(SettingsClass.MSGTABLE_SCROLL_HORIZONTAL)) {
+        } else if (evt.getPropertyName().equals(Settings.MSGTABLE_SCROLL_HORIZONTAL)) {
             updateMsgTableResizeMode();
-        } else if (evt.getPropertyName().equals(SettingsClass.SORT_THREADROOTMSGS_ASCENDING)) {
-            FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolValue(SettingsClass.SORT_THREADROOTMSGS_ASCENDING);
+        } else if (evt.getPropertyName().equals(Settings.SORT_THREADROOTMSGS_ASCENDING)) {
+            FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolValue(Settings.SORT_THREADROOTMSGS_ASCENDING);
         }
 //        else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES)) {
 //            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);

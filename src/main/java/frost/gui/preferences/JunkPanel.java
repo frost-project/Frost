@@ -31,13 +31,13 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.translation.Language;
 
 @SuppressWarnings("serial")
 public class JunkPanel extends JPanel {
 
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JCheckBox hideJunkMessagesCheckBox = new JCheckBox();
@@ -60,7 +60,7 @@ public class JunkPanel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected JunkPanel(final SettingsClass settings) {
+    protected JunkPanel(final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -141,10 +141,10 @@ public class JunkPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        hideJunkMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.JUNK_HIDE_JUNK_MESSAGES));
-        markJunkIdentityBadCheckBox.setSelected(settings.getBoolValue(SettingsClass.JUNK_MARK_JUNK_IDENTITY_BAD));
-        stopBoardUpdatesWhenDosedCheckBox.setSelected(settings.getBoolValue(SettingsClass.DOS_STOP_BOARD_UPDATES_WHEN_DOSED));
-        TfInvalidSubsequentMessagesThreshold.setText(""+settings.getIntValue(SettingsClass.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD));
+        hideJunkMessagesCheckBox.setSelected(settings.getBoolValue(Settings.JUNK_HIDE_JUNK_MESSAGES));
+        markJunkIdentityBadCheckBox.setSelected(settings.getBoolValue(Settings.JUNK_MARK_JUNK_IDENTITY_BAD));
+        stopBoardUpdatesWhenDosedCheckBox.setSelected(settings.getBoolValue(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED));
+        TfInvalidSubsequentMessagesThreshold.setText(""+settings.getIntValue(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD));
     }
 
     public void ok() {
@@ -163,9 +163,9 @@ public class JunkPanel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.JUNK_HIDE_JUNK_MESSAGES, hideJunkMessagesCheckBox.isSelected());
-        settings.setValue(SettingsClass.JUNK_MARK_JUNK_IDENTITY_BAD, markJunkIdentityBadCheckBox.isSelected());
-        settings.setValue(SettingsClass.DOS_STOP_BOARD_UPDATES_WHEN_DOSED, stopBoardUpdatesWhenDosedCheckBox.isSelected());
-        settings.setValue(SettingsClass.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD, TfInvalidSubsequentMessagesThreshold.getText());
+        settings.setValue(Settings.JUNK_HIDE_JUNK_MESSAGES, hideJunkMessagesCheckBox.isSelected());
+        settings.setValue(Settings.JUNK_MARK_JUNK_IDENTITY_BAD, markJunkIdentityBadCheckBox.isSelected());
+        settings.setValue(Settings.DOS_STOP_BOARD_UPDATES_WHEN_DOSED, stopBoardUpdatesWhenDosedCheckBox.isSelected());
+        settings.setValue(Settings.DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD, TfInvalidSubsequentMessagesThreshold.getText());
     }
 }

@@ -24,7 +24,7 @@ import java.util.List;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.storage.ExitSavable;
 import frost.storage.StorageException;
@@ -61,7 +61,7 @@ public class SharedFilesManager implements PropertyChangeListener, ExitSavable {
 
     public void addPanelToMainFrame(final MainFrame mainFrame) {
         mainFrame.addPanel("MainFrame.tabbedPane.sharing", getPanel());
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.FILESHARING_DISABLE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.FILESHARING_DISABLE, this);
         updateFileSharingStatus();
     }
 
@@ -85,13 +85,13 @@ public class SharedFilesManager implements PropertyChangeListener, ExitSavable {
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.FILESHARING_DISABLE)) {
+        if (evt.getPropertyName().equals(Settings.FILESHARING_DISABLE)) {
             updateFileSharingStatus();
         }
     }
 
     private void updateFileSharingStatus() {
-        boolean disableFileSharing = Core.frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE);
+        boolean disableFileSharing = Core.frostSettings.getBoolValue(Settings.FILESHARING_DISABLE);
         MainFrame.getInstance().setPanelEnabled("MainFrame.tabbedPane.sharing", !disableFileSharing);
     }
 

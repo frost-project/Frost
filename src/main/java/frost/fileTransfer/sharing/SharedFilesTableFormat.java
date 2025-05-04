@@ -32,7 +32,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.RatingStringProvider;
 import frost.util.DateFun;
@@ -83,7 +83,7 @@ class SharedFilesTableFormat extends SortedTableFormat<FrostSharedFileItem> impl
         setComparator(new LastSharedComparator(), 11);
         setComparator(new PathComparator(), 12);
         
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -181,7 +181,7 @@ class SharedFilesTableFormat extends SortedTableFormat<FrostSharedFileItem> impl
         
         modelTable = (SortedModelTable<FrostSharedFileItem>) lModelTable;
         
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
@@ -237,7 +237,7 @@ class SharedFilesTableFormat extends SortedTableFormat<FrostSharedFileItem> impl
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
         
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             int sortedColumn = modelTable.getSortedColumn();
             boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -522,8 +522,8 @@ class SharedFilesTableFormat extends SortedTableFormat<FrostSharedFileItem> impl
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
+            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

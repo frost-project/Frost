@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fcp.fcp07.freetalk.FcpFreetalkConnection;
 import frost.gui.NewBoardDialog;
 import frost.messaging.freetalk.FreetalkManager;
@@ -375,7 +375,7 @@ public class FreetalkMessageTab implements LanguageListener {
         final String id = FcpFreetalkConnection.getNextFcpidentifier();
 
         ftManager.getConnection().registerCallback(
-                id, new ListMessagesCallback(mainFrame, board, Core.frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_THREADS)));
+                id, new ListMessagesCallback(mainFrame, board, Core.frostSettings.getBoolValue(Settings.FREETALK_SHOW_THREADS)));
 
         mainFrame.activateGlassPane();
 

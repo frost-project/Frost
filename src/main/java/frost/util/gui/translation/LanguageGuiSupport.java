@@ -33,7 +33,7 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.MiscToolkit;
 
 /**
@@ -185,7 +185,7 @@ public class LanguageGuiSupport {
         // finally select currently choosed language
         boolean anItemIsSelected = false;
 
-        final String configuredLang = Core.frostSettings.getValue(SettingsClass.LANGUAGE_LOCALE);
+        final String configuredLang = Core.frostSettings.getValue(Settings.LANGUAGE_LOCALE);
         final String langIsExternal = Core.frostSettings.getValue("localeExternal");
         boolean isExternal;
         if( langIsExternal == null || langIsExternal.length() == 0 || !langIsExternal.equals("true")) {
@@ -253,11 +253,11 @@ public class LanguageGuiSupport {
      */
     private void setLanguageResource(final String newLocaleName, boolean isExternal) {
         if( newLocaleName == null ) {
-            Core.frostSettings.setValue(SettingsClass.LANGUAGE_LOCALE, "default");
+            Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE, "default");
             Core.frostSettings.setValue("localeExternal", "false");
             isExternal = false;
         } else {
-            Core.frostSettings.setValue(SettingsClass.LANGUAGE_LOCALE, newLocaleName);
+            Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE, newLocaleName);
             Core.frostSettings.setValue("localeExternal", Boolean.toString(isExternal));
         }
         language.changeLanguage(newLocaleName, isExternal);

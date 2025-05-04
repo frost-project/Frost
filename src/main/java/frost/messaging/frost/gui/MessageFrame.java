@@ -74,7 +74,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.ext.AltEdit;
 import frost.ext.AltEditCallbackInterface;
 import frost.gui.BoardsChooser;
@@ -124,7 +124,7 @@ public class MessageFrame extends JFrame
 
     private Board board;
     private String repliedMsgId;
-	private transient SettingsClass frostSettings;
+	private transient Settings frostSettings;
 
     private MFAttachedBoardsTable boardsTable;
     private MFAttachedFilesTable filesTable;
@@ -176,7 +176,7 @@ public class MessageFrame extends JFrame
 
     private static int openInstanceCount = 0;
 
-    public MessageFrame(final SettingsClass newSettings, final Window tparentWindow) {
+    public MessageFrame(final Settings newSettings, final Window tparentWindow) {
         super();
         parentWindow = tparentWindow;
         this.language = Language.getInstance();
@@ -184,18 +184,18 @@ public class MessageFrame extends JFrame
 
         incOpenInstanceCount();
 
-        final String fontName = frostSettings.getValue(SettingsClass.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_SIZE);
+        final String fontName = frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
+        final int fontStyle = frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
+        final int fontSize = frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
         Font tofFont = new Font(fontName, fontStyle, fontSize);
         if (!tofFont.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"Monospaced\".");
-            frostSettings.setValue(SettingsClass.MESSAGE_BODY_FONT_NAME, "Monospaced");
+            frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
             tofFont = new Font("Monospaced", fontStyle, fontSize);
         }
         messageTextArea.setFont(tofFont);
-        messageTextArea.setAntiAliasEnabled(frostSettings.getBoolValue(SettingsClass.MESSAGE_BODY_ANTIALIAS));
+        messageTextArea.setAntiAliasEnabled(frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
         final ImmutableAreasDocument messageDocument = new ImmutableAreasDocument();
         headerArea = new ImmutableArea(messageDocument);
         messageDocument.addImmutableArea(headerArea); // user must not change the header of the message
@@ -273,7 +273,7 @@ public class MessageFrame extends JFrame
     }
 
     private void attachFile_actionPerformed(final ActionEvent e) {
-        final String lastUsedDirectory = frostSettings.getValue(SettingsClass.DIR_LAST_USED);
+        final String lastUsedDirectory = frostSettings.getValue(Settings.DIR_LAST_USED);
         final JFileChooser fc = new JFileChooser(lastUsedDirectory);
         fc.setDialogTitle(language.getString("MessageFrame.fileChooser.title"));
         fc.setFileHidingEnabled(false);
@@ -285,7 +285,7 @@ public class MessageFrame extends JFrame
             final File[] selectedFiles = fc.getSelectedFiles();
             for( final File element : selectedFiles ) {
                 // for convenience remember last used directory
-                frostSettings.setValue(SettingsClass.DIR_LAST_USED, element.getPath());
+                frostSettings.setValue(Settings.DIR_LAST_USED, element.getPath());
 
                 // collect all chosen files + files in all chosen directories
                 final List<File> allFiles = FileAccess.getAllEntries(element);
@@ -408,7 +408,7 @@ public class MessageFrame extends JFrame
             // use remembered sender name, maybe per board
             String userName = Core.frostSettings.getValue("userName."+board.getBoardFilename());
             if( (userName == null) || (userName.length() == 0) ) {
-                userName = Core.frostSettings.getValue(SettingsClass.LAST_USED_FROMNAME);
+                userName = Core.frostSettings.getValue(Settings.LAST_USED_FROMNAME);
             }
             if( Core.getIdentitiesManager().isMySelf(userName) ) {
                 // isSigned
@@ -999,7 +999,7 @@ public class MessageFrame extends JFrame
         // for convenience set last used user
         if( from.indexOf("@") < 0 ) {
             // only save anonymous usernames
-            frostSettings.setValue(SettingsClass.LAST_USED_FROMNAME, from);
+            frostSettings.setValue(Settings.LAST_USED_FROMNAME, from);
         }
         frostSettings.setValue("userName."+board.getBoardFilename(), from);
 

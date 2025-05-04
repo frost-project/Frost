@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.fileTransfer.FrostFileListFileObjectOwner;
 import frost.storage.ExitSavable;
@@ -67,11 +67,11 @@ public class FileListStorage extends AbstractFrostStorage implements ExitSavable
 
     @Override
     public boolean initStorage() {
-        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(SettingsClass.REMEMBER_SHAREDFILE_DOWNLOADED);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.REMEMBER_SHAREDFILE_DOWNLOADED, this);
+        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
+        Core.frostSettings.addPropertyChangeListener(Settings.REMEMBER_SHAREDFILE_DOWNLOADED, this);
 
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_FILELIST);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_FILELIST);
 
         open(databaseFilePath, pagePoolSize, true, true, false);
 
@@ -705,6 +705,6 @@ boolean alwaysUseLatestChkKey = true; // FIXME: must be true as long as the key 
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(SettingsClass.REMEMBER_SHAREDFILE_DOWNLOADED);
+        rememberSharedFileDownloaded = Core.frostSettings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED);
     }
 }

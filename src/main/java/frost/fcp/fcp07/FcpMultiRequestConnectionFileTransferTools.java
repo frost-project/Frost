@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.ext.DefaultMIMETypes;
 import frost.fileTransfer.FreenetPriority;
 import frost.fileTransfer.upload.FreenetCompatibilityMode;
@@ -366,7 +366,7 @@ public class FcpMultiRequestConnectionFileTransferTools {
         msg.add("Verbosity=0");
         msg.add("MaxRetries=1");
         //msg.add("DontCompress=true");
-        boolean useEarlyEncode = Core.frostSettings.getBoolValue(SettingsClass.FCP2_USE_EARLY_ENCODE);
+        boolean useEarlyEncode = Core.frostSettings.getBoolValue(Settings.FCP2_USE_EARLY_ENCODE);
         if (useEarlyEncode) {
             msg.add("EarlyEncode=true");
         }

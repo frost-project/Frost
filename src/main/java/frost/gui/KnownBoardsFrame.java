@@ -62,7 +62,7 @@ import javax.swing.table.TableCellRenderer;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.model.SortedTableModel;
 import frost.gui.model.TableMember;
@@ -132,7 +132,7 @@ public class KnownBoardsFrame extends JDialog {
             }
         });
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
 
         hiddenNames = KnownBoardsManager.getInstance().loadHiddenBoardNames();
     }

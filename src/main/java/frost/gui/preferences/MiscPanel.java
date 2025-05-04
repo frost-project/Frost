@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
@@ -41,7 +41,7 @@ class MiscPanel extends JPanel {
 
 	private static final Logger logger =  LoggerFactory.getLogger(MiscPanel.class);
 
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JLabel autoSaveIntervalLabel = new JLabel();
@@ -64,7 +64,7 @@ class MiscPanel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected MiscPanel(final SettingsClass settings) {
+    protected MiscPanel(final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -168,18 +168,18 @@ class MiscPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        showSystrayIconCheckBox.setSelected(settings.getBoolValue(SettingsClass.SHOW_SYSTRAY_ICON));
-        minimizeToSystrayCheckBox.setSelected(settings.getBoolValue(SettingsClass.MINIMIZE_TO_SYSTRAY));
-        compactDatabaseAtNextStartupCheckBox.setSelected(settings.getBoolValue(SettingsClass.PERST_COMPACT_STORAGES));
-        freenetNodeTextField.setText(settings.getValue(SettingsClass.FREENET_FCP_ADDRESS));
-        autoSaveIntervalTextField.setText(Integer.toString(settings.getIntValue(SettingsClass.AUTO_SAVE_INTERVAL)));
-        autoSaveLocalIdentitiesCheckBox.setSelected(settings.getBoolValue(SettingsClass.AUTO_SAVE_LOCAL_IDENTITIES));
+        showSystrayIconCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_SYSTRAY_ICON));
+        minimizeToSystrayCheckBox.setSelected(settings.getBoolValue(Settings.MINIMIZE_TO_SYSTRAY));
+        compactDatabaseAtNextStartupCheckBox.setSelected(settings.getBoolValue(Settings.PERST_COMPACT_STORAGES));
+        freenetNodeTextField.setText(settings.getValue(Settings.FREENET_FCP_ADDRESS));
+        autoSaveIntervalTextField.setText(Integer.toString(settings.getIntValue(Settings.AUTO_SAVE_INTERVAL)));
+        autoSaveLocalIdentitiesCheckBox.setSelected(settings.getBoolValue(Settings.AUTO_SAVE_LOCAL_IDENTITIES));
 
-        splashScreenCheckBox.setSelected(settings.getBoolValue(SettingsClass.DISABLE_SPLASHSCREEN));
-        useDDACheckBox.setSelected(settings.getBoolValue(SettingsClass.FCP2_USE_DDA));
-        usePersistenceCheckBox.setSelected(settings.getBoolValue(SettingsClass.FCP2_USE_PERSISTENCE));
+        splashScreenCheckBox.setSelected(settings.getBoolValue(Settings.DISABLE_SPLASHSCREEN));
+        useDDACheckBox.setSelected(settings.getBoolValue(Settings.FCP2_USE_DDA));
+        usePersistenceCheckBox.setSelected(settings.getBoolValue(Settings.FCP2_USE_PERSISTENCE));
         
-        browserAddressTextField.setText(settings.getValue(SettingsClass.BROWSER_ADDRESS));
+        browserAddressTextField.setText(settings.getValue(Settings.BROWSER_ADDRESS));
     }
 
     public void ok() {
@@ -230,15 +230,15 @@ class MiscPanel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.FREENET_FCP_ADDRESS, freenetNodeTextField.getText());
-        settings.setValue(SettingsClass.SHOW_SYSTRAY_ICON, showSystrayIconCheckBox.isSelected());
-        settings.setValue(SettingsClass.MINIMIZE_TO_SYSTRAY, minimizeToSystrayCheckBox.isSelected());
-        settings.setValue(SettingsClass.PERST_COMPACT_STORAGES, compactDatabaseAtNextStartupCheckBox.isSelected());
-        settings.setValue(SettingsClass.AUTO_SAVE_INTERVAL, autoSaveIntervalTextField.getText());
-        settings.setValue(SettingsClass.AUTO_SAVE_LOCAL_IDENTITIES, autoSaveLocalIdentitiesCheckBox.isSelected());
-        settings.setValue(SettingsClass.DISABLE_SPLASHSCREEN, splashScreenCheckBox.isSelected());
-        settings.setValue(SettingsClass.FCP2_USE_DDA, useDDACheckBox.isSelected());
-        settings.setValue(SettingsClass.FCP2_USE_PERSISTENCE, usePersistenceCheckBox.isSelected());
-        settings.setValue(SettingsClass.BROWSER_ADDRESS, browserAddressTextField.getText());
+        settings.setValue(Settings.FREENET_FCP_ADDRESS, freenetNodeTextField.getText());
+        settings.setValue(Settings.SHOW_SYSTRAY_ICON, showSystrayIconCheckBox.isSelected());
+        settings.setValue(Settings.MINIMIZE_TO_SYSTRAY, minimizeToSystrayCheckBox.isSelected());
+        settings.setValue(Settings.PERST_COMPACT_STORAGES, compactDatabaseAtNextStartupCheckBox.isSelected());
+        settings.setValue(Settings.AUTO_SAVE_INTERVAL, autoSaveIntervalTextField.getText());
+        settings.setValue(Settings.AUTO_SAVE_LOCAL_IDENTITIES, autoSaveLocalIdentitiesCheckBox.isSelected());
+        settings.setValue(Settings.DISABLE_SPLASHSCREEN, splashScreenCheckBox.isSelected());
+        settings.setValue(Settings.FCP2_USE_DDA, useDDACheckBox.isSelected());
+        settings.setValue(Settings.FCP2_USE_PERSISTENCE, usePersistenceCheckBox.isSelected());
+        settings.setValue(Settings.BROWSER_ADDRESS, browserAddressTextField.getText());
     }
 }

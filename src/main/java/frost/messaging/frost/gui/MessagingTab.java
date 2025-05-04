@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.gui.KnownBoardsFrame;
 import frost.gui.SearchMessagesDialog;
 import frost.messaging.frost.FrostMessageObject;
@@ -223,8 +223,8 @@ public class MessagingTab extends JPanel implements LanguageListener {
 
     public void postInitialize() {
         // select saved board (NOTE: this loads the message list!)
-        if (tofTree.getRowCount() > Core.frostSettings.getIntValue(SettingsClass.BOARDLIST_LAST_SELECTED_BOARD)) {
-            tofTree.setSelectionRow(Core.frostSettings.getIntValue(SettingsClass.BOARDLIST_LAST_SELECTED_BOARD));
+        if (tofTree.getRowCount() > Core.frostSettings.getIntValue(Settings.BOARDLIST_LAST_SELECTED_BOARD)) {
+            tofTree.setSelectionRow(Core.frostSettings.getIntValue(Settings.BOARDLIST_LAST_SELECTED_BOARD));
         }
     }
 
@@ -533,7 +533,7 @@ public class MessagingTab extends JPanel implements LanguageListener {
 
         final int i[] = tofTree.getSelectionRows();
         if ((i != null) && (i.length > 0)) {
-            Core.frostSettings.setValue(SettingsClass.BOARDLIST_LAST_SELECTED_BOARD, i[0]);
+            Core.frostSettings.setValue(Settings.BOARDLIST_LAST_SELECTED_BOARD, i[0]);
         }
 
         final AbstractNode node = (AbstractNode) tofTree.getLastSelectedPathComponent();

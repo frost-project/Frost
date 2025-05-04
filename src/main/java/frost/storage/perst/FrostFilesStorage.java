@@ -30,7 +30,7 @@ import org.garret.perst.Persistent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.download.FrostDownloadItem;
 import frost.fileTransfer.sharing.FrostSharedFileItem;
 import frost.fileTransfer.upload.FrostUploadItem;
@@ -70,7 +70,7 @@ public class FrostFilesStorage extends AbstractFrostStorage implements ExitSavab
     @Override
     public boolean initStorage() {
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_FILES);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_FILES);
 
         open(databaseFilePath, pagePoolSize, true, true, false);
 

@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.identities.Identity;
 import frost.identities.LocalIdentity;
 
@@ -167,7 +167,7 @@ public abstract class AbstractMessageStatusProvider extends DefaultMutableTreeNo
 
     public String getMessageStatusString() {
     	final Identity i = getFromIdentity();
-    	if (i instanceof LocalIdentity && !Core.frostSettings.getBoolValue(SettingsClass.SHOW_OWN_MESSAGES_AS_ME_DISABLED)) {
+    	if (i instanceof LocalIdentity && !Core.frostSettings.getBoolValue(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED)) {
 			return "ME";
         } else {
             return messageStateStrings[getMessageStatus(i)];

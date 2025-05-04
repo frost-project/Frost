@@ -53,7 +53,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 
 public class FileAccess {
 
@@ -62,13 +62,13 @@ public class FileAccess {
     public static File createTempFile(final String prefix, final String suffix) {
         File tmpFile = null;
         try {
-            tmpFile = File.createTempFile(prefix, suffix, new File(Core.frostSettings.getValue(SettingsClass.DIR_TEMP)));
+            tmpFile = File.createTempFile(prefix, suffix, new File(Core.frostSettings.getValue(Settings.DIR_TEMP)));
         } catch( final Throwable ex ) {
         }
         if( tmpFile == null ) {
             do {
                 tmpFile = new File(
-                        Core.frostSettings.getValue(SettingsClass.DIR_TEMP)+
+                        Core.frostSettings.getValue(Settings.DIR_TEMP)+
                         prefix+
                         System.currentTimeMillis()+
                         suffix);
@@ -96,7 +96,7 @@ public class FileAccess {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             final File file = fc.getSelectedFile();
             if (file != null) {
-                Core.frostSettings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+                Core.frostSettings.setValue(Settings.DIR_LAST_USED, file.getParent());
                 if (!file.isDirectory()) {
                     writeFile(content, file, "UTF-8");
                 }

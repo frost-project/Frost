@@ -33,7 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
@@ -51,7 +51,7 @@ class DownloadPanel extends JPanel {
     }
 
     private JDialog owner = null;
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JLabel priorityLabel = new JLabel();
@@ -85,7 +85,7 @@ class DownloadPanel extends JPanel {
      * @param owner the JDialog that will be used as owner of any dialog that is popped up from this panel
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected DownloadPanel(final JDialog owner, final SettingsClass settings) {
+    protected DownloadPanel(final JDialog owner, final Settings settings) {
         super();
 
         this.owner = owner;
@@ -100,7 +100,7 @@ class DownloadPanel extends JPanel {
      * browseDownloadDirectoryButton Action Listener (Downloads / Browse)
      */
     private void browseDirectoryPressed() {
-        final JFileChooser fc = new JFileChooser(settings.getValue(SettingsClass.DIR_LAST_USED));
+        final JFileChooser fc = new JFileChooser(settings.getValue(Settings.DIR_LAST_USED));
         fc.setDialogTitle(language.getString("Options.downloads.filechooser.title"));
         fc.setFileHidingEnabled(true);
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -110,13 +110,13 @@ class DownloadPanel extends JPanel {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             final String fileSeparator = System.getProperty("file.separator");
             final File file = fc.getSelectedFile();
-            settings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+            settings.setValue(Settings.DIR_LAST_USED, file.getParent());
             directoryTextField.setText(file.getPath() + fileSeparator);
         }
     }
 
     private void browseExecPressed() {
-        final JFileChooser fc = new JFileChooser(settings.getValue(SettingsClass.DIR_LAST_USED));
+        final JFileChooser fc = new JFileChooser(settings.getValue(Settings.DIR_LAST_USED));
         fc.setDialogTitle(language.getString("Options.downloads.filechooser.title"));
         fc.setFileHidingEnabled(true);
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -125,7 +125,7 @@ class DownloadPanel extends JPanel {
         final int returnVal = fc.showOpenDialog(owner);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             final File file = fc.getSelectedFile();
-            settings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+            settings.setValue(Settings.DIR_LAST_USED, file.getParent());
             execTextField.setText(file.getPath());
         }
     }
@@ -242,16 +242,16 @@ class DownloadPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        directoryTextField.setText(settings.getValue(SettingsClass.DIR_DOWNLOAD));
-        threadsTextField.setText(settings.getValue(SettingsClass.DOWNLOAD_MAX_THREADS));
-        maxRetriesTextField.setText("" + settings.getIntValue(SettingsClass.DOWNLOAD_MAX_RETRIES));
-        waitTimeTextField.setText("" + settings.getIntValue(SettingsClass.DOWNLOAD_WAITTIME));
-        logDownloadsCheckBox.setSelected(settings.getBoolValue(SettingsClass.LOG_DOWNLOADS_ENABLED));
-        trackDownloadsCheckBox.setSelected(settings.getBoolValue(SettingsClass.TRACK_DOWNLOADS_ENABLED));
-        useBoardnameDownloadSubfolderCheckBox.setSelected(settings.getBoolValue(SettingsClass.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED));
-        priorityTextField.setText(settings.getValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
-        enforceFrostPriorityFileDownload.setSelected(settings.getBoolValue(SettingsClass.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD));
-        execTextField.setText(settings.getValue(SettingsClass.EXEC_ON_DOWNLOAD));
+        directoryTextField.setText(settings.getValue(Settings.DIR_DOWNLOAD));
+        threadsTextField.setText(settings.getValue(Settings.DOWNLOAD_MAX_THREADS));
+        maxRetriesTextField.setText("" + settings.getIntValue(Settings.DOWNLOAD_MAX_RETRIES));
+        waitTimeTextField.setText("" + settings.getIntValue(Settings.DOWNLOAD_WAITTIME));
+        logDownloadsCheckBox.setSelected(settings.getBoolValue(Settings.LOG_DOWNLOADS_ENABLED));
+        trackDownloadsCheckBox.setSelected(settings.getBoolValue(Settings.TRACK_DOWNLOADS_ENABLED));
+        useBoardnameDownloadSubfolderCheckBox.setSelected(settings.getBoolValue(Settings.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED));
+        priorityTextField.setText(settings.getValue(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD));
+        enforceFrostPriorityFileDownload.setSelected(settings.getBoolValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD));
+        execTextField.setText(settings.getValue(Settings.EXEC_ON_DOWNLOAD));
     }
 
     public void ok() {
@@ -288,21 +288,21 @@ class DownloadPanel extends JPanel {
         // always append a fileseparator to the end of string
         if ((!(downlDirTxt.lastIndexOf(filesep) == (downlDirTxt.length() - 1)))
             || downlDirTxt.lastIndexOf(filesep) < 0) {
-                settings.setValue(SettingsClass.DIR_DOWNLOAD, downlDirTxt + filesep);
+                settings.setValue(Settings.DIR_DOWNLOAD, downlDirTxt + filesep);
         } else {
-            settings.setValue(SettingsClass.DIR_DOWNLOAD, downlDirTxt);
+            settings.setValue(Settings.DIR_DOWNLOAD, downlDirTxt);
         }
-        settings.setValue(SettingsClass.DOWNLOAD_MAX_THREADS, threadsTextField.getText());
+        settings.setValue(Settings.DOWNLOAD_MAX_THREADS, threadsTextField.getText());
 
-        settings.setValue(SettingsClass.DOWNLOAD_MAX_RETRIES, maxRetriesTextField.getText());
-        settings.setValue(SettingsClass.DOWNLOAD_WAITTIME, waitTimeTextField.getText());
+        settings.setValue(Settings.DOWNLOAD_MAX_RETRIES, maxRetriesTextField.getText());
+        settings.setValue(Settings.DOWNLOAD_WAITTIME, waitTimeTextField.getText());
 
-        settings.setValue(SettingsClass.LOG_DOWNLOADS_ENABLED, logDownloadsCheckBox.isSelected());
-        settings.setValue(SettingsClass.TRACK_DOWNLOADS_ENABLED, trackDownloadsCheckBox.isSelected());
-        settings.setValue(SettingsClass.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED, useBoardnameDownloadSubfolderCheckBox.isSelected());
-        settings.setValue(SettingsClass.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD, priorityTextField.getText());
-        settings.setValue(SettingsClass.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD, enforceFrostPriorityFileDownload.isSelected());
+        settings.setValue(Settings.LOG_DOWNLOADS_ENABLED, logDownloadsCheckBox.isSelected());
+        settings.setValue(Settings.TRACK_DOWNLOADS_ENABLED, trackDownloadsCheckBox.isSelected());
+        settings.setValue(Settings.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED, useBoardnameDownloadSubfolderCheckBox.isSelected());
+        settings.setValue(Settings.FCP2_DEFAULT_PRIO_FILE_DOWNLOAD, priorityTextField.getText());
+        settings.setValue(Settings.FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD, enforceFrostPriorityFileDownload.isSelected());
 
-        settings.setValue(SettingsClass.EXEC_ON_DOWNLOAD, execTextField.getText());
+        settings.setValue(Settings.EXEC_ON_DOWNLOAD, execTextField.getText());
     }
 }

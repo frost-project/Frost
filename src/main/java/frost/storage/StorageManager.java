@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.Frost;
-import frost.SettingsClass;
+import frost.Settings;
 
 /**
  * @author $Author: bback $
@@ -92,9 +92,9 @@ public class StorageManager extends Timer {
 		}
 	}
 
-	public StorageManager(final SettingsClass frostSettings) {
+	public StorageManager(final Settings frostSettings) {
 		Runtime.getRuntime().addShutdownHook(shutdownThread);
-		final int autoSaveIntervalMinutes = frostSettings.getIntValue(SettingsClass.AUTO_SAVE_INTERVAL);
+		final int autoSaveIntervalMinutes = frostSettings.getIntValue(Settings.AUTO_SAVE_INTERVAL);
 		schedule(
 			autoTask,
 			autoSaveIntervalMinutes * 60L * 1000L,

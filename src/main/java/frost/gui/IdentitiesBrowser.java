@@ -68,7 +68,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.model.SortedTableModel;
 import frost.gui.model.TableMember;
@@ -147,7 +147,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 		language = Language.getInstance();
 		minCleanupTime = getMinCleanupTime();
 		setModal(true);
-		showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+		showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
 		initialize();
 
 
@@ -235,13 +235,13 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 	 */
 	private long getMinCleanupTime() {
 		// take maximum
-		int minDaysOld = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_EXPIRE_DAYS) + 1;
+		int minDaysOld = Core.frostSettings.getIntValue(Settings.MESSAGE_EXPIRE_DAYS) + 1;
 
-		if( minDaysOld < Core.frostSettings.getIntValue(SettingsClass.MAX_MESSAGE_DISPLAY) ) {
-			minDaysOld = Core.frostSettings.getIntValue(SettingsClass.MAX_MESSAGE_DISPLAY) + 1;
+		if( minDaysOld < Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DISPLAY) ) {
+			minDaysOld = Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DISPLAY) + 1;
 		}
-		if( minDaysOld < Core.frostSettings.getIntValue(SettingsClass.MAX_MESSAGE_DOWNLOAD) ) {
-			minDaysOld = Core.frostSettings.getIntValue(SettingsClass.MAX_MESSAGE_DOWNLOAD) + 1;
+		if( minDaysOld < Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD) ) {
+			minDaysOld = Core.frostSettings.getIntValue(Settings.MAX_MESSAGE_DOWNLOAD) + 1;
 		}
 
 		for( final Board board : MainFrame.getInstance().getMessagingTab().getTofTreeModel().getAllBoards() ) {
@@ -869,7 +869,7 @@ public class IdentitiesBrowser extends JDialog implements SimplePopupMenuListene
 				// STATE
 				// state == good/bad/check/observe -> bold and colored
 				if (Core.getIdentitiesManager().isMySelf(id.getUniqueName())) {
-					if( !Core.frostSettings.getBoolValue(SettingsClass.SHOW_OWN_MESSAGES_AS_ME_DISABLED) ) {
+					if( !Core.frostSettings.getBoolValue(Settings.SHOW_OWN_MESSAGES_AS_ME_DISABLED) ) {
 						setText("ME");
 					}
 					setFont(boldFont);

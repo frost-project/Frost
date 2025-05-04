@@ -33,7 +33,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.border.BevelBorder;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferInformation;
 import frost.messaging.frost.threads.RunningMessageThreadsInformation;
 import frost.util.gui.MiscToolkit;
@@ -121,7 +121,7 @@ public class MainFrameStatusBar extends JPanel {
 
         JPanel p3 = null;
         // shown only if filesharing is enabled
-        if( Core.isFreenetOnline() && !Core.frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE)) {
+        if( Core.isFreenetOnline() && !Core.frostSettings.getBoolValue(Settings.FILESHARING_DISABLE)) {
             fileListDownloadQueueSizeLabel = new JLabel() {
                 @Override
                 public String getToolTipText(final MouseEvent me) {

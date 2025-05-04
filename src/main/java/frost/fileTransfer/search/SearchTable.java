@@ -32,7 +32,7 @@ import javax.swing.event.PopupMenuEvent;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.FileListFileDetailsDialog;
 import frost.storage.perst.filelist.FileListStorage;
 import frost.util.ClipboardUtil;
@@ -120,12 +120,12 @@ public class SearchTable extends SortedModelTable<FrostSearchItem>
     }
 
     private void setupTableFont() {
-        final String fontName = Core.frostSettings.getValue(SettingsClass.FILE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.FILE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(SettingsClass.FILE_LIST_FONT_SIZE);
+        final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
-            Core.frostSettings.setValue(SettingsClass.FILE_LIST_FONT_NAME, "SansSerif");
+            Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
             font = new Font("SansSerif", fontStyle, fontSize);
         }
         getTable().setFont(font);

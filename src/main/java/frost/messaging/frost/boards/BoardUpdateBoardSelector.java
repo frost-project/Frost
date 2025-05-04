@@ -23,7 +23,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.UnsentMessagesManager;
 
 /**
@@ -90,7 +90,7 @@ public class BoardUpdateBoardSelector {
 
         final long curTime = System.currentTimeMillis();
         // get in minutes
-        final int minUpdateInterval = Core.frostSettings.getIntValue(SettingsClass.BOARD_AUTOUPDATE_MIN_INTERVAL);
+        final int minUpdateInterval = Core.frostSettings.getIntValue(Settings.BOARD_AUTOUPDATE_MIN_INTERVAL);
         // min -> ms
         final long minUpdateIntervalMillis = minUpdateInterval * 60L * 1000L;
 

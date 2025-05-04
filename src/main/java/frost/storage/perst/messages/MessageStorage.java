@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.AbstractMessageStatusProvider;
 import frost.messaging.frost.FileAttachment;
 import frost.messaging.frost.FrostMessageObject;
@@ -66,7 +66,7 @@ public class MessageStorage extends AbstractFrostStorage implements ExitSavable 
 
     protected MessageStorage() {
         super();
-        storeInvalidMessages = Core.frostSettings.getBoolValue(SettingsClass.STORAGE_STORE_INVALID_MESSAGES);
+        storeInvalidMessages = Core.frostSettings.getBoolValue(Settings.STORAGE_STORE_INVALID_MESSAGES);
     }
 
     public static MessageStorage inst() {
@@ -81,7 +81,7 @@ public class MessageStorage extends AbstractFrostStorage implements ExitSavable 
     @Override
     public boolean initStorage() {
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_MESSAGES);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_MESSAGES);
 
         open(databaseFilePath, pagePoolSize, true, true, false);
 

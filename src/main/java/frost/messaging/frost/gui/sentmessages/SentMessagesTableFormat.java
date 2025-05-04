@@ -30,7 +30,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageEvent;
@@ -67,7 +67,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
         setComparator(new ToComparator(), 3);
         setComparator(new DateComparator(), 4);
         
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -139,7 +139,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
             }
         }
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES)
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES)
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
                 && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
         {
@@ -165,7 +165,7 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
         
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             int sortedColumn = modelTable.getSortedColumn();
             boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -330,8 +330,8 @@ public class SentMessagesTableFormat extends SortedTableFormat<SentMessagesTable
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
+            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

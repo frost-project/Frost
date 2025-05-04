@@ -36,7 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.FontChooser;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
@@ -59,7 +59,7 @@ public class DisplayBoardTreePanel extends JPanel {
     }
 
     private JDialog owner = null;
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JCheckBox showBoardDescTooltipsCheckBox = new JCheckBox();
@@ -91,7 +91,7 @@ public class DisplayBoardTreePanel extends JPanel {
      * @param owner the JDialog that will be used as owner of any dialog that is popped up from this panel
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected DisplayBoardTreePanel(final JDialog owner, final SettingsClass settings) {
+    protected DisplayBoardTreePanel(final JDialog owner, final Settings settings) {
         super();
 
         this.owner = owner;
@@ -213,22 +213,22 @@ public class DisplayBoardTreePanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-    	String fontName = settings.getValue(SettingsClass.BOARD_TREE_FONT_NAME);
-        int fontSize = settings.getIntValue(SettingsClass.BOARD_TREE_FONT_SIZE);
-        int fontStyle = settings.getIntValue(SettingsClass.BOARD_TREE_FONT_STYLE);
+    	String fontName = settings.getValue(Settings.BOARD_TREE_FONT_NAME);
+        int fontSize = settings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
+        int fontStyle = settings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
         selectedBodyFont = new Font(fontName, fontStyle, fontSize);
         selectedBoardTreeFontLabel.setText(getFontLabel(selectedBodyFont));
 
-        showBoardUpdateCountCheckBox.setSelected(settings.getBoolValue(SettingsClass.SHOW_BOARD_UPDATED_COUNT));
-        showBoardDescTooltipsCheckBox.setSelected(settings.getBoolValue(SettingsClass.SHOW_BOARDDESC_TOOLTIPS));
-        preventBoardtreeReordering.setSelected(settings.getBoolValue(SettingsClass.PREVENT_BOARDTREE_REORDERING));
-        showFlaggedStarredIndicators.setSelected(settings.getBoolValue(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR));
+        showBoardUpdateCountCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_BOARD_UPDATED_COUNT));
+        showBoardDescTooltipsCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS));
+        preventBoardtreeReordering.setSelected(settings.getBoolValue(Settings.PREVENT_BOARDTREE_REORDERING));
+        showFlaggedStarredIndicators.setSelected(settings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR));
 
-        showBoardUpdateVisualizationCheckBox.setSelected(settings.getBoolValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_ENABLED));
+        showBoardUpdateVisualizationCheckBox.setSelected(settings.getBoolValue(Settings.BOARD_UPDATE_VISUALIZATION_ENABLED));
         refreshUpdateState();
 
-        selectedColor = (Color) settings.getObjectValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED);
-        notSelectedColor = (Color) settings.getObjectValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED);
+        selectedColor = (Color) settings.getObjectValue(Settings.BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED);
+        notSelectedColor = (Color) settings.getObjectValue(Settings.BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED);
         selectedColorLabel.setBackground(selectedColor);
         notSelectedColorLabel.setBackground(notSelectedColor);
     }
@@ -265,19 +265,19 @@ public class DisplayBoardTreePanel extends JPanel {
      */
     private void saveSettings() {
         if( selectedBodyFont != null ) {
-            settings.setValue(SettingsClass.BOARD_TREE_FONT_NAME, selectedBodyFont.getFamily());
-            settings.setValue(SettingsClass.BOARD_TREE_FONT_STYLE, selectedBodyFont.getStyle());
-            settings.setValue(SettingsClass.BOARD_TREE_FONT_SIZE, selectedBodyFont.getSize());
+            settings.setValue(Settings.BOARD_TREE_FONT_NAME, selectedBodyFont.getFamily());
+            settings.setValue(Settings.BOARD_TREE_FONT_STYLE, selectedBodyFont.getStyle());
+            settings.setValue(Settings.BOARD_TREE_FONT_SIZE, selectedBodyFont.getSize());
         }
 
-        settings.setValue(SettingsClass.SHOW_BOARD_UPDATED_COUNT, showBoardUpdateCountCheckBox.isSelected());
-        settings.setValue(SettingsClass.SHOW_BOARDDESC_TOOLTIPS, showBoardDescTooltipsCheckBox.isSelected());
-        settings.setValue(SettingsClass.PREVENT_BOARDTREE_REORDERING, preventBoardtreeReordering.isSelected());
-        settings.setValue(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR, showFlaggedStarredIndicators.isSelected());
+        settings.setValue(Settings.SHOW_BOARD_UPDATED_COUNT, showBoardUpdateCountCheckBox.isSelected());
+        settings.setValue(Settings.SHOW_BOARDDESC_TOOLTIPS, showBoardDescTooltipsCheckBox.isSelected());
+        settings.setValue(Settings.PREVENT_BOARDTREE_REORDERING, preventBoardtreeReordering.isSelected());
+        settings.setValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR, showFlaggedStarredIndicators.isSelected());
 
-        settings.setValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_ENABLED, showBoardUpdateVisualizationCheckBox.isSelected());
-        settings.setObjectValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED, selectedColor);
-        settings.setObjectValue(SettingsClass.BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED, notSelectedColor);
+        settings.setValue(Settings.BOARD_UPDATE_VISUALIZATION_ENABLED, showBoardUpdateVisualizationCheckBox.isSelected());
+        settings.setObjectValue(Settings.BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED, selectedColor);
+        settings.setObjectValue(Settings.BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED, notSelectedColor);
     }
 
     private void selectedColorPressed() {

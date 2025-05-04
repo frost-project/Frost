@@ -36,7 +36,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.RatingStringProvider;
 import frost.util.FormatterUtils;
@@ -89,7 +89,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
         setComparator(SearchTableComparators.getKeywordsComparator(), 7);
         setComparator(SearchTableComparators.getSourcesComparator(), 8);
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
         Core.frostSettings.addPropertyChangeListener(this);
     }
 
@@ -242,7 +242,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
             Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
         }
 
-        if( Core.frostSettings.getBoolValue(SettingsClass.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
+        if( Core.frostSettings.getBoolValue(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
             Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
@@ -469,8 +469,8 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
+        if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
+            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
             modelTable.fireTableDataChanged();
         }
     }

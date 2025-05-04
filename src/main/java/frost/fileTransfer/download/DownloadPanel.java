@@ -78,7 +78,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.SettingsUpdater;
 import frost.ext.ExecuteDocument;
 import frost.fileTransfer.FileTransferManager;
@@ -295,7 +295,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 			downloadDirTextField.setMinimumSize(downloadTextField.getPreferredSize());
 
 			downloadTextField.setDocument(new HandleMultiLineKeysDocument());
-			downloadDirTextField.setText(Core.frostSettings.getValue(SettingsClass.DIR_DOWNLOAD));
+			downloadDirTextField.setText(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
 
 			downloadDirDefaultBackground = downloadDirTextField.getBackground();
 			updateDownloadDirTextFieldBackground();
@@ -333,16 +333,16 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 			downloadDirSelectButton.addActionListener(listener);
 			downloadDirCreateButton.addActionListener(listener);
 			downloadDirApplyButton.addActionListener(listener);
-			Core.frostSettings.addPropertyChangeListener(SettingsClass.FILE_LIST_FONT_NAME, listener);
-			Core.frostSettings.addPropertyChangeListener(SettingsClass.FILE_LIST_FONT_SIZE, listener);
-			Core.frostSettings.addPropertyChangeListener(SettingsClass.FILE_LIST_FONT_STYLE, listener);
+			Core.frostSettings.addPropertyChangeListener(Settings.FILE_LIST_FONT_NAME, listener);
+			Core.frostSettings.addPropertyChangeListener(Settings.FILE_LIST_FONT_SIZE, listener);
+			Core.frostSettings.addPropertyChangeListener(Settings.FILE_LIST_FONT_STYLE, listener);
 
 			// Settings
 			removeFinishedDownloadsCheckBox.setSelected(Core.frostSettings
-					.getBoolValue(SettingsClass.DOWNLOAD_REMOVE_FINISHED));
+					.getBoolValue(Settings.DOWNLOAD_REMOVE_FINISHED));
 			showExternalGlobalQueueItems.setSelected(Core.frostSettings
-					.getBoolValue(SettingsClass.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD));
-			setDownloadingActivated(Core.frostSettings.getBoolValue(SettingsClass.DOWNLOADING_ACTIVATED));
+					.getBoolValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD));
+			setDownloadingActivated(Core.frostSettings.getBoolValue(Settings.DOWNLOADING_ACTIVATED));
 
 			assignHotkeys();
 
@@ -432,7 +432,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 		final int returnVal = fc.showOpenDialog(this);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			final File file = fc.getSelectedFile();
-			Core.frostSettings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+			Core.frostSettings.setValue(Settings.DIR_LAST_USED, file.getParent());
 			downloadDirTextField.setText(file.getPath());
 			updateDownloadDirTextFieldBackground();
 		}
@@ -560,14 +560,14 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 	}
 
 	private void fontChanged() {
-		final String fontName = Core.frostSettings.getValue(SettingsClass.FILE_LIST_FONT_NAME);
-		final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.FILE_LIST_FONT_STYLE);
-		final int fontSize = Core.frostSettings.getIntValue(SettingsClass.FILE_LIST_FONT_SIZE);
+		final String fontName = Core.frostSettings.getValue(Settings.FILE_LIST_FONT_NAME);
+		final int fontStyle = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
+		final int fontSize = Core.frostSettings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
 		Font font = new Font(fontName, fontStyle, fontSize);
 		if (!font.getFamily().equals(fontName)) {
 			logger.error("The selected font was not found in your system.");
 			logger.error("That selection will be changed to \"SansSerif\".");
-			Core.frostSettings.setValue(SettingsClass.FILE_LIST_FONT_NAME, "SansSerif");
+			Core.frostSettings.setValue(Settings.FILE_LIST_FONT_NAME, "SansSerif");
 			font = new Font("SansSerif", fontStyle, fontSize);
 		}
 		modelTable.setFont(font);
@@ -652,7 +652,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 	 * @see frost.SettingsUpdater#updateSettings()
 	 */
 	public void updateSettings() {
-		Core.frostSettings.setValue(SettingsClass.DOWNLOADING_ACTIVATED, isDownloadingActivated());
+		Core.frostSettings.setValue(Settings.DOWNLOADING_ACTIVATED, isDownloadingActivated());
 	}
 
 	public void changeItemPriorites(final List<FrostDownloadItem> items, final FreenetPriority newPrio) {
@@ -1191,28 +1191,28 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 		}
 
 		public void propertyChange(final PropertyChangeEvent evt) {
-			if (evt.getPropertyName().equals(SettingsClass.FILE_LIST_FONT_NAME)) {
+			if (evt.getPropertyName().equals(Settings.FILE_LIST_FONT_NAME)) {
 				fontChanged();
 			}
-			if (evt.getPropertyName().equals(SettingsClass.FILE_LIST_FONT_SIZE)) {
+			if (evt.getPropertyName().equals(Settings.FILE_LIST_FONT_SIZE)) {
 				fontChanged();
 			}
-			if (evt.getPropertyName().equals(SettingsClass.FILE_LIST_FONT_STYLE)) {
+			if (evt.getPropertyName().equals(Settings.FILE_LIST_FONT_STYLE)) {
 				fontChanged();
 			}
 		}
 
 		public void itemStateChanged(final ItemEvent e) {
 			if (removeFinishedDownloadsCheckBox.isSelected()) {
-				Core.frostSettings.setValue(SettingsClass.DOWNLOAD_REMOVE_FINISHED, true);
+				Core.frostSettings.setValue(Settings.DOWNLOAD_REMOVE_FINISHED, true);
 				model.removeFinishedDownloads();
 			} else {
-				Core.frostSettings.setValue(SettingsClass.DOWNLOAD_REMOVE_FINISHED, false);
+				Core.frostSettings.setValue(Settings.DOWNLOAD_REMOVE_FINISHED, false);
 			}
 			if (showExternalGlobalQueueItems.isSelected()) {
-				Core.frostSettings.setValue(SettingsClass.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD, true);
+				Core.frostSettings.setValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD, true);
 			} else {
-				Core.frostSettings.setValue(SettingsClass.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD, false);
+				Core.frostSettings.setValue(Settings.GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD, false);
 				model.removeExternalDownloads();
 			}
 		}
@@ -1229,7 +1229,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 
 				downloadDirRecentMenu.removeAll();
 
-				item = new JMenuItem(Core.frostSettings.getValue(SettingsClass.DIR_DOWNLOAD));
+				item = new JMenuItem(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
 				downloadDirRecentMenu.add(item);
 				item.addActionListener(this);
 

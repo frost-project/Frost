@@ -21,7 +21,7 @@ package frost.storage.perst.messages;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.AttachmentList;
 import frost.messaging.frost.BoardAttachment;
 import frost.messaging.frost.FileAttachment;
@@ -55,7 +55,7 @@ public class MessageContentStorage extends AbstractFrostStorage implements ExitS
     @Override
     public boolean initStorage() {
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_MESSAGECONTENTS);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_MESSAGECONTENTS);
 
         open(databaseFilePath, pagePoolSize, true, false, false);
 

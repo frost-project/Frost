@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.storage.ExitSavable;
@@ -69,7 +69,7 @@ public class DownloadModel extends SortedModel<FrostDownloadItem> implements Exi
 		final FrostFileListFileObject flfToAdd = itemToAdd.getFileListFileObject(); 
 
 		// If download tracking is enabled, check if file has not been already downloaded
-		if (Core.frostSettings.getBoolValue(SettingsClass.TRACK_DOWNLOADS_ENABLED)) {
+		if (Core.frostSettings.getBoolValue(Settings.TRACK_DOWNLOADS_ENABLED)) {
 
 			// Only check if the file is not lingering around in finished
 			// state...

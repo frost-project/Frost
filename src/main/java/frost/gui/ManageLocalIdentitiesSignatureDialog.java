@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.textpane.AntialiasedTextArea;
 import frost.util.gui.translation.Language;
 
@@ -142,16 +142,16 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
         if (signatureTextArea == null) {
             signatureTextArea = new AntialiasedTextArea(6, 50);
 
-            String fontName = Core.frostSettings.getValue(SettingsClass.MESSAGE_BODY_FONT_NAME);
-            int fontStyle = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_STYLE);
-            int fontSize = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_SIZE);
+            String fontName = Core.frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
+            int fontStyle = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
+            int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
             Font tofFont = new Font(fontName, fontStyle, fontSize);
             if (!tofFont.getFamily().equals(fontName)) {
-                Core.frostSettings.setValue(SettingsClass.MESSAGE_BODY_FONT_NAME, "Monospaced");
+                Core.frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
                 tofFont = new Font("Monospaced", fontStyle, fontSize);
             }
             signatureTextArea.setFont(tofFont);
-            signatureTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(SettingsClass.MESSAGE_BODY_ANTIALIAS));
+            signatureTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
         }
         return signatureTextArea;
     }

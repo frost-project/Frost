@@ -87,7 +87,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.identities.Identity;
 import frost.messaging.frost.FrostMessageObject;
@@ -151,18 +151,18 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     public MessageTreeTable(final TreeTableModel treeTableModel) {
     	super();
 
-        showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
-        indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
-        indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
-        indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+        showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        indicateLowReceivedMessages = Core.frostSettings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
+        indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+        indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
 
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.SHOW_COLORED_ROWS, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_LIST_FONT_NAME, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_LIST_FONT_SIZE, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_LIST_FONT_STYLE, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.SHOW_COLORED_ROWS, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_LIST_FONT_NAME, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_LIST_FONT_SIZE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_LIST_FONT_STYLE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED, this);
 
     	// Creates the tree. It will be used as a renderer and editor.
     	tree = new TreeTableCellRenderer(treeTableModel);
@@ -197,7 +197,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     	setIntercellSpacing(new Dimension(0, 0));
 
     	// And update the height of the tree's rows to match that of the font.
-    	final int fontSize = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_SIZE);
+    	final int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_LIST_FONT_SIZE);
     	setRowHeight(Math.max(fontSize + ROW_HEIGHT_MARGIN, MINIMUM_ROW_HEIGHT));
     }
 
@@ -1134,7 +1134,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     /**
      * Save the current column positions and column sizes for restore on next startup.
      */
-    public void saveLayout(final SettingsClass frostSettings) {
+    public void saveLayout(final Settings frostSettings) {
         final TableColumnModel tcm = getColumnModel();
         for(int columnIndexInTable=0; columnIndexInTable < tcm.getColumnCount(); columnIndexInTable++) {
             final TableColumn tc = tcm.getColumn(columnIndexInTable);
@@ -1150,7 +1150,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     /**
      * Load the saved column positions and column sizes.
      */
-    public void loadLayout(final SettingsClass frostSettings) {
+    public void loadLayout(final Settings frostSettings) {
         final TableColumnModel tcm = getColumnModel();
 
         // hard set sizes of icons column
@@ -1183,7 +1183,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         }
     }
 
-    private boolean loadLayout(final SettingsClass frostSettings, final TableColumnModel tcm) {
+    private boolean loadLayout(final Settings frostSettings, final TableColumnModel tcm) {
         // load the saved tableindex for each column in model, and its saved width
         final int[] tableToModelIndex = new int[tcm.getColumnCount()];
         final int[] columnWidths = new int[tcm.getColumnCount()];
@@ -1245,14 +1245,14 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(SettingsClass.MESSAGE_LIST_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_SIZE);
+        final String fontName = Core.frostSettings.getValue(Settings.MESSAGE_LIST_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getIntValue(Settings.MESSAGE_LIST_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_LIST_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"Monospaced\".");
-            Core.frostSettings.setValue(SettingsClass.MESSAGE_LIST_FONT_NAME, "Monospaced");
+            Core.frostSettings.setValue(Settings.MESSAGE_LIST_FONT_NAME, "Monospaced");
             font = new Font("Monospaced", fontStyle, fontSize);
         }
         // adjust row height to font size, add a margin
@@ -1262,20 +1262,20 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.SHOW_COLORED_ROWS)) {
-            showColoredLines = Core.frostSettings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS);
-        } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_LIST_FONT_NAME)) {
+        if (evt.getPropertyName().equals(Settings.SHOW_COLORED_ROWS)) {
+            showColoredLines = Core.frostSettings.getBoolValue(Settings.SHOW_COLORED_ROWS);
+        } else if (evt.getPropertyName().equals(Settings.MESSAGE_LIST_FONT_NAME)) {
             fontChanged();
-        } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_LIST_FONT_SIZE)) {
+        } else if (evt.getPropertyName().equals(Settings.MESSAGE_LIST_FONT_SIZE)) {
             fontChanged();
-        } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_LIST_FONT_STYLE)) {
+        } else if (evt.getPropertyName().equals(Settings.MESSAGE_LIST_FONT_STYLE)) {
             fontChanged();
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES)) {
-            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED)) {
-            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
-        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED)) {
-            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES)) {
+            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED)) {
+            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+        } else if (evt.getPropertyName().equals(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED)) {
+            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(Settings.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
         }
     }
 }

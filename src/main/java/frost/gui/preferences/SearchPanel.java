@@ -32,7 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.storage.perst.filelist.FileListStorage;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
@@ -46,7 +46,7 @@ import frost.util.gui.translation.Language;
 class SearchPanel extends JPanel {
 
     private MainFrame mainFrame;
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JLabel archiveExtensionLabel = new JLabel();
@@ -75,7 +75,7 @@ class SearchPanel extends JPanel {
      * @param mainFrame
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected SearchPanel(final MainFrame mainFrame, final SettingsClass settings) {
+    protected SearchPanel(final MainFrame mainFrame, final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -232,16 +232,16 @@ class SearchPanel extends JPanel {
      * Loads the settings of this panel
      */
     private void loadSettings() {
-        audioExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_AUDIO));
-        imageExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_IMAGE));
-        videoExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_VIDEO));
-        documentExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_DOCUMENT));
-        executableExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_EXECUTABLE));
-        archiveExtensionTextField.setText(settings.getValue(SettingsClass.FILEEXTENSION_ARCHIVE));
-        maxSearchResultsTextField.setText(Integer.toString(settings.getIntValue(SettingsClass.SEARCH_MAX_RESULTS)));
-        disableFilesharingCheckBox.setSelected(settings.getBoolValue(SettingsClass.FILESHARING_DISABLE));
-        ignoreCheckAndBelowCheckBox.setSelected(settings.getBoolValue(SettingsClass.FILESHARING_IGNORE_CHECK_AND_BELOW));
-        rememberSharedFileDownloadedCheckBox.setSelected(settings.getBoolValue(SettingsClass.REMEMBER_SHAREDFILE_DOWNLOADED));
+        audioExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_AUDIO));
+        imageExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_IMAGE));
+        videoExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_VIDEO));
+        documentExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_DOCUMENT));
+        executableExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_EXECUTABLE));
+        archiveExtensionTextField.setText(settings.getValue(Settings.FILEEXTENSION_ARCHIVE));
+        maxSearchResultsTextField.setText(Integer.toString(settings.getIntValue(Settings.SEARCH_MAX_RESULTS)));
+        disableFilesharingCheckBox.setSelected(settings.getBoolValue(Settings.FILESHARING_DISABLE));
+        ignoreCheckAndBelowCheckBox.setSelected(settings.getBoolValue(Settings.FILESHARING_IGNORE_CHECK_AND_BELOW));
+        rememberSharedFileDownloadedCheckBox.setSelected(settings.getBoolValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED));
     }
 
     public void ok() {
@@ -268,16 +268,16 @@ class SearchPanel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.FILEEXTENSION_AUDIO, audioExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.FILEEXTENSION_IMAGE, imageExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.FILEEXTENSION_VIDEO, videoExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.FILEEXTENSION_DOCUMENT, documentExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.FILEEXTENSION_EXECUTABLE, executableExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.FILEEXTENSION_ARCHIVE, archiveExtensionTextField.getText().toLowerCase());
-        settings.setValue(SettingsClass.SEARCH_MAX_RESULTS, maxSearchResultsTextField.getText());
+        settings.setValue(Settings.FILEEXTENSION_AUDIO, audioExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.FILEEXTENSION_IMAGE, imageExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.FILEEXTENSION_VIDEO, videoExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.FILEEXTENSION_DOCUMENT, documentExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.FILEEXTENSION_EXECUTABLE, executableExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.FILEEXTENSION_ARCHIVE, archiveExtensionTextField.getText().toLowerCase());
+        settings.setValue(Settings.SEARCH_MAX_RESULTS, maxSearchResultsTextField.getText());
 
-        settings.setValue(SettingsClass.FILESHARING_DISABLE, disableFilesharingCheckBox.isSelected());
-        settings.setValue(SettingsClass.FILESHARING_IGNORE_CHECK_AND_BELOW, ignoreCheckAndBelowCheckBox.isSelected());
-        settings.setValue(SettingsClass.REMEMBER_SHAREDFILE_DOWNLOADED, rememberSharedFileDownloadedCheckBox.isSelected());
+        settings.setValue(Settings.FILESHARING_DISABLE, disableFilesharingCheckBox.isSelected());
+        settings.setValue(Settings.FILESHARING_IGNORE_CHECK_AND_BELOW, ignoreCheckAndBelowCheckBox.isSelected());
+        settings.setValue(Settings.REMEMBER_SHAREDFILE_DOWNLOADED, rememberSharedFileDownloadedCheckBox.isSelected());
     }
 }

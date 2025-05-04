@@ -23,7 +23,7 @@ import java.beans.PropertyChangeListener;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 
 public class SearchManager implements PropertyChangeListener {
 
@@ -39,7 +39,7 @@ public class SearchManager implements PropertyChangeListener {
     
     public void addPanelToMainFrame(MainFrame mainFrame) {
         mainFrame.addPanel("MainFrame.tabbedPane.search", getPanel());
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.FILESHARING_DISABLE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.FILESHARING_DISABLE, this);
         updateDownloadStatus();
     }
 
@@ -52,13 +52,13 @@ public class SearchManager implements PropertyChangeListener {
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals(SettingsClass.FILESHARING_DISABLE)) {
+        if (evt.getPropertyName().equals(Settings.FILESHARING_DISABLE)) {
             updateDownloadStatus();
         }
     }
 
     private void updateDownloadStatus() {
-        boolean disableFileSharing = Core.frostSettings.getBoolValue(SettingsClass.FILESHARING_DISABLE);
+        boolean disableFileSharing = Core.frostSettings.getBoolValue(Settings.FILESHARING_DISABLE);
         MainFrame.getInstance().setPanelEnabled("MainFrame.tabbedPane.search", !disableFileSharing);
     }
 }

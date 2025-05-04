@@ -23,7 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.UnsentMessagesManager;
 import frost.messaging.frost.boards.Board;
 import frost.messaging.frost.boards.BoardUpdateInformation;
@@ -57,7 +57,7 @@ public class RunningBoardUpdateThreads implements BoardUpdateThreadListener {
      */
     public boolean startMessageDownloadToday(
         final Board board,
-        final SettingsClass config,
+        final Settings config,
         final BoardUpdateThreadListener listener) {
 
         final MessageThread tofd = new MessageThread(
@@ -84,7 +84,7 @@ public class RunningBoardUpdateThreads implements BoardUpdateThreadListener {
      */
     public boolean startMessageDownloadBack(
         final Board board,
-        final SettingsClass config,
+        final Settings config,
         final BoardUpdateThreadListener listener,
         final boolean downloadCompleteBackload)
     {

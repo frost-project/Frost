@@ -58,7 +58,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FreenetPriority;
 import frost.fileTransfer.download.FrostDownloadItem;
@@ -444,10 +444,10 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		
 		// recent download directory
 		final JMenu downloadDirRecentMenu = new JMenu(language.getString("DownloadPane.toolbar.downloadDirMenu.setDownloadDirTo"));
-		JMenuItem item = new JMenuItem(Core.frostSettings.getValue(SettingsClass.DIR_DOWNLOAD));
+		JMenuItem item = new JMenuItem(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
 		item.addActionListener( new java.awt.event.ActionListener() {
 			public void actionPerformed(final ActionEvent actionEvent) {
-				setDownloadDir(Core.frostSettings.getValue(SettingsClass.DIR_DOWNLOAD));
+				setDownloadDir(Core.frostSettings.getValue(Settings.DIR_DOWNLOAD));
 			}
 		});
 		downloadDirRecentMenu.add(item);
@@ -529,7 +529,7 @@ public class AddNewDownloadsDialog extends javax.swing.JFrame {
 		final JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(
 				new java.io.File(
-						Core.frostSettings.getDefaultValue(SettingsClass.DIR_DOWNLOAD)
+						Core.frostSettings.getDefaultValue(Settings.DIR_DOWNLOAD)
 				)
 		);
 		chooser.setDialogTitle(language.getString("AddNewDownloadsDialog.changeDirDialog.title"));

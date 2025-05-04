@@ -32,7 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.FontChooser;
 import frost.util.gui.translation.Language;
 
@@ -57,7 +57,7 @@ class DisplayPanel extends JPanel {
     }
 
     private JDialog owner = null;
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final Listener listener = new Listener();
@@ -89,7 +89,7 @@ class DisplayPanel extends JPanel {
      * @param owner the JDialog that will be used as owner of any dialog that is popped up from this panel
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected DisplayPanel(final JDialog owner, final SettingsClass settings) {
+    protected DisplayPanel(final JDialog owner, final Settings settings) {
         super();
 
         this.owner = owner;
@@ -237,27 +237,27 @@ class DisplayPanel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        String fontName = settings.getValue(SettingsClass.MESSAGE_BODY_FONT_NAME);
-        int fontSize = settings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_SIZE);
-        int fontStyle = settings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_STYLE);
+        String fontName = settings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
+        int fontSize = settings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
+        int fontStyle = settings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
         selectedBodyFont = new Font(fontName, fontStyle, fontSize);
         selectedMessageBodyFontLabel.setText(getFontLabel(selectedBodyFont));
 
-        fontName = settings.getValue(SettingsClass.MESSAGE_LIST_FONT_NAME);
-        fontSize = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_SIZE);
-        fontStyle = settings.getIntValue(SettingsClass.MESSAGE_LIST_FONT_STYLE);
+        fontName = settings.getValue(Settings.MESSAGE_LIST_FONT_NAME);
+        fontSize = settings.getIntValue(Settings.MESSAGE_LIST_FONT_SIZE);
+        fontStyle = settings.getIntValue(Settings.MESSAGE_LIST_FONT_STYLE);
         selectedMessageListFont = new Font(fontName, fontStyle, fontSize);
         selectedMessageListFontLabel.setText(getFontLabel(selectedMessageListFont));
 
-        fontName = settings.getValue(SettingsClass.FILE_LIST_FONT_NAME);
-        fontSize = settings.getIntValue(SettingsClass.FILE_LIST_FONT_SIZE);
-        fontStyle = settings.getIntValue(SettingsClass.FILE_LIST_FONT_STYLE);
+        fontName = settings.getValue(Settings.FILE_LIST_FONT_NAME);
+        fontSize = settings.getIntValue(Settings.FILE_LIST_FONT_SIZE);
+        fontStyle = settings.getIntValue(Settings.FILE_LIST_FONT_STYLE);
         selectedFileListFont = new Font(fontName, fontStyle, fontSize);
         selectedFileListFontLabel.setText(getFontLabel(selectedFileListFont));
 
-        saveSortStatesCheckBox.setSelected(settings.getBoolValue(SettingsClass.SAVE_SORT_STATES));
-        showColoredRowsCheckBox.setSelected(settings.getBoolValue(SettingsClass.SHOW_COLORED_ROWS));
-        confirmMarkAllMsgsReadCheckBox.setSelected(settings.getBoolValue(SettingsClass.CONFIRM_MARK_ALL_MSGS_READ));
+        saveSortStatesCheckBox.setSelected(settings.getBoolValue(Settings.SAVE_SORT_STATES));
+        showColoredRowsCheckBox.setSelected(settings.getBoolValue(Settings.SHOW_COLORED_ROWS));
+        confirmMarkAllMsgsReadCheckBox.setSelected(settings.getBoolValue(Settings.CONFIRM_MARK_ALL_MSGS_READ));
     }
 
     private void messageBodyButtonPressed() {
@@ -310,22 +310,22 @@ class DisplayPanel extends JPanel {
      */
     private void saveSettings() {
         if( selectedBodyFont != null ) {
-            settings.setValue(SettingsClass.MESSAGE_BODY_FONT_NAME, selectedBodyFont.getFamily());
-            settings.setValue(SettingsClass.MESSAGE_BODY_FONT_STYLE, selectedBodyFont.getStyle());
-            settings.setValue(SettingsClass.MESSAGE_BODY_FONT_SIZE, selectedBodyFont.getSize());
+            settings.setValue(Settings.MESSAGE_BODY_FONT_NAME, selectedBodyFont.getFamily());
+            settings.setValue(Settings.MESSAGE_BODY_FONT_STYLE, selectedBodyFont.getStyle());
+            settings.setValue(Settings.MESSAGE_BODY_FONT_SIZE, selectedBodyFont.getSize());
         }
         if( selectedMessageListFont != null ) {
-            settings.setValue(SettingsClass.MESSAGE_LIST_FONT_NAME, selectedMessageListFont.getFamily());
-            settings.setValue(SettingsClass.MESSAGE_LIST_FONT_STYLE, selectedMessageListFont.getStyle());
-            settings.setValue(SettingsClass.MESSAGE_LIST_FONT_SIZE, selectedMessageListFont.getSize());
+            settings.setValue(Settings.MESSAGE_LIST_FONT_NAME, selectedMessageListFont.getFamily());
+            settings.setValue(Settings.MESSAGE_LIST_FONT_STYLE, selectedMessageListFont.getStyle());
+            settings.setValue(Settings.MESSAGE_LIST_FONT_SIZE, selectedMessageListFont.getSize());
         }
         if( selectedFileListFont != null ) {
-            settings.setValue(SettingsClass.FILE_LIST_FONT_NAME, selectedFileListFont.getFamily());
-            settings.setValue(SettingsClass.FILE_LIST_FONT_STYLE, selectedFileListFont.getStyle());
-            settings.setValue(SettingsClass.FILE_LIST_FONT_SIZE, selectedFileListFont.getSize());
+            settings.setValue(Settings.FILE_LIST_FONT_NAME, selectedFileListFont.getFamily());
+            settings.setValue(Settings.FILE_LIST_FONT_STYLE, selectedFileListFont.getStyle());
+            settings.setValue(Settings.FILE_LIST_FONT_SIZE, selectedFileListFont.getSize());
         }
-        settings.setValue(SettingsClass.SAVE_SORT_STATES, saveSortStatesCheckBox.isSelected());
-        settings.setValue(SettingsClass.SHOW_COLORED_ROWS, showColoredRowsCheckBox.isSelected());
-        settings.setValue(SettingsClass.CONFIRM_MARK_ALL_MSGS_READ, confirmMarkAllMsgsReadCheckBox.isSelected());
+        settings.setValue(Settings.SAVE_SORT_STATES, saveSortStatesCheckBox.isSelected());
+        settings.setValue(Settings.SHOW_COLORED_ROWS, showColoredRowsCheckBox.isSelected());
+        settings.setValue(Settings.CONFIRM_MARK_ALL_MSGS_READ, confirmMarkAllMsgsReadCheckBox.isSelected());
     }
 }

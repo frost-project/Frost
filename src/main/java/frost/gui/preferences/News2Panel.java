@@ -31,7 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
 
@@ -52,7 +52,7 @@ class News2Panel extends JPanel {
         }
     }
 
-    private SettingsClass settings = null;
+    private Settings settings = null;
     private Language language = null;
 
     private final JCheckBox blockBoardCheckBox = new JCheckBox();
@@ -84,7 +84,7 @@ class News2Panel extends JPanel {
     /**
      * @param settings the SettingsClass instance that will be used to get and store the settings of the panel
      */
-    protected News2Panel(final SettingsClass settings) {
+    protected News2Panel(final Settings settings) {
         super();
 
         this.language = Language.getInstance();
@@ -298,28 +298,28 @@ class News2Panel extends JPanel {
      * Load the settings of this panel
      */
     private void loadSettings() {
-        hideUnsignedMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_HIDE_UNSIGNED));
-        hideBadMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_HIDE_BAD));
-        hideCheckMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_HIDE_CHECK));
-        hideObserveMessagesCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_HIDE_OBSERVE));
+        hideUnsignedMessagesCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_HIDE_UNSIGNED));
+        hideBadMessagesCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_HIDE_BAD));
+        hideCheckMessagesCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_HIDE_CHECK));
+        hideObserveMessagesCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_HIDE_OBSERVE));
 
-        blockBoardsFromUnsignedCheckBox.setSelected(settings.getBoolValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_UNSIGNED));
-        blockBoardsFromBadCheckBox.setSelected(settings.getBoolValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_BAD));
-        blockBoardsFromCheckCheckBox.setSelected(settings.getBoolValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_CHECK));
-        blockBoardsFromObserveCheckBox.setSelected(settings.getBoolValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_OBSERVE));
+        blockBoardsFromUnsignedCheckBox.setSelected(settings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_UNSIGNED));
+        blockBoardsFromBadCheckBox.setSelected(settings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_BAD));
+        blockBoardsFromCheckCheckBox.setSelected(settings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_CHECK));
+        blockBoardsFromObserveCheckBox.setSelected(settings.getBoolValue(Settings.KNOWNBOARDS_BLOCK_FROM_OBSERVE));
 
-        blockSubjectCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_BLOCK_SUBJECT_ENABLED));
+        blockSubjectCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED));
         blockSubjectTextField.setEnabled(blockSubjectCheckBox.isSelected());
-        blockSubjectTextField.setText(settings.getValue(SettingsClass.MESSAGE_BLOCK_SUBJECT));
-        blockBodyCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_BLOCK_BODY_ENABLED));
+        blockSubjectTextField.setText(settings.getValue(Settings.MESSAGE_BLOCK_SUBJECT));
+        blockBodyCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_BLOCK_BODY_ENABLED));
         blockBodyTextField.setEnabled(blockBodyCheckBox.isSelected());
-        blockBodyTextField.setText(settings.getValue(SettingsClass.MESSAGE_BLOCK_BODY));
-        blockBoardCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_BLOCK_BOARDNAME_ENABLED));
+        blockBodyTextField.setText(settings.getValue(Settings.MESSAGE_BLOCK_BODY));
+        blockBoardCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED));
         blockBoardTextField.setEnabled(blockBoardCheckBox.isSelected());
-        blockBoardTextField.setText(settings.getValue(SettingsClass.MESSAGE_BLOCK_BOARDNAME));
+        blockBoardTextField.setText(settings.getValue(Settings.MESSAGE_BLOCK_BOARDNAME));
 
-        hideMessageCountTextField.setText(settings.getValue(SettingsClass.MESSAGE_HIDE_COUNT));
-        hideMessageCountExcludePrivateCheckBox.setSelected(settings.getBoolValue(SettingsClass.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE));
+        hideMessageCountTextField.setText(settings.getValue(Settings.MESSAGE_HIDE_COUNT));
+        hideMessageCountExcludePrivateCheckBox.setSelected(settings.getBoolValue(Settings.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE));
     }
 
     public void ok() {
@@ -351,24 +351,24 @@ class News2Panel extends JPanel {
      * Save the settings of this panel
      */
     private void saveSettings() {
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_SUBJECT, ((blockSubjectTextField.getText()).trim()).toLowerCase());
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_SUBJECT_ENABLED, blockSubjectCheckBox.isSelected());
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_BODY, ((blockBodyTextField.getText()).trim()).toLowerCase());
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_BODY_ENABLED, blockBodyCheckBox.isSelected());
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_BOARDNAME, ((blockBoardTextField.getText()).trim()).toLowerCase());
-        settings.setValue(SettingsClass.MESSAGE_BLOCK_BOARDNAME_ENABLED, blockBoardCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_BLOCK_SUBJECT, ((blockSubjectTextField.getText()).trim()).toLowerCase());
+        settings.setValue(Settings.MESSAGE_BLOCK_SUBJECT_ENABLED, blockSubjectCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_BLOCK_BODY, ((blockBodyTextField.getText()).trim()).toLowerCase());
+        settings.setValue(Settings.MESSAGE_BLOCK_BODY_ENABLED, blockBodyCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_BLOCK_BOARDNAME, ((blockBoardTextField.getText()).trim()).toLowerCase());
+        settings.setValue(Settings.MESSAGE_BLOCK_BOARDNAME_ENABLED, blockBoardCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.MESSAGE_HIDE_UNSIGNED, hideUnsignedMessagesCheckBox.isSelected());
-        settings.setValue(SettingsClass.MESSAGE_HIDE_BAD, hideBadMessagesCheckBox.isSelected());
-        settings.setValue(SettingsClass.MESSAGE_HIDE_CHECK, hideCheckMessagesCheckBox.isSelected());
-        settings.setValue(SettingsClass.MESSAGE_HIDE_OBSERVE, hideObserveMessagesCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_HIDE_UNSIGNED, hideUnsignedMessagesCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_HIDE_BAD, hideBadMessagesCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_HIDE_CHECK, hideCheckMessagesCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_HIDE_OBSERVE, hideObserveMessagesCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_UNSIGNED, blockBoardsFromUnsignedCheckBox.isSelected());
-        settings.setValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_BAD, blockBoardsFromBadCheckBox.isSelected());
-        settings.setValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_CHECK, blockBoardsFromCheckCheckBox.isSelected());
-        settings.setValue(SettingsClass.KNOWNBOARDS_BLOCK_FROM_OBSERVE, blockBoardsFromObserveCheckBox.isSelected());
+        settings.setValue(Settings.KNOWNBOARDS_BLOCK_FROM_UNSIGNED, blockBoardsFromUnsignedCheckBox.isSelected());
+        settings.setValue(Settings.KNOWNBOARDS_BLOCK_FROM_BAD, blockBoardsFromBadCheckBox.isSelected());
+        settings.setValue(Settings.KNOWNBOARDS_BLOCK_FROM_CHECK, blockBoardsFromCheckCheckBox.isSelected());
+        settings.setValue(Settings.KNOWNBOARDS_BLOCK_FROM_OBSERVE, blockBoardsFromObserveCheckBox.isSelected());
 
-        settings.setValue(SettingsClass.MESSAGE_HIDE_COUNT, hideMessageCountTextField.getText());
-        settings.setValue(SettingsClass.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE, hideMessageCountExcludePrivateCheckBox.isSelected());
+        settings.setValue(Settings.MESSAGE_HIDE_COUNT, hideMessageCountTextField.getText());
+        settings.setValue(Settings.MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE, hideMessageCountExcludePrivateCheckBox.isSelected());
     }
 }

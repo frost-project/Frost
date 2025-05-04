@@ -65,7 +65,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.download.DownloadManager;
 import frost.fileTransfer.download.FrostDownloadItem;
 import frost.gui.AddNewDownloadsDialog;
@@ -278,8 +278,8 @@ public class MessageTextPane extends JPanel {
         setLayout(new BorderLayout());
 
         final MessageDecoder decoder = new MessageDecoder();
-        decoder.setSmileyDecode(Core.frostSettings.getBoolValue(SettingsClass.SHOW_SMILEYS));
-        decoder.setFreenetKeysDecode(Core.frostSettings.getBoolValue(SettingsClass.SHOW_KEYS_AS_HYPERLINKS));
+        decoder.setSmileyDecode(Core.frostSettings.getBoolValue(Settings.SHOW_SMILEYS));
+        decoder.setFreenetKeysDecode(Core.frostSettings.getBoolValue(Settings.SHOW_KEYS_AS_HYPERLINKS));
         messageTextArea = new AntialiasedTextPane(decoder);
         messageTextArea.setEditable(false);
         messageTextArea.setDoubleBuffered(true);
@@ -287,7 +287,7 @@ public class MessageTextPane extends JPanel {
 //        messageTextArea.setLineWrap(true);
 //        messageTextArea.setWrapStyleWord(true);
 
-        messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(SettingsClass.MESSAGE_BODY_ANTIALIAS));
+        messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
 
         messageBodyScrollPane = new JScrollPane(messageTextArea);
         messageBodyScrollPane.setWheelScrollingEnabled(true);
@@ -447,23 +447,23 @@ public class MessageTextPane extends JPanel {
 
         propertyChangeListener = new PropertyChangeListener() {
             public void propertyChange(final PropertyChangeEvent evt) {
-                if (evt.getPropertyName().equals(SettingsClass.MESSAGE_BODY_ANTIALIAS)) {
-                    messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(SettingsClass.MESSAGE_BODY_ANTIALIAS));
-                } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_BODY_FONT_NAME)) {
+                if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_ANTIALIAS)) {
+                    messageTextArea.setAntiAliasEnabled(Core.frostSettings.getBoolValue(Settings.MESSAGE_BODY_ANTIALIAS));
+                } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_NAME)) {
                     fontChanged();
-                } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_BODY_FONT_SIZE)) {
+                } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_SIZE)) {
                     fontChanged();
-                } else if (evt.getPropertyName().equals(SettingsClass.MESSAGE_BODY_FONT_STYLE)) {
+                } else if (evt.getPropertyName().equals(Settings.MESSAGE_BODY_FONT_STYLE)) {
                     fontChanged();
-                } else if (evt.getPropertyName().equals(SettingsClass.SHOW_SMILEYS)) {
-                    ((MessageDecoder)messageTextArea.getDecoder()).setSmileyDecode(Core.frostSettings.getBoolValue(SettingsClass.SHOW_SMILEYS));
+                } else if (evt.getPropertyName().equals(Settings.SHOW_SMILEYS)) {
+                    ((MessageDecoder)messageTextArea.getDecoder()).setSmileyDecode(Core.frostSettings.getBoolValue(Settings.SHOW_SMILEYS));
                     if( selectedMessage != null ) {
                         update_messageSelected(selectedMessage);
                     } else {
                         setMessageText(messageTextArea.getText());
                     }
-                } else if (evt.getPropertyName().equals(SettingsClass.SHOW_KEYS_AS_HYPERLINKS)) {
-                    ((MessageDecoder)messageTextArea.getDecoder()).setFreenetKeysDecode(Core.frostSettings.getBoolValue(SettingsClass.SHOW_KEYS_AS_HYPERLINKS));
+                } else if (evt.getPropertyName().equals(Settings.SHOW_KEYS_AS_HYPERLINKS)) {
+                    ((MessageDecoder)messageTextArea.getDecoder()).setFreenetKeysDecode(Core.frostSettings.getBoolValue(Settings.SHOW_KEYS_AS_HYPERLINKS));
                     if( selectedMessage != null ) {
                         update_messageSelected(selectedMessage);
                     } else {
@@ -473,23 +473,23 @@ public class MessageTextPane extends JPanel {
             }
         };
 
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_NAME, propertyChangeListener);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_SIZE, propertyChangeListener);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_STYLE, propertyChangeListener);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.MESSAGE_BODY_ANTIALIAS, propertyChangeListener);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.SHOW_SMILEYS, propertyChangeListener);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.SHOW_KEYS_AS_HYPERLINKS, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_BODY_FONT_NAME, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_BODY_FONT_SIZE, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_BODY_FONT_STYLE, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.MESSAGE_BODY_ANTIALIAS, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.SHOW_SMILEYS, propertyChangeListener);
+        Core.frostSettings.addPropertyChangeListener(Settings.SHOW_KEYS_AS_HYPERLINKS, propertyChangeListener);
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(SettingsClass.MESSAGE_BODY_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_SIZE);
+        final String fontName = Core.frostSettings.getValue(Settings.MESSAGE_BODY_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"Monospaced\".");
-            Core.frostSettings.setValue(SettingsClass.MESSAGE_BODY_FONT_NAME, "Monospaced");
+            Core.frostSettings.setValue(Settings.MESSAGE_BODY_FONT_NAME, "Monospaced");
             font = new Font("Monospaced", fontStyle, fontSize);
         }
         messageTextArea.setFont(font);
@@ -538,7 +538,7 @@ public class MessageTextPane extends JPanel {
         FileAccess.saveDialog(
             MainFrame.getInstance(),
             messageTextArea.getText(),
-            Core.frostSettings.getValue(SettingsClass.DIR_LAST_USED),
+            Core.frostSettings.getValue(Settings.DIR_LAST_USED),
             language.getString("MessagePane.messageText.saveDialog.title"));
     }
 
@@ -668,7 +668,7 @@ public class MessageTextPane extends JPanel {
     		// configure download items
     		frostDownloadItem.setAssociatedMessageId(selectedMessage.getMessageId());
     		frostDownloadItem.setAssociatedBoardName(selectedMessage.getBoard().getBoardFilename());
-    		if( Core.frostSettings.getBoolValue(SettingsClass.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
+    		if( Core.frostSettings.getBoolValue(Settings.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
     			frostDownloadItem.setDownloadDir(frostDownloadItem.getDownloadDir().concat(frostDownloadItem.getAssociatedBoardName()));
     		}
 
@@ -799,7 +799,7 @@ public class MessageTextPane extends JPanel {
             saveAttachmentsItem.addActionListener(this);
             saveAttachmentItem.addActionListener(this);
 
-            String browserAddress = Core.frostSettings.getValue(SettingsClass.BROWSER_ADDRESS);
+            String browserAddress = Core.frostSettings.getValue(Settings.BROWSER_ADDRESS);
             if( (browserAddress != null) && (browserAddress.length() > 0) ) {
 	            openFileInBrowserItem.addActionListener(this);
 	            openAllFilesInBrowserItem.addActionListener(this);
@@ -879,7 +879,7 @@ public class MessageTextPane extends JPanel {
 
                 frostDwonloadItem.setAssociatedMessageId(selectedMessage.getMessageId());
                 frostDwonloadItem.setAssociatedBoardName(selectedMessage.getBoard().getBoardFilename());
-                if( Core.frostSettings.getBoolValue(SettingsClass.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
+                if( Core.frostSettings.getBoolValue(Settings.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
                 	frostDwonloadItem.setDownloadDir(frostDwonloadItem.getDownloadDir().concat(frostDwonloadItem.getAssociatedBoardName()));
                 }
                 frostDownloadItemList.add( frostDwonloadItem );
@@ -1024,7 +1024,7 @@ public class MessageTextPane extends JPanel {
                 // freesite link
                 add(copyFreesiteLinkToClipboard);
 
-				String browserAddress = Core.frostSettings.getValue(SettingsClass.BROWSER_ADDRESS);
+				String browserAddress = Core.frostSettings.getValue(Settings.BROWSER_ADDRESS);
 	            if( (browserAddress != null) && (browserAddress.length() > 0) ) {
 	            	addSeparator();
 	            	add(openFileInBrowser);
@@ -1045,7 +1045,7 @@ public class MessageTextPane extends JPanel {
                 if( allKeys.size() > 1 ) {
                     add(downloadAllFiles);
                 }
-                String browserAddress = Core.frostSettings.getValue(SettingsClass.BROWSER_ADDRESS);
+                String browserAddress = Core.frostSettings.getValue(Settings.BROWSER_ADDRESS);
 	            if( (browserAddress != null) && (browserAddress.length() > 0) ) {
 	            	addSeparator();
 	            	add(openFileInBrowser);
@@ -1096,7 +1096,7 @@ public class MessageTextPane extends JPanel {
                 FrostDownloadItem frostDownloadItem = new FrostDownloadItem(name, key);
                 frostDownloadItem.setAssociatedMessageId(selectedMessage.getMessageId());
                 frostDownloadItem.setAssociatedBoardName(selectedMessage.getBoard().getBoardFilename());
-                if( Core.frostSettings.getBoolValue(SettingsClass.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
+                if( Core.frostSettings.getBoolValue(Settings.USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED) ){
                 	frostDownloadItem.setDownloadDir(frostDownloadItem.getDownloadDir().concat(frostDownloadItem.getAssociatedBoardName()));
                 }
                 frostDownloadItemList.add( frostDownloadItem );
@@ -1158,7 +1158,7 @@ public class MessageTextPane extends JPanel {
 		}
 
 		final String browserAddress = Core.frostSettings
-				.getValue(SettingsClass.BROWSER_ADDRESS);
+				.getValue(Settings.BROWSER_ADDRESS);
 		if (browserAddress.length() == 0) {
 			logger.warn("Browser address not configured");
 			return;
@@ -1254,10 +1254,10 @@ public class MessageTextPane extends JPanel {
     }
 
     protected void close() {
-        Core.frostSettings.removePropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_NAME, propertyChangeListener);
-        Core.frostSettings.removePropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_SIZE, propertyChangeListener);
-        Core.frostSettings.removePropertyChangeListener(SettingsClass.MESSAGE_BODY_FONT_STYLE, propertyChangeListener);
-        Core.frostSettings.removePropertyChangeListener(SettingsClass.MESSAGE_BODY_ANTIALIAS, propertyChangeListener);
+        Core.frostSettings.removePropertyChangeListener(Settings.MESSAGE_BODY_FONT_NAME, propertyChangeListener);
+        Core.frostSettings.removePropertyChangeListener(Settings.MESSAGE_BODY_FONT_SIZE, propertyChangeListener);
+        Core.frostSettings.removePropertyChangeListener(Settings.MESSAGE_BODY_FONT_STYLE, propertyChangeListener);
+        Core.frostSettings.removePropertyChangeListener(Settings.MESSAGE_BODY_ANTIALIAS, propertyChangeListener);
 
         if (popupMenuAttachmentBoard != null) {
             language.removeLanguageListener(popupMenuAttachmentBoard);

@@ -121,7 +121,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
 
     private long todaysDateMillis = 0;
 
-    private static SettingsClass frostSettings = null;
+    private static Settings frostSettings = null;
 
     private static MainFrame instance = null; // set in constructor
 
@@ -174,7 +174,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
 
 	private final transient List<JRadioButtonMenuItem> lookAndFeels = new ArrayList<>();
 
-    public MainFrame(final SettingsClass settings, final String title) {
+    public MainFrame(final Settings settings, final String title) {
 
         instance = this;
         Core.getInstance();
@@ -481,7 +481,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
         getTabbedPane().insertTab("MainFrame.tabbedPane.news", null, getMessagingTab(), null, 0);
 
         // optionally show Freetalk tab
-        if (frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_TAB)) {
+        if (frostSettings.getBoolValue(Settings.FREETALK_SHOW_TAB)) {
             getFreetalkMessageTab().initialize();
             getTabbedPane().insertTab("MainFrame.tabbedPane.freetalk", null, getFreetalkMessageTab().getTabPanel(), null, 1);
         }
@@ -499,23 +499,23 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
         final Rectangle bounds = getBounds();
         final boolean isMaximized = ((getExtendedState() & Frame.MAXIMIZED_BOTH) != 0);
 
-        frostSettings.setValue(SettingsClass.MAINFRAME_LAST_MAXIMIZED, isMaximized);
+        frostSettings.setValue(Settings.MAINFRAME_LAST_MAXIMIZED, isMaximized);
 
         if (!isMaximized) { // Only save the current dimension if frame is not maximized
-            frostSettings.setValue(SettingsClass.MAINFRAME_LAST_HEIGHT, bounds.height);
-            frostSettings.setValue(SettingsClass.MAINFRAME_LAST_WIDTH, bounds.width);
-            frostSettings.setValue(SettingsClass.MAINFRAME_LAST_X, bounds.x);
-            frostSettings.setValue(SettingsClass.MAINFRAME_LAST_Y, bounds.y);
+            frostSettings.setValue(Settings.MAINFRAME_LAST_HEIGHT, bounds.height);
+            frostSettings.setValue(Settings.MAINFRAME_LAST_WIDTH, bounds.width);
+            frostSettings.setValue(Settings.MAINFRAME_LAST_X, bounds.x);
+            frostSettings.setValue(Settings.MAINFRAME_LAST_Y, bounds.y);
         }
 
         for( final JRadioButtonMenuItem rbmi : lookAndFeels ) {
             if( rbmi.isSelected() ) {
-                frostSettings.setValue(SettingsClass.LOOK_AND_FEEL, rbmi.getActionCommand());
+                frostSettings.setValue(Settings.LOOK_AND_FEEL, rbmi.getActionCommand());
             }
         }
 
         getMessagingTab().saveLayout();
-        if (frostSettings.getBoolValue(SettingsClass.FREETALK_SHOW_TAB)) {
+        if (frostSettings.getBoolValue(Settings.FREETALK_SHOW_TAB)) {
             getFreetalkMessageTab().saveLayout();
         }
     }
@@ -622,19 +622,19 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
         // step through all messages on disk up to maxMessageDisplay and check if there are new messages
         TOF.getInstance().searchAllUnreadMessages(false);
 
-        tofAutomaticUpdateMenuItem.setSelected(frostSettings.getBoolValue(SettingsClass.BOARD_AUTOUPDATE_ENABLED));
+        tofAutomaticUpdateMenuItem.setSelected(frostSettings.getBoolValue(Settings.BOARD_AUTOUPDATE_ENABLED));
 
         // make sure the font size isn't too small to see
-        if (frostSettings.getIntValue(SettingsClass.MESSAGE_BODY_FONT_SIZE) < 6) {
-            frostSettings.setValue(SettingsClass.MESSAGE_BODY_FONT_SIZE, 6);
+        if (frostSettings.getIntValue(Settings.MESSAGE_BODY_FONT_SIZE) < 6) {
+            frostSettings.setValue(Settings.MESSAGE_BODY_FONT_SIZE, 6);
         }
 
         // load size, location and state of window
-        int lastHeight = frostSettings.getIntValue(SettingsClass.MAINFRAME_LAST_HEIGHT);
-        int lastWidth = frostSettings.getIntValue(SettingsClass.MAINFRAME_LAST_WIDTH);
-        int lastPosX = frostSettings.getIntValue(SettingsClass.MAINFRAME_LAST_X);
-        int lastPosY = frostSettings.getIntValue(SettingsClass.MAINFRAME_LAST_Y);
-        final boolean lastMaximized = frostSettings.getBoolValue(SettingsClass.MAINFRAME_LAST_MAXIMIZED);
+        int lastHeight = frostSettings.getIntValue(Settings.MAINFRAME_LAST_HEIGHT);
+        int lastWidth = frostSettings.getIntValue(Settings.MAINFRAME_LAST_WIDTH);
+        int lastPosX = frostSettings.getIntValue(Settings.MAINFRAME_LAST_X);
+        int lastPosY = frostSettings.getIntValue(Settings.MAINFRAME_LAST_Y);
+        final boolean lastMaximized = frostSettings.getBoolValue(Settings.MAINFRAME_LAST_MAXIMIZED);
         final Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         if (lastWidth < 100) {
@@ -794,7 +794,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
         if (Core.isFreenetOnline() &&
             ((counter % 15) == 0) && // check all 15 seconds if a board update could be started
             isAutomaticBoardUpdateEnabled() &&
-            (msgInfo.getDownloadingBoardCount() < frostSettings.getIntValue(SettingsClass.BOARD_AUTOUPDATE_CONCURRENT_UPDATES)))
+            (msgInfo.getDownloadingBoardCount() < frostSettings.getIntValue(Settings.BOARD_AUTOUPDATE_CONCURRENT_UPDATES)))
         {
             getMessagingTab().startNextBoardUpdate();
         }
@@ -869,7 +869,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
     }
 
     public void updateSettings() {
-        frostSettings.setValue(SettingsClass.BOARD_AUTOUPDATE_ENABLED, tofAutomaticUpdateMenuItem.isSelected());
+        frostSettings.setValue(Settings.BOARD_AUTOUPDATE_ENABLED, tofAutomaticUpdateMenuItem.isSelected());
     }
 
     /**
@@ -927,7 +927,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
 			return;
 		}
 		if (helpBrowser == null) {
-			helpBrowser = new HelpBrowserFrame(frostSettings.getValue(SettingsClass.LANGUAGE_LOCALE));
+			helpBrowser = new HelpBrowserFrame(frostSettings.getValue(Settings.LANGUAGE_LOCALE));
 		}
 		// show first time or bring to front
 		helpBrowser.setVisible(true);
@@ -971,7 +971,7 @@ public class MainFrame extends JFrame implements SettingsUpdater, LanguageListen
         public void windowStateChanged(final WindowEvent e) {
             if( (e.getNewState() & Frame.ICONIFIED) != 0 ) {
                 // Frost window was minimized by user, minimize to tray if configured
-                if ( Core.frostSettings.getBoolValue(SettingsClass.MINIMIZE_TO_SYSTRAY)
+                if ( Core.frostSettings.getBoolValue(Settings.MINIMIZE_TO_SYSTRAY)
                         && SystraySupport.isInitialized())
                 {
                     final boolean wasMaximized = ((e.getOldState() & Frame.MAXIMIZED_BOTH) != 0);

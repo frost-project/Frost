@@ -26,7 +26,7 @@ import org.garret.perst.Key;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.storage.ExitSavable;
 import frost.storage.StorageException;
 import frost.util.DateFun;
@@ -73,7 +73,7 @@ public class IndexSlotsStorage extends AbstractFrostStorage implements ExitSavab
     @Override
     public boolean initStorage() {
         final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-        final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_INDEXSLOTS);
+        final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_INDEXSLOTS);
 
         open(databaseFilePath, pagePoolSize, false, true, true);
 

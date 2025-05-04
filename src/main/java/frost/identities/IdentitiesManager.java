@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.storage.StorageException;
 import frost.storage.perst.identities.IdentitiesStorage;
 import frost.util.Mixed;
@@ -170,7 +170,7 @@ public class IdentitiesManager {
             logger.error("couldn't create new identitiy", e);
         }
         if( newIdentity != null && firstIdentity ) {
-            Core.frostSettings.setValue(SettingsClass.LAST_USED_FROMNAME, newIdentity.getUniqueName());
+            Core.frostSettings.setValue(Settings.LAST_USED_FROMNAME, newIdentity.getUniqueName());
         }
 
         return newIdentity;

@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.FileAccess;
 
 /**
@@ -90,7 +90,7 @@ public class TestDDAHelper {
             return false;
         }
         
-        if (!Core.frostSettings.getBoolValue(SettingsClass.FCP2_USE_DDA)) {
+        if (!Core.frostSettings.getBoolValue(Settings.FCP2_USE_DDA)) {
             return false;
         }
         

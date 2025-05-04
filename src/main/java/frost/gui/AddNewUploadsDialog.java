@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FreenetPriority;
 import frost.fileTransfer.upload.FreenetCompatibilityMode;
@@ -582,7 +582,7 @@ public class AddNewUploadsDialog extends JFrame {
 		
 		List<FrostUploadItem> frostUploadItemList = new ArrayList<FrostUploadItem>();
 		
-		final JFileChooser fc = new JFileChooser(Core.frostSettings.getValue(SettingsClass.DIR_LAST_USED));
+		final JFileChooser fc = new JFileChooser(Core.frostSettings.getValue(Settings.DIR_LAST_USED));
 		fc.setDialogTitle(language.getString("AddNewUploadsDialog.filechooser.title"));
 		fc.setFileHidingEnabled(true);
 		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
@@ -606,7 +606,7 @@ public class AddNewUploadsDialog extends JFrame {
 		// remember last upload dir
 		if (uploadFileItems.size() > 0) {
 			final File file = uploadFileItems.get(0);
-			Core.frostSettings.setValue(SettingsClass.DIR_LAST_USED, file.getParent());
+			Core.frostSettings.setValue(Settings.DIR_LAST_USED, file.getParent());
 		}
 
 		for(final File file : uploadFileItems ) {

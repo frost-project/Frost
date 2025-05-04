@@ -64,7 +64,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.boards.AbstractNode;
 
 @SuppressWarnings("serial")
@@ -450,7 +450,7 @@ public class JDragTree extends JTree implements DragGestureListener, DragSourceL
 	// DragGestureListener interface method
 	public void dragGestureRecognized(DragGestureEvent e)
 	{
-        if( Core.frostSettings.getBoolValue(SettingsClass.PREVENT_BOARDTREE_REORDERING) ) {
+        if( Core.frostSettings.getBoolValue(Settings.PREVENT_BOARDTREE_REORDERING) ) {
             // drag n drop not allowed
             return;
         }

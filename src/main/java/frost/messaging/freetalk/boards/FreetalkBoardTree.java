@@ -53,7 +53,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.gui.MessagePanel;
 import frost.messaging.frost.threads.RunningBoardUpdateThreads;
 import frost.storage.AutoSavable;
@@ -423,9 +423,9 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
             this.setOpenIcon(MiscToolkit.loadImageIcon("/data/folder-open.png"));
 
             // provide startup font: paranoia - should be provided by initialize() of tree
-            final String fontName = Core.frostSettings.getValue(SettingsClass.BOARD_TREE_FONT_NAME);
-            final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_STYLE);
-            final int fontSize = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_SIZE);
+            final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
+            final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
+            final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
             normalFont = new Font(fontName, fontStyle, fontSize);
             boldFont = normalFont.deriveFont(Font.BOLD);
         }
@@ -542,7 +542,7 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
     }
 
     private Language language;
-    private SettingsClass settings;
+    private Settings settings;
     private MainFrame mainFrame;
 
     private final Listener listener = new Listener();
@@ -563,8 +563,8 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
         super(model);
         this.model = model;
 
-        showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(SettingsClass.SHOW_BOARDDESC_TOOLTIPS);
-        showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
+        showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS);
+        showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
 
         setRowHeight(18); // we use 16x16 icons, keep a gap
     }
@@ -584,12 +584,12 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
 
         new TreeFindAction().install(this);
 
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.SHOW_BOARDDESC_TOOLTIPS, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.SHOW_BOARDDESC_TOOLTIPS, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR, this);
 
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.BOARD_TREE_FONT_NAME, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.BOARD_TREE_FONT_SIZE, this);
-        Core.frostSettings.addPropertyChangeListener(SettingsClass.BOARD_TREE_FONT_STYLE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.BOARD_TREE_FONT_NAME, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.BOARD_TREE_FONT_SIZE, this);
+        Core.frostSettings.addPropertyChangeListener(Settings.BOARD_TREE_FONT_STYLE, this);
 
         configBoardMenuItem.setIcon(MiscToolkit.getScaledImage("/data/toolbar/document-properties.png", 16, 16));
         refreshLanguage();
@@ -631,9 +631,9 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
         runningBoardUpdateThreads = new RunningBoardUpdateThreads();
 
         // provide startup font
-        final String fontName = Core.frostSettings.getValue(SettingsClass.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_SIZE);
+        final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
         final Font normalFont = new Font(fontName, fontStyle, fontSize);
         setFont(normalFont);
     }
@@ -958,7 +958,7 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
         return true;
     }
 
-    public void setSettings(final SettingsClass settings) {
+    public void setSettings(final Settings settings) {
         this.settings = settings;
     }
 
@@ -1081,29 +1081,29 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
     }
 
     public void propertyChange(final PropertyChangeEvent evt) {
-        if( evt.getPropertyName().equals(SettingsClass.SHOW_BOARDDESC_TOOLTIPS) ) {
-            showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(SettingsClass.SHOW_BOARDDESC_TOOLTIPS);
-        } else if( evt.getPropertyName().equals(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR) ) {
-            showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(SettingsClass.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
+        if( evt.getPropertyName().equals(Settings.SHOW_BOARDDESC_TOOLTIPS) ) {
+            showBoardDescriptionToolTips = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDDESC_TOOLTIPS);
+        } else if( evt.getPropertyName().equals(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR) ) {
+            showFlaggedStarredIndicators = Core.frostSettings.getBoolValue(Settings.SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR);
             updateTree(); // redraw tree nodes
-        } else if( evt.getPropertyName().equals(SettingsClass.BOARD_TREE_FONT_NAME) ) {
+        } else if( evt.getPropertyName().equals(Settings.BOARD_TREE_FONT_NAME) ) {
             fontChanged();
-        } else if( evt.getPropertyName().equals(SettingsClass.BOARD_TREE_FONT_SIZE) ) {
+        } else if( evt.getPropertyName().equals(Settings.BOARD_TREE_FONT_SIZE) ) {
             fontChanged();
-        } else if( evt.getPropertyName().equals(SettingsClass.BOARD_TREE_FONT_STYLE) ) {
+        } else if( evt.getPropertyName().equals(Settings.BOARD_TREE_FONT_STYLE) ) {
             fontChanged();
         }
     }
 
     private void fontChanged() {
-        final String fontName = Core.frostSettings.getValue(SettingsClass.BOARD_TREE_FONT_NAME);
-        final int fontStyle = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_STYLE);
-        final int fontSize = Core.frostSettings.getIntValue(SettingsClass.BOARD_TREE_FONT_SIZE);
+        final String fontName = Core.frostSettings.getValue(Settings.BOARD_TREE_FONT_NAME);
+        final int fontStyle = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_STYLE);
+        final int fontSize = Core.frostSettings.getIntValue(Settings.BOARD_TREE_FONT_SIZE);
         Font font = new Font(fontName, fontStyle, fontSize);
         if (!font.getFamily().equals(fontName)) {
             logger.error("The selected font was not found in your system");
             logger.error("That selection will be changed to \"Tahoma\".");
-            Core.frostSettings.setValue(SettingsClass.BOARD_TREE_FONT_NAME, "Tahoma");
+            Core.frostSettings.setValue(Settings.BOARD_TREE_FONT_NAME, "Tahoma");
             font = new Font("Tahoma", fontStyle, fontSize);
         }
         // adjust row height to font size, add a margin

@@ -24,7 +24,7 @@ import org.garret.perst.Index;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import frost.SettingsClass;
+import frost.Settings;
 import frost.storage.ExitSavable;
 import frost.storage.StorageException;
 
@@ -100,7 +100,7 @@ public class TrackDownloadKeysStorage extends AbstractFrostStorage implements Ex
 	@Override
 	public boolean initStorage() {
 		final String databaseFilePath = buildStoragePath(getStorageFilename()); // path to the database file
-		final long pagePoolSize = getPagePoolSize(SettingsClass.PERST_PAGEPOOLSIZE_TRACKDOWNLOADKEYS);
+		final long pagePoolSize = getPagePoolSize(Settings.PERST_PAGEPOOLSIZE_TRACKDOWNLOADKEYS);
 
 		open(databaseFilePath, pagePoolSize, true, true, false);
 

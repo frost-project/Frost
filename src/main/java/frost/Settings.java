@@ -1,5 +1,5 @@
 /*
-  SettingsClass.java / Frost
+  Settings.java / Frost
   Copyright (C) 2001  Frost Project <jtcfrost.sourceforge.net>
   This file contributed by Stefan Majewski <e9926279@stud3.tuwien.ac.at>
 
@@ -47,9 +47,9 @@ import frost.storage.StorageException;
 /**
  * Read settings from frost.ini and store them.
  */
-public class SettingsClass implements ExitSavable {
+public class Settings implements ExitSavable {
 
-	private static final Logger logger = LoggerFactory.getLogger(SettingsClass.class);
+	private static final Logger logger = LoggerFactory.getLogger(Settings.class);
 
     private final File settingsFile;
     private final Hashtable<String,Object> settingsHash;
@@ -183,7 +183,7 @@ public class SettingsClass implements ExitSavable {
     public static final String SHOW_BOARD_UPDATED_COUNT = "showBoardUpdatedCount";
     public static final String PREVENT_BOARDTREE_REORDERING = "preventBoardTreeReordering";
     public static final String SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR = "showBoardtreeFlaggedStarredIndicators";
-    public static final String SHOW_BOARD_UPDATE_VISUALIZATION = SettingsClass.BOARD_UPDATE_VISUALIZATION_ENABLED;
+    public static final String SHOW_BOARD_UPDATE_VISUALIZATION = Settings.BOARD_UPDATE_VISUALIZATION_ENABLED;
     public static final String DISABLE_SPLASHSCREEN = "disableSplashScreen";
     public static final String SHOW_SYSTRAY_ICON = "showSystrayIcon";
     public static final String MINIMIZE_TO_SYSTRAY = "minimizeToSystray";
@@ -296,7 +296,7 @@ public class SettingsClass implements ExitSavable {
 
     public static final String BROWSER_ADDRESS = "browserAddress";
 
-    public SettingsClass() {
+    public Settings() {
         settingsHash = new Hashtable<String,Object>();
         // the FIX config.dir
         settingsHash.put(DIR_CONFIG, "config" + fs);
@@ -315,7 +315,7 @@ public class SettingsClass implements ExitSavable {
      * The configuration is not read immediately, call readSettingsFile.
      * @param baseDirectory  the base directory of the config/frost.ini file
      */
-    public SettingsClass(final File baseDirectory) {
+    public Settings(final File baseDirectory) {
         settingsHash = new Hashtable<String,Object>();
         // the FIX config.dir
         settingsHash.put(DIR_CONFIG, baseDirectory.getPath() + fs + "config" + fs);
@@ -355,7 +355,7 @@ public class SettingsClass implements ExitSavable {
 		// maybe restore a .bak of the .ini file
 		if ((settingsFile.isFile() == false) || (settingsFile.length() == 0)) {
 			// try to restore .bak file
-			final String configDirStr = getValue(SettingsClass.DIR_CONFIG);
+			final String configDirStr = getValue(Settings.DIR_CONFIG);
 			final File bakFile = new File(configDirStr + "frost.ini.bak");
 			if (bakFile.isFile() && (bakFile.length() > 0)) {
 				bakFile.renameTo(settingsFile);
@@ -401,7 +401,7 @@ public class SettingsClass implements ExitSavable {
 							}
 						}
 						// scan all path config values and set correct system file separator
-						else if (key.equals(SettingsClass.DIR_TEMP) || key.equals(DIR_LOCALDATA)
+						else if (key.equals(Settings.DIR_TEMP) || key.equals(DIR_LOCALDATA)
 								|| key.equals(DIR_STORE) || key.equals(DIR_DOWNLOAD) || key.equals(DIR_LAST_USED)
 								|| key.equals(DIR_HELP)) {
 							value = setSystemFileSeparator(value);
@@ -432,8 +432,8 @@ public class SettingsClass implements ExitSavable {
      * Adjust values as needed.
      */
     private void doChanges() {
-        if (this.getValue(SettingsClass.MESSAGE_BASE).length() == 0) {
-            this.setValue(SettingsClass.MESSAGE_BASE, "news");
+        if (this.getValue(Settings.MESSAGE_BASE).length() == 0) {
+            this.setValue(Settings.MESSAGE_BASE, "news");
         }
 
         // adjust reshare interval, old default was 3
@@ -447,10 +447,10 @@ public class SettingsClass implements ExitSavable {
 //        }
 
         // dynamically add archiveExtension .7z
-        final String tmp = this.getValue(SettingsClass.FILEEXTENSION_ARCHIVE);
+        final String tmp = this.getValue(Settings.FILEEXTENSION_ARCHIVE);
         if( (tmp != null) && (tmp.indexOf(".7z") < 0) ) {
             // add .7z
-            this.setValue(SettingsClass.FILEEXTENSION_ARCHIVE, tmp + ";.7z");
+            this.setValue(Settings.FILEEXTENSION_ARCHIVE, tmp + ";.7z");
         }
     }
 
@@ -475,7 +475,7 @@ public class SettingsClass implements ExitSavable {
 		}
 
 		// write to new file
-		final String configDirStr = getValue(SettingsClass.DIR_CONFIG);
+		final String configDirStr = getValue(Settings.DIR_CONFIG);
 		final File newFile = new File(configDirStr + "frost.ini.new");
 		final File oldFile = new File(configDirStr + "frost.ini.old");
 		final File bakFile = new File(configDirStr + "frost.ini.bak");
@@ -1082,7 +1082,7 @@ public class SettingsClass implements ExitSavable {
 	}
 
 	public static String getVersion() {
-		return SettingsClass.class.getPackage().getImplementationVersion();
+		return Settings.class.getPackage().getImplementationVersion();
 	}
 
 	public static String generateFproxyAddress(String fcpAddress) {

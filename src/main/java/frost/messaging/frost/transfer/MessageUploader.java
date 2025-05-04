@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fcp.FcpHandler;
 import frost.fcp.FcpResultGet;
 import frost.fcp.FcpResultPut;
@@ -250,7 +250,7 @@ public class MessageUploader {
             } else { // error == true
                 logger.error("TOFUP: Error while uploading message.");
 
-                final boolean retrySilently = Core.frostSettings.getBoolValue(SettingsClass.SILENTLY_RETRY_MESSAGES);
+                final boolean retrySilently = Core.frostSettings.getBoolValue(Settings.SILENTLY_RETRY_MESSAGES);
                 if (!retrySilently) {
                     // Uploading of that message failed. Ask the user if Frost
                     // should try to upload the message another time.

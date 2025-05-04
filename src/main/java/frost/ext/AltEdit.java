@@ -32,7 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.FileAccess;
 import frost.util.gui.translation.Language;
 
@@ -79,12 +79,12 @@ public class AltEdit extends Thread {
     public void run() {
 
         // paranoia
-        if( !Core.frostSettings.getBoolValue(SettingsClass.ALTERNATE_EDITOR_ENABLED) ) {
+        if( !Core.frostSettings.getBoolValue(Settings.ALTERNATE_EDITOR_ENABLED) ) {
             callbackMessageFrame(null, null);
             return;
         }
 
-        final String editor = Core.frostSettings.getValue(SettingsClass.ALTERNATE_EDITOR_COMMAND);
+        final String editor = Core.frostSettings.getValue(Settings.ALTERNATE_EDITOR_COMMAND);
 
         if( editor == null || editor.length() == 0 ) {
             JOptionPane.showMessageDialog(parentFrame,

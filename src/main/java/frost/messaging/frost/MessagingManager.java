@@ -19,7 +19,7 @@
 package frost.messaging.frost;
 
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.messaging.frost.boards.Folder;
 import frost.messaging.frost.boards.TOF;
 import frost.messaging.frost.boards.TofTree;
@@ -38,13 +38,13 @@ public class MessagingManager {
 
 	private MainFrame mainFrame;
 
-	private final SettingsClass settings;
+	private final Settings settings;
 
 	/**
 	 * @param settings
 	 * @param mainFrame
 	 */
-	public MessagingManager(final SettingsClass settings, final MainFrame mainFrame) {
+	public MessagingManager(final Settings settings, final MainFrame mainFrame) {
 		super();
 		this.settings = settings;
 		this.mainFrame = mainFrame;

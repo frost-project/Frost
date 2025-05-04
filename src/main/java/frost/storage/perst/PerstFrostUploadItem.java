@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 
 import frost.Core;
 import frost.MainFrame;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.sharing.FrostSharedFileItem;
 import frost.fileTransfer.upload.FreenetCompatibilityMode;
 import frost.fileTransfer.upload.FrostUploadItem;
@@ -85,7 +85,7 @@ public class PerstFrostUploadItem extends Persistent {
     public FrostUploadItem toFrostUploadItem(final List<FrostSharedFileItem> sharedFiles, final Logger logger, final Language language) {
 
         final File file = new File(filePath);
-        if( Core.frostSettings.getBoolValue(SettingsClass.UPLOAD_REMOVE_NOT_EXISTING_FILES) && !file.isFile() ) {
+        if( Core.frostSettings.getBoolValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES) && !file.isFile() ) {
             final String title = language.getString("StartupMessage.uploadFile.uploadFileNotFound.title");
             final String text = language.formatMessage("StartupMessage.uploadFile.uploadFileNotFound.text", filePath);
             final StartupMessage sm = new StartupMessage(
@@ -98,7 +98,7 @@ public class PerstFrostUploadItem extends Persistent {
             logger.warn("Upload items file does not exist, removed from upload files: {}", filePath);
             return null;
         }
-        if( Core.frostSettings.getBoolValue(SettingsClass.UPLOAD_REMOVE_NOT_EXISTING_FILES) && file.length() != fileSize ) {
+        if( Core.frostSettings.getBoolValue(Settings.UPLOAD_REMOVE_NOT_EXISTING_FILES) && file.length() != fileSize ) {
             final String title = language.getString("StartupMessage.uploadFile.uploadFileSizeChanged.title");
             final String text = language.formatMessage("StartupMessage.uploadFile.uploadFileSizeChanged.text", filePath);
             final StartupMessage sm = new StartupMessage(

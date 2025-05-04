@@ -32,7 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.util.gui.translation.FrostResourceBundle;
 import frost.util.gui.translation.Language;
 import frost.util.gui.translation.LanguageGuiSupport;
@@ -149,7 +149,7 @@ public class TranslationStartDialog extends JFrame {
             final TreeMap<ComboBoxEntry,ComboBoxEntry> tm = new TreeMap<ComboBoxEntry,ComboBoxEntry>();
             
             ComboBoxEntry selectedEntry = null;
-            String current_locale = Core.frostSettings.getValue(SettingsClass.LANGUAGE_LOCALE);
+            String current_locale = Core.frostSettings.getValue(Settings.LANGUAGE_LOCALE);
             if( current_locale.equals("default") ) {
             	current_locale = "en";
             }

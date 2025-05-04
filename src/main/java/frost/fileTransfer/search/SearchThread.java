@@ -26,7 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.fileTransfer.FrostFileListFileObjectOwner;
 import frost.identities.Identity;
@@ -481,13 +481,13 @@ class SearchThread extends Thread implements FileListCallback {
         tabComponent.setSearchThread(this); // will notify this thread to stop if tab was closed
         this.searchTable = searchTable;
 
-        audioExtension      = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_AUDIO);
-        videoExtension      = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_VIDEO);
-        documentExtension   = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_DOCUMENT);
-        executableExtension = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_EXECUTABLE);
-        archiveExtension    = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_ARCHIVE);
-        imageExtension      = Core.frostSettings.getArrayValue(SettingsClass.FILEEXTENSION_IMAGE);
-        maxSearchResults    = Core.frostSettings.getIntValue(SettingsClass.SEARCH_MAX_RESULTS);
+        audioExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_AUDIO);
+        videoExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_VIDEO);
+        documentExtension   = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_DOCUMENT);
+        executableExtension = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_EXECUTABLE);
+        archiveExtension    = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_ARCHIVE);
+        imageExtension      = Core.frostSettings.getArrayValue(Settings.FILEEXTENSION_IMAGE);
+        maxSearchResults    = Core.frostSettings.getIntValue(Settings.SEARCH_MAX_RESULTS);
 
         if( maxSearchResults <= 0 ) {
             maxSearchResults = 10000; // default

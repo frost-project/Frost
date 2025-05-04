@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.SettingsClass;
+import frost.Settings;
 import frost.storage.AutoSavable;
 import frost.storage.ExitSavable;
 import frost.storage.LocalIdentitiesXmlDAO;
@@ -51,15 +51,15 @@ public class IdentityAutoBackupTask implements AutoSavable, ExitSavable {
      */
     private void backupLocalIdentities() {
 
-        if( !Core.frostSettings.getBoolValue(SettingsClass.AUTO_SAVE_LOCAL_IDENTITIES) ) {
+        if( !Core.frostSettings.getBoolValue(Settings.AUTO_SAVE_LOCAL_IDENTITIES) ) {
             // autosave disabled
             return;
         }
 
-        final String newName = Core.frostSettings.getValue(SettingsClass.DIR_LOCALDATA) + "localIdentitiesBackup.new";
-        final String xmlName = Core.frostSettings.getValue(SettingsClass.DIR_LOCALDATA) + "localIdentitiesBackup.xml";
-        final String bakName = Core.frostSettings.getValue(SettingsClass.DIR_LOCALDATA) + "localIdentitiesBackup.bak";
-        final String oldName = Core.frostSettings.getValue(SettingsClass.DIR_LOCALDATA) + "localIdentitiesBackup.old";
+        final String newName = Core.frostSettings.getValue(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.new";
+        final String xmlName = Core.frostSettings.getValue(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.xml";
+        final String bakName = Core.frostSettings.getValue(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.bak";
+        final String oldName = Core.frostSettings.getValue(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.old";
         final File newFile = new File(newName);
         final File xmlFile = new File(xmlName);
         final File bakFile = new File(bakName);
