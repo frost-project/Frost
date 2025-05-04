@@ -20,6 +20,7 @@ package frost.fileTransfer.search;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -40,12 +41,12 @@ class SearchThread extends Thread implements FileListCallback {
 
     private SearchParameters searchParams;
 
-    private String[] audioExtension;
-    private String[] videoExtension;
-    private String[] imageExtension;
-    private String[] documentExtension;
-    private String[] executableExtension;
-    private String[] archiveExtension;
+	private List<String> audioExtension;
+	private List<String> videoExtension;
+	private List<String> imageExtension;
+	private List<String> documentExtension;
+	private List<String> executableExtension;
+	private List<String> archiveExtension;
 
     private int allFileCount;
     private int maxSearchResults;
@@ -361,11 +362,11 @@ class SearchThread extends Thread implements FileListCallback {
      * @param filename Filename to be checked
      * @return True if file gets accepted, else false
      */
-    private boolean checkType(String[] extension, String filename) {
+	private boolean checkType(List<String> extension, String filename) {
         boolean accepted = false;
 
-        for( int i = 0; i < extension.length; i++ ) {
-            if( filename.endsWith(extension[i]) )
+		for (int i = 0; i < extension.size(); i++) {
+			if (filename.endsWith(extension.get(i)))
                 accepted = true;
         }
 
@@ -430,7 +431,7 @@ class SearchThread extends Thread implements FileListCallback {
         logger.info(">>> Filesearch started...");
 
         // check file extension. if extension of ONE file is ok the file matches
-        String[] searchForExtensions = null;
+		List<String> searchForExtensions = null;
         if( searchParams.getExtensions() != SearchParameters.EXTENSIONS_ALL ) {
             if( searchParams.getExtensions() == SearchParameters.EXTENSIONS_AUDIO ) {
                 searchForExtensions = audioExtension;

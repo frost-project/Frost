@@ -31,9 +31,11 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -715,21 +717,21 @@ public class Settings implements ExitSavable {
         return settingsHash.get(key);
     }
 
-    public String[] getStringList(final String key) {
+	public List<String> getStringList(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
-            return new String[0];
+			return new ArrayList<>();
         }
         final StringTokenizer strtok = new StringTokenizer(str, ";");
-        final String[] returnStrArr = new String[strtok.countTokens()];
+		final List<String> returnStrArr = new ArrayList<>();
 
-        for (int i = 0; strtok.hasMoreElements(); i++) {
-            returnStrArr[i] = strtok.nextToken();
+		while (strtok.hasMoreElements()) {
+			returnStrArr.add(strtok.nextToken());
         }
         return returnStrArr;
     }
 
-    public boolean getBoolean(final String key) {
+	public Boolean getBoolean(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return false;
@@ -747,7 +749,7 @@ public class Settings implements ExitSavable {
         return getBoolean(getDefaultValue(key));
     }
 
-    public int getInteger(final String key) {
+	public Integer getInteger(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return 0;
@@ -763,7 +765,7 @@ public class Settings implements ExitSavable {
         return val;
     }
 
-    public long getLong(final String key) {
+	public Long getLong(final String key) {
         final String str = (String) settingsHash.get(key);
         if (str == null) {
             return 0L;

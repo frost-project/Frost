@@ -467,14 +467,8 @@ public class FileListStorage extends AbstractFrostStorage implements ExitSavable
     /**
      * Retrieves a list of FrostSharedFileOjects.
      */
-    public void retrieveFiles(
-            final FileListCallback callback,
-            final List<String> names,
-            final List<String> comments,
-            final List<String> keywords,
-            final List<String> owners,
-            String[] extensions)
-    {
+	public void retrieveFiles(final FileListCallback callback, final List<String> names, final List<String> comments,
+			final List<String> keywords, final List<String> owners, List<String> extensions) {
         if( !beginCooperativeThreadTransaction() ) {
             return;
         }
@@ -492,7 +486,7 @@ public class FileListStorage extends AbstractFrostStorage implements ExitSavable
         if( comments == null || comments.size() == 0 ) { searchForComments = false; }
         if( keywords == null || keywords.size() == 0 ) { searchForKeywords = false; }
         if( owners == null   || owners.size() == 0 )   { searchForOwners = false; }
-        if( extensions == null || extensions.length == 0 )   { searchForExtensions = false; }
+        if( extensions == null || extensions.size() == 0 )   { searchForExtensions = false; }
 
         try {
             if( !searchForNames && !searchForComments && ! searchForKeywords && !searchForOwners && !searchForExtensions) {
@@ -556,7 +550,7 @@ public class FileListStorage extends AbstractFrostStorage implements ExitSavable
     private void searchForFiles(
             final HashSet<Integer> oids,
             final List<String> searchStrings,
-            final String[] extensions, // only used for name search
+			final List<String> extensions, // only used for name search
             final Index<PerstFileListIndexEntry> ix)
     {
         for(final Map.Entry<Object,PerstFileListIndexEntry> entry : ix.entryIterator() ) {
