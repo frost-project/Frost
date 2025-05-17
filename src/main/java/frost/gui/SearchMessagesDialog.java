@@ -71,6 +71,7 @@ import com.toedter.calendar.JDateChooser;
 
 import frost.Core;
 import frost.MainFrame;
+import frost.Settings;
 import frost.gui.model.SearchMessagesTableModel;
 import frost.messaging.frost.FrostMessageObject;
 import frost.messaging.frost.FrostSearchResultMessageObject;
@@ -1662,23 +1663,23 @@ public class SearchMessagesDialog extends JFrame implements LanguageListener {
         final Rectangle bounds = getBounds();
         final boolean isMaximized = ((getExtendedState() & Frame.MAXIMIZED_BOTH) != 0);
 
-        Core.frostSettings.setValue("searchMessagesDialog.lastFrameMaximized", isMaximized);
+        Core.frostSettings.setValue(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_MAXIMIZED, isMaximized);
 
         if (!isMaximized) { // Only save the current dimension if frame is not maximized
-            Core.frostSettings.setValue("searchMessagesDialog.lastFrameHeight", bounds.height);
-            Core.frostSettings.setValue("searchMessagesDialog.lastFrameWidth", bounds.width);
-            Core.frostSettings.setValue("searchMessagesDialog.lastFramePosX", bounds.x);
-            Core.frostSettings.setValue("searchMessagesDialog.lastFramePosY", bounds.y);
+            Core.frostSettings.setValue(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_HEIGHT, bounds.height);
+            Core.frostSettings.setValue(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_WIDTH, bounds.width);
+            Core.frostSettings.setValue(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_X, bounds.x);
+            Core.frostSettings.setValue(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_Y, bounds.y);
         }
     }
 
     private void loadWindowState() {
         // load size, location and state of window
-        int lastHeight = Core.frostSettings.getInteger("searchMessagesDialog.lastFrameHeight");
-        int lastWidth = Core.frostSettings.getInteger("searchMessagesDialog.lastFrameWidth");
-        final int lastPosX = Core.frostSettings.getInteger("searchMessagesDialog.lastFramePosX");
-        final int lastPosY = Core.frostSettings.getInteger("searchMessagesDialog.lastFramePosY");
-        final boolean lastMaximized = Core.frostSettings.getBoolean("searchMessagesDialog.lastFrameMaximized");
+        int lastHeight = Core.frostSettings.getInteger(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_HEIGHT);
+        int lastWidth = Core.frostSettings.getInteger(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_WIDTH);
+        final int lastPosX = Core.frostSettings.getInteger(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_X);
+        final int lastPosY = Core.frostSettings.getInteger(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_Y);
+        final boolean lastMaximized = Core.frostSettings.getBoolean(Settings.SEARCH_MESSAGES_DIALOG_LAST_FRAME_MAXIMIZED);
 
         if( (lastHeight <= 0) || (lastWidth <= 0) ) {
             // first call

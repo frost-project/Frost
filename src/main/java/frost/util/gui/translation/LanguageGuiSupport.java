@@ -186,7 +186,7 @@ public class LanguageGuiSupport {
         boolean anItemIsSelected = false;
 
         final String configuredLang = Core.frostSettings.getString(Settings.LANGUAGE_LOCALE);
-        final String langIsExternal = Core.frostSettings.getString("localeExternal");
+        final String langIsExternal = Core.frostSettings.getString(Settings.LANGUAGE_LOCALE_EXTERNAL);
         boolean isExternal;
         if( langIsExternal == null || langIsExternal.length() == 0 || !langIsExternal.equals("true")) {
             isExternal = false;
@@ -225,14 +225,14 @@ public class LanguageGuiSupport {
                 item.addActionListener(new LanguageAction(locale.getLanguage(), true));
                 languageMenuButtonGroup.add(item);
                 languageMenu.add(item);
-                if( isExternal == true && locale.getLanguage().equals(configuredLang) ) {
+				if (isExternal && locale.getLanguage().equals(configuredLang)) {
                     languageMenuButtonGroup.setSelected(item.getModel(), true);
                     anItemIsSelected = true;
                 }
             }
         }
 
-        if( anItemIsSelected == false && isExternal == false ) {
+		if (!anItemIsSelected && !isExternal) {
             // select buildin item
 			JRadioButtonMenuItem languageItem = buildinLanguageMenuItemsMap.get(configuredLang);
             if (languageItem != null) {
@@ -254,11 +254,11 @@ public class LanguageGuiSupport {
     private void setLanguageResource(final String newLocaleName, boolean isExternal) {
         if( newLocaleName == null ) {
             Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE, "default");
-            Core.frostSettings.setValue("localeExternal", "false");
+            Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE_EXTERNAL, "false");
             isExternal = false;
         } else {
             Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE, newLocaleName);
-            Core.frostSettings.setValue("localeExternal", Boolean.toString(isExternal));
+            Core.frostSettings.setValue(Settings.LANGUAGE_LOCALE_EXTERNAL, Boolean.toString(isExternal));
         }
         language.changeLanguage(newLocaleName, isExternal);
     }

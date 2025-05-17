@@ -48,12 +48,8 @@ import frost.util.model.ModelTable;
 import frost.util.model.SortedModelTable;
 import frost.util.model.SortedTableFormat;
 
-public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implements LanguageListener, PropertyChangeListener {
-
-    private static final String CFGKEY_SORTSTATE_SORTEDCOLUMN = "SearchFilesTable.sortState.sortedColumn";
-    private static final String CFGKEY_SORTSTATE_SORTEDASCENDING = "SearchFilesTable.sortState.sortedAscending";
-    private static final String CFGKEY_COLUMN_TABLEINDEX = "SearchFilesTable.tableindex.modelcolumn.";
-    private static final String CFGKEY_COLUMN_WIDTH = "SearchFilesTable.columnwidth.modelcolumn.";
+public class SearchTableFormat extends SortedTableFormat<FrostSearchItem>
+		implements LanguageListener, PropertyChangeListener {
 
     private static final ImageIcon hasMoreInfoIcon = MiscToolkit.loadImageIcon("/data/info.png");
 
@@ -236,17 +232,19 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
             final TableColumn tc = tcm.getColumn(columnIndexInTable);
             final int columnIndexInModel = tc.getModelIndex();
             // save the current index in table for column with the fix index in model
-            Core.frostSettings.setValue(CFGKEY_COLUMN_TABLEINDEX + columnIndexInModel, columnIndexInTable);
+			Core.frostSettings.setValue(Settings.SEARCH_FILES_TABLE_COLUMN_TABLE_INDEX_PREFIX + columnIndexInModel,
+					columnIndexInTable);
             // save the current width of the column
             final int columnWidth = tc.getWidth();
-            Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
+			Core.frostSettings.setValue(Settings.SEARCH_FILES_TABLE_COLUMN_WIDTH_PREFIX + columnIndexInModel,
+					columnWidth);
         }
 
         if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDASCENDING, isSortedAsc);
+			Core.frostSettings.setValue(Settings.SEARCH_FILES_TABLE_SORT_STATE_SORTED_COLUMN, sortedColumn);
+			Core.frostSettings.setValue(Settings.SEARCH_FILES_TABLE_SORT_STATE_SORTED_ASCENDING, isSortedAsc);
         }
     }
 
@@ -257,7 +255,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
         final int[] columnWidths = new int[tcm.getColumnCount()];
 
         for(int x=0; x < tableToModelIndex.length; x++) {
-            final String indexKey = CFGKEY_COLUMN_TABLEINDEX + x;
+			final String indexKey = Settings.SEARCH_FILES_TABLE_COLUMN_TABLE_INDEX_PREFIX + x;
             if( Core.frostSettings.getObjectValue(indexKey) == null ) {
                 return false; // column not found, abort
             }
@@ -268,7 +266,7 @@ public class SearchTableFormat extends SortedTableFormat<FrostSearchItem> implem
             }
             tableToModelIndex[tableIndex] = x;
 
-            final String widthKey = CFGKEY_COLUMN_WIDTH + x;
+			final String widthKey = Settings.SEARCH_FILES_TABLE_COLUMN_WIDTH_PREFIX + x;
             if( Core.frostSettings.getObjectValue(widthKey) == null ) {
                 return false; // column not found, abort
             }

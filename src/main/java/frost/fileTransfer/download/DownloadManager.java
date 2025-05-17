@@ -181,7 +181,7 @@ public class DownloadManager implements ExitSavable {
 		recentDownloadDirs = new LinkedList<String>();
 
 		for (int i = 0; i < MAX_RECENT_DOWNLOAD_DIRS; i++) {
-			final String key = "DownloadManager.recentDownloadDir." + i;
+			final String key = Settings.DOWNLOAD_MANAGER_RECENT_DOWNLOAD_DIR_PREFIX + i;
 			if (Core.frostSettings.getObjectValue(key) == null) {
 				break;
 			}
@@ -193,8 +193,7 @@ public class DownloadManager implements ExitSavable {
 		int i = 0;
 
 		for (final String dir : recentDownloadDirs) {
-			final String key = "DownloadManager.recentDownloadDir." + i++;
-			Core.frostSettings.setValue(key, dir);
+			Core.frostSettings.setValue(Settings.DOWNLOAD_MANAGER_RECENT_DOWNLOAD_DIR_PREFIX + i++, dir);
 		}
 	}
 

@@ -38,6 +38,7 @@ import javax.swing.event.PopupMenuEvent;
 
 import frost.Core;
 import frost.MainFrame;
+import frost.Settings;
 import frost.fileTransfer.FileTransferManager;
 import frost.fileTransfer.FrostFileListFileObject;
 import frost.fileTransfer.FrostFileListFileObjectOwner;
@@ -116,8 +117,8 @@ public class FileListFileDetailsDialog extends JDialog implements LanguageListen
 	}
 
 	private void loadLayout() {
-        int lastHeight = Core.frostSettings.getInteger("FileListFileDetailsDialog.height");
-        int lastWidth = Core.frostSettings.getInteger("FileListFileDetailsDialog.width");
+        int lastHeight = Core.frostSettings.getInteger(Settings.FILE_LIST_FILE_DETAILS_DIALOG_HEIGHT);
+        int lastWidth = Core.frostSettings.getInteger(Settings.FILE_LIST_FILE_DETAILS_DIALOG_WIDTH);
 
         final Dimension scrSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -140,8 +141,8 @@ public class FileListFileDetailsDialog extends JDialog implements LanguageListen
     private void saveLayout() {
         // dialog size
         final Rectangle bounds = getBounds();
-        Core.frostSettings.setValue("FileListFileDetailsDialog.height", bounds.height);
-        Core.frostSettings.setValue("FileListFileDetailsDialog.width", bounds.width);
+        Core.frostSettings.setValue(Settings.FILE_LIST_FILE_DETAILS_DIALOG_HEIGHT, bounds.height);
+        Core.frostSettings.setValue(Settings.FILE_LIST_FILE_DETAILS_DIALOG_WIDTH, bounds.width);
 
         tableFormat.saveTableLayout(getModelTable());
     }

@@ -450,7 +450,7 @@ public class Core {
         splashscreen.setProgress(70);
 
         // Display the tray icon (do this before mainframe initializes)
-        if ((frostSettings.getBoolean(Settings.SHOW_SYSTRAY_ICON) == true) && SystraySupport.isSupported()) {
+        if (frostSettings.getBoolean(Settings.SHOW_SYSTRAY_ICON) && SystraySupport.isSupported()) {
             try {
                 if (!SystraySupport.initialize(title)) {
                     logger.error("Could not create systray icon.");
@@ -605,7 +605,7 @@ public class Core {
         } else {
             // use config file parameter (format: de or de;ext
             final String lang = frostSettings.getString(Settings.LANGUAGE_LOCALE);
-            final String langIsExternal = frostSettings.getString("localeExternal");
+            final String langIsExternal = frostSettings.getString(Settings.LANGUAGE_LOCALE_EXTERNAL);
             if( (lang == null) || (lang.length() == 0) || lang.equals("default") ) {
                 // for default or if not set at all
                 frostSettings.setValue(Settings.LANGUAGE_LOCALE, "default");

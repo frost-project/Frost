@@ -293,7 +293,7 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
             newText += "\n\n";
         }
 
-        if (frostSettings.getBoolean("useAltEdit")) {
+        if (frostSettings.getBoolean(Settings.ALTERNATE_EDITOR_ENABLED)) {
             // build our transfer object that the parser will provide us in its callback
             final TransferObject to = new TransferObject();
             to.newBoard = newBoard;
@@ -354,7 +354,8 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
             from = senderId.getFreetalkAddress();
         } else {
             // use remembered sender name, maybe per board
-            String userName = Core.frostSettings.getString("freetalkAddress."+board.getName());
+			String userName = Core.frostSettings
+					.getString(Settings.FREETALK_BOARD_LAST_USER_PREFIX + board.getName());
             if( userName == null || userName.length() == 0 ) {
                 userName = Core.frostSettings.getString(Settings.LAST_USED_FROMNAME);
             }
@@ -902,12 +903,12 @@ public class FreetalkMessageFrame extends JFrame implements AltEditCallbackInter
             return;
         }
 
-        // for convinience set last used user
+        // for convenience set last used user
         if( from.indexOf("@") < 0 ) {
             // only save anonymous usernames
             frostSettings.setValue(Settings.LAST_USED_FROMNAME, from);
         }
-        frostSettings.setValue("freetalkAddress."+board.getName(), from);
+		frostSettings.setValue(Settings.FREETALK_BOARD_LAST_USER_PREFIX + board.getName(), from);
 
 //        final FrostUnsentMessageObject newMessage = new FrostUnsentMessageObject();
 //        newMessage.setMessageId(Mixed.createUniqueId()); // new message, create a new unique msg id

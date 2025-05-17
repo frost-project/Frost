@@ -61,243 +61,309 @@ public class Settings implements ExitSavable {
     private PropertyChangeSupport changeSupport = null;
     private Vector<SettingsUpdater> updaters = null;
 
-    public static final String DOS_STOP_BOARD_UPDATES_WHEN_DOSED = "dos.stopBoardUpdatesWhenDosed";
-    public static final String DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD = "dos.invalidSubsequentMessagesThreshold";
+	public static final String DOS_STOP_BOARD_UPDATES_WHEN_DOSED = "dos.stopBoardUpdatesWhenDosed";
+	public static final String DOS_INVALID_SUBSEQUENT_MSGS_THRESHOLD = "dos.invalidSubsequentMessagesThreshold";
 
-    public static final String MIGRATE_VERSION = "migrate.version";
+	public static final String MIGRATE_VERSION = "migrate.version";
+	public static final String SETTINGS_VERSION = "settings.version";
 
-    public static final String DB_CLEANUP_INTERVAL = "database.cleanup.interval";
-    public static final String DB_CLEANUP_LASTRUN = "database.cleanup.lastRun";
+	public static final String DB_CLEANUP_INTERVAL = "database.cleanup.interval";
+	public static final String DB_CLEANUP_LASTRUN = "database.cleanup.lastRun";
 
-    public static final String DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY = "database.cleanup.removeOfflineFilesWithKey";
-    public static final String DB_CLEANUP_OFFLINEFILESMAXDAYSOLD = "database.cleanup.offlineFilesMaxDaysOld";
+	public static final String DB_CLEANUP_REMOVEOFFLINEFILEWITHKEY = "database.cleanup.removeOfflineFilesWithKey";
+	public static final String DB_CLEANUP_OFFLINEFILESMAXDAYSOLD = "database.cleanup.offlineFilesMaxDaysOld";
 
-    public static final String PERST_COMPACT_STORAGES = "perst.compactStorages";
-    public static final String PERST_EXPORT_STORAGES = "perst.exportStorages";
+	public static final String PERST_COMPACT_STORAGES = "perst.compactStorages";
+	public static final String PERST_EXPORT_STORAGES = "perst.exportStorages";
 
-    public static final String DIR_CONFIG = "config.dir";
-    public static final String DIR_DOWNLOAD = "downloadDirectory";
-    public static final String EXEC_ON_DOWNLOAD = "downloadExec";
-    public static final String EXEC_ON_UPLOAD = "uploadExec";
-    public static final String DIR_LAST_USED = "lastUsedDirectory";
-    public static final String DIR_TEMP = "temp.dir";
-    public static final String DIR_LOCALDATA = "localdata.dir";
-    public static final String DIR_STORE = "store.dir";
+	public static final String DIR_CONFIG = "config.dir";
+	public static final String DIR_DOWNLOAD = "downloadDirectory";
+	public static final String DOWNLOAD_MANAGER_RECENT_DOWNLOAD_DIR_PREFIX = "DownloadManager.recentDownloadDir.";
+	public static final String EXEC_ON_DOWNLOAD = "downloadExec";
+	public static final String EXEC_ON_UPLOAD = "uploadExec";
+	public static final String DIR_LAST_USED = "lastUsedDirectory";
+	public static final String DIR_TEMP = "temp.dir";
+	public static final String DIR_LOCALDATA = "localdata.dir";
+	public static final String DIR_STORE = "store.dir";
 	public static final String DIR_HELP = "help.dir";
 
-    public static final String FREENET_VERSION = "freenetVersion";
+	public static final String FREENET_VERSION = "freenetVersion";
 
-    public static final String LANGUAGE_LOCALE = "locale";
+	public static final String LANGUAGE_LOCALE = "locale";
+	public static final String LANGUAGE_LOCALE_EXTERNAL = "localeExternal";
 
-    public static final String CONFIRM_MARK_ALL_MSGS_READ = "confirm.markAllMessagesRead";
-    public static final String CONFIRM_FILESHARING_IS_ENABLED = "confirm.fileSharingIsEnabled";
+	public static final String CONFIRM_MARK_ALL_MSGS_READ = "confirm.markAllMessagesRead";
+	public static final String CONFIRM_FILESHARING_IS_ENABLED = "confirm.fileSharingIsEnabled";
 
-    public static final String LOOK_AND_FEEL = "ChoosenLookAndFeel";
+	public static final String LOOK_AND_FEEL = "ChoosenLookAndFeel";
 
-    public static final String STORAGE_STORE_INVALID_MESSAGES = "storage.storeInvalidMessages";
-    public static final String STORAGE_STORE_SENT_MESSAGES = "storage.storeSentMessages";
+	public static final String STORAGE_STORE_INVALID_MESSAGES = "storage.storeInvalidMessages";
+	public static final String STORAGE_STORE_SENT_MESSAGES = "storage.storeSentMessages";
 
 //    public static final String COMPACT_DBTABLES = "compactDatabaseTables";
 
-    // not yet available in options dialog; all sizes in KiB
-    public static final String PERST_PAGEPOOLSIZE_FILES = "perst.pagepoolsizeKiB.files";
-    public static final String PERST_PAGEPOOLSIZE_INDEXSLOTS = "perst.pagepoolsizeKiB.indexslots";
-    public static final String PERST_PAGEPOOLSIZE_SHAREDFILESCHKKEYS = "perst.pagepoolsizeKiB.sharedfilechkkeys";
-    public static final String PERST_PAGEPOOLSIZE_FILELIST = "perst.pagepoolsizeKiB.filelist";
-    public static final String PERST_PAGEPOOLSIZE_IDENTITIES = "perst.pagepoolsizeKiB.identities";
-    public static final String PERST_PAGEPOOLSIZE_MESSAGEARCHIVE = "perst.pagepoolsizeKiB.messagearchive";
-    public static final String PERST_PAGEPOOLSIZE_MESSAGES = "perst.pagepoolsizeKiB.messages";
-    public static final String PERST_PAGEPOOLSIZE_MESSAGECONTENTS = "perst.pagepoolsizeKiB.messagecontents";
-    public static final String PERST_PAGEPOOLSIZE_TRACKDOWNLOADKEYS = "perst.pagepoolsizeKiB.trackdownloadkeys";
+	// not yet available in options dialog; all sizes in KiB
+	public static final String PERST_PAGEPOOLSIZE_FILES = "perst.pagepoolsizeKiB.files";
+	public static final String PERST_PAGEPOOLSIZE_INDEXSLOTS = "perst.pagepoolsizeKiB.indexslots";
+	public static final String PERST_PAGEPOOLSIZE_SHAREDFILESCHKKEYS = "perst.pagepoolsizeKiB.sharedfilechkkeys";
+	public static final String PERST_PAGEPOOLSIZE_FILELIST = "perst.pagepoolsizeKiB.filelist";
+	public static final String PERST_PAGEPOOLSIZE_IDENTITIES = "perst.pagepoolsizeKiB.identities";
+	public static final String PERST_PAGEPOOLSIZE_MESSAGEARCHIVE = "perst.pagepoolsizeKiB.messagearchive";
+	public static final String PERST_PAGEPOOLSIZE_MESSAGES = "perst.pagepoolsizeKiB.messages";
+	public static final String PERST_PAGEPOOLSIZE_MESSAGECONTENTS = "perst.pagepoolsizeKiB.messagecontents";
+	public static final String PERST_PAGEPOOLSIZE_TRACKDOWNLOADKEYS = "perst.pagepoolsizeKiB.trackdownloadkeys";
 
-    public static final String FREENET_FCP_ADDRESS = "availableNodes";
-    public static final String FCP2_USE_DDA = "fcp2.useDDA";
-    public static final String FCP2_USE_PERSISTENCE = "fcp2.usePersistence";
-    public static final String FCP2_USE_ONE_CONNECTION_FOR_MESSAGES = "fcp2.useOneConnectionForMessages";
+	public static final String FREENET_FCP_ADDRESS = "availableNodes";
+	public static final String FCP2_USE_DDA = "fcp2.useDDA";
+	public static final String FCP2_USE_PERSISTENCE = "fcp2.usePersistence";
+	public static final String FCP2_USE_ONE_CONNECTION_FOR_MESSAGES = "fcp2.useOneConnectionForMessages";
 
-    public static final String FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD = "fcp2.defaultPriorityMessageUpload";
-    public static final String FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD = "fcp2.defaultPriorityMessageDownload";
-    public static final String FCP2_DEFAULT_PRIO_FILE_UPLOAD = "fcp2.defaultPriorityFileUpload";
-    public static final String FCP2_DEFAULT_PRIO_FILE_DOWNLOAD = "fcp2.defaultPriorityFileDownload";
-    public static final String FCP2_SET_TARGETFILENAME_FOR_MANUAL_PUT = "fcp2.setTargetfilenameForManualPut"; // not in gui dialog!
+	public static final String FCP2_DEFAULT_PRIO_MESSAGE_UPLOAD = "fcp2.defaultPriorityMessageUpload";
+	public static final String FCP2_DEFAULT_PRIO_MESSAGE_DOWNLOAD = "fcp2.defaultPriorityMessageDownload";
+	public static final String FCP2_DEFAULT_PRIO_FILE_UPLOAD = "fcp2.defaultPriorityFileUpload";
+	public static final String FCP2_DEFAULT_PRIO_FILE_DOWNLOAD = "fcp2.defaultPriorityFileDownload";
 
-    // if true, Frost enforces its priority setting, external changes are reversed
-    public static final String FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD = "fcp2.enforceFrostPriorityFileUpload";
-    public static final String FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD = "fcp2.enforceFrostPriorityFileDownload";
+	// not in gui dialog!
+	public static final String FCP2_SET_TARGET_FILENAME_FOR_MANUAL_PUT = "fcp2.setTargetfilenameForManualPut";
 
-    // If true, we start the requests with a FCP2:MaxRetries of 2 and never try them again. (use during DoS attacks)
-    // If false, we start the requests with a FCP2:MaxRetries of 1 and try them again during each board update. (default)
-    public static final String FCP2_QUICKLY_FAIL_ON_ADNF = "fcp2.quicklyFailOnAdnf"; // not in gui dialog!
+	// if true, Frost enforces its priority setting, external changes are reversed
+	public static final String FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD = "fcp2.enforceFrostPriorityFileUpload";
+	public static final String FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD = "fcp2.enforceFrostPriorityFileDownload";
 
-    // If true, Frost will use early encode when uploading new messages
-    public static final String FCP2_USE_EARLY_ENCODE = "fcp2.useEarlyEncode";
+	// If true, we start the requests with a FCP2:MaxRetries of 2 and never try them
+	// again. (use during DoS attacks)
+	// If false, we start the requests with a FCP2:MaxRetries of 1 and try them
+	// again during each board update. (default)
+	public static final String FCP2_QUICKLY_FAIL_ON_ADNF = "fcp2.quicklyFailOnAdnf"; // not in gui dialog!
 
-    public static final String AUTO_SAVE_INTERVAL = "autoSaveInterval";
-    public static final String AUTO_SAVE_LOCAL_IDENTITIES = "autoSaveLocalIdentities";
-    public static final String FILESHARING_DISABLE = "disableFilesharing";
-    public static final String FILESHARING_IGNORE_CHECK_AND_BELOW = "filesharing.ignoreCheckAndBelow";
-    public static final String REMEMBER_SHAREDFILE_DOWNLOADED = "rememberSharedFileDownloaded";
-    public static final String DOWNLOADING_ACTIVATED = "downloadingActivated";
+	// If true, Frost will use early encode when uploading new messages
+	public static final String FCP2_USE_EARLY_ENCODE = "fcp2.useEarlyEncode";
 
-    public static final String BOARD_TREE_FONT_NAME = "boardTreeFontName";
-    public static final String BOARD_TREE_FONT_SIZE = "boardTreeFontSize";
-    public static final String BOARD_TREE_FONT_STYLE = "boardTreeFontStyle";
-    public static final String FILE_LIST_FONT_NAME = "fileListFontName";
-    public static final String FILE_LIST_FONT_SIZE = "fileListFontSize";
-    public static final String FILE_LIST_FONT_STYLE = "fileListFontStyle";
-    public static final String MESSAGE_BODY_FONT_NAME = "messageBodyFontName";
-    public static final String MESSAGE_BODY_FONT_SIZE = "messageBodyFontSize";
-    public static final String MESSAGE_BODY_FONT_STYLE = "messageBodyFontStyle";
-    public static final String MESSAGE_LIST_FONT_NAME = "messageListFontName";
-    public static final String MESSAGE_LIST_FONT_SIZE = "messageListFontSize";
-    public static final String MESSAGE_LIST_FONT_STYLE = "messageListFontStyle";
-    public static final String SHOW_DELETED_MESSAGES = "showDeletedMessages";
-    public static final String SILENTLY_RETRY_MESSAGES = "silentlyRetryMessages";
-    public static final String HANDLE_OWN_MESSAGES_AS_NEW_DISABLED = "handleOwnMessagesAsNewDisabled";
-    public static final String SHOW_OWN_MESSAGES_AS_ME_DISABLED = "showOwnMessagesAsMeDisabled";
-    public static final String SORT_THREADROOTMSGS_ASCENDING = "sortThreadRootMessagesAscending";
+	public static final String AUTO_SAVE_INTERVAL = "autoSaveInterval";
+	public static final String AUTO_SAVE_LOCAL_IDENTITIES = "autoSaveLocalIdentities";
+	public static final String FILESHARING_DISABLE = "disableFilesharing";
+	public static final String FILESHARING_IGNORE_CHECK_AND_BELOW = "filesharing.ignoreCheckAndBelow";
+	public static final String REMEMBER_SHAREDFILE_DOWNLOADED = "rememberSharedFileDownloaded";
+	public static final String DOWNLOADING_ACTIVATED = "downloadingActivated";
 
-    public static final String ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD = "alwaysDownloadMessagesBackload";
+	public static final String BOARD_TREE_FONT_NAME = "boardTreeFontName";
+	public static final String BOARD_TREE_FONT_SIZE = "boardTreeFontSize";
+	public static final String BOARD_TREE_FONT_STYLE = "boardTreeFontStyle";
+	public static final String FILE_LIST_FONT_NAME = "fileListFontName";
+	public static final String FILE_LIST_FONT_SIZE = "fileListFontSize";
+	public static final String FILE_LIST_FONT_STYLE = "fileListFontStyle";
+	public static final String MESSAGE_BODY_FONT_NAME = "messageBodyFontName";
+	public static final String MESSAGE_BODY_FONT_SIZE = "messageBodyFontSize";
+	public static final String MESSAGE_BODY_FONT_STYLE = "messageBodyFontStyle";
+	public static final String MESSAGE_LIST_FONT_NAME = "messageListFontName";
+	public static final String MESSAGE_LIST_FONT_SIZE = "messageListFontSize";
+	public static final String MESSAGE_LIST_FONT_STYLE = "messageListFontStyle";
+	public static final String SHOW_DELETED_MESSAGES = "showDeletedMessages";
+	public static final String SILENTLY_RETRY_MESSAGES = "silentlyRetryMessages";
+	public static final String HANDLE_OWN_MESSAGES_AS_NEW_DISABLED = "handleOwnMessagesAsNewDisabled";
+	public static final String SHOW_OWN_MESSAGES_AS_ME_DISABLED = "showOwnMessagesAsMeDisabled";
+	public static final String SORT_THREADROOTMSGS_ASCENDING = "sortThreadRootMessagesAscending";
 
-    public static final String UPLOAD_MAX_RETRIES = "uploadMaxRetries";
-    public static final String UPLOAD_WAITTIME = "uploadRetriesWaitTime";
-    public static final String UPLOAD_MAX_THREADS = "uploadThreads";
-    public static final String UPLOAD_REMOVE_NOT_EXISTING_FILES = "uploadRemoveNotExistingFiles";
+	public static final String ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD = "alwaysDownloadMessagesBackload";
 
-    public static final String DOWNLOAD_MAX_THREADS = "downloadThreads";
-    public static final String DOWNLOAD_MAX_RETRIES = "downloadMaxRetries";
-    public static final String DOWNLOAD_WAITTIME = "downloadWaittime";
-    public static final String DOWNLOAD_REMOVE_FINISHED = "removeFinishedDownloads";
-    public static final String UPLOAD_REMOVE_FINISHED = "removeFinishedUploads";
+	public static final String UPLOAD_MAX_RETRIES = "uploadMaxRetries";
+	public static final String UPLOAD_WAITTIME = "uploadRetriesWaitTime";
+	public static final String UPLOAD_MAX_THREADS = "uploadThreads";
+	public static final String UPLOAD_REMOVE_NOT_EXISTING_FILES = "uploadRemoveNotExistingFiles";
 
-    public static final String GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD = "showExternalGlobalQueueDownloads";
-    public static final String GQ_SHOW_EXTERNAL_ITEMS_UPLOAD = "showExternalGlobalQueueUploads";
+	public static final String DOWNLOAD_MAX_THREADS = "downloadThreads";
+	public static final String DOWNLOAD_MAX_RETRIES = "downloadMaxRetries";
+	public static final String DOWNLOAD_WAITTIME = "downloadWaittime";
+	public static final String DOWNLOAD_REMOVE_FINISHED = "removeFinishedDownloads";
+	public static final String UPLOAD_REMOVE_FINISHED = "removeFinishedUploads";
 
-    public static final String COMPRESS_UPLOADS = "compressUploads";
+	public static final String GQ_SHOW_EXTERNAL_ITEMS_DOWNLOAD = "showExternalGlobalQueueDownloads";
+	public static final String GQ_SHOW_EXTERNAL_ITEMS_UPLOAD = "showExternalGlobalQueueUploads";
 
-    public static final String SAVE_SORT_STATES = "saveSortStates";
-    public static final String MSGTABLE_MULTILINE_SELECT = "messageTableMultilineSelect";
-    public static final String MSGTABLE_SCROLL_HORIZONTAL = "messageTableScrollHorizontal";
-    public static final String MSGTABLE_SHOW_COLLAPSED_THREADS = "messageTableShowCollapsedThreads";
-    public static final String MSGTABLE_EXPAND_ROOT_CHILDREN = "messageTableExpandRootChildren";
-    public static final String MSGTABLE_EXPAND_UNREAD_THREADS = "messageTableExpandUnreadThreads";
-    public static final String MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE = "MessagePanel.doubleClickShowsMessage";
-    public static final String SHOW_BOARDDESC_TOOLTIPS = "showBoardDescriptionTooltips";
-    public static final String SHOW_BOARD_UPDATED_COUNT = "showBoardUpdatedCount";
-    public static final String PREVENT_BOARDTREE_REORDERING = "preventBoardTreeReordering";
-    public static final String SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR = "showBoardtreeFlaggedStarredIndicators";
-    public static final String SHOW_BOARD_UPDATE_VISUALIZATION = Settings.BOARD_UPDATE_VISUALIZATION_ENABLED;
-    public static final String DISABLE_SPLASHSCREEN = "disableSplashScreen";
-    public static final String SHOW_SYSTRAY_ICON = "showSystrayIcon";
-    public static final String MINIMIZE_TO_SYSTRAY = "minimizeToSystray";
+	public static final String COMPRESS_UPLOADS = "compressUploads";
 
-    public static final String MAX_MESSAGE_DISPLAY = "maxMessageDisplay";
-    public static final String MAX_MESSAGE_DOWNLOAD = "maxMessageDownload";
-    public static final String MESSAGE_UPLOAD_DISABLED = "messageUploadDisabled";
+	public static final String SAVE_SORT_STATES = "saveSortStates";
+	public static final String MSGTABLE_MULTILINE_SELECT = "messageTableMultilineSelect";
+	public static final String MSGTABLE_SCROLL_HORIZONTAL = "messageTableScrollHorizontal";
+	public static final String MSGTABLE_SHOW_COLLAPSED_THREADS = "messageTableShowCollapsedThreads";
+	public static final String MSGTABLE_EXPAND_ROOT_CHILDREN = "messageTableExpandRootChildren";
+	public static final String MSGTABLE_EXPAND_UNREAD_THREADS = "messageTableExpandUnreadThreads";
+	public static final String MSGTABLE_DOUBLE_CLICK_SHOWS_MESSAGE = "MessagePanel.doubleClickShowsMessage";
+	public static final String SHOW_BOARDDESC_TOOLTIPS = "showBoardDescriptionTooltips";
+	public static final String SHOW_BOARD_UPDATED_COUNT = "showBoardUpdatedCount";
+	public static final String PREVENT_BOARDTREE_REORDERING = "preventBoardTreeReordering";
+	public static final String SHOW_BOARDTREE_FLAGGEDSTARRED_INDICATOR = "showBoardtreeFlaggedStarredIndicators";
+	public static final String SHOW_BOARD_UPDATE_VISUALIZATION = Settings.BOARD_UPDATE_VISUALIZATION_ENABLED;
+	public static final String DISABLE_SPLASHSCREEN = "disableSplashScreen";
+	public static final String SHOW_SYSTRAY_ICON = "showSystrayIcon";
+	public static final String MINIMIZE_TO_SYSTRAY = "minimizeToSystray";
 
-    public static final String SEARCH_MAX_RESULTS = "maxSearchResults";
-    public static final String SEARCH_HIDE_BAD = "hideBadFiles";
-    public static final String SEARCH_HIDE_CHECK = "hideCheckFiles";
-    public static final String SEARCH_HIDE_OBSERVE = "hideObserveFiles";
-    public static final String SEARCH_HIDE_FILES_WITHOUT_CHK = "hideFilesWithoutChk";
+	public static final String MAX_MESSAGE_DISPLAY = "maxMessageDisplay";
+	public static final String MAX_MESSAGE_DOWNLOAD = "maxMessageDownload";
+	public static final String MESSAGE_UPLOAD_DISABLED = "messageUploadDisabled";
 
-    public static final String BOARDLIST_LAST_SELECTED_BOARD = "tofTreeSelectedRow";
+	public static final String SEARCH_MAX_RESULTS = "maxSearchResults";
+	public static final String SEARCH_HIDE_BAD = "hideBadFiles";
+	public static final String SEARCH_HIDE_CHECK = "hideCheckFiles";
+	public static final String SEARCH_HIDE_OBSERVE = "hideObserveFiles";
+	public static final String SEARCH_HIDE_FILES_WITHOUT_CHK = "hideFilesWithoutChk";
 
-    public static final String MESSAGE_BLOCK_SUBJECT = "blockMessage";
-    public static final String MESSAGE_BLOCK_SUBJECT_ENABLED = "blockMessageChecked";
-    public static final String MESSAGE_BLOCK_BODY = "blockMessageBody";
-    public static final String MESSAGE_BLOCK_BODY_ENABLED = "blockMessageBodyChecked";
-    public static final String MESSAGE_BLOCK_BOARDNAME = "blockMessageBoard";
-    public static final String MESSAGE_BLOCK_BOARDNAME_ENABLED = "blockMessageBoardChecked";
+	public static final String BOARDLIST_LAST_SELECTED_BOARD = "tofTreeSelectedRow";
 
-    public static final String JUNK_HIDE_JUNK_MESSAGES = "junk.hideJunkMessages";
-    public static final String JUNK_MARK_JUNK_IDENTITY_BAD = "junk.markJunkIdentityBad";
+	public static final String MESSAGE_BLOCK_SUBJECT = "blockMessage";
+	public static final String MESSAGE_BLOCK_SUBJECT_ENABLED = "blockMessageChecked";
+	public static final String MESSAGE_BLOCK_BODY = "blockMessageBody";
+	public static final String MESSAGE_BLOCK_BODY_ENABLED = "blockMessageBodyChecked";
+	public static final String MESSAGE_BLOCK_BOARDNAME = "blockMessageBoard";
+	public static final String MESSAGE_BLOCK_BOARDNAME_ENABLED = "blockMessageBoardChecked";
 
-    public static final String MESSAGE_HIDE_OBSERVE = "hideObserveMessages";
-    public static final String MESSAGE_HIDE_CHECK = "hideCheckMessages";
-    public static final String MESSAGE_HIDE_BAD = "hideBadMessages";
-    public static final String MESSAGE_HIDE_UNSIGNED = "signedOnly";
-    public static final String MESSAGE_HIDE_COUNT = "hideMessageCount";
-    public static final String MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE = "hideMessageCountExcludePrivate";
+	public static final String JUNK_HIDE_JUNK_MESSAGES = "junk.hideJunkMessages";
+	public static final String JUNK_MARK_JUNK_IDENTITY_BAD = "junk.markJunkIdentityBad";
 
-    public static final String KNOWNBOARDS_BLOCK_FROM_OBSERVE = "blockBoardsFromObserve";
-    public static final String KNOWNBOARDS_BLOCK_FROM_CHECK = "blockBoardsFromCheck";
-    public static final String KNOWNBOARDS_BLOCK_FROM_BAD = "blockBoardsFromBad";
-    public static final String KNOWNBOARDS_BLOCK_FROM_UNSIGNED = "blockBoardsFromUnsigned";
+	public static final String MESSAGE_HIDE_OBSERVE = "hideObserveMessages";
+	public static final String MESSAGE_HIDE_CHECK = "hideCheckMessages";
+	public static final String MESSAGE_HIDE_BAD = "hideBadMessages";
+	public static final String MESSAGE_HIDE_UNSIGNED = "signedOnly";
+	public static final String MESSAGE_HIDE_COUNT = "hideMessageCount";
+	public static final String MESSAGE_HIDE_COUNT_EXCLUDE_PRIVATE = "hideMessageCountExcludePrivate";
 
-    public static final String BOARD_AUTOUPDATE_ENABLED = "automaticUpdate";
-    public static final String BOARD_AUTOUPDATE_CONCURRENT_UPDATES = "automaticUpdate.concurrentBoardUpdates";
-    public static final String BOARD_AUTOUPDATE_MIN_INTERVAL = "automaticUpdate.boardsMinimumUpdateInterval";
+	public static final String KNOWNBOARDS_BLOCK_FROM_OBSERVE = "blockBoardsFromObserve";
+	public static final String KNOWNBOARDS_BLOCK_FROM_CHECK = "blockBoardsFromCheck";
+	public static final String KNOWNBOARDS_BLOCK_FROM_BAD = "blockBoardsFromBad";
+	public static final String KNOWNBOARDS_BLOCK_FROM_UNSIGNED = "blockBoardsFromUnsigned";
 
-    public static final String BOARD_UPDATE_VISUALIZATION_ENABLED = "boardUpdateVisualization";
-    public static final String BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED = "boardUpdatingSelectedBackgroundColor";
-    public static final String BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED = "boardUpdatingNonSelectedBackgroundColor";
+	public static final String BOARD_AUTOUPDATE_ENABLED = "automaticUpdate";
+	public static final String BOARD_AUTOUPDATE_CONCURRENT_UPDATES = "automaticUpdate.concurrentBoardUpdates";
+	public static final String BOARD_AUTOUPDATE_MIN_INTERVAL = "automaticUpdate.boardsMinimumUpdateInterval";
 
-    public static final String SHOW_THREADS = "MessagePanel.showThreads";
+	public static final String BOARD_UPDATE_VISUALIZATION_ENABLED = "boardUpdateVisualization";
+	public static final String BOARD_UPDATE_VISUALIZATION_BGCOLOR_SELECTED = "boardUpdatingSelectedBackgroundColor";
+	public static final String BOARD_UPDATE_VISUALIZATION_BGCOLOR_NOT_SELECTED = "boardUpdatingNonSelectedBackgroundColor";
 
-    public static final String INDICATE_LOW_RECEIVED_MESSAGES = "MessagePanel.indicateLowReceivedMessages";
-    public static final String INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED = "MessagePanel.indicateLowReceivedMessages.redCount";
-    public static final String INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED = "MessagePanel.indicateLowReceivedMessages.lightRedCount";
+	public static final String SHOW_THREADS = "MessagePanel.showThreads";
 
-    public static final String SHOW_UNREAD_ONLY = "MessagePanel.showUnreadOnly";
-    public static final String SHOW_FLAGGED_ONLY = "MessagePanel.showFlaggedOnly";
-    public static final String SHOW_STARRED_ONLY = "MessagePanel.showStarredOnly";
+	public static final String INDICATE_LOW_RECEIVED_MESSAGES = "MessagePanel.indicateLowReceivedMessages";
+	public static final String INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED = "MessagePanel.indicateLowReceivedMessages.redCount";
+	public static final String INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED = "MessagePanel.indicateLowReceivedMessages.lightRedCount";
 
-    public static final String MSGTABLE_MSGTEXT_DIVIDER_LOCATION = "MessagePanel.msgTableAndMsgTextSplitpaneDividerLocation";
+	public static final String SHOW_UNREAD_ONLY = "MessagePanel.showUnreadOnly";
+	public static final String SHOW_FLAGGED_ONLY = "MessagePanel.showFlaggedOnly";
+	public static final String SHOW_STARRED_ONLY = "MessagePanel.showStarredOnly";
 
-    // Freetalk related
-    public static final String FREETALK_SHOW_TAB = "Freetalk.showTab";
-    public static final String FREETALK_LOGIN_USERID = "Freetalk.loginUserId";
+	public static final String MSGTABLE_MSGTEXT_DIVIDER_LOCATION = "MessagePanel.msgTableAndMsgTextSplitpaneDividerLocation";
 
-    public static final String FREETALK_SHOW_KEYS_AS_HYPERLINKS = "FreetalkMessagePanel.showKeysAsHyperlinks";
-    public static final String FREETALK_SHOW_SMILEYS = "FreetalkMessagePanel.showSmileys";
-    public static final String FREETALK_SHOW_THREADS = "FreetalkMessagePanel.showThreads";
-    public static final String FREETALK_SHOW_UNREAD_ONLY = "FreetalkMessagePanel.showUnreadOnly";
-    public static final String FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION = "FreetalkMessagePanel.msgTableAndMsgTextSplitpaneDividerLocation";
+	public static final String BOARD_LAST_USER_PREFIX = "userName.";
 
+	public static final String SEARCH_MESSAGES_DIALOG_LAST_FRAME_MAXIMIZED = "searchMessagesDialog.lastFrameMaximized";
+	public static final String SEARCH_MESSAGES_DIALOG_LAST_FRAME_HEIGHT = "searchMessagesDialog.lastFrameHeight";
+	public static final String SEARCH_MESSAGES_DIALOG_LAST_FRAME_WIDTH = "searchMessagesDialog.lastFrameWidth";
+	public static final String SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_X = "searchMessagesDialog.lastFramePosX";
+	public static final String SEARCH_MESSAGES_DIALOG_LAST_FRAME_POS_Y = "searchMessagesDialog.lastFramePosY";
 
-    public static final String SHOW_COLORED_ROWS = "showColoredRows";
-    public static final String SHOW_SMILEYS = "showSmileys";
-    public static final String SHOW_KEYS_AS_HYPERLINKS = "showKeysAsHyperlinks";
-    public static final String MESSAGE_BODY_ANTIALIAS = "messageBodyAA";
+	public static final String HELP_BROWSER_DIALOG_LAST_FRAME_MAXIMIZED = "helpBrowser.lastFrameMaximized";
+	public static final String HELP_BROWSER_DIALOG_LAST_FRAME_HEIGHT = "helpBrowser.lastFrameHeight";
+	public static final String HELP_BROWSER_DIALOG_LAST_FRAME_WIDTH = "helpBrowser.lastFrameWidth";
+	public static final String HELP_BROWSER_DIALOG_LAST_FRAME_POS_X = "helpBrowser.lastFramePosX";
+	public static final String HELP_BROWSER_DIALOG_LAST_FRAME_POS_Y = "helpBrowser.lastFramePosY";
 
-    public static final String ALTERNATE_EDITOR_ENABLED = "useAltEdit";
-    public static final String ALTERNATE_EDITOR_COMMAND = "altEdit";
+	public static final String MESSAGE_TREE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX = "MessageTreeTable.tableindex.modelcolumn.";
+	public static final String MESSAGE_TREE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX = "MessageTreeTable.columnwidth.modelcolumn.";
 
-    public static final String FILE_BASE = "fileBase";
-    public static final String MESSAGE_BASE = "messageBase";
+	public static final String SEARCH_MESSAGE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX = "messagetable.tableindex.modelcolumn.";
+	public static final String SEARCH_MESSAGE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX = "messagetable.columnwidth.modelcolumn.";
 
-    public static final String MESSAGE_EXPIRE_DAYS = "messageExpireDays";
-    public static final String MESSAGE_EXPIRATION_MODE = "messageExpirationMode";
-    public static final String ARCHIVE_KEEP_FLAGGED_AND_STARRED = "archiveKeepFlaggedOrStarredMessages";
-    public static final String ARCHIVE_KEEP_UNREAD = "archiveKeepUnreadMessages";
+	public static final String FREETALK_SHOW_TAB = "Freetalk.showTab";
+	public static final String FREETALK_LOGIN_USERID = "Freetalk.loginUserId";
+	public static final String FREETALK_BOARD_LAST_USER_PREFIX = "freetalkAddress.";
+	public static final String FREETALK_TAB_TREE_AND_TABBED_PANE_SPLITPANE_DIVIDER_LOCATION = "FreetalkTab.treeAndTabbedPaneSplitpaneDividerLocation";
 
-    public static final String MIN_DAYS_BEFORE_FILE_RESHARE = "minDaysBeforeFileReshare";
-    public static final String MAX_FILELIST_DOWNLOAD_DAYS = "fileListDownloadDays";
+	public static final String FREETALK_SHOW_KEYS_AS_HYPERLINKS = "FreetalkMessagePanel.showKeysAsHyperlinks";
+	public static final String FREETALK_SHOW_SMILEYS = "FreetalkMessagePanel.showSmileys";
+	public static final String FREETALK_SHOW_THREADS = "FreetalkMessagePanel.showThreads";
+	public static final String FREETALK_SHOW_UNREAD_ONLY = "FreetalkMessagePanel.showUnreadOnly";
+	public static final String FREETALK_MSGTABLE_MSGTEXT_DIVIDER_LOCATION = "FreetalkMessagePanel.msgTableAndMsgTextSplitpaneDividerLocation";
 
-    public static final String FILEEXTENSION_AUDIO = "audioExtension";
-    public static final String FILEEXTENSION_VIDEO = "videoExtension";
-    public static final String FILEEXTENSION_DOCUMENT = "documentExtension";
-    public static final String FILEEXTENSION_EXECUTABLE = "executableExtension";
-    public static final String FILEEXTENSION_ARCHIVE = "archiveExtension";
-    public static final String FILEEXTENSION_IMAGE = "imageExtension";
+	public static final String SHOW_COLORED_ROWS = "showColoredRows";
+	public static final String SHOW_SMILEYS = "showSmileys";
+	public static final String SHOW_KEYS_AS_HYPERLINKS = "showKeysAsHyperlinks";
+	public static final String MESSAGE_BODY_ANTIALIAS = "messageBodyAA";
 
-    public static final String LAST_USED_FROMNAME = "userName";
+	public static final String ALTERNATE_EDITOR_ENABLED = "useAltEdit";
+	public static final String ALTERNATE_EDITOR_COMMAND = "altEdit";
 
-    public static final String MAINFRAME_LAST_WIDTH = "lastFrameWidth";
-    public static final String MAINFRAME_LAST_HEIGHT = "lastFrameHeight";
-    public static final String MAINFRAME_LAST_X = "lastFramePosX";
-    public static final String MAINFRAME_LAST_Y = "lastFramePosY";
-    public static final String MAINFRAME_LAST_MAXIMIZED = "lastFrameMaximized";
+	public static final String FILE_BASE = "fileBase";
+	public static final String MESSAGE_BASE = "messageBase";
 
-    public static final String LOG_DOWNLOADS_ENABLED = "logDownloads";
-    public static final String LOG_UPLOADS_ENABLED = "logUploads";
+	public static final String MESSAGE_EXPIRE_DAYS = "messageExpireDays";
+	public static final String MESSAGE_EXPIRATION_MODE = "messageExpirationMode";
+	public static final String ARCHIVE_KEEP_FLAGGED_AND_STARRED = "archiveKeepFlaggedOrStarredMessages";
+	public static final String ARCHIVE_KEEP_UNREAD = "archiveKeepUnreadMessages";
 
-    public static final String TRACK_DOWNLOADS_ENABLED = "trackDownloads";
+	public static final String MIN_DAYS_BEFORE_FILE_RESHARE = "minDaysBeforeFileReshare";
+	public static final String MAX_FILELIST_DOWNLOAD_DAYS = "fileListDownloadDays";
 
-    public static final String USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED = "useBoardnameDownloadSubfolder";
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_HEIGHT = "FileListFileDetailsDialog.height";
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_WIDTH = "FileListFileDetailsDialog.width";
 
-    public static final String BROWSER_ADDRESS = "browserAddress";
+	public static final String FILEEXTENSION_AUDIO = "audioExtension";
+	public static final String FILEEXTENSION_VIDEO = "videoExtension";
+	public static final String FILEEXTENSION_DOCUMENT = "documentExtension";
+	public static final String FILEEXTENSION_EXECUTABLE = "executableExtension";
+	public static final String FILEEXTENSION_ARCHIVE = "archiveExtension";
+	public static final String FILEEXTENSION_IMAGE = "imageExtension";
+
+	public static final String LAST_USED_FROMNAME = "userName";
+
+	public static final String MAINFRAME_LAST_WIDTH = "lastFrameWidth";
+	public static final String MAINFRAME_LAST_HEIGHT = "lastFrameHeight";
+	public static final String MAINFRAME_LAST_X = "lastFramePosX";
+	public static final String MAINFRAME_LAST_Y = "lastFramePosY";
+	public static final String MAINFRAME_LAST_MAXIMIZED = "lastFrameMaximized";
+	public static final String MAINFRAME_TREE_AND_TABBED_PANE_SPLIT_PANE_DIVIDER_LOCATION = "MainFrame.treeAndTabbedPaneSplitpaneDividerLocation";
+
+	public static final String LOG_DOWNLOADS_ENABLED = "logDownloads";
+	public static final String LOG_UPLOADS_ENABLED = "logUploads";
+
+	public static final String TRACK_DOWNLOADS_ENABLED = "trackDownloads";
+
+	public static final String USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED = "useBoardnameDownloadSubfolder";
+
+	public static final String BROWSER_ADDRESS = "browserAddress";
+
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_SORT_STATE_SORTED_COLUMN = "FileListFileDetailsDialog.sortState.sortedColumn";
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_SORT_STATE_SORTED_ASCENDING = "FileListFileDetailsDialog.sortState.sortedAscending";
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_COLUMN_TABLE_INDEX_PREFIX = "FileListFileDetailsDialog.tableindex.modelcolumn.";
+	public static final String FILE_LIST_FILE_DETAILS_DIALOG_COLUMN_WIDTH_PREFIX = "FileListFileDetailsDialog.columnwidth.modelcolumn.";
+
+	public static final String DOWNLOAD_TABLE_SORT_STATE_SORTED_COLUMN = "DownloadTable.sortState.sortedColumn";
+	public static final String DOWNLOAD_TABLE_SORT_STATE_SORTED_ASCENDING = "DownloadTable.sortState.sortedAscending";
+	public static final String DOWNLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX = "DownloadTable.tableindex.modelcolumn.";
+	public static final String DOWNLOAD_TABLE_COLUMN_WIDTH_PREFIX = "DownloadTable.columnwidth.modelcolumn.";
+
+	public static final String SEARCH_FILES_TABLE_SORT_STATE_SORTED_COLUMN = "SearchFilesTable.sortState.sortedColumn";
+	public static final String SEARCH_FILES_TABLE_SORT_STATE_SORTED_ASCENDING = "SearchFilesTable.sortState.sortedAscending";
+	public static final String SEARCH_FILES_TABLE_COLUMN_TABLE_INDEX_PREFIX = "SearchFilesTable.tableindex.modelcolumn.";
+	public static final String SEARCH_FILES_TABLE_COLUMN_WIDTH_PREFIX = "SearchFilesTable.columnwidth.modelcolumn.";
+
+	public static final String UNSENT_MESSAGES_TABLE_SORT_STATE_SORTED_COLUMN = "UnsentMessagesTable.sortState.sortedColumn";
+	public static final String UNSENT_MESSAGES_SORT_STATE_SORTED_ASCENDING = "UnsentMessagesTable.sortState.sortedAscending";
+	public static final String UNSENT_MESSAGES_COLUMN_TABLE_INDEX_PREFIX = "UnsentMessagesTable.tableindex.modelcolumn.";
+	public static final String UNSENT_MESSAGES_COLUMN_WIDTH_PREFIX = "UnsentMessagesTable.columnwidth.modelcolumn.";
+
+	public static final String SHARED_FILES_TABLE_SORT_STATE_SORTED_COLUMN = "SharedFilesTable.sortState.sortedColumn";
+	public static final String SHARED_FILES_TABLE_SORT_STATE_SORTED_ASCENDING = "SharedFilesTable.sortState.sortedAscending";
+	public static final String SHARED_FILES_TABLE_COLUMN_TABLE_INDEX_PREFIX = "SharedFilesTable.tableindex.modelcolumn.";
+	public static final String SHARED_FILES_TABLE_COLUMN_WIDTH_PREFIX = "SharedFilesTable.columnwidth.modelcolumn.";
+
+	public static final String UPLOAD_TABLE_SORT_STATE_SORTED_COLUMN = "UploadTable.sortState.sortedColumn";
+	public static final String UPLOAD_TABLE_SORT_STATE_SORTED_ASCENDING = "UploadTable.sortState.sortedAscending";
+	public static final String UPLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX = "UploadTable.tableindex.modelcolumn.";
+	public static final String UPLOAD_TABLE_COLUMN_WIDTH_PREFIX = "UploadTable.columnwidth.modelcolumn.";
+
+	public static final String SENT_MESSAGES_TABLE_SORT_STATE_SORTED_COLUMN = "SentMessagesTable.sortState.sortedColumn";
+	public static final String SENT_MESSAGES_TABLE_SORT_STATE_SORTED_ASCENDING = "SentMessagesTable.sortState.sortedAscending";
+	public static final String SENT_MESSAGES_TABLE_COLUMN_TABLE_INDEX_PREFIX = "SentMessagesTable.tableindex.modelcolumn.";
+	public static final String SENT_MESSAGES_TABLE_COLUMN_WIDTH_PREFIX = "SentMessagesTable.columnwidth.modelcolumn.";
 
     public Settings() {
         settingsHash = new Hashtable<String,Object>();
@@ -787,15 +853,15 @@ public class Settings implements ExitSavable {
 	}
 
 	public Font getFont(String fontNameKey, String fontStyleKey, String fontSizeKey, String fallBackFontName) {
-		String fontName = Core.frostSettings.getString(fontNameKey);
-		Integer fontStyle = Core.frostSettings.getInteger(fontStyleKey);
-		Integer fontSize = Core.frostSettings.getInteger(fontSizeKey);
+		String fontName = getString(fontNameKey);
+		Integer fontStyle = getInteger(fontStyleKey);
+		Integer fontSize = getInteger(fontSizeKey);
 		Font font = new Font(fontName, fontStyle, fontSize);
 		if (!font.getFamily().equals(fontName)) {
 			logger.error("The selected font \"{}\" was not found in your system.", fontName);
 			if (fallBackFontName != null) {
 				logger.error("That selection will be changed to \"{}\".", fallBackFontName);
-				Core.frostSettings.setValue(fontNameKey, fallBackFontName);
+				setValue(fontNameKey, fallBackFontName);
 				font = new Font(fallBackFontName, fontStyle, fontSize);
 			}
 		}
@@ -887,7 +953,7 @@ public class Settings implements ExitSavable {
         defaults.put(FCP2_ENFORCE_FROST_PRIO_FILE_DOWNLOAD, "false");
         defaults.put(FCP2_ENFORCE_FROST_PRIO_FILE_UPLOAD, "false");
 
-        defaults.put(FCP2_SET_TARGETFILENAME_FOR_MANUAL_PUT, "true");
+        defaults.put(FCP2_SET_TARGET_FILENAME_FOR_MANUAL_PUT, "true");
         defaults.put(FCP2_QUICKLY_FAIL_ON_ADNF, "false");
 
         defaults.put(FCP2_USE_EARLY_ENCODE, "true");

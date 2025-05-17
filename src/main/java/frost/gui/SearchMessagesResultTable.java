@@ -102,10 +102,10 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 //            TableColumn tc = tcm.getColumn(columnIndexInTable);
 //            int columnIndexInModel = tc.getModelIndex();
 //            // save the current index in table for column with the fix index in model
-//            frostSettings.setValue("messagetable.tableindex.modelcolumn."+columnIndexInModel, columnIndexInTable);
+//            frostSettings.setValue(SettingsClass.SEARCH_MESSAGE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + columnIndexInModel,columnIndexInTable);
 //            // save the current width of the column
 //            int columnWidth = tc.getWidth();
-//            frostSettings.setValue("messagetable.columnwidth.modelcolumn."+columnIndexInModel, columnWidth);
+//            frostSettings.setValue(SettingsClass.SEARCH_MESSAGE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + columnIndexInModel, columnWidth);
 //        }
 //    }
 
@@ -122,7 +122,7 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 //        int[] columnWidths = new int[tcm.getColumnCount()];
 //
 //        for(int x=0; x < tableToModelIndex.length; x++) {
-//            String indexKey = "messagetable.tableindex.modelcolumn."+x;
+//            String indexKey = SEARCH_MESSAGE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + x;
 //            if( frostSettings.getObjectValue(indexKey) == null ) {
 //                return; // column not found, abort
 //            }
@@ -133,7 +133,7 @@ public class SearchMessagesResultTable extends SortedTable<FrostSearchResultMess
 //            }
 //            tableToModelIndex[tableIndex] = x;
 //
-//            String widthKey = "messagetable.columnwidth.modelcolumn."+x;
+//            String widthKey = frostSettings.getInteger(SEARCH_MESSAGE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + x;
 //            if( frostSettings.getObjectValue(widthKey) == null ) {
 //                return; // column not found, abort
 //            }

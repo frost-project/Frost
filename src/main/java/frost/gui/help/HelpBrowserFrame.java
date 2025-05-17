@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import frost.Core;
 import frost.MainFrame;
+import frost.Settings;
 import frost.util.gui.MiscToolkit;
 
 public class HelpBrowserFrame extends JFrame {
@@ -119,23 +120,23 @@ public class HelpBrowserFrame extends JFrame {
         final Rectangle bounds = getBounds();
         boolean isMaximized = ((getExtendedState() & Frame.MAXIMIZED_BOTH) != 0);
 
-        Core.frostSettings.setValue("helpBrowser.lastFrameMaximized", isMaximized);
+        Core.frostSettings.setValue(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_MAXIMIZED, isMaximized);
 
         if (!isMaximized) { // Only save the current dimension if frame is not maximized
-            Core.frostSettings.setValue("helpBrowser.lastFrameHeight", bounds.height);
-            Core.frostSettings.setValue("helpBrowser.lastFrameWidth", bounds.width);
-            Core.frostSettings.setValue("helpBrowser.lastFramePosX", bounds.x);
-            Core.frostSettings.setValue("helpBrowser.lastFramePosY", bounds.y);
+            Core.frostSettings.setValue(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_HEIGHT, bounds.height);
+            Core.frostSettings.setValue(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_WIDTH, bounds.width);
+            Core.frostSettings.setValue(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_POS_X, bounds.x);
+            Core.frostSettings.setValue(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_POS_Y, bounds.y);
         }
     }
 
     private void loadWindowState() {
         // load size, location and state of window
-        int lastHeight = Core.frostSettings.getInteger("helpBrowser.lastFrameHeight");
-        int lastWidth = Core.frostSettings.getInteger("helpBrowser.lastFrameWidth");
-        final int lastPosX = Core.frostSettings.getInteger("helpBrowser.lastFramePosX");
-        final int lastPosY = Core.frostSettings.getInteger("helpBrowser.lastFramePosY");
-        final boolean lastMaximized = Core.frostSettings.getBoolean("helpBrowser.lastFrameMaximized");
+        int lastHeight = Core.frostSettings.getInteger(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_HEIGHT);
+        int lastWidth = Core.frostSettings.getInteger(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_WIDTH);
+        final int lastPosX = Core.frostSettings.getInteger(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_POS_X);
+        final int lastPosY = Core.frostSettings.getInteger(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_POS_Y);
+        final boolean lastMaximized = Core.frostSettings.getBoolean(Settings.HELP_BROWSER_DIALOG_LAST_FRAME_MAXIMIZED);
 
         if( lastHeight <= 0 || lastWidth <= 0 ) {
             // first call

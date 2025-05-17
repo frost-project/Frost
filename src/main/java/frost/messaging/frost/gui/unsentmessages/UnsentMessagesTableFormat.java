@@ -39,12 +39,8 @@ import frost.util.model.ModelTable;
 import frost.util.model.SortedModelTable;
 import frost.util.model.SortedTableFormat;
 
-public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesTableItem> implements LanguageListener, PropertyChangeListener {
-
-    private static final String CFGKEY_SORTSTATE_SORTEDCOLUMN = "UnsentMessagesTable.sortState.sortedColumn";
-    private static final String CFGKEY_SORTSTATE_SORTEDASCENDING = "UnsentMessagesTable.sortState.sortedAscending";
-    private static final String CFGKEY_COLUMN_TABLEINDEX = "UnsentMessagesTable.tableindex.modelcolumn.";
-    private static final String CFGKEY_COLUMN_WIDTH = "UnsentMessagesTable.columnwidth.modelcolumn.";
+public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesTableItem>
+		implements LanguageListener, PropertyChangeListener {
 
     private Language language;
 
@@ -156,13 +152,12 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
                 columnModel.getColumn(i).setPreferredWidth(widths[i]);
             }
         }
-        
-        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
-        {
-            int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
+
+		if (Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
+				&& Core.frostSettings.getObjectValue(Settings.UNSENT_MESSAGES_TABLE_SORT_STATE_SORTED_COLUMN) != null
+				&& Core.frostSettings.getObjectValue(Settings.UNSENT_MESSAGES_SORT_STATE_SORTED_ASCENDING) != null) {
+			int sortedColumn = Core.frostSettings.getInteger(Settings.UNSENT_MESSAGES_TABLE_SORT_STATE_SORTED_COLUMN);
+			boolean isSortedAsc = Core.frostSettings.getBoolean(Settings.UNSENT_MESSAGES_SORT_STATE_SORTED_ASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -177,17 +172,18 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
             TableColumn tc = tcm.getColumn(columnIndexInTable);
             int columnIndexInModel = tc.getModelIndex();
             // save the current index in table for column with the fix index in model
-            Core.frostSettings.setValue(CFGKEY_COLUMN_TABLEINDEX + columnIndexInModel, columnIndexInTable);
+			Core.frostSettings.setValue(Settings.UNSENT_MESSAGES_COLUMN_TABLE_INDEX_PREFIX + columnIndexInModel,
+					columnIndexInTable);
             // save the current width of the column
             int columnWidth = tc.getWidth();
-            Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
+			Core.frostSettings.setValue(Settings.UNSENT_MESSAGES_COLUMN_WIDTH_PREFIX + columnIndexInModel, columnWidth);
         }
         
         if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             int sortedColumn = modelTable.getSortedColumn();
             boolean isSortedAsc = modelTable.isSortedAscending();
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDASCENDING, isSortedAsc);
+			Core.frostSettings.setValue(Settings.UNSENT_MESSAGES_TABLE_SORT_STATE_SORTED_COLUMN, sortedColumn);
+			Core.frostSettings.setValue(Settings.UNSENT_MESSAGES_SORT_STATE_SORTED_ASCENDING, isSortedAsc);
         }
     }
     
@@ -198,7 +194,7 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
         int[] columnWidths = new int[tcm.getColumnCount()];
 
         for(int x=0; x < tableToModelIndex.length; x++) {
-            String indexKey = CFGKEY_COLUMN_TABLEINDEX + x;
+        	String indexKey = Settings.UNSENT_MESSAGES_COLUMN_TABLE_INDEX_PREFIX + x;
             if( Core.frostSettings.getObjectValue(indexKey) == null ) {
                 return false; // column not found, abort
             }
@@ -209,7 +205,7 @@ public class UnsentMessagesTableFormat extends SortedTableFormat<UnsentMessagesT
             }
             tableToModelIndex[tableIndex] = x;
 
-            String widthKey = CFGKEY_COLUMN_WIDTH + x;
+            String widthKey = Settings.UNSENT_MESSAGES_COLUMN_WIDTH_PREFIX + x;
             if( Core.frostSettings.getObjectValue(widthKey) == null ) {
                 return false; // column not found, abort
             }

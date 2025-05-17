@@ -56,12 +56,8 @@ import frost.util.model.ModelTable;
 import frost.util.model.SortedModelTable;
 import frost.util.model.SortedTableFormat;
 
-class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implements LanguageListener, PropertyChangeListener {
-
-    private static final String CFGKEY_SORTSTATE_SORTEDCOLUMN = "DownloadTable.sortState.sortedColumn";
-    private static final String CFGKEY_SORTSTATE_SORTEDASCENDING = "DownloadTable.sortState.sortedAscending";
-    private static final String CFGKEY_COLUMN_TABLEINDEX = "DownloadTable.tableindex.modelcolumn.";
-    private static final String CFGKEY_COLUMN_WIDTH = "DownloadTable.columnwidth.modelcolumn.";
+public class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem>
+		implements LanguageListener, PropertyChangeListener {
 
     private static ImageIcon isSharedIcon = MiscToolkit.loadImageIcon("/data/shared.png");
     private static ImageIcon isRequestedIcon = MiscToolkit.loadImageIcon("/data/signal.png");
@@ -894,13 +890,13 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
 		super.customizeTable(lModelTable);
 
         modelTable = (SortedModelTable<FrostDownloadItem>) lModelTable;
-        
-        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
-        {
-            final int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            final boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
+
+		if (Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
+				&& Core.frostSettings.getObjectValue(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_COLUMN) != null
+				&& Core.frostSettings.getObjectValue(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_ASCENDING) != null) {
+			final int sortedColumn = Core.frostSettings.getInteger(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_COLUMN);
+			final boolean isSortedAsc = Core.frostSettings
+					.getBoolean(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_ASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -1016,18 +1012,19 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
             final int columnIndexAll = mapCurrentColumntToPossibleColumn.get(columnIndexInModel);
             
             // save the current index in table for column with the fix index in model
-            Core.frostSettings.setValue(CFGKEY_COLUMN_TABLEINDEX + columnIndexAll, columnIndexInTable);
+			Core.frostSettings.setValue(Settings.DOWNLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX + columnIndexAll,
+					columnIndexInTable);
 
             // save the current width of the column
             final int columnWidth = tc.getWidth();
-            Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexAll, columnWidth);
+			Core.frostSettings.setValue(Settings.DOWNLOAD_TABLE_COLUMN_WIDTH_PREFIX + columnIndexAll, columnWidth);
         }
 
         if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDASCENDING, isSortedAsc);
+			Core.frostSettings.setValue(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_COLUMN, sortedColumn);
+			Core.frostSettings.setValue(Settings.DOWNLOAD_TABLE_SORT_STATE_SORTED_ASCENDING, isSortedAsc);
         }
     }
 
@@ -1054,7 +1051,7 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
         	final int columnIndexInModel = mapPossibleColumnToCurrentColumnt.get(columnIndexAll);
 
         	// Check if position was saved for column
-        	final String indexKey = CFGKEY_COLUMN_TABLEINDEX + columnIndexAll;
+        	final String indexKey = Settings.DOWNLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX + columnIndexAll;
         	if( Core.frostSettings.getObjectValue(indexKey) == null ) {
         		return false; // column not found, abort
         	}
@@ -1067,10 +1064,10 @@ class DownloadTableFormat extends SortedTableFormat<FrostDownloadItem> implement
         	tableToModelIndex[tableIndex] = columnIndexInModel;
 
         	// Check if width was saved for column
-        	final String widthKey = CFGKEY_COLUMN_WIDTH + columnIndexAll;
+        	final String widthKey = Settings.DOWNLOAD_TABLE_COLUMN_WIDTH_PREFIX + columnIndexAll;
         	if( Core.frostSettings.getObjectValue(widthKey) == null ) {
-        		return false; 
-        	}
+				return false;
+			}
 
         	// Get saved width
         	final int columnWidth = Core.frostSettings.getInteger(widthKey);

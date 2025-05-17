@@ -609,7 +609,7 @@ public class TOF implements PropertyChangeListener {
                 }
 
                 // for threads, check msgrefs and load all existing msgs pointed to by refs
-                final boolean showDeletedMessages = Core.frostSettings.getBoolean("showDeletedMessages");
+                final boolean showDeletedMessages = Core.frostSettings.getBoolean(Settings.SHOW_DELETED_MESSAGES);
                 LinkedList<FrostMessageObject> newLoadedMsgs = new LinkedList<FrostMessageObject>();
                 LinkedList<FrostMessageObject> newLoadedMsgs2 = new LinkedList<FrostMessageObject>();
 
@@ -801,7 +801,7 @@ public class TOF implements PropertyChangeListener {
          * Start to load messages one by one.
          */
         private void loadMessages(final MessageCallback callback) {
-            final boolean showDeletedMessages = Core.frostSettings.getBoolean("showDeletedMessages");
+            final boolean showDeletedMessages = Core.frostSettings.getBoolean(Settings.SHOW_DELETED_MESSAGES);
             final boolean showUnreadOnly = Core.frostSettings.getBoolean(Settings.SHOW_UNREAD_ONLY);
             final boolean showFlaggedOnly = Core.frostSettings.getBoolean(Settings.SHOW_FLAGGED_ONLY);
             final boolean showStarredOnly = Core.frostSettings.getBoolean(Settings.SHOW_STARRED_ONLY);

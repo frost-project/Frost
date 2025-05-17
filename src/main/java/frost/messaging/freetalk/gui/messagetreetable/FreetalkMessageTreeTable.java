@@ -1086,10 +1086,14 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
             final TableColumn tc = tcm.getColumn(columnIndexInTable);
             final int columnIndexInModel = tc.getModelIndex();
             // save the current index in table for column with the fix index in model
-            frostSettings.setValue("MessageTreeTable.tableindex.modelcolumn."+columnIndexInModel, columnIndexInTable);
+			frostSettings.setValue(
+					Settings.MESSAGE_TREE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + columnIndexInModel,
+					columnIndexInTable);
             // save the current width of the column
             final int columnWidth = tc.getWidth();
-            frostSettings.setValue("MessageTreeTable.columnwidth.modelcolumn."+columnIndexInModel, columnWidth);
+			frostSettings.setValue(
+					Settings.MESSAGE_TREE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + columnIndexInModel,
+					columnWidth);
         }
     }
 
@@ -1135,7 +1139,7 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
         final int[] columnWidths = new int[tcm.getColumnCount()];
 
         for(int x=0; x < tableToModelIndex.length; x++) {
-            final String indexKey = "MessageTreeTable.tableindex.modelcolumn."+x;
+            final String indexKey = Settings.MESSAGE_TREE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + x;
             if( frostSettings.getObjectValue(indexKey) == null ) {
                 return false; // column not found, abort
             }
@@ -1146,7 +1150,7 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
             }
             tableToModelIndex[tableIndex] = x;
 
-            final String widthKey = "MessageTreeTable.columnwidth.modelcolumn."+x;
+            final String widthKey = Settings.MESSAGE_TREE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + x;
             if( frostSettings.getObjectValue(widthKey) == null ) {
                 return false; // column not found, abort
             }

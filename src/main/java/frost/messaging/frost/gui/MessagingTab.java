@@ -153,7 +153,7 @@ public class MessagingTab extends JPanel implements LanguageListener {
 
         panel.add(getMessagePanel(), BorderLayout.CENTER);
 
-        int dividerLoc = Core.frostSettings.getInteger("MainFrame.treeAndTabbedPaneSplitpaneDividerLocation");
+        int dividerLoc = Core.frostSettings.getInteger(Settings.MAINFRAME_TREE_AND_TABBED_PANE_SPLIT_PANE_DIVIDER_LOCATION);
         if (dividerLoc < 10) {
             dividerLoc = 160;
         }
@@ -309,7 +309,7 @@ public class MessagingTab extends JPanel implements LanguageListener {
     }
 
     public void saveLayout() {
-        Core.frostSettings.setValue("MainFrame.treeAndTabbedPaneSplitpaneDividerLocation",
+        Core.frostSettings.setValue(Settings.MAINFRAME_TREE_AND_TABBED_PANE_SPLIT_PANE_DIVIDER_LOCATION,
                 treeAndTabbedPaneSplitpane.getDividerLocation());
         getMessagePanel().saveLayout(Core.frostSettings);
         getSentMessagesPanel().saveTableFormat();

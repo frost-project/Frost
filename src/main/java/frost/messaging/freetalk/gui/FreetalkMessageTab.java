@@ -119,7 +119,7 @@ public class FreetalkMessageTab implements LanguageListener {
 
             panel.add(getMessagePanel(), BorderLayout.CENTER);
 
-            int dividerLoc = Core.frostSettings.getInteger("FreetalkTab.treeAndTabbedPaneSplitpaneDividerLocation");
+            int dividerLoc = Core.frostSettings.getInteger(Settings.FREETALK_TAB_TREE_AND_TABBED_PANE_SPLITPANE_DIVIDER_LOCATION);
             if( dividerLoc < 10 ) {
                 dividerLoc = 160;
             }
@@ -226,8 +226,8 @@ public class FreetalkMessageTab implements LanguageListener {
 
     public void saveLayout() {
         if (treeAndTabbedPaneSplitpane != null) {
-            Core.frostSettings.setValue("FreetalkTab.treeAndTabbedPaneSplitpaneDividerLocation",
-                    treeAndTabbedPaneSplitpane.getDividerLocation());
+			Core.frostSettings.setValue(Settings.FREETALK_TAB_TREE_AND_TABBED_PANE_SPLITPANE_DIVIDER_LOCATION,
+					treeAndTabbedPaneSplitpane.getDividerLocation());
         }
     }
 

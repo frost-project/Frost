@@ -53,12 +53,8 @@ import frost.util.model.ModelTable;
 import frost.util.model.SortedModelTable;
 import frost.util.model.SortedTableFormat;
 
-class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements LanguageListener, PropertyChangeListener {
-
-    private static final String CFGKEY_SORTSTATE_SORTEDCOLUMN = "UploadTable.sortState.sortedColumn";
-    private static final String CFGKEY_SORTSTATE_SORTEDASCENDING = "UploadTable.sortState.sortedAscending";
-    private static final String CFGKEY_COLUMN_TABLEINDEX = "UploadTable.tableindex.modelcolumn.";
-    private static final String CFGKEY_COLUMN_WIDTH = "UploadTable.columnwidth.modelcolumn.";
+public class UploadTableFormat extends SortedTableFormat<FrostUploadItem>
+		implements LanguageListener, PropertyChangeListener {
 
     private static ImageIcon isSharedIcon = MiscToolkit.loadImageIcon("/data/shared.png");
 
@@ -685,12 +681,12 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
 
         modelTable = (SortedModelTable<FrostUploadItem>) lModelTable;
 
-        if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDCOLUMN) != null
-                && Core.frostSettings.getObjectValue(CFGKEY_SORTSTATE_SORTEDASCENDING) != null )
-        {
-            final int sortedColumn = Core.frostSettings.getInteger(CFGKEY_SORTSTATE_SORTEDCOLUMN);
-            final boolean isSortedAsc = Core.frostSettings.getBoolean(CFGKEY_SORTSTATE_SORTEDASCENDING);
+		if (Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES)
+				&& Core.frostSettings.getObjectValue(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_COLUMN) != null
+				&& Core.frostSettings.getObjectValue(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_ASCENDING) != null) {
+			final int sortedColumn = Core.frostSettings.getInteger(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_COLUMN);
+			final boolean isSortedAsc = Core.frostSettings
+					.getBoolean(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_ASCENDING);
             if( sortedColumn > -1 ) {
                 modelTable.setSortedColumn(sortedColumn, isSortedAsc);
             }
@@ -760,17 +756,18 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
             final TableColumn tc = tcm.getColumn(columnIndexInTable);
             final int columnIndexInModel = tc.getModelIndex();
             // save the current index in table for column with the fix index in model
-            Core.frostSettings.setValue(CFGKEY_COLUMN_TABLEINDEX + columnIndexInModel, columnIndexInTable);
+			Core.frostSettings.setValue(Settings.UPLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX + columnIndexInModel,
+					columnIndexInTable);
             // save the current width of the column
             final int columnWidth = tc.getWidth();
-            Core.frostSettings.setValue(CFGKEY_COLUMN_WIDTH + columnIndexInModel, columnWidth);
+			Core.frostSettings.setValue(Settings.UPLOAD_TABLE_COLUMN_WIDTH_PREFIX + columnIndexInModel, columnWidth);
         }
 
         if( Core.frostSettings.getBoolean(Settings.SAVE_SORT_STATES) && modelTable.getSortedColumn() > -1 ) {
             final int sortedColumn = modelTable.getSortedColumn();
             final boolean isSortedAsc = modelTable.isSortedAscending();
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDCOLUMN, sortedColumn);
-            Core.frostSettings.setValue(CFGKEY_SORTSTATE_SORTEDASCENDING, isSortedAsc);
+			Core.frostSettings.setValue(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_COLUMN, sortedColumn);
+			Core.frostSettings.setValue(Settings.UPLOAD_TABLE_SORT_STATE_SORTED_ASCENDING, isSortedAsc);
         }
     }
 
@@ -781,7 +778,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
         final int[] columnWidths = new int[tcm.getColumnCount()];
 
         for(int x=0; x < tableToModelIndex.length; x++) {
-            final String indexKey = CFGKEY_COLUMN_TABLEINDEX + x;
+			final String indexKey = Settings.UPLOAD_TABLE_COLUMN_TABLE_INDEX_PREFIX + x;
             if( Core.frostSettings.getObjectValue(indexKey) == null ) {
                 return false; // column not found, abort
             }
@@ -792,7 +789,7 @@ class UploadTableFormat extends SortedTableFormat<FrostUploadItem> implements La
             }
             tableToModelIndex[tableIndex] = x;
 
-            final String widthKey = CFGKEY_COLUMN_WIDTH + x;
+            final String widthKey = Settings.UPLOAD_TABLE_COLUMN_WIDTH_PREFIX + x;
             if( Core.frostSettings.getObjectValue(widthKey) == null ) {
                 return false; // column not found, abort
             }

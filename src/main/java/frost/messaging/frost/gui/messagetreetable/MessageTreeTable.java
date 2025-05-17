@@ -726,18 +726,18 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         }
         }
 
-        /**
+		/**
 		 * ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel to listen
 		 * for changes in the ListSelectionModel it maintains. Once a change in the
 		 * ListSelectionModel happens, the paths are updated in the
 		 * DefaultTreeSelectionModel.
-         */
+		 */
 		private class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
 			private static final long serialVersionUID = 1L;
 
-    	/** Set to true when we are updating the ListSelectionModel. */
-    	protected boolean         updatingListSelectionModel;
+			/** Set to true when we are updating the ListSelectionModel. */
+			protected boolean updatingListSelectionModel;
 
     	public ListToTreeSelectionModelWrapper() {
     	    super();
@@ -896,15 +896,15 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
     }
 
     /**
-	 * This renderer renders rows in different colors. New messages gets a bold
-	 * look, messages with attachments a blue color. Encrypted messages get a red
-	 * color, no matter if they have attachments.
+     * This renderer renders rows in different colors.
+     * New messages gets a bold look, messages with attachments a blue color.
+     * Encrypted messages get a red color, no matter if they have attachments.
      */
 	private class StringCellRenderer extends DefaultTableCellRenderer {
 
 		private static final long serialVersionUID = 1L;
 
-        private Font boldFont;
+		private Font boldFont;
         private Font boldItalicFont;
         private Font normalFont;
         private boolean isDeleted = false;
@@ -912,7 +912,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         private final Color col_check   = new Color(0xFF, 0xCC, 0x00);
         private final Color col_observe = new Color(0x00, 0xD0, 0x00);
         private final Color col_bad     = new Color(0xFF, 0x00, 0x00);
-        final EmptyBorder border = new EmptyBorder(0, 0, 0, 3);
+        private final EmptyBorder border = new EmptyBorder(0, 0, 0, 3);
 
         private Object toolTipValue = null;
         private Identity toolTipId = null;
@@ -1160,10 +1160,14 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
             final TableColumn tc = tcm.getColumn(columnIndexInTable);
             final int columnIndexInModel = tc.getModelIndex();
             // save the current index in table for column with the fix index in model
-            frostSettings.setValue("MessageTreeTable.tableindex.modelcolumn."+columnIndexInModel, columnIndexInTable);
+			frostSettings.setValue(
+					Settings.MESSAGE_TREE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + columnIndexInModel,
+					columnIndexInTable);
             // save the current width of the column
             final int columnWidth = tc.getWidth();
-            frostSettings.setValue("MessageTreeTable.columnwidth.modelcolumn."+columnIndexInModel, columnWidth);
+			frostSettings.setValue(
+					Settings.MESSAGE_TREE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + columnIndexInModel,
+					columnWidth);
         }
     }
 
@@ -1209,7 +1213,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
         final int[] columnWidths = new int[tcm.getColumnCount()];
 
         for(int x=0; x < tableToModelIndex.length; x++) {
-            final String indexKey = "MessageTreeTable.tableindex.modelcolumn."+x;
+        	final String indexKey = Settings.MESSAGE_TREE_TABLE_TABLE_INDEX_MODEL_COLUMN_PREFIX + x;
             if( frostSettings.getObjectValue(indexKey) == null ) {
                 return false; // column not found, abort
             }
@@ -1220,7 +1224,7 @@ public class MessageTreeTable extends JTable implements PropertyChangeListener {
             }
             tableToModelIndex[tableIndex] = x;
 
-            final String widthKey = "MessageTreeTable.columnwidth.modelcolumn."+x;
+            final String widthKey = Settings.MESSAGE_TREE_TABLE_COLUMN_WIDTH_MODEL_COLUMN_PREFIX + x;
             if( frostSettings.getObjectValue(widthKey) == null ) {
                 return false; // column not found, abort
             }
