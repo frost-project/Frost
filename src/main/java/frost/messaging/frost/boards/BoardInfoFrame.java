@@ -62,7 +62,7 @@ import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.SortedTable;
 import frost.gui.model.SortedTableModel;
-import frost.gui.model.TableMember;
+import frost.gui.model.TableMember.BaseTableMember;
 import frost.storage.perst.messages.MessageStorage;
 import frost.util.ClipboardUtil;
 import frost.util.DateFun;
@@ -353,17 +353,18 @@ public class BoardInfoFrame extends JFrame implements BoardUpdateThreadListener,
         super.processWindowEvent(e);
     }
 
-    /**
-     * The class is a table row, holding the board and its file/message counts.
-     */
-    class BoardInfoTableMember extends TableMember.BaseTableMember<BoardInfoTableMember> {
-        Board board;
-        Integer allMsgCount;
-        Integer todaysMsgCount;
-        Integer flaggedMsgCount;
-        Integer starredMsgCount;
-        Integer unreadMsgCount;
-        String dateOfLastMsg;
+	/**
+	 * The class is a table row, holding the board and its file/message counts.
+	 */
+	private class BoardInfoTableMember extends BaseTableMember<BoardInfoTableMember> {
+
+		private Board board;
+		private Integer allMsgCount;
+		private Integer todaysMsgCount;
+		private Integer flaggedMsgCount;
+		private Integer starredMsgCount;
+		private Integer unreadMsgCount;
+		private String dateOfLastMsg;
 
         public BoardInfoTableMember(final Board board) {
             this.board = board;

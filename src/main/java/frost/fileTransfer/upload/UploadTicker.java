@@ -76,7 +76,7 @@ public class UploadTicker extends Thread {
 
     /**
      * This method is called to find out if a new generating thread can start. It
-     * temporarily allocates it and it will have to be relased when it is no longer
+     * temporarily allocates it and it will have to be released when it is no longer
      * needed (no matter whether the thread was actually used or not).
      * @return true if a new generating thread can start. False otherwise.
      */

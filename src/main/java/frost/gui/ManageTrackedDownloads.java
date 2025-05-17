@@ -59,7 +59,7 @@ import frost.Core;
 import frost.Settings;
 import frost.fcp.FreenetKeys;
 import frost.gui.model.SortedTableModel;
-import frost.gui.model.TableMember;
+import frost.gui.model.TableMember.BaseTableMember;
 import frost.storage.perst.TrackDownloadKeys;
 import frost.storage.perst.TrackDownloadKeysStorage;
 import frost.util.DateFun;
@@ -298,9 +298,9 @@ public class ManageTrackedDownloads extends JDialog implements SimplePopupMenuLi
 		}
 	}
 
-	private class TrackedDownloadTableMember extends TableMember.BaseTableMember<TrackedDownloadTableMember> {
+	private class TrackedDownloadTableMember extends BaseTableMember<TrackedDownloadTableMember> {
 
-		TrackDownloadKeys trackDownloadKey;
+		private TrackDownloadKeys trackDownloadKey;
 
 		public TrackedDownloadTableMember(final TrackDownloadKeys trackDownloadkey){
 			trackDownloadKey = trackDownloadkey;

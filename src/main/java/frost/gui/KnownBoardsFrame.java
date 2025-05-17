@@ -65,7 +65,7 @@ import frost.MainFrame;
 import frost.Settings;
 import frost.fileTransfer.common.TableBackgroundColors;
 import frost.gui.model.SortedTableModel;
-import frost.gui.model.TableMember;
+import frost.gui.model.TableMember.BaseTableMember;
 import frost.messaging.frost.boards.Board;
 import frost.messaging.frost.boards.Folder;
 import frost.messaging.frost.boards.TofTree;
@@ -475,9 +475,9 @@ public class KnownBoardsFrame extends JDialog {
     /**
      * The class is a table row, holding the board and its file/message counts.
      */
-    class KnownBoardsTableMember extends TableMember.BaseTableMember<KnownBoardsTableMember> {
+    private class KnownBoardsTableMember extends BaseTableMember<KnownBoardsTableMember> {
 
-        KnownBoard frostboard;
+        private KnownBoard frostboard;
 
         public KnownBoardsTableMember(final KnownBoard b) {
             this.frostboard = b;

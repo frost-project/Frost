@@ -45,7 +45,7 @@ import frost.fileTransfer.FreenetPriority;
 import frost.fileTransfer.upload.FreenetCompatibilityMode;
 import frost.fileTransfer.upload.FrostUploadItem;
 import frost.gui.model.SortedTableModel;
-import frost.gui.model.TableMember;
+import frost.gui.model.TableMember.BaseTableMember;
 import frost.util.FileAccess;
 import frost.util.FormatterUtils;
 import frost.util.gui.BooleanCell;
@@ -532,11 +532,11 @@ public class AddNewUploadsDialog extends JFrame {
 			}
 		}
 	}
-	
-	private class AddNewUploadsTableMember extends TableMember.BaseTableMember<AddNewUploadsTableMember> {
-		
-		FrostUploadItem frostUploadItem;
-		
+
+	private class AddNewUploadsTableMember extends BaseTableMember<AddNewUploadsTableMember> {
+
+		private FrostUploadItem frostUploadItem;
+
 		public AddNewUploadsTableMember(final FrostUploadItem frostUploadItem){
 			this.frostUploadItem = frostUploadItem;
 		}

@@ -362,16 +362,16 @@ class SearchThread extends Thread implements FileListCallback {
      * @param filename Filename to be checked
      * @return True if file gets accepted, else false
      */
-	private boolean checkType(List<String> extension, String filename) {
-        boolean accepted = false;
+	private boolean checkType(List<String> extensions, String filename) {
+		boolean accepted = false;
 
-		for (int i = 0; i < extension.size(); i++) {
-			if (filename.endsWith(extension.get(i)))
-                accepted = true;
-        }
+		for (String extension : extensions) {
+			if (filename.endsWith(extension))
+				accepted = true;
+		}
 
-        return accepted;
-    }
+		return accepted;
+	}
 
 //    private boolean filterSearchResults(FrostFileListFileObject fo) {
 //        if (request.indexOf("*age") != -1) {

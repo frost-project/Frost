@@ -1028,7 +1028,7 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
 //            // get the older messages, if configured start backload only after 12 hours
 //            final long before12hours = now - (12L * 60L * 60L * 1000L); // 12 hours
 //            boolean downloadCompleteBackload;
-//            if( Core.frostSettings.getBoolValue(SettingsClass.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD) == false
+//            if( Core.frostSettings.getBoolean(SettingsClass.ALWAYS_DOWNLOAD_MESSAGES_BACKLOAD) == false
 //                    && before12hours < board.getLastBackloadUpdateFinishedMillis() )
 //            {
 //                downloadCompleteBackload = false;

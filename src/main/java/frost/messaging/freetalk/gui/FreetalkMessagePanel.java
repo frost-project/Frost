@@ -697,9 +697,9 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 
             FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolean(Settings.SORT_THREADROOTMSGS_ASCENDING);
 
-//            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
-//            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
-//            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+//            indicateLowReceivedMessages = Core.frostSettings.getBoolean(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
+//            indicateLowReceivedMessagesCountRed = Core.frostSettings.getInteger(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+//            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getInteger(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
 
             Core.frostSettings.addPropertyChangeListener(Settings.SORT_THREADROOTMSGS_ASCENDING, this);
             Core.frostSettings.addPropertyChangeListener(Settings.MSGTABLE_MULTILINE_SELECT, this);
@@ -1615,7 +1615,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
 //        final DefaultTreeModel tableModel = getMessageTreeModel();
 //
 //        // use a different method based on threaded or not threaded view
-//        if( Core.frostSettings.getBoolValue(SettingsClass.SHOW_THREADS) ) {
+//        if( Core.frostSettings.getBoolean(SettingsClass.SHOW_THREADS) ) {
 //
 //            final FreetalkMessage initial = getSelectedMessage();
 //
@@ -1878,11 +1878,11 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
             FreetalkMessage.sortThreadRootMsgsAscending = settings.getBoolean(Settings.SORT_THREADROOTMSGS_ASCENDING);
         }
 //        else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES)) {
-//            indicateLowReceivedMessages = Core.frostSettings.getBoolValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
+//            indicateLowReceivedMessages = Core.frostSettings.getBoolean(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES);
 //        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED)) {
-//            indicateLowReceivedMessagesCountRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
+//            indicateLowReceivedMessagesCountRed = Core.frostSettings.getInteger(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_RED);
 //        } else if (evt.getPropertyName().equals(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED)) {
-//            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getIntValue(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
+//            indicateLowReceivedMessagesCountLightRed = Core.frostSettings.getInteger(SettingsClass.INDICATE_LOW_RECEIVED_MESSAGES_COUNT_LIGHTRED);
 //        }
     }
 }
