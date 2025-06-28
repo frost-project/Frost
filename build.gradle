@@ -51,9 +51,9 @@ dependencies {
 	implementation("ch.qos.logback:logback-core:1.5.18")
 	implementation("ch.qos.logback:logback-classic:1.5.18")
 	implementation("com.github.Spider-Admin:Perst:v4.40.0")
-	implementation("org.bouncycastle:bcprov-jdk18on:1.80")
+	implementation("org.bouncycastle:bcprov-jdk18on:1.81")
 	implementation("com.toedter:jcalendar:1.4")
-	testImplementation(platform("org.junit:junit-bom:5.12.2"))
+	testImplementation(platform("org.junit:junit-bom:5.13.2"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
