@@ -26,6 +26,14 @@ public class Convert {
 
 	private static final String STRING_LIST_SEPARATOR = ";";
 
+	public static Integer toInteger(String value) {
+		return Integer.valueOf(value.trim());
+	}
+
+	public static String toString(Integer value) {
+		return value.toString();
+	}
+
 	public static List<String> toStringList(String value) {
 		return Arrays.asList(value.split(STRING_LIST_SEPARATOR, -1));
 	}

@@ -24,6 +24,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +35,7 @@ import javax.swing.JTextField;
 import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class News2Panel extends JPanel {
 
@@ -216,6 +218,9 @@ public class News2Panel extends JPanel {
         new TextComponentClipboardMenu(blockBoardTextField, language);
         new TextComponentClipboardMenu(blockSubjectTextField, language);
         new TextComponentClipboardMenu(hideMessageCountTextField, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		hideMessageCountTextField.setInputVerifier(integerVerifier);
 
         blockBoardTextField.setLineWrap(true);
         blockBodyTextField.setLineWrap(true);

@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -36,6 +37,7 @@ import javax.swing.JTextField;
 import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class DownloadPanel extends JPanel {
 
@@ -142,6 +144,12 @@ public class DownloadPanel extends JPanel {
         new TextComponentClipboardMenu(threadsTextField, language);
         new TextComponentClipboardMenu(waitTimeTextField, language);
         new TextComponentClipboardMenu(execTextField, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		maxRetriesTextField.setInputVerifier(integerVerifier);
+		waitTimeTextField.setInputVerifier(integerVerifier);
+		threadsTextField.setInputVerifier(integerVerifier);
+		priorityTextField.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();

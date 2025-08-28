@@ -24,6 +24,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -37,6 +38,7 @@ import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class NewsPanel extends JPanel {
 
@@ -156,6 +158,14 @@ public class NewsPanel extends JPanel {
         new TextComponentClipboardMenu(minimumIntervalTextField, language);
         new TextComponentClipboardMenu(concurrentUpdatesTextField, language);
         new TextComponentClipboardMenu(altEditTextField, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		displayDaysTextField.setInputVerifier(integerVerifier);
+		downloadDaysTextField.setInputVerifier(integerVerifier);
+		uploadPrioTextField.setInputVerifier(integerVerifier);
+		downloadPrioTextField.setInputVerifier(integerVerifier);
+		minimumIntervalTextField.setInputVerifier(integerVerifier);
+		concurrentUpdatesTextField.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();

@@ -24,6 +24,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ import javax.swing.SwingConstants;
 
 import frost.Settings;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class JunkPanel extends JPanel {
 
@@ -75,6 +77,9 @@ public class JunkPanel extends JPanel {
         setName("JunkPanel");
         setLayout(new GridBagLayout());
         refreshLanguage();
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		TfInvalidSubsequentMessagesThreshold.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();

@@ -22,6 +22,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -34,6 +35,7 @@ import javax.swing.event.ChangeListener;
 import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class DisplayMessagesPanel extends JPanel {
 
@@ -158,6 +160,10 @@ public class DisplayMessagesPanel extends JPanel {
         setName("DisplayPanel");
         setLayout(new GridBagLayout());
         refreshLanguage();
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		TFindicateLowReceivedMessagesCountRed.setInputVerifier(integerVerifier);
+		TFindicateLowReceivedMessagesCountLightRed.setInputVerifier(integerVerifier);
 
         final GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.NORTHWEST;

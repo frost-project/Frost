@@ -55,6 +55,7 @@ import frost.MainFrame;
 import frost.Settings;
 import frost.storage.StorageException;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.VerifierUtil;
 
 /**
  * Main options frame.
@@ -437,6 +438,10 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
      * Close window and save settings
      */
     private void ok() {
+		if (!VerifierUtil.verifyAll(contentAreaPanel)) {
+			return;
+		}
+
         exitState = true;
 
         if (displayPanel != null) {
@@ -614,7 +619,12 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
 		final JList<?> theList = (JList<?>) e.getSource();
 		final ListBoxData Olbdata = (ListBoxData) theList.getSelectedValue();
 
-        lastSelectedPanelIndex = theList.getSelectedIndex();
+		if (!VerifierUtil.verifyAll(contentAreaPanel)) {
+			SwingUtilities.invokeLater(() -> optionsGroupsList.setSelectedIndex(lastSelectedPanelIndex));
+			return;
+		} else {
+			lastSelectedPanelIndex = theList.getSelectedIndex();
+		}
 
         contentAreaPanel.removeAll();
 

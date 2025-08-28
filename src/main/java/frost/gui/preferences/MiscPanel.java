@@ -22,6 +22,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,6 +36,7 @@ import frost.Settings;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class MiscPanel extends JPanel {
 
@@ -84,6 +86,9 @@ public class MiscPanel extends JPanel {
         new TextComponentClipboardMenu(autoSaveIntervalTextField, language);
         new TextComponentClipboardMenu(freenetNodeTextField, language);
         new TextComponentClipboardMenu(browserAddressTextField, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		autoSaveIntervalTextField.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();

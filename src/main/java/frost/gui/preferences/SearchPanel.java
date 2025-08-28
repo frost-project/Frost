@@ -24,6 +24,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -36,6 +37,7 @@ import frost.Settings;
 import frost.storage.perst.filelist.FileListStorage;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class SearchPanel extends JPanel {
 
@@ -92,10 +94,12 @@ public class SearchPanel extends JPanel {
         new TextComponentClipboardMenu(audioExtensionTextField, language);
         new TextComponentClipboardMenu(documentExtensionTextField, language);
         new TextComponentClipboardMenu(executableExtensionTextField, language);
-
         new TextComponentClipboardMenu(imageExtensionTextField, language);
         new TextComponentClipboardMenu(maxSearchResultsTextField, language);
         new TextComponentClipboardMenu(videoExtensionTextField, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		maxSearchResultsTextField.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();

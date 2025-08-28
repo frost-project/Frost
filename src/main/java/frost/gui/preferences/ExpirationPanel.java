@@ -23,6 +23,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.ButtonGroup;
+import javax.swing.InputVerifier;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -35,6 +36,7 @@ import javax.swing.SwingConstants;
 import frost.Settings;
 import frost.util.gui.TextComponentClipboardMenu;
 import frost.util.gui.translation.Language;
+import frost.util.gui.verify.PositiveIntegerVerifier;
 
 public class ExpirationPanel extends JPanel {
 
@@ -81,6 +83,11 @@ public class ExpirationPanel extends JPanel {
 
         // We create the components
         new TextComponentClipboardMenu(TfMessageExpireDays, language);
+
+		InputVerifier integerVerifier = new PositiveIntegerVerifier();
+		TfCleanupIntervalDays.setInputVerifier(integerVerifier);
+		TfMessageExpireDays.setInputVerifier(integerVerifier);
+		TfOfflineFilesMaxDaysOld.setInputVerifier(integerVerifier);
 
         // Adds all of the components
         final GridBagConstraints constraints = new GridBagConstraints();
