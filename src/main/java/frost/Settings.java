@@ -31,7 +31,6 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -46,6 +45,7 @@ import org.slf4j.LoggerFactory;
 import frost.fileTransfer.FreenetPriority;
 import frost.storage.ExitSavable;
 import frost.storage.StorageException;
+import frost.util.Convert;
 
 /**
  * Read settings from frost.ini and store them.
@@ -785,18 +785,8 @@ public class Settings implements ExitSavable {
     }
 
 	public List<String> getStringList(final String key) {
-        final String str = (String) settingsHash.get(key);
-        if (str == null) {
-			return new ArrayList<>();
-        }
-        final StringTokenizer strtok = new StringTokenizer(str, ";");
-		final List<String> returnStrArr = new ArrayList<>();
-
-		while (strtok.hasMoreElements()) {
-			returnStrArr.add(strtok.nextToken());
-        }
-        return returnStrArr;
-    }
+		return Convert.toStringList(getString(key));
+	}
 
 	public Boolean getBoolean(final String key) {
         final String str = (String) settingsHash.get(key);
