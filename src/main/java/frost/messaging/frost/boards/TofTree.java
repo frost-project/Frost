@@ -456,16 +456,16 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
 
 		private static final long serialVersionUID = 1L;
 
-        private final Border borderFlaggedAndStarredMsgs = BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 2, 0, 0, Color.red),    // outside
-                BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue) ); // inside
-        private final Border borderStarredMsgs = BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(0, 2, 0, 0),               // outside
-                BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue) ); // inside
-        private final Border borderFlaggedMsgs = BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 2, 0, 0, Color.red),    // outside
-                BorderFactory.createEmptyBorder(0, 2, 0, 0) );             // inside
-        private final Border borderEmpty = BorderFactory.createEmptyBorder(0, 4, 0, 0);
+		private transient Border borderFlaggedAndStarredMsgs = BorderFactory.createCompoundBorder(
+				BorderFactory.createMatteBorder(0, 2, 0, 0, Color.red), // outside
+				BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue)); // inside
+		private transient Border borderStarredMsgs = BorderFactory.createCompoundBorder(
+				BorderFactory.createEmptyBorder(0, 2, 0, 0), // outside
+				BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue)); // inside
+		private transient Border borderFlaggedMsgs = BorderFactory.createCompoundBorder(
+				BorderFactory.createMatteBorder(0, 2, 0, 0, Color.red), // outside
+				BorderFactory.createEmptyBorder(0, 2, 0, 0)); // inside
+		private transient Border borderEmpty = BorderFactory.createEmptyBorder(0, 4, 0, 0);
 
         private final ImageIcon sentMessagesFolderIcon;
         private final ImageIcon unsentMessagesFolderIcon;

@@ -113,16 +113,16 @@ public class FreetalkMessageTreeTable extends JTable implements PropertyChangeLi
     /** A subclass of JTree. */
     protected TreeTableCellRenderer tree;
 
-    protected Border borderUnreadAndMarkedMsgsInThread = BorderFactory.createCompoundBorder(
-            BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue),    // outside
-            BorderFactory.createMatteBorder(0, 2, 0, 0, Color.green) ); // inside
-    protected Border borderMarkedMsgsInThread = BorderFactory.createCompoundBorder(
-            BorderFactory.createEmptyBorder(0, 2, 0, 0),                // outside
-            BorderFactory.createMatteBorder(0, 2, 0, 0, Color.green) ); // inside
-    protected Border borderUnreadMsgsInThread = BorderFactory.createCompoundBorder(
-            BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue),    // outside
-            BorderFactory.createEmptyBorder(0, 2, 0, 0) );              // inside
-    protected Border borderEmpty = BorderFactory.createEmptyBorder(0, 4, 0, 0);
+	protected transient Border borderUnreadAndMarkedMsgsInThread = BorderFactory.createCompoundBorder(
+			BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue), // outside
+			BorderFactory.createMatteBorder(0, 2, 0, 0, Color.green)); // inside
+	protected transient Border borderMarkedMsgsInThread = BorderFactory.createCompoundBorder(
+			BorderFactory.createEmptyBorder(0, 2, 0, 0), // outside
+			BorderFactory.createMatteBorder(0, 2, 0, 0, Color.green)); // inside
+	protected transient Border borderUnreadMsgsInThread = BorderFactory.createCompoundBorder(
+			BorderFactory.createMatteBorder(0, 2, 0, 0, Color.blue), // outside
+			BorderFactory.createEmptyBorder(0, 2, 0, 0)); // inside
+	protected transient Border borderEmpty = BorderFactory.createEmptyBorder(0, 4, 0, 0);
 
     private final StringCellRenderer stringCellRenderer = new StringCellRenderer();
     private final BooleanCellRenderer booleanCellRenderer = new BooleanCellRenderer();
