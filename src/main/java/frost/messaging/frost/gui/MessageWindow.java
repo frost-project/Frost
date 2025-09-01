@@ -62,7 +62,7 @@ public class MessageWindow extends JFrame {
 
     private Listener listener;
 
-    private final Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     private SearchMessagesConfig searchMessagesConfig = null;
 

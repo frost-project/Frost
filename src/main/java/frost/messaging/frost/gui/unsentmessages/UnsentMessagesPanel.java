@@ -40,7 +40,7 @@ public class UnsentMessagesPanel extends JPanel implements LanguageListener {
 
 	private static final long serialVersionUID = 1L;
 
-    Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     private UnsentMessagesTable unsentMessagesTable;
     private JLabel unsentMsgsLabel;

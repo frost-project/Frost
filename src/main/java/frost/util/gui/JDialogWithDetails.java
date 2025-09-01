@@ -72,9 +72,9 @@ public class JDialogWithDetails extends JDialog {
 			super.windowClosing(e);
 		}
 	}
-	
-	protected Language language = null;
-	
+
+	protected transient Language language;
+
 	private boolean moreExtended = false;
 	
 	private Listener listener = new Listener();

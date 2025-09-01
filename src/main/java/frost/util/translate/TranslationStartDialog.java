@@ -45,8 +45,6 @@ public class TranslationStartDialog extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-    Language language = Language.getInstance();
-
     private JPanel jContentPane = null;
     private JLabel jLabel = null;
 	private JComboBox<ComboBoxEntry> comboBoxTargetLanguage = null;

@@ -50,7 +50,7 @@ public class BoardsChooser extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 

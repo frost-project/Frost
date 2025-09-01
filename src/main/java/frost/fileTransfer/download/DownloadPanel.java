@@ -111,7 +111,7 @@ public class DownloadPanel extends JPanel implements SettingsUpdater {
 
 	private DownloadModel model = null;
 
-	private Language language = null;
+	private transient Language language;
 
 	private final JToolBar downloadToolBar = new JToolBar();
 	private final JButton downloadPasteButton = new JButton(MiscToolkit.loadImageIcon("/data/toolbar/edit-paste.png"));

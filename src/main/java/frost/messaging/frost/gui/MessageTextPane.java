@@ -100,7 +100,7 @@ public class MessageTextPane extends JPanel {
 
 	private static final Logger logger = LoggerFactory.getLogger(MessageTextPane.class);
 
-    private final Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     private AntialiasedTextPane messageTextArea = null;
     private JSplitPane messageSplitPane = null;

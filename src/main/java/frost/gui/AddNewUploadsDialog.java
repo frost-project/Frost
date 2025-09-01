@@ -59,7 +59,7 @@ public class AddNewUploadsDialog extends JFrame {
 
 	private static final Logger logger = LoggerFactory.getLogger(AddNewUploadsDialog.class);
 
-	private final Language language;
+	private transient Language language;
 
 	private AddNewUploadsTableModel addNewUploadsTableModel;
 	private AddNewUploadsTable addNewUploadsTable;
@@ -624,7 +624,7 @@ public class AddNewUploadsDialog extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 
-		private Language language = null;
+		private transient Language language;
 
 		protected static String columnNames[];
 

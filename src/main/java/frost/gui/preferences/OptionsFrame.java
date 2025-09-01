@@ -87,7 +87,7 @@ public class OptionsFrame extends JDialog implements ListSelectionListener {
 
     private MainFrame mainFrame;
     private final Settings settings;
-    private final Language language;
+	private transient Language language;
 
     private JPanel buttonPanel = null; // OK / Cancel
     private boolean checkBlock;

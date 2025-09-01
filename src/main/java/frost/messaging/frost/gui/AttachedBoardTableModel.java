@@ -33,7 +33,7 @@ public class AttachedBoardTableModel extends DefaultTableModel implements Langua
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = null;
+	private transient Language language;
 
     protected final static String columnNames[] = new String[3];
 

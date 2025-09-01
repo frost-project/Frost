@@ -59,7 +59,7 @@ public class DisplayPanel extends JPanel {
 
     private JDialog owner = null;
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final Listener listener = new Listener();
 

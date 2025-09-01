@@ -41,7 +41,7 @@ public class JunkPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JCheckBox hideJunkMessagesCheckBox = new JCheckBox();
     private final JCheckBox markJunkIdentityBadCheckBox = new JCheckBox();

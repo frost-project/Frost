@@ -38,8 +38,8 @@ public class ManageLocalIdentitiesSignatureDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = Language.getInstance();
-    
+	private transient Language language = Language.getInstance();
+
     private JPanel jContentPane = null;
     private JPanel buttonPanel = null;
     private JButton Bok = null;

@@ -46,7 +46,7 @@ public class MainFrameStatusBar extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-    private final Language language;
+	private transient Language language;
 
     private JLabel statusLabelTofup = null;
     private JLabel statusLabelTofdn = null;

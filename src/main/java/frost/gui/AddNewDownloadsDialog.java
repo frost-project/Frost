@@ -82,7 +82,7 @@ public class AddNewDownloadsDialog extends JFrame {
 
 	private static final Logger logger = LoggerFactory.getLogger(AddNewDownloadsDialog.class);
 
-	private final Language language;
+	private transient Language language;
 
 	private final TrackDownloadKeysStorage trackDownloadKeysStorage;
 
@@ -556,7 +556,7 @@ public class AddNewDownloadsDialog extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 
-		private Language language = null;
+		private transient Language language;
 
 		protected  static String columnNames[];
 

@@ -45,7 +45,7 @@ public class MiscPanel extends JPanel {
 	private static final Logger logger =  LoggerFactory.getLogger(MiscPanel.class);
 
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JLabel autoSaveIntervalLabel = new JLabel();
     private final JTextField autoSaveIntervalTextField = new JTextField(8);

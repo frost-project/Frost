@@ -67,7 +67,7 @@ public class TargetFolderChooser extends JDialog {
     private Folder choosedFolder = null;
     private JScrollPane jScrollPane = null;
 
-    private final Language language;
+	private transient Language language;
 
     /**
      * This is the default constructor

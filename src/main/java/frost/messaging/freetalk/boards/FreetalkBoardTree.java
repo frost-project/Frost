@@ -528,7 +528,7 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
         }
     }
 
-    private Language language;
+	private transient Language language;
     private Settings settings;
     private MainFrame mainFrame;
 

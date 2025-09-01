@@ -53,7 +53,7 @@ public class UploadPanel extends JPanel {
 
     private JDialog owner = null;
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JLabel priorityLabel = new JLabel();
     private final JTextField priorityTextField = new JTextField(6);

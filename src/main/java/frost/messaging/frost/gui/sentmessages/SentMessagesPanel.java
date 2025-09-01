@@ -34,7 +34,7 @@ public class SentMessagesPanel extends JPanel implements LanguageListener {
 
 	private static final long serialVersionUID = 1L;
 
-	Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     private JLabel sentMsgsLabel;
     private SentMessagesTable sentMessagesTable;

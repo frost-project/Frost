@@ -28,7 +28,7 @@ public class JTranslatableComboBox extends JComboBox<CheckBoxItem> implements La
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = null;
+	private transient Language language;
 	private String[] keys;
 
 	public JTranslatableComboBox(Language language, String[] keys) {

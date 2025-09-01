@@ -77,7 +77,7 @@ public class NewBoardDialog extends JDialog {
 
     private Listener listener = new Listener();
 
-    private Language language;
+	private transient Language language;
 
     private JPanel contentPanel = new JPanel();
 

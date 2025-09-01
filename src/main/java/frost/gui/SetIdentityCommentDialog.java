@@ -51,7 +51,7 @@ public class SetIdentityCommentDialog extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	protected  Language language = null;
+	protected transient Language language;
 
 	private Identity identity;
 

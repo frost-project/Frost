@@ -28,7 +28,7 @@ public class SearchMessagesTableModel extends SortedTableModel<FrostSearchResult
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = null;
+	private transient Language language;
 
     protected final String columnNames[] = new String[8];
 

@@ -34,7 +34,7 @@ public class JTranslatableTabbedPane extends JTabbedPane implements LanguageList
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language;
+	private transient Language language;
 
 	public JTranslatableTabbedPane(Language language) {
 		super();

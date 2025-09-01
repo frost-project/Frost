@@ -52,7 +52,7 @@ public class DisplayMessagesPanel extends JPanel {
     }
 
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JCheckBox messageBodyAACheckBox = new JCheckBox();
     private final JCheckBox msgTableMultilineSelectCheckBox = new JCheckBox();

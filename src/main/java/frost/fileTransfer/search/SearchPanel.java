@@ -56,7 +56,7 @@ public class SearchPanel extends JPanel implements LanguageListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private final Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
     private SearchSimpleToolBar searchSimpleToolBar;
     private SearchAdvancedToolBar searchAdvancedToolBar;

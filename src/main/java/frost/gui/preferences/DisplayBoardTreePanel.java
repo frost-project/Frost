@@ -61,7 +61,7 @@ public class DisplayBoardTreePanel extends JPanel {
 
     private JDialog owner = null;
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JCheckBox showBoardDescTooltipsCheckBox = new JCheckBox();
     private final JCheckBox showBoardUpdateCountCheckBox = new JCheckBox();

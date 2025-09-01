@@ -58,7 +58,7 @@ public class NewsPanel extends JPanel {
     }
 
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JLabel uploadPrioLabel = new JLabel();
     private final JTextField uploadPrioTextField = new JTextField(8);

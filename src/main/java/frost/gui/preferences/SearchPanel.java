@@ -45,7 +45,7 @@ public class SearchPanel extends JPanel {
 
 	private MainFrame mainFrame;
     private Settings settings = null;
-    private Language language = null;
+	private transient Language language;
 
     private final JLabel archiveExtensionLabel = new JLabel();
 

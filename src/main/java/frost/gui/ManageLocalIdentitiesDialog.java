@@ -55,7 +55,7 @@ public class ManageLocalIdentitiesDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = null;
+	private transient Language language;
 
     private JPanel jContentPane = null;
     private JPanel buttonPanel = null;

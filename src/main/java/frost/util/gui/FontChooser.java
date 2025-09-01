@@ -97,7 +97,7 @@ public class FontChooser extends JDialog {
 
 	private final Listener listener = new Listener();
 
-	private Language language = null;
+	private transient Language language;
 
 	private final DefaultListModel<String> fontNamesModel = new DefaultListModel<>();
 	private final JList<String> fontNamesList = new JList<>(fontNamesModel);

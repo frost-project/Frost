@@ -32,7 +32,7 @@ public class TranslatableListModel extends DefaultListModel<String> implements L
 
 	private static final long serialVersionUID = 1L;
 
-	private Language language = null;
+	private transient Language language;
 
 	public TranslatableListModel(Language language) {
 		super();

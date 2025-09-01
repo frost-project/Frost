@@ -44,9 +44,9 @@ public class SmileyChooserDialog extends JDialog {
 
 	private static final Logger logger =  LoggerFactory.getLogger(SmileyChooserDialog.class);
 
-    Language language = Language.getInstance();
+	private transient Language language = Language.getInstance();
 
-    String returnValue = null;
+	private String returnValue;
 
     public SmileyChooserDialog(final JDialog parent) {
         super(parent, true);
