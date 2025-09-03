@@ -44,7 +44,7 @@ public class SearchPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private MainFrame mainFrame;
-    private Settings settings = null;
+	private transient Settings settings;
 	private transient Language language;
 
     private final JLabel archiveExtensionLabel = new JLabel();

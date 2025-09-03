@@ -51,7 +51,7 @@ public class DisplayMessagesPanel extends JPanel {
         }
     }
 
-    private Settings settings = null;
+	private transient Settings settings;
 	private transient Language language;
 
     private final JCheckBox messageBodyAACheckBox = new JCheckBox();

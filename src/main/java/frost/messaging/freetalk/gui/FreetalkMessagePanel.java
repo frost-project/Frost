@@ -482,7 +482,7 @@ public class FreetalkMessagePanel extends JPanel implements PropertyChangeListen
         }
     }
 
-    private final Settings settings;
+	private transient Settings settings;
 	private transient Language language = Language.getInstance();
     private JFrame parentFrame;
 

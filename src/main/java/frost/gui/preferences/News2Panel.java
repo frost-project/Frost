@@ -55,7 +55,7 @@ public class News2Panel extends JPanel {
         }
     }
 
-    private Settings settings = null;
+	private transient Settings settings;
 	private transient Language language;
 
     private final JCheckBox blockBoardCheckBox = new JCheckBox();

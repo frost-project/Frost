@@ -519,7 +519,7 @@ public class MessagePanel extends JPanel implements PropertyChangeListener {
         }
     }
 
-    private final Settings settings;
+	private transient Settings settings;
 	private transient Language language = Language.getInstance();
     private IdentitiesManager identitiesManager;
     private JFrame parentFrame;

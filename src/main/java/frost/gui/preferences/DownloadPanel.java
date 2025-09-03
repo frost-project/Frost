@@ -54,7 +54,7 @@ public class DownloadPanel extends JPanel {
     }
 
     private JDialog owner = null;
-    private Settings settings = null;
+	private transient Settings settings;
 	private transient Language language;
 
     private final JLabel priorityLabel = new JLabel();

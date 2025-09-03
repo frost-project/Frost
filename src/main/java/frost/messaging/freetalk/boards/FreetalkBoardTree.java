@@ -529,7 +529,7 @@ public class FreetalkBoardTree extends JDragTree implements AutoSavable, ExitSav
     }
 
 	private transient Language language;
-    private Settings settings;
+	private transient Settings settings;
     private MainFrame mainFrame;
 
     private final Listener listener = new Listener();

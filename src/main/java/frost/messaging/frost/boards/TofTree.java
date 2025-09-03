@@ -675,7 +675,7 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
     }
 
 	private transient Language language;
-    private Settings settings;
+	private transient Settings settings;
     private MainFrame mainFrame;
 
     private final Listener listener = new Listener();
