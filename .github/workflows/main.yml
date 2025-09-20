@@ -12,9 +12,9 @@ jobs:
     permissions:
       contents: read
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v5.0.0
     - uses: ./.github/actions/setup-java
-    - uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
+    - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
     - run: ./gradlew build
 
   update-dependency-graph:
@@ -23,6 +23,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v5.0.0
     - uses: ./.github/actions/setup-java
-    - uses: gradle/actions/dependency-submission@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
+    - uses: gradle/actions/dependency-submission@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
