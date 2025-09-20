@@ -89,7 +89,7 @@ public class SortedTableHeader extends ModelTableHeader {
 	private static Icon ascendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_ascending.png");
 	private static Icon descendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_descending.png");
 
-	private final ArrowRenderer arrowRenderer = new ArrowRenderer();
+	private transient final ArrowRenderer arrowRenderer = new ArrowRenderer();
 
 	private final SortedModelTable<? extends ModelItem<?>> sortedTable;
 

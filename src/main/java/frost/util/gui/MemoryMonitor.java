@@ -174,8 +174,8 @@ public class MemoryMonitor extends JPanel {
 		public Thread thread;
         public long sleepAmount = 1000;
         private int w, h;
-        private BufferedImage bimg;
-        private Graphics2D big;
+		private transient BufferedImage bimg;
+		private transient Graphics2D big;
         private final Font font = new Font("Times New Roman", Font.PLAIN, 11);
         private final Runtime r = Runtime.getRuntime();
         private int columnInc;
@@ -184,9 +184,9 @@ public class MemoryMonitor extends JPanel {
         private int ascent, descent;
 //        private float freeMemory, totalMemory;
         private final Rectangle graphOutlineRect = new Rectangle();
-        private final Rectangle2D mfRect = new Rectangle2D.Float();
-        private final Rectangle2D muRect = new Rectangle2D.Float();
-        private final Line2D graphLine = new Line2D.Float();
+		private transient final Rectangle2D mfRect = new Rectangle2D.Float();
+		private transient final Rectangle2D muRect = new Rectangle2D.Float();
+		private transient final Line2D graphLine = new Line2D.Float();
         private final Color graphColor = new Color(46, 139, 87);
         private final Color mfColor = new Color(0, 100, 0);
         private String usedStr;

@@ -40,9 +40,9 @@ public class CloseableTabbedPane extends JTabbedPane {
 
 	private static final long serialVersionUID = 1L;
 
-	//--- Data field(s) ---
+	// --- Data field(s) ---
 
-    private final Icon closeIcon;
+	private transient final Icon closeIcon;
 
     //--- Constructor(s) ---
 

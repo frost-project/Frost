@@ -128,10 +128,10 @@ public class MessageTextPane extends JPanel {
     private PropertyChangeListener propertyChangeListener;
 
     private SearchMessagesConfig searchMessagesConfig = null;
-    private TextHighlighter textHighlighter = null;
+	private transient TextHighlighter textHighlighter = null;
     private static Color highlightColor = new Color(0x20, 0xFF, 0x20); // light green
     private static Color idLineHighlightColor = Color.LIGHT_GRAY;
-    private final TextHighlighter idLineTextHighlighter = new TextHighlighter(idLineHighlightColor);
+	private transient final TextHighlighter idLineTextHighlighter = new TextHighlighter(idLineHighlightColor);
 
     public MessageTextPane(final Component parentFrame) {
         this(parentFrame, null);

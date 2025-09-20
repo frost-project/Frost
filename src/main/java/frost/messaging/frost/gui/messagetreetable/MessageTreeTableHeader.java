@@ -43,7 +43,7 @@ public class MessageTreeTableHeader extends JTableHeader {
     private static Icon ascendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_ascending.png");
     private static Icon descendingIcon = MiscToolkit.loadImageIcon("/data/SortedTable_descending.png");
 
-    private final ArrowRenderer arrowRenderer = new ArrowRenderer();
+	private transient final ArrowRenderer arrowRenderer = new ArrowRenderer();
 
     public MessageTreeTableHeader(final MessageTreeTable t) {
         super(t.getColumnModel());
