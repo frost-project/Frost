@@ -1,7 +1,6 @@
 plugins {
 	id "java"
 	id "application"
-	id "eclipse"
 }
 
 repositories {
@@ -14,9 +13,9 @@ repositories {
 def repoVersion
 task buildInfo {
 	try {
-		def cmd = "git describe --always --dirty --tags"
-		def proc = cmd.execute()
-		repoVersion = proc.text.trim()
+		repoVersion = providers.exec {
+			commandLine("git", "describe", "--always", "--dirty", "--tags")
+		}.standardOutput.asText.get().trim()
 	} catch (IOException e) {
 		repoVersion = "unknown-version"
 		logger.error("Unable to determine version, use \"{}\" as version!", repoVersion)
