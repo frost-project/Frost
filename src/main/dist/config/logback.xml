@@ -9,9 +9,9 @@
 	</appender>
 
 	<appender name="LogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>./logs/frost-latest.log</file>
+		<file>${APP_HOME}/logs/frost-latest.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>./logs/frost-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<fileNamePattern>${APP_HOME}/logs/frost-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
 			<maxHistory>7</maxHistory>
 		</rollingPolicy>
 		<encoder>
@@ -20,9 +20,9 @@
 	</appender>
 
 	<appender name="ImportantLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>./logs/frost-error-latest.log</file>
+		<file>${APP_HOME}/logs/frost-error-latest.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>./logs/frost-error-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<fileNamePattern>${APP_HOME}/logs/frost-error-%d{yyyy-MM-dd}.log.gz</fileNamePattern>
 			<maxHistory>7</maxHistory>
 		</rollingPolicy>
 		<encoder>

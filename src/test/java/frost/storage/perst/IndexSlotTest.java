@@ -23,7 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import frost.junit.InitExtension;
+
+@ExtendWith(InitExtension.class)
 public class IndexSlotTest {
 
 	@Test

@@ -1,5 +1,5 @@
 <configuration scan="true" scanPeriod="5 minutes" debug="false">
 
-	<include file="./config/logback.xml"/>
+	<include file="${APP_HOME}/config/logback.xml"/>
 
 </configuration>

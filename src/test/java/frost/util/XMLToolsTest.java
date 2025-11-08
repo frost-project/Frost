@@ -24,10 +24,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import frost.junit.InitExtension;
+
+@ExtendWith(InitExtension.class)
 public class XMLToolsTest {
 
 	@Test

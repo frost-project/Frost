@@ -6,7 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import frost.junit.InitExtension;
+
+@ExtendWith(InitExtension.class)
 public class ConvertTest {
 
 	private static final String INVALID_VALUE = "no value";

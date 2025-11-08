@@ -5,10 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import frost.Core;
 import frost.identities.LocalIdentity;
+import frost.junit.InitExtension;
 
+@ExtendWith(InitExtension.class)
 public class FrostCryptTest {
 
 	private static final String message = "GNU GENERAL PUBLIC LICENSE" + "\n" + "Version 3, 29 June 2007" + "\n"

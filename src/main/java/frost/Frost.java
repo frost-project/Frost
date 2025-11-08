@@ -42,6 +42,10 @@ import frost.util.gui.translation.Language;
 
 public class Frost {
 
+	static {
+		AppHome.init();
+	}
+
 	private static final Logger logger =  LoggerFactory.getLogger(Frost.class);
 
     private static String lookAndFeel = null;

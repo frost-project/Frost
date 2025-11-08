@@ -22,7 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import frost.junit.InitExtension;
+
+@ExtendWith(InitExtension.class)
 public class MixedTest {
 
 	@Test

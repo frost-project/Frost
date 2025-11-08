@@ -30,7 +30,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -53,6 +53,8 @@ import frost.util.Convert;
 public class Settings implements ExitSavable {
 
 	private static final Logger logger = LoggerFactory.getLogger(Settings.class);
+
+	private static final Path appHome = Path.of(System.getProperty(AppHome.APP_HOME));
 
     private final File settingsFile;
     private final Hashtable<String,Object> settingsHash;
@@ -1129,12 +1131,12 @@ public class Settings implements ExitSavable {
         }
     }
 
-	public String getBaseDirectory() {
-		return Paths.get("").toAbsolutePath() + File.separator;
+	public final String resolve(String filename) {
+		return appHome.resolve(filename).normalize().toString();
 	}
 
 	public String getFullHelpPath() {
-		return getBaseDirectory() + getString(DIR_HELP);
+		return resolve(getString(DIR_HELP)) + File.separator;
 	}
 
 	public static String getVersion() {
