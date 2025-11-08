@@ -26,6 +26,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -279,24 +282,25 @@ public class HelpBrowser extends JPanel implements LanguageListener, SimplePopup
             url = homePage;
         }
 
-        if( url.startsWith(url_prefix) ) {
-            url = url.substring(url_prefix.length());
-        }
+		try {
+			URI uri = new URI(url);
+			if (!uri.isAbsolute()) {
+				uri = Path.of(url_prefix).resolve(url).toUri();
+			}
 
-		logger.debug("Show help page {}{}", url_prefix, url);
-
-        try {
-            editorPane.setPage(url_prefix + url);
+			logger.debug("Show help page {}", uri);
+			editorPane.setPage(uri.toString());
 
             lastSearchPosStart = 0; // reset pos
             lastSearchPosEnd = 0; // reset pos
             lastSearchText = null;
 
             editorPane.requestFocus();
-
-        } catch (final IOException e1) {
-            logger.error("Missing file: '{}'", url);
-        }
+		} catch (IOException e) {
+			logger.error("Missing file: {}", url);
+		} catch (URISyntaxException e) {
+			logger.error("Invalid URI: {}", url);
+		}
 
         updateBrowserButtons();
     }

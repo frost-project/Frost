@@ -1136,7 +1136,7 @@ public class Settings implements ExitSavable {
 	}
 
 	public String getFullHelpPath() {
-		return resolve(getString(DIR_HELP)) + File.separator;
+		return resolve(getString(DIR_HELP));
 	}
 
 	public static String getVersion() {

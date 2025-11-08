@@ -24,7 +24,6 @@ import java.awt.Frame;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import javax.swing.JFrame;
 
@@ -76,8 +75,7 @@ public class HelpBrowserFrame extends JFrame {
 	 * Shorthand for help usage
 	 */
 	public HelpBrowserFrame(final String langlocale) {
-		this(langlocale, "file://localhost/" + Core.frostSettings.getFullHelpPath().replace(File.separator, "/"),
-				"index.html", true);
+		this(langlocale, Core.frostSettings.getFullHelpPath(), "index.html", true);
 	}
 
 	/**
