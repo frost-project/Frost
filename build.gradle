@@ -47,12 +47,12 @@ application {
 dependencies {
 	implementation("org.slf4j:slf4j-api:2.0.17")
 	implementation("org.slf4j:jul-to-slf4j:2.0.17")
-	implementation("ch.qos.logback:logback-core:1.5.19")
-	implementation("ch.qos.logback:logback-classic:1.5.19")
-	implementation("com.github.Spider-Admin:Perst:v4.40.0")
-	implementation("org.bouncycastle:bcprov-jdk18on:1.82")
+	implementation("ch.qos.logback:logback-core:1.5.23")
+	implementation("ch.qos.logback:logback-classic:1.5.23")
+	implementation("com.github.frost-project:Perst:v4.40.0")
+	implementation("org.bouncycastle:bcprov-jdk18on:1.83")
 	implementation("com.toedter:jcalendar:1.4")
-	testImplementation(platform("org.junit:junit-bom:6.0.0"))
+	testImplementation(platform("org.junit:junit-bom:6.0.1"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
