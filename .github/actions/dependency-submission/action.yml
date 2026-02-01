@@ -1,0 +1,4 @@
+runs:
+  using: "composite"
+  steps:
+  - uses: gradle/actions/dependency-submission@f29f5a9d7b09a7c6b29859002d29d24e1674c884 # v5.0.1
