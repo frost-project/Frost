@@ -22,6 +22,11 @@ Remove the folder `lib` and the files `Frost` and `Frost.bat` (if exists). Extra
 
 Run Frost with `Frost` (Linux, macOS) or `Frost.bat` (Windows).
 
+To create a shortcut that hides the console, use:
+
+- `create-shortcut.sh` (Linux) → creates `Frost.desktop`
+- `create-shortcut.bat` (Windows) → creates `Frost.lnk`
+
 ## Contact
 
 Project leader: Spider-Admin
