@@ -417,7 +417,7 @@ public class Core {
         splashscreen.setProgress(40);
 
 		// check if help files contains only secure files (no external links at all)
-		isHelpHtmlSecure = CheckHtmlIntegrity.check(Core.frostSettings.getFullHelpPath());
+		isHelpHtmlSecure = CheckHtmlIntegrity.check(Core.frostSettings.resolvePathKey(Settings.DIR_HELP));
 
         splashscreen.setText(language.getString("Splashscreen.message.3"));
         splashscreen.setProgress(60);

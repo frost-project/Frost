@@ -1131,12 +1131,20 @@ public class Settings implements ExitSavable {
         }
     }
 
-	public final String resolve(String filename) {
-		return appHome.resolve(filename).normalize().toString();
+	private final Path resolve(String filename) {
+		return appHome.resolve(filename).normalize();
 	}
 
-	public String getFullHelpPath() {
-		return resolve(getString(DIR_HELP));
+	public final String resolveFile(String filename) {
+		return resolve(filename).toString();
+	}
+
+	public final String resolvePathKey(String pathKey) {
+		return resolve(getString(pathKey)).toString();
+	}
+
+	public final String resolvePathKeyAndFile(String pathKey, String filename) {
+		return resolve(getString(pathKey)).resolve(filename).toString();
 	}
 
 	public static String getVersion() {

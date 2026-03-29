@@ -75,7 +75,7 @@ public class HelpBrowserFrame extends JFrame {
 	 * Shorthand for help usage
 	 */
 	public HelpBrowserFrame(final String langlocale) {
-		this(langlocale, Core.frostSettings.getFullHelpPath(), "index.html", true);
+		this(langlocale, Core.frostSettings.resolvePathKey(Settings.DIR_HELP), "index.html", true);
 	}
 
 	/**

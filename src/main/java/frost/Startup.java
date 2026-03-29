@@ -120,12 +120,12 @@ public class Startup {
             tempDirectory.mkdirs();
         }
 
-        final File storeDirectory = new File(settings.getString(Settings.DIR_STORE));
-        if( !storeDirectory.isDirectory() ) {
-            logger.info("Creating store directory");
-            storeDirectory.mkdirs();
-        }
-    }
+		final File storeDirectory = new File(settings.resolvePathKey(Settings.DIR_STORE));
+		if (!storeDirectory.isDirectory()) {
+			logger.info("Creating directory {}", storeDirectory);
+			storeDirectory.mkdirs();
+		}
+	}
 
     private static void cleanTempDir(final Settings settings) {
         final File[] entries = new File(settings.getString(Settings.DIR_TEMP)).listFiles();

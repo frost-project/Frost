@@ -207,11 +207,11 @@ public abstract class AbstractFrostStorage {
         return pagePoolSize;
     }
 
-    /**
-     * Gets the provided filename and constructs the final filename (preceedes filename with store directory).
-     */
-    protected String buildStoragePath(final String filename) {
-        final String storeDir = Core.frostSettings.getString(Settings.DIR_STORE);
-        return storeDir + filename; // path to the database file
-    }
+	/**
+	 * Gets the provided filename and constructs the final filename (precedes
+	 * filename with store directory).
+	 */
+	protected String buildStoragePath(final String filename) {
+		return Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_STORE, filename);
+	}
 }
