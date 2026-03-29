@@ -114,9 +114,9 @@ public class Startup {
 //            execDirectory.mkdirs();
 //        }
 
-        final File tempDirectory = new File(settings.getString(Settings.DIR_TEMP));
+		final File tempDirectory = new File(settings.resolvePathKey(Settings.DIR_TEMP));
         if( !tempDirectory.isDirectory() ) {
-            logger.info("Creating temp directory");
+			logger.info("Creating directory {}", tempDirectory);
             tempDirectory.mkdirs();
         }
 
@@ -128,9 +128,10 @@ public class Startup {
 	}
 
     private static void cleanTempDir(final Settings settings) {
-        final File[] entries = new File(settings.getString(Settings.DIR_TEMP)).listFiles();
+		final File[] entries = new File(settings.resolvePathKey(Settings.DIR_TEMP)).listFiles();
         for( final File entry : entries ) {
             if( entry.isDirectory() == false ) {
+				logger.info("Remove temp file {}", entry);
                 entry.delete();
             }
         }

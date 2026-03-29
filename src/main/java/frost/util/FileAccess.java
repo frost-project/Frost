@@ -61,17 +61,17 @@ public class FileAccess {
 
     public static File createTempFile(final String prefix, final String suffix) {
         File tmpFile = null;
-        try {
-            tmpFile = File.createTempFile(prefix, suffix, new File(Core.frostSettings.getString(Settings.DIR_TEMP)));
-        } catch( final Throwable ex ) {
-        }
+		try {
+			tmpFile = File.createTempFile(prefix, suffix,
+					new File(Core.frostSettings.resolvePathKey(Settings.DIR_TEMP)));
+		} catch (IOException e) {
+			logger.error("Unable to create temp file!", e);
+		}
+
         if( tmpFile == null ) {
             do {
-                tmpFile = new File(
-                        Core.frostSettings.getString(Settings.DIR_TEMP)+
-                        prefix+
-                        System.currentTimeMillis()+
-                        suffix);
+				tmpFile = new File(Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_TEMP,
+						prefix + System.currentTimeMillis() + suffix));
             } while(tmpFile.isFile());
         }
         return tmpFile;
