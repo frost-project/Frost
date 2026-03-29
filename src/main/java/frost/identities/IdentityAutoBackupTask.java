@@ -56,10 +56,14 @@ public class IdentityAutoBackupTask implements AutoSavable, ExitSavable {
             return;
         }
 
-        final String newName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.new";
-        final String xmlName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.xml";
-        final String bakName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.bak";
-        final String oldName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "localIdentitiesBackup.old";
+		final String newName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+				"localIdentitiesBackup.new");
+		final String xmlName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+				"localIdentitiesBackup.xml");
+		final String bakName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+				"localIdentitiesBackup.bak");
+		final String oldName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+				"localIdentitiesBackup.old");
         final File newFile = new File(newName);
         final File xmlFile = new File(xmlName);
         final File bakFile = new File(bakName);

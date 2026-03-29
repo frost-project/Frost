@@ -144,7 +144,8 @@ public class UploadManager implements ExitSavable {
                 // maybe log successful manual upload to file localdata/uploads.txt
                 if( Core.frostSettings.getBoolean(Settings.LOG_UPLOADS_ENABLED) && !uploadItem.isLoggedToFile() ) {
                     final String line = uploadItem.getKey() + "/" + uploadItem.getFileName();
-                    final String fileName = Core.frostSettings.getString(Settings.DIR_LOCALDATA) + "Frost-Uploads.log";
+					final String fileName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+							"Frost-Uploads.log");
                     final File targetFile = new File(fileName);
                     FileAccess.appendLineToTextfile(targetFile, line);
                     uploadItem.setLoggedToFile(true);

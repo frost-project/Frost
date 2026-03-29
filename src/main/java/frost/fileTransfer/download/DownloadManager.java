@@ -461,9 +461,8 @@ public class DownloadManager implements ExitSavable {
 					&& !downloadItem.isLoggedToFile()) {
 				final String line = downloadItem.getKey() + "/"
 						+ downloadItem.getFileName();
-				final String fileName = Core.frostSettings
-						.getString(Settings.DIR_LOCALDATA)
-						+ "Frost-Downloads.log";
+				final String fileName = Core.frostSettings.resolvePathKeyAndFile(Settings.DIR_LOCALDATA,
+						"Frost-Downloads.log");
 				final File targetLogFile = new File(fileName);
 				FileAccess.appendLineToTextfile(targetLogFile, line);
 				downloadItem.setLoggedToFile(true);
