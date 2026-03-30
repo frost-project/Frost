@@ -65,6 +65,7 @@ public abstract class AbstractFrostStorage {
         if( serializeTransientObjects ) {
             storage.setProperty("perst.serialize.transient.objects", Boolean.TRUE);
         }
+		logger.info("Opening storage {}", databaseFilePath);
         storage.open(databaseFilePath, pagePoolSize);
     }
 
