@@ -371,27 +371,12 @@ public class Settings implements ExitSavable {
         settingsHash = new Hashtable<String,Object>();
         // the FIX config.dir
         settingsHash.put(DIR_CONFIG, "config" + fs);
-        final String configFilename = "config" + fs + "frost.ini";
-        settingsFile = new File(configFilename);
+		settingsFile = new File(resolvePathKeyAndFile(DIR_CONFIG, "frost.ini"));
         loadDefaults();
         if (!readSettingsFile()) {
             writeSettingsFile();
         }
         settingsHash.put(FILE_BASE, "testfiles1");
-    }
-
-    /**
-     * Creates a new SettingsClass to read a frost.ini in directory config, relative
-     * to the provided base directory.
-     * The configuration is not read immediately, call readSettingsFile.
-     * @param baseDirectory  the base directory of the config/frost.ini file
-     */
-    public Settings(final File baseDirectory) {
-        settingsHash = new Hashtable<String,Object>();
-        // the FIX config.dir
-        settingsHash.put(DIR_CONFIG, baseDirectory.getPath() + fs + "config" + fs);
-        final String configFilename = baseDirectory.getPath() + fs + "config" + fs + "frost.ini";
-        settingsFile = new File(configFilename);
     }
 
     /**
@@ -426,8 +411,7 @@ public class Settings implements ExitSavable {
 		// maybe restore a .bak of the .ini file
 		if ((settingsFile.isFile() == false) || (settingsFile.length() == 0)) {
 			// try to restore .bak file
-			final String configDirStr = getString(Settings.DIR_CONFIG);
-			final File bakFile = new File(configDirStr + "frost.ini.bak");
+			final File bakFile = new File(resolvePathKeyAndFile(DIR_CONFIG, "frost.ini.bak"));
 			if (bakFile.isFile() && (bakFile.length() > 0)) {
 				bakFile.renameTo(settingsFile);
 			} else {
@@ -495,7 +479,7 @@ public class Settings implements ExitSavable {
 		doCleanup();
 		doChanges();
 
-		logger.info("Read user configuration");
+		logger.info("Read user configuration from {}", settingsFile.getAbsolutePath());
 		return true;
 	}
 
@@ -546,10 +530,9 @@ public class Settings implements ExitSavable {
 		}
 
 		// write to new file
-		final String configDirStr = getString(Settings.DIR_CONFIG);
-		final File newFile = new File(configDirStr + "frost.ini.new");
-		final File oldFile = new File(configDirStr + "frost.ini.old");
-		final File bakFile = new File(configDirStr + "frost.ini.bak");
+		final File newFile = new File(resolvePathKeyAndFile(DIR_CONFIG, "frost.ini.new"));
+		final File oldFile = new File(resolvePathKeyAndFile(DIR_CONFIG, "frost.ini.old"));
+		final File bakFile = new File(resolvePathKeyAndFile(DIR_CONFIG, "frost.ini.bak"));
 
 		try (PrintWriter settingsWriter = new PrintWriter(new FileWriter(newFile));) {
 			final TreeMap<String, Object> sortedSettings = new TreeMap<String, Object>(settingsHash); // sort the lines

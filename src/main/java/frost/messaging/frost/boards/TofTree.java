@@ -852,13 +852,13 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
      */
     private boolean loadTree() {
         final TofTreeXmlIO xmlio = new TofTreeXmlIO();
-        String boardIniFilename = settings.getString(Settings.DIR_CONFIG) + "boards.xml";
+		String boardIniFilename = settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml");
         // the call changes the toftree and loads nodes into it
         final File iniFile = new File(boardIniFilename);
         if( iniFile.exists() == false ) {
-            logger.warn("boards.xml file not found, reading default file (will be saved to boards.xml on exit).");
+			logger.warn("{} not found, reading default file (will be saved to boards.xml on exit).", boardIniFilename);
             final String defaultBoardsFile = "boards.xml.default07";
-            boardIniFilename = settings.getString(Settings.DIR_CONFIG) + defaultBoardsFile;
+			boardIniFilename = settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, defaultBoardsFile);
         }
 
         final String unsentName = language.getString("UnsentMessages.folderName");
@@ -909,15 +909,14 @@ public class TofTree extends JDragTree implements AutoSavable, ExitSavable, Prop
      */
     public void save() throws StorageException {
 
-        // board list is important, create bak files bak, bak2, bak3, bak4
-        final String configDir = settings.getString(Settings.DIR_CONFIG);
-        final File xmlFile = new File(configDir + "boards.xml");
-        final File bakFile = new File(configDir + "boards.xml.bak");
-        final File bak2File = new File(configDir + "boards.xml.bak2");
-        final File bak3File = new File(configDir + "boards.xml.bak3");
-        final File bak4File = new File(configDir + "boards.xml.bak4");
-        final File oldFile = new File(configDir + "boards.xml.old");
-        final File newFile = new File(configDir + "boards.new");
+		// board list is important, create bak files bak, bak2, bak3, bak4
+		final File xmlFile = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml"));
+		final File bakFile = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml.bak"));
+		final File bak2File = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml.bak2"));
+		final File bak3File = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml.bak3"));
+		final File bak4File = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml.bak4"));
+		final File oldFile = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.xml.old"));
+		final File newFile = new File(settings.resolvePathKeyAndFile(Settings.DIR_CONFIG, "boards.new"));
 
         // save to new xml file
         final TofTreeXmlIO xmlio = new TofTreeXmlIO();
