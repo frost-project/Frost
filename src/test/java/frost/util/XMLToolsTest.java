@@ -21,10 +21,11 @@ package frost.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.io.TempDir;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -34,10 +35,13 @@ import frost.junit.InitExtension;
 @ExtendWith(InitExtension.class)
 public class XMLToolsTest {
 
+	@TempDir
+	private Path tempDir;
+
 	@Test
 	public void createAndValidateXML() {
 		String messageID = "<![CDATA[\\\\</MessageId>]]> <helpme />";
-		String xmlFilename = Paths.get(System.getProperty("java.io.tmpdir"), "AAAAA.xml", "").toString();
+		String xmlFilename = tempDir.resolve("AAAAA.xml").toString();
 
 		Document d = XMLTools.createDomDocument();
 		Element el = d.createElement("FrostMessage");
