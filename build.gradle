@@ -59,12 +59,12 @@ distributions {
 dependencies {
 	implementation("org.slf4j:slf4j-api:2.0.17")
 	implementation("org.slf4j:jul-to-slf4j:2.0.17")
-	implementation("ch.qos.logback:logback-core:1.5.27")
-	implementation("ch.qos.logback:logback-classic:1.5.27")
+	implementation("ch.qos.logback:logback-core:1.5.32")
+	implementation("ch.qos.logback:logback-classic:1.5.32")
 	implementation("com.github.frost-project:Perst:v4.40.0")
-	implementation("org.bouncycastle:bcprov-jdk18on:1.83")
+	implementation("org.bouncycastle:bcprov-jdk18on:1.84")
 	implementation("com.toedter:jcalendar:1.4")
-	testImplementation(platform("org.junit:junit-bom:6.0.2"))
+	testImplementation(platform("org.junit:junit-bom:6.0.3"))
 	testImplementation("org.junit.jupiter:junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
