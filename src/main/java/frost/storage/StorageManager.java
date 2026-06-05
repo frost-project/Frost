@@ -26,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import frost.Core;
-import frost.Frost;
 import frost.Settings;
 
 /**
@@ -87,8 +86,6 @@ public class StorageManager extends Timer {
 			}
 
 			logger.info("Frost shutdown completed.");
-
-            Frost.releaseLockFile();
 		}
 	}
 

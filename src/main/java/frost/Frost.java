@@ -18,12 +18,6 @@
 */
 package frost;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileLock;
-import java.nio.channels.OverlappingFileLockException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -36,7 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
-import frost.util.FileAccess;
 import frost.util.gui.MiscToolkit;
 import frost.util.gui.translation.Language;
 
@@ -54,6 +47,8 @@ public class Frost {
     private static String cmdLineLocaleFileName = null;
 
     private static boolean offlineMode = false;
+
+	private AppLock appLock;
 
     /**
      * Main method
@@ -212,9 +207,16 @@ public class Frost {
 
         initializeLookAndFeel();
 
-        if (!initializeLockFile(Language.getInstance())) {
-            System.exit(1);
-        }
+		appLock = new AppLock();
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			appLock.release();
+		}));
+		if (!appLock.tryLock()) {
+			MiscToolkit.showMessage(
+					Language.getInstance().getString("Frost.lockFileFound") + "'" + appLock.getFilename() + "'",
+					JOptionPane.ERROR_MESSAGE, "Found Frost lock file");
+			System.exit(1);
+		}
 
         try {
             core.initialize();
@@ -239,64 +241,6 @@ public class Frost {
                 + "; "+System.getProperty("os.arch"));
         envInfo.add("MaxMemory: "+Runtime.getRuntime().maxMemory());
         return envInfo;
-    }
-
-    private static File runLockFile = new File("frost.lock");
-    private static FileChannel lockChannel;
-    private static FileLock fileLock;
-
-    /**
-     * This method checks if the lockfile is present (therefore indicating that another instance
-     * of Frost is running off the same directory). If it is, it shows a Dialog warning the
-     * user of the situation and returns false. If not, it creates a lockfile and returns true.
-     * @param language the language to use in case an error message has to be displayed.
-     * @return boolean false if there was a problem while initializing the lockfile. True otherwise.
-     */
-    private boolean initializeLockFile(final Language language) {
-        // write minimal content into file
-        FileAccess.writeFile("frost-lock", runLockFile);
-
-        // try to acquire exclusive lock
-        try {
-            // Get a file channel for the file
-            lockChannel = new RandomAccessFile(runLockFile, "rw").getChannel();
-            fileLock = null;
-
-            // Try acquiring the lock without blocking. This method returns
-            // null or throws an exception if the file is already locked.
-            try {
-                fileLock = lockChannel.tryLock();
-            } catch (final OverlappingFileLockException e) {
-                // File is already locked in this thread or virtual machine
-            }
-        } catch (final Exception e) {
-        }
-
-        if (fileLock == null) {
-            MiscToolkit.showMessage(
-                language.getString("Frost.lockFileFound") + "'" +
-                    runLockFile.getAbsolutePath() + "'",
-                JOptionPane.ERROR_MESSAGE,
-                "ERROR: Found Frost lock file 'frost.lock'.");
-            return false;
-        }
-        return true;
-    }
-
-    public static void releaseLockFile() {
-        if( fileLock != null ) {
-            try {
-                fileLock.release();
-            } catch (final IOException e) {
-            }
-        }
-        if( lockChannel != null ) {
-            try {
-                lockChannel.close();
-            } catch (final IOException e) {
-            }
-        }
-        runLockFile.delete();
     }
 
     public static String getCmdLineLocaleFileName() {
