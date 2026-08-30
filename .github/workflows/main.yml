@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v7.0.1
     - uses: ./.github/actions/setup-java
     - uses: ./.github/actions/setup-gradle
     - run: ./gradlew build
@@ -23,6 +23,6 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v6.0.2
+    - uses: actions/checkout@v7.0.1
     - uses: ./.github/actions/setup-java
     - uses: ./.github/actions/dependency-submission
