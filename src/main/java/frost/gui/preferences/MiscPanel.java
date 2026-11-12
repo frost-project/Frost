@@ -55,6 +55,7 @@ public class MiscPanel extends JPanel {
 
     private final JLabel browserAddressLabel = new JLabel();
     private final JTextField browserAddressTextField = new JTextField();
+    private final JCheckBox unsafeOpenInBrowserCheckBox = new JCheckBox();
 
     private final JCheckBox useDDACheckBox = new JCheckBox();
     private final JCheckBox usePersistenceCheckBox = new JCheckBox();
@@ -159,6 +160,9 @@ public class MiscPanel extends JPanel {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         add(browserAddressTextField, constraints);
         constraints.weightx = 0;
+        constraints.gridy++;
+        constraints.fill = GridBagConstraints.NONE;
+        add(unsafeOpenInBrowserCheckBox, constraints);
 
         // glue
         constraints.gridy++;
@@ -186,6 +190,7 @@ public class MiscPanel extends JPanel {
         usePersistenceCheckBox.setSelected(settings.getBoolean(Settings.FCP2_USE_PERSISTENCE));
         
         browserAddressTextField.setText(settings.getString(Settings.BROWSER_ADDRESS));
+        unsafeOpenInBrowserCheckBox.setSelected(settings.getBoolean(Settings.UNSAFE_OPEN_IN_BROWSER));
     }
 
     public void ok() {
@@ -230,6 +235,8 @@ public class MiscPanel extends JPanel {
         compactDatabaseAtNextStartupCheckBox.setText(language.getString("Options.miscellaneous.compactStoragesDuringNextStartup"));
 
         browserAddressLabel.setText(language.getString("Options.miscellaneous.browserAddress"));
+        unsafeOpenInBrowserCheckBox.setText(language.getString("Options.miscellaneous.unsafeOpenInBrowser"));
+        unsafeOpenInBrowserCheckBox.setToolTipText(language.getString("Options.miscellaneous.unsafeOpenInBrowser.tooltip"));
     }
 
     /**
@@ -246,5 +253,6 @@ public class MiscPanel extends JPanel {
         settings.setValue(Settings.FCP2_USE_DDA, useDDACheckBox.isSelected());
         settings.setValue(Settings.FCP2_USE_PERSISTENCE, usePersistenceCheckBox.isSelected());
         settings.setValue(Settings.BROWSER_ADDRESS, browserAddressTextField.getText());
+        settings.setValue(Settings.UNSAFE_OPEN_IN_BROWSER, unsafeOpenInBrowserCheckBox.isSelected());
     }
 }

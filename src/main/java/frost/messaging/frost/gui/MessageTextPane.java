@@ -67,6 +67,7 @@ import org.slf4j.LoggerFactory;
 import frost.Core;
 import frost.MainFrame;
 import frost.Settings;
+import frost.ext.Execute;
 import frost.fileTransfer.download.DownloadManager;
 import frost.fileTransfer.download.FrostDownloadItem;
 import frost.gui.AddNewDownloadsDialog;
@@ -800,11 +801,8 @@ public class MessageTextPane extends JPanel {
             saveAttachmentsItem.addActionListener(this);
             saveAttachmentItem.addActionListener(this);
 
-            String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
-            if( (browserAddress != null) && (browserAddress.length() > 0) ) {
-	            openFileInBrowserItem.addActionListener(this);
-	            openAllFilesInBrowserItem.addActionListener(this);
-            }
+            openFileInBrowserItem.addActionListener(this);
+            openAllFilesInBrowserItem.addActionListener(this);
         }
 
         public void languageChanged(final LanguageEvent event) {
@@ -832,12 +830,14 @@ public class MessageTextPane extends JPanel {
                 add(saveAttachmentItem);
             }
 
-            addSeparator();
+            if (canOpenInBrowser()) {
+                addSeparator();
 
-            if (filesTable.getSelectedRow() == -1) {
-                add(openAllFilesInBrowserItem);
-            } else {
-                add(openFileInBrowserItem);
+                if (filesTable.getSelectedRow() == -1) {
+                    add(openAllFilesInBrowserItem);
+                } else {
+                    add(openFileInBrowserItem);
+                }
             }
 
             super.show(invoker, x, y);
@@ -1025,8 +1025,7 @@ public class MessageTextPane extends JPanel {
                 // freesite link
                 add(copyFreesiteLinkToClipboard);
 
-				String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
-	            if( (browserAddress != null) && (browserAddress.length() > 0) ) {
+				if( canOpenInBrowser() ) {
 	            	addSeparator();
 	            	add(openFileInBrowser);
 					if (allKeys.size() > 1) {
@@ -1046,8 +1045,7 @@ public class MessageTextPane extends JPanel {
                 if( allKeys.size() > 1 ) {
                     add(downloadAllFiles);
                 }
-                String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
-	            if( (browserAddress != null) && (browserAddress.length() > 0) ) {
+                if( canOpenInBrowser() ) {
 	            	addSeparator();
 	            	add(openFileInBrowser);
 					if (allKeys.size() > 1) {
@@ -1150,19 +1148,36 @@ public class MessageTextPane extends JPanel {
 
     }
 
+    private static boolean isDesktopBrowseSupported() {
+		return Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE);
+	}
+
+	/**
+	 * Desktop BROWSE is often unsupported on Linux, fall back to xdg-open if allowed.
+	 */
+	private static boolean isXdgOpenAllowed() {
+		return Execute.isLinux() && Core.frostSettings.getBoolean(Settings.UNSAFE_OPEN_IN_BROWSER);
+	}
+
+	/**
+	 * @return true if a browser address is configured and there is a way to open it
+	 */
+	private static boolean canOpenInBrowser() {
+		final String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
+		if ((browserAddress == null) || (browserAddress.length() == 0)) {
+			return false;
+		}
+		return isDesktopBrowseSupported() || isXdgOpenAllowed();
+	}
+
     private void openFileInBrowser_action(final List<String> items) {
-		if (!Desktop.isDesktopSupported()) {
+		if (!canOpenInBrowser()) {
+			logger.warn("Cannot open in browser: no browser address or browse action not supported");
 			return;
 		}
-		if (!Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-			return;
-		}
+		final boolean desktopBrowse = isDesktopBrowseSupported();
 
 		final String browserAddress = Core.frostSettings.getString(Settings.BROWSER_ADDRESS);
-		if (browserAddress.length() == 0) {
-			logger.warn("Browser address not configured");
-			return;
-		}
 		if ((items == null) || (items.size() < 1)) {
 			return;
 		}
@@ -1173,7 +1188,11 @@ public class MessageTextPane extends JPanel {
 				final URI uri = new URI(browserURI.getScheme(), browserURI
 						.getSchemeSpecificPart()
 						+ key, null);
-				Desktop.getDesktop().browse(uri);
+				if (desktopBrowse) {
+					Desktop.getDesktop().browse(uri);
+				} else {
+					Execute.runtimeExec(new String[] { "xdg-open", uri.toASCIIString() });
+				}
 			} catch (IOException ex) {
 				logger.error("IOException", ex);
 			} catch (URISyntaxException e) {

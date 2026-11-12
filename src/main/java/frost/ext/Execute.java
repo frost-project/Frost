@@ -117,4 +117,11 @@ public class Execute {
     public static boolean isWindows() {
     	return (System.getProperty("os.name").toLowerCase().indexOf("windows") > -1);
     }
+
+    /**
+     * @return boolean true if the running os is linux, otherwise false
+     */
+    public static boolean isLinux() {
+    	return (System.getProperty("os.name").toLowerCase().indexOf("linux") > -1);
+    }
 }

@@ -331,6 +331,7 @@ public class Settings implements ExitSavable {
 	public static final String USE_BOARDNAME_DOWNLOAD_SUBFOLDER_ENABLED = "useBoardnameDownloadSubfolder";
 
 	public static final String BROWSER_ADDRESS = "browserAddress";
+	public static final String UNSAFE_OPEN_IN_BROWSER = "unsafeOpenInBrowser";
 
 	public static final String FILE_LIST_FILE_DETAILS_DIALOG_SORT_STATE_SORTED_COLUMN = "FileListFileDetailsDialog.sortState.sortedColumn";
 	public static final String FILE_LIST_FILE_DETAILS_DIALOG_SORT_STATE_SORTED_ASCENDING = "FileListFileDetailsDialog.sortState.sortedAscending";
@@ -1092,6 +1093,7 @@ public class Settings implements ExitSavable {
         defaults.put(PERST_EXPORT_STORAGES,  "false");
 
 		defaults.put(BROWSER_ADDRESS, "http://127.0.0.1:8888/");
+		defaults.put(UNSAFE_OPEN_IN_BROWSER, "false");
 
         settingsHash.putAll(defaults);
     }
