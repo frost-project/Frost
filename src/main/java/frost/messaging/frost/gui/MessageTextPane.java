@@ -943,6 +943,7 @@ public class MessageTextPane extends JPanel {
 
         private final JMenuItem openFileInBrowser = new JMenuItem();
         private final JMenuItem openAllFilesInBrowser = new JMenuItem();
+        private final JMenuItem openAllImagesInBrowser = new JMenuItem();
 
         private String clickedKey = null;
         private List<String> allKeys = null;
@@ -978,6 +979,8 @@ public class MessageTextPane extends JPanel {
             	openFileInBrowser_action(getItems(false));
             } else if( e.getSource() == openAllFilesInBrowser ) {
             	openFileInBrowser_action(getItems(true));
+            } else if( e.getSource() == openAllImagesInBrowser ) {
+            	openFileInBrowser_action(getImageItems());
             }
         }
 
@@ -994,6 +997,7 @@ public class MessageTextPane extends JPanel {
 
         	openFileInBrowser.addActionListener(this);
             openAllFilesInBrowser.addActionListener(this);
+            openAllImagesInBrowser.addActionListener(this);
         }
 
         public void languageChanged(final LanguageEvent event) {
@@ -1006,6 +1010,7 @@ public class MessageTextPane extends JPanel {
             downloadAllFilesOfMessage.setText(language.getString("MessagePane.hyperlink.popupmenu.downloadAllFileKeysOfMessage"));
             openFileInBrowser.setText(language.getString("MessagePane.hyperlink.popupmenu.openFileInBrowser"));
             openAllFilesInBrowser.setText(language.getString("MessagePane.hyperlink.popupmenu.openAllFlesInBrowser"));
+            openAllImagesInBrowser.setText(language.getString("MessagePane.hyperlink.popupmenu.openAllImagesInBrowser"));
 
             cancelItem.setText(language.getString("Common.cancel"));
         }
@@ -1052,6 +1057,9 @@ public class MessageTextPane extends JPanel {
 	            	add(openFileInBrowser);
 					if (allKeys.size() > 1) {
 						add(openAllFilesInBrowser);
+					}
+					if (getImageItems().size() > 1) {
+						add(openAllImagesInBrowser);
 					}
 	            }
 			}
@@ -1122,6 +1130,28 @@ public class MessageTextPane extends JPanel {
                 return null;
             }
             return items;
+        }
+
+        /**
+         * @return all keys whose filename ends with one of the configured image extensions
+         */
+        private List<String> getImageItems() {
+            final List<String> imageKeys = new ArrayList<String>();
+            if( allKeys == null ) {
+                return imageKeys;
+            }
+            final List<String> imageExtensions = Core.frostSettings.getStringList(Settings.FILEEXTENSION_IMAGE);
+            for( final String key : allKeys ) {
+                final String lowerKey = key.toLowerCase();
+                for( final String extension : imageExtensions ) {
+                    final String ext = extension.trim().toLowerCase();
+                    if( (ext.length() > 0) && lowerKey.endsWith(ext) ) {
+                        imageKeys.add(key);
+                        break;
+                    }
+                }
+            }
+            return imageKeys;
         }
 
         /**
