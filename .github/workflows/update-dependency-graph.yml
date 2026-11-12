@@ -1,0 +1,16 @@
+name: Update dependency graph
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  update-dependency-graph:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v7.0.1
+    - uses: ./.github/actions/setup-java
+    - uses: ./.github/actions/dependency-submission
